@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arieff Hizer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="theme.css">
+  </head>
+  <body class="bg-white text-gray-900 font-open sauce two">
+
+      <div class="border-b-2 w-full sticky top-0 z-50 backdrop-blur bg-white/80">
+        <header class="flex justify-between items-center p-4 max-w-6xl mx-auto">
+          
+          <!-- Logo + Name as Home Button -->
+          <a href="index.html" class="flex items-center bg-gray-100 px-4 py-1 rounded-full shadow gap-2 hover:shadow-md transition">
+            <img src="images/logo arieff h 3.png" alt="Logo" class="w-6 h-6 rounded-full shadow" />
+            <span class="text-lg font-semibold text-gray-800">Arieff H.</span>
+          </a>
+      
+          <!-- Grouped Nav Buttons -->
+          <div class="md:flex items-center gap-4">
+            <a
+              href="about.html"
+              class="flex items-center gap-2 px-4 py-1 border border-violet-600 rounded-full bg-white text-violet-600 hover:shadow transition text-sm"
+            >
+              <i class="bi bi-person-fill text-base"></i>
+              About Me
+            </a>
+      
+            <a
+              href="index.html#projects"
+              class="flex items-center gap-2 px-4 py-1 border border-gray-300 rounded-full bg-white text-gray-700 hover:shadow transition text-sm"
+            >
+              <i class="bi bi-folder-fill text-base"></i>
+              Projects
+            </a>
+      
+            <a
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
+             target="_blank"
+             rel="noopener"
+              class="flex items-center gap-2 bg-violet-600 hover:bg-violet-700 text-white px-4 py-2 rounded-full text-sm"
+            >
+              Say Hi <i class="bi bi-emoji-smile-fill"></i>
+            </a>
+
+          </div>
+        </header>
+      </div>
+
+<!-- Profile Section -->
+<section class="mt-36 px-4 max-w-6xl mx-auto flex flex-col md:flex-row items-center text-center gap-14">
+
+  <!-- Image on the left -->
+  <div class="flex-shrink-0">
+    <img src="images/me.jpeg" alt="Arieff Hizer" class="w-96 h-96 rounded-full shadow-md object-cover" />
+  </div>
+
+  <!-- Introduction on the right -->
+  <div class="flex-1">
+    <!-- Animated Greeting -->
+    <p class="inline-flex items-center border border-gray-300 px-4 py-1 rounded-full bg-white text-gray-700 text-sm h-[2rem]">
+      <i class="text-gray-500 text-center"></i>
+      <span id="greeting" class="transition-opacity duration-700 opacity-100">Hello!</span>
+    </p>
+
+    <!-- Name and Role -->
+    <h1 class="text-5xl font-bold mt-2 leading-tight h-32 md:h-28">
+  <div>
+    <span id="typed-before" class="inline"></span>
+    <span id="typed-name" class="inline text-violet-600"></span>
+    <span id="cursor-line1" class="blinking-cursor -ml-4">|</span>
+  </div>
+  <div>
+    <span id="typed-after" class="inline"></span>
+    <span id="cursor-line2" class="blinking-cursor hidden -ml-4">|</span>
+  </div>
+</h1>
+
+    <!-- Description -->
+    <p class="mt-12 text-gray-600">
+      With a background in architecture and a keen eye for detail, I bring a unique perspective & diverse set of skills to UI/UX. I’m a fast learner, curious by nature, and always exploring ways to solve problems.
+    </p>
+    <p class="mt-4 text-gray-600">
+      I constantly strive to improve both my skills and the outcomes of my work. In addition, I also have basic knowledge of HTML and CSS. Proof? Well, you’re literally looking at it.
+    </p>
+  </div>
+</section>
+
+<!-- Experience Section -->
+<section id="experience" class="mt-24 max-w-6xl mx-auto">
+  <h2 class="text-2xl font-semibold mb-28 text-center">Experiences</h2>
+
+  <div class="relative w-full h-[36px]">
+    <!-- Timeline Line -->
+    <div class="absolute -top-3 w-full h-1 bg-gray-200 transform -translate-y-1/2"></div>
+
+    <!-- Timeline Dots -->
+    <!-- You can reuse these dots across top/bottom items -->
+
+    <!-- Top Items -->
+    <div class="absolute left-0 w-1/5 text-center top-[-4.5rem]">
+      <p class="text-sm text-gray-500">Dec 2021 - Aug 2022</p>
+      <p class="font-semibold">Sabirin Rosli Arkitek</p>
+      <div class="w-4 h-4 bg-gray-600 rounded-full mx-auto mt-2 border-2 border-white" style="top: 3.25rem;"></div>
+    </div>
+
+    <div class="hidden absolute left-[20%] w-1/5 text-center top-[-4.7rem]">
+      <img src="images/sno.png" class="h-12 align-middle mx-auto py-3">
+      <div class="w-4 h-4 bg-gray-600 rounded-full mx-auto mt-2 border-2 border-white" style="top: 3.25rem;"></div>
+    </div>
+
+    <div class="absolute left-[40%] w-1/5 text-center top-[-4.7rem]">
+      <p class="text-sm text-gray-500">Sep 2024 - Present</p>
+      <p class="font-semibold text-violet-600">Upstack Studio</p>
+      <div class="w-6 h-6 bg-purple-600 rounded-full mx-auto mt-2 border-2 border-white" style="top: 1rem;"></div>
+    </div>
+
+    <div class="absolute left-[80%] w-1/5 text-center top-[-4.5rem]">
+      <p class="text-sm text-gray-500">Future</p>
+      <p class="font-semibold text-purple-400">Or even you!</p>
+      <div class="w-4 h-4 bg-purple-400 rounded-full mx-auto mt-2 border-2 border-white" style="top: 3.25rem;"></div>
+    </div>
+
+    <!-- Bottom Items -->
+    <div class="absolute left-[20%] w-1/5 text-center top-[-1.2rem]">
+      <div class="w-4 h-4 bg-gray-600 rounded-full mx-auto mb-2 border-2 border-white" style="bottom: 3.25rem;"></div>
+      <p class="text-sm text-gray-500">Sep 2022 - Aug 2024</p>
+      <p class="font-semibold">SNO Architects</p>
+    </div>
+
+    <div class="absolute left-[60%] w-1/5 text-center top-[-1.2rem]">
+      <div class="w-4 h-4 bg-purple-400 rounded-full mx-auto mb-2 border-2 border-white" style="bottom: 3.25rem;"></div>
+      <p class="text-sm text-gray-500">Future</p>
+      <p class="font-semibold text-purple-400">It might be you!</p>
+    </div>
+
+    <div class="hidden absolute left-[0%] w-1/5 text-center top-[-1.2rem]">
+      <div class="w-4 h-4 bg-gray-600 rounded-full mx-auto mb-2 border-2 border-white" style="bottom: 3.25rem;"></div>
+      <img src="images/sra 2.png" class="h-14 align-middle mx-auto py-2">
+    </div>
+
+    <div class="absolute left-[40%] w-1/5 text-center top-[-1.4rem]">
+      <div class="w-4 h-4 bg-purple-600 rounded-full mx-auto mb-2" style="bottom: 3.25rem;"></div>
+      <img src="images/us.png" class="h-14 align-middle mx-auto py-3">
+    </div>
+
+    <!-- I'm here badge -->
+    <div class="absolute left-[50%] transform -translate-x-1/2 -top-[2.6rem] translate-y-[1rem] z-10">
+      <span class="inline-block px-3 py-1 text-sm text-white bg-violet-600 rounded-full">
+        I'm here
+      </span>
+    </div>
+  </div>
+</section>
+
+    <!-- About Me Section -->
+    <section class="mt-24 px-4 max-w-6xl mx-auto">
+      <h2 class="text-2xl font-semibold mb-6 text-center">About Me</h2>
+      <p class="text-gray-700 mb-4 text-center">
+        I’m a bit of a cliché — in the best way. I’m into a lot of the same things as most people, which helps me connect easily with others. I’m naturally tuned in to what people are thinking or feeling, even without a conversation. That awareness helps me read the room, spot patterns, and design experiences that make sense to real users.
+      </p>
+      <p class="text-gray-700 mb-4 text-center">
+        Outside of design, I’m into sports like badminton and football — and I’m always up for trying something new, like wall climbing or cricket. When I’m not being active, I enjoy gaming (Valorant and Mobile Legends are my go-tos). I’m also a car enthusiast with a soft spot for old JDMs, and a bit of a tech geek who loves discovering new gadgets. You might also find me in the kitchen cooking or baking.
+      </p>
+      <p class="text-gray-700 text-center">
+        Need an extra player, a gaming buddy, or my Crème Brûlée recipe? Just reach out :)
+      </p>
+    </section>
+
+<section class="mt-20 px-4 max-w-6xl mx-auto">
+  <h2 class="text-2xl font-semibold mb-6 text-center">Courses & Certificates</h2>
+  <div id="cert-list">
+
+    <!-- Certificate Item 1 -->
+    <div class="py-4 border-b border-gray-300 group cursor-pointer" onclick="toggleActive(this)">
+      <div class="flex justify-between items-center">
+        <div>
+          <p class="font-medium">HTML & CSS Full Course</p>
+          <p class="text-sm text-gray-500">Supersimple.dev</p>
+        </div>
+        <div>
+          <i class="bi bi-chevron-down text-xl text-gray-600 group-[.active]:hidden"></i>
+          <i class="bi bi-chevron-up text-xl text-gray-600 hidden group-[.active]:inline"></i>
+        </div>
+      </div>
+      <div class="cert-content max-h-0 opacity-0 overflow-hidden transition-all duration-500 ease-in-out group-[.active]:max-h-[500px] group-[.active]:opacity-100 mt-4">
+        <img src="images/imagescert-html-css.jpg" alt="HTML CSS Certificate" class="w-full max-w-md mx-auto" />
+      </div>
+    </div>
+
+    <!-- Certificate Item 2 -->
+    <div class="py-4 border-b border-gray-300 group cursor-pointer" onclick="toggleActive(this)">
+      <div class="flex justify-between items-center">
+        <div>
+          <p class="font-medium">Google UX Design Professional Certificate</p>
+          <p class="text-sm text-gray-500">Coursera | Google</p>
+        </div>
+        <div>
+          <i class="bi bi-chevron-down text-xl text-gray-600 group-[.active]:hidden"></i>
+          <i class="bi bi-chevron-up text-xl text-gray-600 hidden group-[.active]:inline"></i>
+        </div>
+      </div>
+      <div class="cert-content max-h-0 opacity-0 overflow-hidden transition-all duration-500 ease-in-out group-[.active]:max-h-[500px] group-[.active]:opacity-100 mt-4">
+        <img src="images/imagescert-google-ux.jpg" alt="Google UX Certificate" class="w-full max-w-md mx-auto" />
+      </div>
+    </div>
+
+    <!-- Certificate Item 3 (No Border Bottom) -->
+    <div class="py-4 group cursor-pointer" onclick="toggleActive(this)">
+      <div class="flex justify-between items-center">
+        <div>
+          <p class="font-medium">Bachelor of Science in Architectural Studies</p>
+          <p class="text-sm text-gray-500">International Islamic University Malaysia</p>
+        </div>
+        <div>
+          <i class="bi bi-chevron-down text-xl text-gray-600 group-[.active]:hidden"></i>
+          <i class="bi bi-chevron-up text-xl text-gray-600 hidden group-[.active]:inline"></i>
+        </div>
+      </div>
+      <div class="cert-content max-h-0 opacity-0 overflow-hidden transition-all duration-500 ease-in-out group-[.active]:max-h-[800px] group-[.active]:opacity-100 mt-4">
+        <img src="images/imagescert-architecture.jpg" alt="Transcript" class="w-full max-w-md mx-auto" />
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  function toggleActive(el) {
+    const allItems = document.querySelectorAll('#cert-list > div');
+    const isActive = el.classList.contains('active');
+
+    // Remove active class from all
+    allItems.forEach(item => item.classList.remove('active'));
+
+    // Add active only if it wasn't already active
+    if (!isActive) {
+      el.classList.add('active');
+    }
+  }
+</script>
+
+<script>
+  const greetings = [
+    "Hello!",
+    "Selamat!",
+    "大家好!",
+    "வணக்கம்!",
+    "Hola!",
+    "Bonjour!",
+    "Здравствуйте!",
+    "Ciao!",
+    "Hallo!",
+    "مرحبا!",
+    "こんにちは!",
+    "안녕하세요!",
+  ];
+
+  let current = 0;
+  const greetingEl = document.getElementById("greeting");
+
+  setInterval(() => {
+    greetingEl.classList.add("opacity-0");
+
+    setTimeout(() => {
+      current = (current + 1) % greetings.length;
+      greetingEl.textContent = greetings[current];
+      greetingEl.classList.remove("opacity-0");
+    }, 500);
+  }, 5445);
+</script>
+
+<section class="mt-12 px-4 max-w-4xl mx-auto text-center">
+        <h3 class="text-2xl font-semibold text-center mb-10">Like what you see?</h3>
+        <h2 class="text-5xl font-bold leading-tight mb-6">Let’s work together!</h2>
+        <p class="text-lg mb-8 text-gray-600 max-w-lg mx-auto">
+          I'm always looking for new opportunities and ready to face design challenges. Drop your messages!
+        </p>
+      
+        <!-- Button group -->
+        <div class="flex items-center justify-center gap-4 max-w-md mx-auto">
+          <a
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
+             target="_blank"
+             rel="noopener"
+            class="flex-1 inline-flex items-center justify-center gap-2 bg-violet-600 hover:bg-violet-700 text-white px-6 py-3 rounded-full font-medium transition duration-300"
+          >
+            Let’s chat <i class="bi bi-chat-square-dots-fill"></i>
+          </a>
+      
+          <!-- Back to top button -->
+          <a
+            href="#top"
+            aria-label="Back to top"
+            class="w-12 h-12 flex items-center justify-center border border-gray-300 rounded-full bg-white text-gray-500 hover:shadow transition"
+          >
+            <i class="bi bi-arrow-up text-xl"></i>
+          </a>
+        </div>
+      
+        <!-- Attribution -->
+        <p class="mt-10 text-xs text-gray-500 max-w-xl mx-auto">
+          Designed using Atomize DS // Icons from BootstrapIcon // Font set in Open Sauce Two<br />
+          Coded in Visual Studio Code // Built using Tailwind CSS // Deployed on Github
+        </p>
+      </section>
+
+      <footer class="mt-10 text-sm text-gray-500 border-t-2">
+        <div class="flex justify-between items-center p-4 max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+          <p>© 2023 Arieff Hizer // All Rights Reserved</p>
+      
+          <div class="flex gap-4">
+            <!-- GitHub Button -->
+            <a
+              href="https://github.com"
+              target="_blank"
+              class="flex items-center gap-2 px-4 py-1 border border-gray-300 rounded-full bg-white text-gray-700 hover:shadow transition"
+            >
+              <i class="bi bi-github text-lg"></i>
+              GitHub
+            </a>
+      
+            <!-- LinkedIn Button -->
+            <a
+              href="https://www.linkedin.com/in/arieff-hizer-98b412225/"
+              target="_blank"
+              class="flex items-center gap-2 px-4 py-1 border border-gray-300 rounded-full bg-white text-gray-700 hover:shadow transition"
+            >
+              <i class="bi bi-linkedin text-lg"></i>
+              LinkedIn
+            </a>
+      
+            <!-- Instagram Button -->
+            <a
+              href="https://www.instagram.com/rffhzr"
+              target="_blank"
+              class="flex items-center gap-2 px-4 py-1 border border-gray-300 rounded-full bg-white text-gray-700 hover:shadow transition"
+            >
+              <i class="bi bi-instagram text-lg"></i>
+              Instagram
+            </a>
+          </div>
+        </div>
+      </footer>
+
+    <style>
+  .blinking-cursor {
+    display: inline-block;
+    font-family: monospace;
+    width: 1ch;
+    animation: blink 1s step-start infinite;
+    color: #9333ea;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  .hidden {
+    visibility: hidden;
+  }
+</style>
+
+<script>
+const typedBefore = document.getElementById("typed-before");
+const typedName = document.getElementById("typed-name");
+const typedAfter = document.getElementById("typed-after");
+const cursor1 = document.getElementById("cursor-line1");
+const cursor2 = document.getElementById("cursor-line2");
+
+const phrases = [
+  { intro: "I’m", name: "Arieff,", job: "UI/UX Designer" },
+  { intro: "Saya", name: "Arieff,", job: "Pereka bentuk UI/UX" },
+  { intro: "我是", name: "Arieff,", job: "用户界面/用户体验设计师" },
+  { intro: "நான்", name: "Arieff,", job: "UI/UX வடிவமைப்பாளர்" },
+  { intro: "Soy", name: "Arieff,", job: "Diseñador UI/UX" },
+  { intro: "Je suis", name: "Arieff,", job: "Designer UI/UX" },
+  { intro: "Я", name: "Arieff,", job: "дизайнер UI/UX" },
+  { intro: "Sono", name: "Arieff,", job: "Designer UI/UX" },
+  { intro: "Ich bin", name: "Arieff,", job: "UI/UX-Designer" },
+  { intro: "أنا", name: "عريف,", job: "UI/UX مهندس ديكور" },
+  { intro: "私は", name: "Arieff,", job: "UI/UXデザイナーです" },
+  { intro: "나는", name: "Arieff,", job: "UI/UX 디자이너야" },
+];
+
+let phraseIndex = 0;
+let letterIndex = 0;
+let isDeleting = false;
+
+function type() {
+  const { intro, name, job } = phrases[phraseIndex];
+  const fullIntro = intro + name;
+  const totalIntroLen = fullIntro.length;
+  const totalJobLen = job.length;
+  const totalLength = totalIntroLen + totalJobLen;
+
+  // Update typing
+  if (!isDeleting) {
+    if (letterIndex <= totalIntroLen) {
+      typedBefore.textContent = fullIntro.substring(0, Math.min(letterIndex, intro.length));
+      typedName.textContent = letterIndex > intro.length ? name.substring(0, letterIndex - intro.length) : '';
+      typedAfter.textContent = "";
+      showCursor("line1");
+    } else {
+      typedBefore.textContent = intro;
+      typedName.textContent = name;
+      typedAfter.textContent = job.substring(0, letterIndex - totalIntroLen);
+      showCursor("line2");
+    }
+    letterIndex++;
+  } else {
+    if (letterIndex > totalIntroLen) {
+      typedAfter.textContent = job.substring(0, letterIndex - totalIntroLen);
+      showCursor("line2");
+    } else {
+      typedBefore.textContent = fullIntro.substring(0, Math.min(letterIndex, intro.length));
+      typedName.textContent = letterIndex > intro.length ? name.substring(0, letterIndex - intro.length) : '';
+      typedAfter.textContent = "";
+      showCursor("line1");
+    }
+    letterIndex--;
+  }
+
+  // Pause before deleting
+  if (!isDeleting && letterIndex === totalLength + 1) {
+    isDeleting = true;
+    setTimeout(type, 1500);
+    return;
+  }
+
+  // Move to next phrase
+  if (isDeleting && letterIndex === 0) {
+    isDeleting = false;
+    phraseIndex = (phraseIndex + 1) % phrases.length;
+  }
+
+  setTimeout(type, isDeleting ? 40 : 100);
+}
+
+function showCursor(line) {
+  if (line === "line1") {
+    cursor1.classList.remove("hidden");
+    cursor2.classList.add("hidden");
+  } else {
+    cursor1.classList.add("hidden");
+    cursor2.classList.remove("hidden");
+  }
+}
+
+document.addEventListener("DOMContentLoaded", type);
+</script>
+
+
+
+  </body>
+</html>

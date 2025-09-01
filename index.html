@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arieff Hizer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="theme.css">
+  </head>
+  <body class="bg-white text-gray-900 font-open sauce two">
+
+      <div class="border-b-2 w-full sticky top-0 z-50 backdrop-blur bg-white/80">
+        <header class="flex justify-between items-center p-4 max-w-6xl mx-auto">
+          
+          <!-- Logo + Name as Home Button -->
+          <a href="#top" class="flex items-center bg-gray-100 px-4 py-1 rounded-full shadow gap-2 hover:shadow-md transition">
+            <img src="images/logo arieff h 3.png" alt="Logo" class="w-6 h-6 rounded-full shadow" />
+            <span class="text-lg font-semibold text-gray-800">Arieff H.</span>
+          </a>
+      
+          <!-- Grouped Nav Buttons -->
+          <div class="hidden md:flex items-center gap-4">
+            <a
+              href="about.html"
+              class="flex items-center gap-2 px-4 py-1 border border-gray-300 rounded-full bg-white text-gray-700 hover:shadow transition text-sm"
+            >
+              <i class="bi bi-person-fill text-base"></i>
+              About Me
+            </a>
+      
+            <a
+              href="#projects"
+              class="flex items-center gap-2 px-4 py-1 border border-gray-300 rounded-full bg-white text-gray-700 hover:shadow transition text-sm"
+            >
+              <i class="bi bi-folder-fill text-base"></i>
+              Projects
+            </a>
+      
+            <a
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
+             target="_blank"
+             rel="noopener"
+              class="flex items-center gap-2 bg-violet-600 hover:bg-violet-700 text-white px-4 py-2 rounded-full text-sm"
+            >
+              Say Hi <i class="bi bi-emoji-smile-fill"></i>
+            </a>
+
+          </div>
+        </header>
+      </div>
+
+      <section class="text-center py-24 px-4 mt-6">
+        <!-- Profile Image -->
+        <img
+          src="images/sample_logo_mark.png"
+          alt="Profile picture"
+          class="w-40 h-40 mx-auto mb-6 rounded-full object-cover shadow"
+        />
+      
+        <h1 class="text-4xl md:text-6xl font-bold leading-tight">
+          Crafting Brand Triumph<br />
+          Through Design
+        </h1>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto mt-6">
+          I'm <span class="font-semibold text-gray-800">Arieff Hizer</span>, a detail-oriented UI/UX designer based in Malaysia.
+          I’m motivated in creating products, experiences, and aesthetics that elevate our lives.
+        <p 
+        class="text-lg mt-6 font-bold text-gray-800">Currently doing cool stuff at Upstack Studio.</span>
+        </p>
+        <div class="flex justify-center gap-4 mt-8">
+          <a
+            href="https://drive.google.com/file/d/1Av8Si-tSHrAm57ieeS-qAj30fYsRcRR9/view?usp=drive_link"
+            target="_blank" 
+            class="inline-flex items-center gap-2 bg-violet-600 hover:bg-violet-700 text-white px-6 py-2 rounded-full"
+          >
+            <i class="bi bi-file-earmark-text-fill"></i>
+            My resume
+          </a>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
+             target="_blank"
+             rel="noopener"
+          class="inline-flex items-center gap-2 border border-gray-300 gap-4 px-6 py-2 rounded-full bg-white text-gray-700 hover:shadow transition"
+          >
+          <i class="bi bi-chat-square-dots-fill"></i>
+            Let’s work together
+          </a>
+        </div>
+      </section>
+
+      <section class="text-center px-4 max-w-6xl mx-auto">
+        <h2 class="text-2xl font-semibold mb-4">Skills</h2>
+        <div class="relative space-y-1 overflow-hidden relative group">
+          
+          <!-- First row -->
+          <div class="text-xl whitespace-nowrap flex gap-8 animate-scroll-left text-gray-600">
+            <span>• Mobile App and Web Design</span>
+            <span>• Framer and Webflow</span>
+            <span>• Product Design (UI/UX)</span>
+            <span>• Visual Design</span>
+            <span>• Mobile App and Web Design</span>
+            <span>• Framer and Webflow</span>
+            <span>• Product Design (UI/UX)</span>
+            <span>• Visual Design</span>
+          </div>
+      
+          <!-- Second row (opposite direction) -->
+          <div class="text-xl whitespace-nowrap flex gap-8 animate-scroll-right text-gray-600">
+            <span>• Wireframes & Prototyping</span>
+            <span>• Usability Testing</span>
+            <span>• UX Research</span>
+            <span>• Basic HTML CSS</span>
+            <span>• VS Code</span>
+            <span>• Wireframes & Prototyping</span>
+            <span>• Usability Testing</span>
+            <span>• UX Research</span>
+            <span>• Basic HTML CSS</span>
+            <span>• VS Code</span>
+          </div>
+        </div>
+      </section>
+      
+      <style>
+      @keyframes scroll-left {
+        0% {
+          transform: translateX(0%);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+      
+      @keyframes scroll-right {
+        0% {
+          transform: translateX(-50%);
+        }
+        100% {
+          transform: translateX(0%);
+        }
+      }
+      
+      .animate-scroll-left {
+        animation: scroll-left 20s linear infinite;
+      }
+      
+      .animate-scroll-right {
+        animation: scroll-right 20s linear infinite;
+      }
+      </style>
+
+      <section id="projects" class="scroll-mt-28 mt-20 px-4 max-w-6xl mx-auto">
+        <h2 class="text-2xl font-semibold text-center mb-10">Work Projects</h2>
+        <div class="grid md:grid-cols-2 gap-10">
+          <!-- Project 1 -->
+          <div class="bg-gray-300 p-6 rounded-2xl">
+            <img src="images/fc cover.png" alt="Tradelink" class="rounded mb-4" />
+            <p class="text-sm font-medium text-gray-500 mt-2 mb-4">Mobile App</p>
+            <h3 class="text-xl font-bold text-gray-900">FitCoach <span class="ml-2 text-sm text-yellow-600 bg-yellow-100 px-2 py-0.5 rounded-full">IN PROGRESS</span></h3>
+            <p class="text-gray-700 mt-2">I designed the interface and assist with the app's logic to create 2-in-1 workout and nutrition tracking app.</p>
+            <a href="fitcoach.html" class="inline-flex items-center gap-2 mt-4 bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-full"
+            >
+            <i class="bi bi-arrow-up-right"></i>
+            View Project</a>
+          </div>
+      
+          <!-- Project 2 -->
+          <div class="bg-[#FFD9C5] p-6 rounded-2xl">
+            <img src="images/wt cover.png" alt="WhiskerTracker" class="rounded mb-4" />
+            <p class="text-sm font-medium text-gray-500 mt-2 mb-4">Mobile App</p>
+            <h3 class="text-xl font-bold text-orange-500">WhiskerTracker <span class="ml-2 text-sm text-yellow-600 bg-yellow-100 px-2 py-0.5 rounded-full">IN PROGRESS</span></h3>
+            <p class="text-gray-700 mt-2">I updated the design and proposed logics and flows that improved user experience.</p>
+            <a href="whiskertracker.html" class="inline-flex items-center gap-2 mt-4 bg-[#ED8946] hover:bg-orange-500 text-white px-4 py-2 rounded-full"
+            >
+            <i class="bi bi-arrow-up-right"></i>
+            View Project</a>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="bg-blue-100 p-6 rounded-2xl">
+            <img src="images/tradelink cover.png" alt="Tradelink" class="rounded mb-4" />
+            <p class="text-sm font-medium text-gray-500 mt-2 mb-4">Web App</p>
+            <h3 class="text-xl font-bold text-blue-900">Tradelink <span class="ml-2 text-sm text-yellow-600 bg-yellow-100 px-2 py-0.5 rounded-full">IN PROGRESS</span></h3>
+            <p class="text-gray-700 mt-2">I designed the interface and created interactions for my first client’s Crypto Wallet Managing App</p>
+            <a href="tradelink.html" class="inline-flex items-center gap-2 mt-4 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full"
+            >
+            <i class="bi bi-arrow-up-right"></i>
+            View Project</a>
+          </div>
+
+          <!-- Project 4 -->
+          <div class="bg-purple-100 p-6 rounded-2xl">
+            <img src="images/platboard cover.png" alt="Platboard" class="rounded mb-4" />
+            <p class="text-sm font-medium text-gray-500 mt-2 mb-4">Mobile App</p>
+            <h3 class="text-xl font-bold text-purple-900">Platboard <span class="ml-2 text-sm text-yellow-600 bg-yellow-100 px-2 py-0.5 rounded-full">IN PROGRESS</span></h3>
+            <p class="text-gray-700 mt-2">I designed the interface and created interactions for my client’s crypto wallet managing app.</p>
+            <a href="platboard.html" class="inline-flex items-center gap-2 mt-4 bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-full"
+            >
+            <i class="bi bi-arrow-up-right"></i>
+            View Project</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="mt-20 px-4 max-w-6xl mx-auto">
+        <h2 class="text-2xl font-semibold text-center mb-10">Personal Projects</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Project Card -->
+          <div class="bg-red-100 p-4 rounded-2xl">
+            <img src="images/selangor.png" class="rounded mb-4" />
+            <p class="text-sm font-medium text-gray-500 mt-2 mb-2">Mobile App</p>
+            <h3 class="text-lg font-bold text-red-700">Selangor FC <span class="text-xs bg-green-200 text-green-600 ml-2 px-2 py-0.5 rounded-full">COMPLETED</span></h3>
+            <p class="text-gray-700 mt-1">I reimagined and redesigned the interface of the Selangor FC Mobile App</p>
+            <a href="selangorfc.html" class="inline-flex items-center gap-2 mt-4 bg-red-700 hover:bg-red-800 text-white px-4 py-2 rounded-full"
+            >
+            <i class="bi bi-arrow-up-right"></i>
+            View Project</a>
+          </div>
+      
+          <!-- Plura Atelier -->
+          <div class="bg-green-100 p-4 rounded-2xl">
+            <img src="images/plura.png" class="rounded mb-4" />
+            <p class="text-sm font-medium text-gray-500 mt-2 mb-2">Web Landing Page</p>
+            <h3 class="text-lg font-bold text-green-700">Plura Atelier <span class="text-xs bg-green-200 text-green-600 ml-2 px-2 py-0.5 rounded-full">COMPLETED</span></h3>
+            <p class="text-gray-700 mt-1">I designed an innovative web landing page for a Design and Build Atelier</p>
+            <a href="plura.html" class="inline-flex items-center gap-2 mt-4 bg-[#8fa197] hover:bg-[#7CA18C] text-white px-4 py-2 rounded-full"
+            >
+            <i class="bi bi-arrow-up-right"></i>
+            View Project</a>
+          </div>
+      
+          <!-- MyAsuh -->
+          <div class="bg-yellow-100 p-4 rounded-2xl">
+            <img src="images/myasuh home.png" class="rounded mb-4" />
+            <p class="text-sm font-medium text-gray-500 mt-2 mb-2">Mobile App</p>
+            <h3 class="text-lg font-bold text-yellow-500">MyAsuh <span class="text-xs bg-green-200 text-green-600 ml-2 px-2 py-0.5 rounded-full">COMPLETED</span></h3>
+            <p class="text-gray-700 mt-1">I created and designed the UX patterns of an Online Baby-sitting Mobile App.</p>
+            <a href="myasuh.html" class="inline-flex items-center gap-2 mt-4 bg-[#FFC260] hover:bg-yellow-500 text-white px-4 py-2 rounded-full"
+            >
+            <i class="bi bi-arrow-up-right"></i>
+            View Project</a>
+          </div>
+        </div>
+      </section>
+      
+      <style>
+        .carousel-img {
+          width: 250px;
+          height: 160px;
+          object-fit: cover;
+          border-radius: 0.5rem;
+          transition: transform 0.3s ease;
+          flex-shrink: 0;
+        }
+      
+        .carousel-img:hover {
+          transform: scale(1.1);
+          z-index: 10;
+        }
+      
+        @keyframes scroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+      
+        .animate-scroll {
+          animation: scroll 30s linear infinite;
+        }
+      </style>
+      
+      <script>
+        const carousel = document.getElementById("carousel");
+      
+        function pauseCarousel() {
+          carousel.style.animationPlayState = "paused";
+        }
+      
+        function startCarousel() {
+          carousel.style.animationPlayState = "running";
+        }
+      </script>
+
+<section class="mt-20 px-4 max-w-6xl mx-auto">
+    <h2 class="text-2xl font-semibold text-center">More Projects</h2>
+  
+    <div
+      class="overflow-hidden relative group h-[240px]"
+      onmouseenter="pauseCarousel()"
+      onmouseleave="startCarousel()"
+    >
+      <div
+        id="carousel"
+        class="flex w-max animate-scroll gap-4 items-center h-full"
+        style="animation-play-state: running"
+      >
+        <!-- Images duplicated for smooth loop -->
+        <img src="images/gallery1.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
+        <img src="images/gallery2.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
+        <img src="images/gallery3.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
+        <img src="images/gallery4.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
+        <img src="images/gallery5.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
+        <img src="images/gallery6.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
+        <img src="images/gallery7.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
+  
+        <!-- Duplicate images for seamless loop -->
+        <img src="images/gallery1.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
+        <img src="images/gallery2.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
+        <img src="images/gallery3.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
+        <img src="images/gallery4.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
+        <img src="images/gallery5.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
+        <img src="images/gallery6.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
+        <img src="images/gallery7.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
+      </div>
+    </div>
+  </section>
+
+      <section class="mt-12 px-4 max-w-4xl mx-auto text-center">
+        <h3 class="text-2xl font-semibold text-center mb-10">Like what you see?</h3>
+        <h2 class="text-5xl font-bold leading-tight mb-6">Let’s work together!</h2>
+        <p class="text-lg mb-8 text-gray-600 max-w-lg mx-auto">
+          I'm always looking for new opportunities and ready to face design challenges. Drop your messages!
+        </p>
+      
+        <!-- Button group -->
+        <div class="flex items-center justify-center gap-4 max-w-md mx-auto">
+          <a
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
+             target="_blank"
+             rel="noopener"
+            class="flex-1 inline-flex items-center justify-center gap-2 bg-violet-600 hover:bg-violet-700 text-white px-6 py-3 rounded-full font-medium transition duration-300"
+          >
+            Let’s chat <i class="bi bi-chat-square-dots-fill"></i>
+          </a>
+      
+          <!-- Back to top button -->
+          <a
+            href="#top"
+            aria-label="Back to top"
+            class="w-12 h-12 flex items-center justify-center border border-gray-300 rounded-full bg-white text-gray-500 hover:shadow transition"
+          >
+            <i class="bi bi-arrow-up text-xl"></i>
+          </a>
+        </div>
+      
+        <!-- Attribution -->
+        <p class="mt-10 text-xs text-gray-500 max-w-xl mx-auto">
+          Designed using Atomize DS // Icons from BootstrapIcon // Font set in Open Sauce Two<br />
+          Coded in Visual Studio Code // Built using Tailwind CSS // Deployed on Github
+        </p>
+      </section>
+
+      <footer class="mt-10 text-sm text-gray-500 border-t-2">
+        <div class="flex justify-between items-center p-4 max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+          <p>© 2023 Arieff Hizer // All Rights Reserved</p>
+      
+          <div class="flex gap-4">
+            <!-- GitHub Button -->
+            <a
+              href="https://github.com"
+              target="_blank"
+              class="flex items-center gap-2 px-4 py-1 border border-gray-300 rounded-full bg-white text-gray-700 hover:shadow transition"
+            >
+              <i class="bi bi-github text-lg"></i>
+              GitHub
+            </a>
+      
+            <!-- LinkedIn Button -->
+            <a
+              href="https://www.linkedin.com/in/arieff-hizer-98b412225/"
+              target="_blank"
+              class="flex items-center gap-2 px-4 py-1 border border-gray-300 rounded-full bg-white text-gray-700 hover:shadow transition"
+            >
+              <i class="bi bi-linkedin text-lg"></i>
+              LinkedIn
+            </a>
+      
+            <!-- Instagram Button -->
+            <a
+              href="https://www.instagram.com/rffhzr"
+              target="_blank"
+              class="flex items-center gap-2 px-4 py-1 border border-gray-300 rounded-full bg-white text-gray-700 hover:shadow transition"
+            >
+              <i class="bi bi-instagram text-lg"></i>
+              Instagram
+            </a>
+          </div>
+        </div>
+      </footer>
+
+  </body>
+</html>
