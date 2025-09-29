@@ -11,45 +11,85 @@
   </head>
   <body class="bg-white text-gray-900 font-open sauce two">
 
-      <div class="border-b-2 w-full sticky top-0 z-50 backdrop-blur bg-white/80">
-        <header class="flex justify-between items-center p-4 max-w-6xl mx-auto">
-          
-          <!-- Logo + Name as Home Button -->
-          <a href="#top" class="flex items-center bg-gray-100 px-4 py-1 rounded-full shadow gap-2 hover:shadow-md transition">
-            <img src="images/logo arieff h 3.png" alt="Logo" class="w-6 h-6 rounded-full shadow" />
-            <span class="text-lg font-semibold text-gray-800">Arieff H.</span>
-          </a>
-      
-          <!-- Grouped Nav Buttons -->
-          <div class="hidden md:flex items-center gap-4">
-            <a
-              href="about.html"
-              class="flex items-center gap-2 px-4 py-1 border border-gray-300 rounded-full bg-white text-gray-700 hover:shadow transition text-sm"
-            >
-              <i class="bi bi-person-fill text-base"></i>
-              About Me
-            </a>
-      
-            <a
-              href="#projects"
-              class="flex items-center gap-2 px-4 py-1 border border-gray-300 rounded-full bg-white text-gray-700 hover:shadow transition text-sm"
-            >
-              <i class="bi bi-folder-fill text-base"></i>
-              Projects
-            </a>
-      
-            <a
-              href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
-             target="_blank"
-             rel="noopener"
-              class="flex items-center gap-2 bg-violet-600 hover:bg-violet-700 text-white px-4 py-2 rounded-full text-sm"
-            >
-              Say Hi <i class="bi bi-emoji-smile-fill"></i>
-            </a>
+    <div class="border-b-2 w-full sticky top-0 z-50 backdrop-blur bg-white/80">
+  <header class="flex justify-between items-center p-4 max-w-6xl mx-auto">
+    
+    <!-- Logo + Name as Home Button -->
+    <a href="#top" class="flex items-center bg-gray-100 px-4 py-1 rounded-full shadow gap-2 hover:shadow-md transition">
+      <img src="images/logo arieff h 3.png" alt="Logo" class="w-6 h-6 rounded-full shadow" />
+      <span class="text-lg font-semibold text-gray-800">Arieff H.</span>
+    </a>
 
-          </div>
-        </header>
-      </div>
+    <!-- Desktop Nav -->
+    <div class="hidden md:flex items-center gap-4">
+      <a
+        href="about.html"
+        class="flex items-center gap-2 px-4 py-1 border border-gray-300 rounded-full bg-white text-gray-700 hover:shadow transition text-sm"
+      >
+        <i class="bi bi-person-fill text-base"></i>
+        About Me
+      </a>
+
+      <a
+        href="#projects"
+        class="flex items-center gap-2 px-4 py-1 border border-gray-300 rounded-full bg-white text-gray-700 hover:shadow transition text-sm"
+      >
+        <i class="bi bi-folder-fill text-base"></i>
+        Projects
+      </a>
+
+      <a
+        href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
+        target="_blank"
+        rel="noopener"
+        class="flex items-center gap-2 bg-violet-600 hover:bg-violet-700 text-white px-4 py-2 rounded-full text-sm"
+      >
+        Say Hi <i class="bi bi-emoji-smile-fill"></i>
+      </a>
+    </div>
+
+    <!-- Mobile Hamburger -->
+    <button id="menu-btn" class="md:hidden text-2xl text-violet-800">
+      <i class="bi bi-list"></i>
+    </button>
+  </header>
+
+  <!-- Mobile Dropdown -->
+  <div id="mobile-menu" class="hidden flex-col gap-2 p-4 bg-white border-t border-gray-200 md:hidden">
+    <a
+      href="about.html"
+      class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-700 hover:shadow transition text-sm mb-2"
+    >
+      <i class="bi bi-person-fill"></i> About Me
+    </a>
+
+    <a
+      href="#projects"
+      class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-700 hover:shadow transition text-sm mb-2"
+    >
+      <i class="bi bi-folder-fill"></i> Projects
+    </a>
+
+    <a
+      href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
+      target="_blank"
+      rel="noopener"
+      class="flex items-center gap-2 bg-violet-600 hover:bg-violet-700 text-white px-4 py-2 rounded-lg text-sm "
+    >
+      Say Hi <i class="bi bi-emoji-smile-fill"></i>
+    </a>
+  </div>
+</div>
+
+<!-- Script to toggle menu -->
+<script>
+  const menuBtn = document.getElementById("menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+
+  menuBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+</script>
 
       <section class="text-center py-24 px-4 mt-6">
         <!-- Profile Image -->
@@ -149,58 +189,102 @@
       }
       </style>
 
+
       <section id="projects" class="scroll-mt-28 mt-20 px-4 max-w-6xl mx-auto">
-        <h2 class="text-2xl font-semibold text-center mb-10">Work Projects</h2>
-        <div class="grid md:grid-cols-2 gap-10">
-          <!-- Project 1 -->
-          <div class="bg-neutral-300 p-6 rounded-2xl">
-            <img src="images/fc cover.png" alt="Tradelink" class="rounded mb-4" />
-            <p class="text-sm font-medium text-gray-500 mt-2 mb-4">Mobile App</p>
-            <h3 class="text-xl font-bold text-neutral-900">FitCoach <span class="ml-2 text-sm text-yellow-600 bg-yellow-100 px-2 py-0.5 rounded-full">IN PROGRESS</span></h3>
-            <p class="text-gray-700 mt-2">I designed the interface and assist with the app's logic to create 2-in-1 workout and nutrition tracking app.</p>
-            <a href="fitcoach.html" class="inline-flex items-center gap-2 mt-4 bg-neutral-800 hover:bg-neutral-700 text-white px-4 py-2 rounded-full"
-            >
-            <i class="bi bi-arrow-up-right"></i>
-            View Project</a>
-          </div>
-      
-          <!-- Project 2 -->
-          <div class="bg-[#FFD9C5] p-6 rounded-2xl">
-            <img src="images/wt cover.png" alt="WhiskerTracker" class="rounded mb-4" />
-            <p class="text-sm font-medium text-gray-500 mt-2 mb-4">Mobile App</p>
-            <h3 class="text-xl font-bold text-orange-500">WhiskerTracker <span class="ml-2 text-sm text-yellow-600 bg-yellow-100 px-2 py-0.5 rounded-full">IN PROGRESS</span></h3>
-            <p class="text-gray-700 mt-2">I updated the design and proposed logics and flows that improved user experience.</p>
-            <a href="whiskertracker.html" class="inline-flex items-center gap-2 mt-4 bg-[#ED8946] hover:bg-orange-500 text-white px-4 py-2 rounded-full"
-            >
-            <i class="bi bi-arrow-up-right"></i>
-            View Project</a>
-          </div>
+  <h2 class="text-2xl font-semibold text-center mb-10">Work Projects</h2>
+  <div class="grid md:grid-cols-1 gap-10">
 
-          <!-- Project 3 -->
-          <div class="bg-blue-100 p-6 rounded-2xl">
-            <img src="images/tradelink cover.png" alt="Tradelink" class="rounded mb-4" />
-            <p class="text-sm font-medium text-gray-500 mt-2 mb-4">Web App</p>
-            <h3 class="text-xl font-bold text-blue-900">Tradelink <span class="ml-2 text-sm text-yellow-600 bg-yellow-100 px-2 py-0.5 rounded-full">IN PROGRESS</span></h3>
-            <p class="text-gray-700 mt-2">I designed the interface and created interactions for my first client’s Crypto Wallet Managing App</p>
-            <a href="tradelink.html" class="inline-flex items-center gap-2 mt-4 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full"
-            >
-            <i class="bi bi-arrow-up-right"></i>
-            View Project</a>
-          </div>
+    <!-- Project 1 -->
+    <div class="bg-neutral-300 p-6 rounded-2xl flex flex-col md:flex-row items-center gap-8">
+      <!-- Image -->
+      <div class="md:w-1/2 w-full">
+        <img src="images/fc cover.png" alt="FitCoach" class="rounded w-full" />
+      </div>
+      <!-- Description -->
+      <div class="md:w-1/2 w-full">
+        <p class="text-sm font-medium text-gray-500 mb-2">Mobile App</p>
+        <h3 class="text-xl font-bold text-neutral-900">
+          FitCoach 
+          <span class="ml-2 text-sm text-yellow-600 bg-yellow-100 px-2 py-0.5 rounded-full">IN PROGRESS</span>
+        </h3>
+        <p class="text-gray-700 mt-2">
+          I designed the interface and assist with the app's logic to create 2-in-1 workout and nutrition tracking app.
+        </p>
+        <a href="fitcoach.html" class="inline-flex items-center gap-2 mt-4 bg-neutral-800 hover:bg-neutral-700 text-white px-4 py-2 rounded-full">
+          <i class="bi bi-arrow-up-right"></i> View Project
+        </a>
+      </div>
+    </div>
 
-          <!-- Project 4 -->
-          <div class="bg-purple-100 p-6 rounded-2xl">
-            <img src="images/platboard cover.png" alt="Platboard" class="rounded mb-4" />
-            <p class="text-sm font-medium text-gray-500 mt-2 mb-4">Mobile App</p>
-            <h3 class="text-xl font-bold text-purple-900">Platboard <span class="ml-2 text-sm text-yellow-600 bg-yellow-100 px-2 py-0.5 rounded-full">IN PROGRESS</span></h3>
-            <p class="text-gray-700 mt-2">I designed the interface and created interactions for my client’s crypto wallet managing app.</p>
-            <a href="platboard.html" class="inline-flex items-center gap-2 mt-4 bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-full"
-            >
-            <i class="bi bi-arrow-up-right"></i>
-            View Project</a>
-          </div>
-        </div>
-      </section>
+    <!-- Project 2 -->
+    <div class="bg-[#FFD9C5] p-6 rounded-2xl flex flex-col md:flex-row items-center gap-8">
+      <!-- Image -->
+      <div class="md:w-1/2 w-full order-1 md:order-1">
+        <img src="images/wt cover.png" alt="WhiskerTracker" class="rounded w-full" />
+      </div>
+      <!-- Description -->
+      <div class="md:w-1/2 w-full order-2 md:order-2">
+        <p class="text-sm font-medium text-gray-500 mb-2">Mobile App</p>
+        <h3 class="text-xl font-bold text-orange-500">
+          WhiskerTracker 
+          <span class="ml-2 text-sm text-yellow-600 bg-yellow-100 px-2 py-0.5 rounded-full">IN PROGRESS</span>
+        </h3>
+        <p class="text-gray-700 mt-2">
+          I updated the design and proposed logics and flows that improved user experience.
+        </p>
+        <a href="whiskertracker.html" class="inline-flex items-center gap-2 mt-4 bg-[#ED8946] hover:bg-orange-500 text-white px-4 py-2 rounded-full">
+          <i class="bi bi-arrow-up-right"></i> View Project
+        </a>
+      </div>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="bg-blue-100 p-6 rounded-2xl flex flex-col md:flex-row items-center gap-8">
+      <!-- Image -->
+      <div class="md:w-1/2 w-full">
+        <img src="images/tradelink cover.png" alt="Tradelink" class="rounded w-full" />
+      </div>
+      <!-- Description -->
+      <div class="md:w-1/2 w-full">
+        <p class="text-sm font-medium text-gray-500 mb-2">Web App</p>
+        <h3 class="text-xl font-bold text-blue-900">
+          Tradelink 
+          <span class="ml-2 text-sm text-yellow-600 bg-yellow-100 px-2 py-0.5 rounded-full">IN PROGRESS</span>
+        </h3>
+        <p class="text-gray-700 mt-2">
+          I designed the interface and created interactions for my first client’s Crypto Wallet Managing App
+        </p>
+        <a href="tradelink.html" class="inline-flex items-center gap-2 mt-4 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full">
+          <i class="bi bi-arrow-up-right"></i> View Project
+        </a>
+      </div>
+    </div>
+
+    <!-- Project 4 -->
+    <div class="hidden bg-purple-100 p-6 rounded-2xl flex flex-col md:flex-row items-center gap-8">
+      <!-- Description -->
+      <div class="md:w-1/2 w-full order-2 md:order-1">
+        <p class="text-sm font-medium text-gray-500 mb-2">Mobile App</p>
+        <h3 class="text-xl font-bold text-purple-900">
+          Platboard 
+          <span class="ml-2 text-sm text-yellow-600 bg-yellow-100 px-2 py-0.5 rounded-full">IN PROGRESS</span>
+        </h3>
+        <p class="text-gray-700 mt-2">
+          I designed the interface and created interactions for my client’s crypto wallet managing app.
+        </p>
+        <a href="platboard.html" class="inline-flex items-center gap-2 mt-4 bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-full">
+          <i class="bi bi-arrow-up-right"></i> View Project
+        </a>
+      </div>
+      <!-- Image -->
+      <div class="md:w-1/2 w-full order-1 md:order-2">
+        <img src="images/platboard cover.png" alt="Platboard" class="rounded w-full" />
+      </div>
+    </div>
+
+  </div>
+</section>
+
 
       <section class="mt-20 px-4 max-w-6xl mx-auto">
         <h2 class="text-2xl font-semibold text-center mb-10">Personal Projects</h2>
