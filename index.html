@@ -11,73 +11,76 @@
   </head>
   <body class="bg-white text-gray-900 font-open sauce two">
 
-    <div class="border-b-2 w-full sticky top-0 z-50 backdrop-blur bg-white/80">
-  <header class="flex justify-between items-center p-4 max-w-6xl mx-auto">
-    
-    <!-- Logo + Name as Home Button -->
-    <a href="#top" class="flex items-center bg-gray-100 px-4 py-1 rounded-full shadow gap-2 hover:shadow-md transition">
-      <img src="images/logo arieff h 3.png" alt="Logo" class="w-6 h-6 rounded-full shadow" />
-      <span class="text-lg font-semibold text-gray-800">Arieff H.</span>
-    </a>
+    <div class="border-b-2 w-full sticky top-0 z-50 relative">
+  <div id="nav-blur" class="relative" style="-webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); background: rgba(255,255,255,0.1);">
+    <header class="flex justify-between items-center p-4 max-w-6xl mx-auto">
+      
+      <!-- Logo + Name as Home Button -->
+      <a href="index.html" class="flex items-center bg-gray-100 px-4 py-1 rounded-full shadow gap-2 hover:shadow-md transition">
+        <img src="images/logo arieff h 3.png" alt="Logo" class="w-6 h-6 rounded-full shadow" />
+        <span class="text-lg font-semibold text-gray-800">Arieff H.</span>
+      </a>
 
-    <!-- Desktop Nav -->
-    <div class="hidden md:flex items-center gap-4">
+      <!-- Desktop Nav -->
+      <div class="flex max-md:hidden items-center gap-4">
+        <a
+          href="about.html"
+          class="flex items-center gap-2 px-4 py-1 border border-gray-300 rounded-full bg-white text-gray-700 hover:shadow transition text-sm"
+        >
+          <i class="bi bi-person-fill text-base"></i>
+          About Me
+        </a>
+
+        <a
+          href="index.html#projects"
+          class="flex items-center gap-2 px-4 py-1 border border-gray-300 rounded-full bg-white text-gray-700 hover:shadow transition text-sm"
+        >
+          <i class="bi bi-folder-fill text-base"></i>
+          Projects
+        </a>
+
+        <a
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
+          target="_blank"
+          rel="noopener"
+          class="flex items-center gap-2 bg-violet-600 hover:bg-violet-700 text-white px-4 py-2 rounded-full text-sm"
+        >
+          Say Hi <i class="bi bi-emoji-smile-fill"></i>
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger -->
+      <button id="menu-btn" class="md:hidden text-2xl text-violet-800">
+        <i class="bi bi-list"></i>
+      </button>
+    </header>
+
+    <!-- Mobile Dropdown -->
+    <div id="mobile-menu" class="border-b-2 hidden flex-col gap-2 p-4 md:hidden absolute top-full left-0 w-full"
+         style="background: rgba(255,255,255,0.95);">
       <a
         href="about.html"
-        class="flex items-center gap-2 px-4 py-1 border border-gray-300 rounded-full bg-white text-gray-700 hover:shadow transition text-sm"
+        class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-700 hover:shadow transition text-sm mb-2"
       >
-        <i class="bi bi-person-fill text-base"></i>
-        About Me
+        <i class="bi bi-person-fill"></i> About Me
       </a>
 
       <a
-        href="#projects"
-        class="flex items-center gap-2 px-4 py-1 border border-gray-300 rounded-full bg-white text-gray-700 hover:shadow transition text-sm"
+        href="index.html#projects"
+        class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-700 hover:shadow transition text-sm mb-2"
       >
-        <i class="bi bi-folder-fill text-base"></i>
-        Projects
+        <i class="bi bi-folder-fill"></i> Projects
       </a>
 
       <a
         href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
         target="_blank"
         rel="noopener"
-        class="flex items-center gap-2 bg-violet-600 hover:bg-violet-700 text-white px-4 py-2 rounded-full text-sm"
+        class="flex items-center gap-2 bg-violet-600 hover:bg-violet-700 text-white px-4 py-2 rounded-lg text-sm"
       >
-        Say Hi <i class="bi bi-emoji-smile-fill"></i>
+        <i class="bi bi-emoji-smile-fill"></i> Say Hi
       </a>
     </div>
-
-    <!-- Mobile Hamburger -->
-    <button id="menu-btn" class="md:hidden text-2xl text-violet-800">
-      <i class="bi bi-list"></i>
-    </button>
-  </header>
-
-  <!-- Mobile Dropdown -->
-  <div id="mobile-menu" class="hidden flex-col gap-2 p-4 bg-white border-t border-gray-200 md:hidden">
-    <a
-      href="about.html"
-      class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-700 hover:shadow transition text-sm mb-2"
-    >
-      <i class="bi bi-person-fill"></i> About Me
-    </a>
-
-    <a
-      href="#projects"
-      class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-700 hover:shadow transition text-sm mb-2"
-    >
-      <i class="bi bi-folder-fill"></i> Projects
-    </a>
-
-    <a
-      href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
-      target="_blank"
-      rel="noopener"
-      class="flex items-center gap-2 bg-violet-600 hover:bg-violet-700 text-white px-4 py-2 rounded-lg text-sm "
-    >
-      Say Hi <i class="bi bi-emoji-smile-fill"></i>
-    </a>
   </div>
 </div>
 
@@ -85,9 +88,16 @@
 <script>
   const menuBtn = document.getElementById("menu-btn");
   const mobileMenu = document.getElementById("mobile-menu");
-
+  const navBlur = document.getElementById("nav-blur");
+  
   menuBtn.addEventListener("click", () => {
     mobileMenu.classList.toggle("hidden");
+
+    if (mobileMenu.classList.contains("hidden")) {
+      navBlur.style.background = "rgba(255,255,255,0.1)";
+    } else {
+      navBlur.style.background = "rgba(255,255,255,0.95)";
+    }
   });
 </script>
 
