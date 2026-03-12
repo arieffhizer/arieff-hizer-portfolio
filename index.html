@@ -101,56 +101,86 @@
   });
 </script>
 
-<div class="px-8 md:px-0">
-      <section class="text-center py-44 px-4 mt-6">
 
-          <!-- Background glowing blob -->
+<section class="hero-section relative text-center py-44 px-8 overflow-hidden">
+
+  <!-- Background glowing blob -->
   <div
-    class="absolute top-44 right-1/4
-           w-[200px] h-[200px]
-           bg-violet-600
-           rounded-full
-           blur-[60px]
-           -z-10">
+  id="glow-blob"
+  class="absolute w-[200px] h-[200px] bg-violet-600 rounded-full blur-[60px] -z-10 pointer-events-none"
+  style="left: calc(75% - 100px); top: 76px;"
+></div>
+
+  <!-- Status badge -->
+  <div class="inline-flex items-center gap-2 text-sm text-gray-500 border border-gray-200 rounded-full px-4 py-1 mb-8 bg-gray-50">
+    <span class="w-2 h-2 rounded-full bg-violet-500 animate-pulse inline-block"></span>
+    Currently at Upstack Studio
   </div>
 
-        <!-- Profile Image -->
-        <img
-          src="images/sample_logo_mark.png"
-          alt="Profile picture"
-          class="hidden w-40 h-40 mx-auto mb-6 rounded-full object-cover shadow"
-        />
-      
-        <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-4">
-          Crafting Brand Triumph<br />
-        <h1 class="text-4xl md:text-7xl font-bold italic leading-tight text-violet-600">
-          —— Through Design<br />
-        </h1>
-        <p class="text-lg text-gray-600 max-w-2xl mx-auto mt-6">
-          I'm <span class="font-semibold text-gray-800">Arieff Hizer</span>, a detail-oriented UI/UX designer based in Malaysia.
-          I’m motivated in creating products, experiences, and aesthetics that elevate our lives.
-        <p 
-        class="text-lg mt-6 font-bold text-gray-800">Currently doing cool stuff at Upstack Studio.</span>
-        </p>
-        <div class="flex justify-center gap-4 mt-8">
-          <a
-            href="https://drive.google.com/file/d/1Dxcnodf57wr4Pam4C0Foj0-92Z0jPfUq/view?usp=drive_link"
-            target="_blank" 
-            class="inline-flex items-center gap-2 bg-violet-600 hover:bg-violet-700 text-white px-6 py-2 rounded-full"
-          >
-            <i class="bi bi-file-earmark-text-fill"></i>
-            My resume
-          </a>
-          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
-             target="_blank"
-             rel="noopener"
-          class="inline-flex items-center gap-2 border border-gray-300 gap-4 px-6 py-2 rounded-full bg-white text-gray-700 hover:shadow transition"
-          >
-          <i class="bi bi-chat-square-dots-fill"></i>
-            Let’s work together
-          </a>
-        </div>
-      </section>
+  <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-1" style="font-family: 'Open Sauce Two', sans-serif;">
+  Crafting Brand Triumph
+</h1>
+<h1 class="text-5xl md:text-7xl leading-tight italic text-violet-600 mb-10" style="font-family: 'Open Sauce Two', sans-serif;">
+  —— Through Design
+</h1>
+
+  <p class="text-lg text-gray-600 max-w-2xl mx-auto mt-6 leading-relaxed">
+    I'm <span class="font-medium text-gray-800">Arieff Hizer</span>, a detail-oriented UI/UX designer based in Malaysia.
+    I'm motivated in creating products, experiences, and aesthetics that elevate our lives.
+  </p>
+
+  <div class="flex flex-col sm:flex-row justify-center gap-3 mt-10">
+  <a
+    href="https://drive.google.com/file/d/1Dxcnodf57wr4Pam4C0Foj0-92Z0jPfUq/view?usp=drive_link"
+    target="_blank"
+    class="inline-flex items-center justify-center gap-2 bg-violet-600 hover:bg-violet-700 text-white px-6 py-2.5 rounded-full text-sm font-medium transition"
+  >
+    <i class="bi bi-file-earmark-text-fill"></i>
+    My resume
+  </a>
+  <a
+    href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
+    target="_blank"
+    rel="noopener"
+    class="inline-flex items-center justify-center gap-2 border border-gray-300 px-6 py-2.5 rounded-full bg-white text-gray-700 hover:shadow text-sm font-medium transition"
+  >
+    <i class="bi bi-chat-square-dots-fill"></i>
+    Let's work together
+  </a>
+</div>
+
+<script>
+      const hero = document.querySelector('.hero-section');
+      const blob = document.getElementById('glow-blob');
+
+      let targetX = window.innerWidth * 0.75;
+      let targetY = 176;
+      let currentX = targetX;
+      let currentY = targetY;
+
+      hero.addEventListener('mousemove', (e) => {
+        const rect = hero.getBoundingClientRect();
+        targetX = e.clientX - rect.left;
+        targetY = e.clientY - rect.top;
+      });
+
+      hero.addEventListener('mouseleave', () => {
+        targetX = hero.offsetWidth * 0.75;
+        targetY = 176;
+      });
+
+      function animate() {
+        currentX += (targetX - currentX) * 0.08;
+        currentY += (targetY - currentY) * 0.08;
+        blob.style.left = (currentX - 100) + 'px';
+        blob.style.top = (currentY - 100) + 'px';
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+    </script>
+
+</section>
 
       <section class="text-center px-4 max-w-6xl mx-auto">
         <h2 class="text-2xl font-semibold mb-4">Skills</h2>
@@ -213,7 +243,7 @@
       </style>
 
 
-      <section id="projects" class="scroll-mt-28 mt-20 px-4 max-w-6xl mx-auto">
+      <section id="projects" class="scroll-mt-28 mt-20 px-8 max-w-6xl mx-auto">
   <h2 class="text-2xl font-semibold text-center mb-10">Work Projects</h2>
   <div class="grid md:grid-cols-1 gap-10">
 
@@ -309,7 +339,7 @@
 </section>
 
 
-      <section class="mt-20 px-4 max-w-6xl mx-auto">
+      <section class="mt-20 px-8 max-w-6xl mx-auto">
         <h2 class="text-2xl font-semibold text-center mb-10">Personal Projects</h2>
         <div class="grid md:grid-cols-3 gap-8">
           <!-- Project Card -->
@@ -425,7 +455,7 @@
     </div>
   </section>
 
-      <section class="mt-12 px-4 max-w-4xl mx-auto text-center">
+      <section class="mt-12 px-8 max-w-4xl mx-auto text-center">
         <h3 class="text-2xl font-semibold text-center mb-10">Like what you see?</h3>
         <h2 class="text-5xl font-bold leading-tight mb-6">Let’s work together!</h2>
         <p class="text-lg mb-8 text-gray-600 max-w-lg mx-auto">
@@ -459,7 +489,7 @@
           Coded in Visual Studio Code // Built using Tailwind CSS // Deployed on Github
         </p>
       </section>
-</div>
+
 
       <footer class="mt-10 text-[10px] text-gray-500 border-t-2">
         <div class="flex justify-between items-center p-4 max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
