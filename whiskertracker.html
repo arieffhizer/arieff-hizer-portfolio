@@ -11,43 +11,99 @@
   </head>
   <body class="bg-gradient-to-r from-[#FFD9C5] to-[#ED8946] text-gray-900 font-open sauce two">
 
-      <div class="w-full sticky top-0 z-50 backdrop-blur bg-white/10">
-        <header class="flex justify-between items-center p-4 max-w-6xl mx-auto">
-          
-          <!-- Logo + Name as Home Button -->
-          <a href="index.html" class="flex items-center bg-white px-4 py-1 rounded-full shadow gap-2 hover:shadow-md transition">
-            <img src="images/logo arieff h 3.png" alt="Logo" class="w-6 h-6 rounded-full" />
-            <span class="text-lg font-semibold text-gray-800">Arieff H.</span>
-          </a>
+      <div class="w-full sticky top-0 z-50 relative">
+  <div id="nav-blur" class="relative" style="-webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); background: rgba(255,255,255,0.1);">
+    <header class="flex justify-between items-center p-4 max-w-6xl mx-auto">
       
-          <!-- Grouped Nav Buttons -->
-          <div class="hidden md:flex items-center gap-4">
-            <a
-              href="about.html"
-              class="flex items-center gap-2 px-4 py-1 border border-white rounded-full text-white hover:shadow transition text-sm"
-            >
-              <i class="bi bi-person-fill text-base"></i>
-              About Me
-            </a>
-      
-            <a
-              href="index.html#projects"
-              class="flex items-center gap-2 px-4 py-1 border border-white rounded-full text-white hover:shadow transition text-sm"
-            >
-              <i class="bi bi-folder-fill text-base"></i>
-              Projects
-            </a>
-      
-            <a
-              href="#contact"
-              class="flex items-center gap-2 bg-white hover:bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm"
-            >
-              Say Hi <i class="bi bi-emoji-smile-fill text-base"></i>
-            </a>
+      <!-- Logo + Name as Home Button -->
+      <a href="index.html" class="flex items-center bg-gray-100 px-4 py-1 rounded-full shadow gap-2 hover:shadow-md transition">
+        <img src="images/logo arieff h 3.png" alt="Logo" class="w-6 h-6 rounded-full shadow" />
+        <span class="text-lg font-semibold text-gray-800">Arieff H.</span>
+      </a>
 
-          </div>
-        </header>
+      <!-- Desktop Nav -->
+      <div class="flex max-md:hidden items-center gap-4">
+        <a
+          href="about.html"
+          class="flex items-center gap-2 px-4 py-1 border border-white rounded-full text-white hover:shadow transition text-sm"
+        >
+          <i class="bi bi-person-fill text-base"></i>
+          About Me
+        </a>
+
+        <a
+          href="index.html#projects"
+          class="flex items-center gap-2 px-4 py-1 border border-white rounded-full text-white hover:shadow transition text-sm"
+        >
+          <i class="bi bi-folder-fill text-base"></i>
+          Projects
+        </a>
+
+        <a
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
+          target="_blank"
+          rel="noopener"
+          class="flex items-center gap-2 bg-white hover:bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm"
+        >
+          Say Hi <i class="bi bi-emoji-smile-fill"></i>
+        </a>
       </div>
+
+      <!-- Mobile Hamburger -->
+      <button id="menu-btn" class="md:hidden text-2xl text-white">
+        <i class="bi bi-list"></i>
+      </button>
+    </header>
+
+    <!-- Mobile Dropdown -->
+    <div id="mobile-menu" class="hidden flex-col gap-2 p-4 md:hidden absolute top-full left-0 w-full"
+         style="background: rgba(255,255,255,0.95);">
+      <a
+        href="about.html"
+        class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-black hover:shadow transition text-sm mb-2"
+      >
+        <i class="bi bi-person-fill"></i> About Me
+      </a>
+
+      <a
+        href="index.html#projects"
+        class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-black hover:shadow transition text-sm mb-2"
+      >
+        <i class="bi bi-folder-fill"></i> Projects
+      </a>
+
+      <a
+        href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
+        target="_blank"
+        rel="noopener"
+        class="flex items-center gap-2 bg-[#ED8946] hover:bg-[#F69756] text-white px-4 py-2 rounded-lg text-sm"
+      >
+        <i class="bi bi-emoji-smile-fill"></i> Say Hi
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Script to toggle menu -->
+<script>
+  const menuBtn = document.getElementById("menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const navBlur = document.getElementById("nav-blur");
+
+  menuBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+
+    if (mobileMenu.classList.contains("hidden")) {
+      navBlur.style.background = "rgba(255,255,255,0.1)";
+      menuBtn.classList.remove("text-gray-800");
+      menuBtn.classList.add("text-white");
+    } else {
+      navBlur.style.background = "rgba(255,255,255,0.95)";
+      menuBtn.classList.remove("text-white");
+      menuBtn.classList.add("text-gray-800");
+    }
+  });
+</script>
 
 <section class="min-h-screen -mt-12 w-full bg-gradient-to-r from-[#FFD9C5] to-[#ED8946] flex items-center justify-center">
   <div class="max-w-6xl w-full px-4 grid grid-cols-1 md:grid-cols-2 items-center gap-12">
@@ -67,7 +123,7 @@
 </section>
 
 <section class="bg-white text-black font-sans py-16">
-  <div class="max-w-6xl mx-auto px-4 py-18">
+  <div class="max-w-6xl mx-auto px-8 py-18">
 
     <!-- Top Info Table -->
     <div class="border border-[#ED8946] rounded-xl overflow-hidden mb-16">
@@ -137,7 +193,7 @@
 
 <!-- Design Update -->
 <section class="bg-white">
-  <div class="max-w-6xl mx-auto px-4 py-16">
+  <div class="max-w-6xl mx-auto px-8 py-16">
   <h2 class="text-center text-2xl md:text-3xl font-bold text-purple-600 mb-6">
     Design Update
   </h2>
@@ -151,7 +207,7 @@
 </section>
 
 <!-- App Logics Update -->
-<section class="max-w-6xl mx-auto px-4 py-16">
+<section class="max-w-6xl mx-auto px-8 py-16">
   <h2 class="text-center text-2xl md:text-3xl font-bold text-white mb-6">
     App Logics Update
   </h2>
@@ -166,7 +222,7 @@
 
 <!-- Key Takeaways -->
 <section class="bg-white">
-  <div class="max-w-6xl mx-auto px-4 py-16">
+  <div class="max-w-6xl mx-auto px-8 py-16">
   <h2 class="text-center text-2xl md:text-3xl font-bold text-purple-600 mb-6">
     Key Takeaways
   </h2>
@@ -210,18 +266,18 @@
 
 </section>
 
-<footer class="text-sm text-white">
+<footer class="text-[10px] text-white">
         <div class="flex justify-between items-center p-4 max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
           <p>© 2023 Arieff Hizer // All Rights Reserved</p>
       
-          <div class="flex gap-4">
+          <div class="flex gap-2">
             <!-- GitHub Button -->
             <a
               href="https://github.com/arieffhizer"
               target="_blank"
               class="flex items-center gap-2 px-4 py-1 border border-white rounded-full bg-white text-gray-700 hover:shadow transition"
             >
-              <i class="bi bi-github text-lg"></i>
+              <i class="bi bi-github text-xs"></i>
               GitHub
             </a>
       
@@ -231,7 +287,7 @@
               target="_blank"
               class="flex items-center gap-2 px-4 py-1 border border-white rounded-full bg-white text-gray-700 hover:shadow transition"
             >
-              <i class="bi bi-linkedin text-lg"></i>
+              <i class="bi bi-linkedin text-xs"></i>
               LinkedIn
             </a>
       
@@ -241,7 +297,7 @@
               target="_blank"
               class="flex items-center gap-2 px-4 py-1 border border-white rounded-full bg-white text-gray-700 hover:shadow transition"
             >
-              <i class="bi bi-instagram text-lg"></i>
+              <i class="bi bi-instagram text-xs"></i>
               Instagram
             </a>
           </div>
