@@ -452,74 +452,87 @@
       </script>
 
 <section class="mt-20 px-4 max-w-6xl mx-auto">
-    <h2 class="text-2xl font-semibold text-center">Case Studies</h2>
-  
+  <h2 class="fade-up text-2xl font-semibold text-center opacity-0 translate-y-5 transition-all duration-700 ease-out">Case Studies</h2>
+
+  <div
+    class="fade-up overflow-hidden relative group h-[240px] opacity-0 translate-y-5 transition-all duration-700 ease-out"
+    onmouseenter="pauseCarousel()"
+    onmouseleave="startCarousel()"
+  >
     <div
-      class="overflow-hidden relative group h-[240px]"
-      onmouseenter="pauseCarousel()"
-      onmouseleave="startCarousel()"
+      id="carousel"
+      class="flex w-max animate-scroll gap-4 items-center h-full"
+      style="animation-play-state: running"
     >
-      <div
-        id="carousel"
-        class="flex w-max animate-scroll gap-4 items-center h-full"
-        style="animation-play-state: running"
-      >
-        <!-- Images duplicated for smooth loop -->
-        <img src="images/gallery1.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
-        <img src="images/gallery2.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
-        <img src="images/gallery3.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
-        <img src="images/gallery4.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
-        <img src="images/gallery5.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
-        <img src="images/gallery6.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
-        <img src="images/gallery7.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
-  
-        <!-- Duplicate images for seamless loop -->
-        <img src="images/gallery1.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
-        <img src="images/gallery2.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
-        <img src="images/gallery3.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
-        <img src="images/gallery4.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
-        <img src="images/gallery5.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
-        <img src="images/gallery6.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
-        <img src="images/gallery7.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
-      </div>
+      <img src="images/gallery1.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
+      <img src="images/gallery2.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
+      <img src="images/gallery3.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
+      <img src="images/gallery4.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
+      <img src="images/gallery5.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
+      <img src="images/gallery6.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
+      <img src="images/gallery7.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
+      <img src="images/gallery1.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
+      <img src="images/gallery2.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
+      <img src="images/gallery3.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
+      <img src="images/gallery4.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
+      <img src="images/gallery5.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
+      <img src="images/gallery6.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
+      <img src="images/gallery7.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
     </div>
-  </section>
+  </div>
+</section>
 
-      <section class="mt-12 px-8 max-w-4xl mx-auto text-center">
-        <h3 class="text-2xl font-semibold text-center mb-10">Like what you see?</h3>
-        <h2 class="text-5xl font-bold leading-tight mb-6">Let’s work together!</h2>
-        <p class="text-lg mb-8 text-gray-600 max-w-lg mx-auto">
-          I'm always looking for new opportunities and ready to face design challenges. Drop your messages!
-        </p>
-      
-        <!-- Button group -->
-        <div class="flex items-center justify-center gap-4 max-w-md mx-auto">
-          <a
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
-             target="_blank"
-             rel="noopener"
-            class="flex-1 inline-flex items-center justify-center gap-2 bg-violet-600 hover:bg-violet-700 text-white px-6 py-3 rounded-full font-medium transition duration-300"
-          >
-            Let’s chat <i class="bi bi-chat-square-dots-fill"></i>
-          </a>
-      
-          <!-- Back to top button -->
-          <a
-            href="#top"
-            aria-label="Back to top"
-            class="w-12 h-12 flex items-center justify-center border border-gray-300 rounded-full bg-white text-gray-500 hover:shadow transition"
-          >
-            <i class="bi bi-arrow-up text-xl"></i>
-          </a>
-        </div>
-      
-        <!-- Attribution -->
-        <p class="mt-10 text-[9px] text-gray-500 max-w-xl mx-auto">
-          Designed using Atomize // Icons from Bootstrap // Set in OpenSauceTwo<br />
-          Coded in VS Code // Built using Tailwind CSS // Deployed on Github
-        </p>
-      </section>
+<section class="mt-12 px-8 max-w-4xl mx-auto text-center">
+  <h3 class="fade-up text-2xl font-semibold text-center mb-10 opacity-0 translate-y-5 transition-all duration-700 ease-out">Like what you see?</h3>
+  <h2 class="fade-up text-5xl font-bold leading-tight mb-6 opacity-0 translate-y-5 transition-all duration-700 ease-out">Let's work together!</h2>
+  <p class="fade-up text-lg mb-8 text-gray-600 max-w-lg mx-auto opacity-0 translate-y-5 transition-all duration-700 ease-out">
+    I'm always looking for new opportunities and ready to face design challenges. Drop your messages!
+  </p>
 
+  <!-- Button group -->
+  <div class="fade-up flex items-center justify-center gap-4 max-w-md mx-auto opacity-0 translate-y-5 transition-all duration-700 ease-out">
+    <a
+      href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
+      target="_blank"
+      rel="noopener"
+      class="flex-1 inline-flex items-center justify-center gap-2 bg-violet-600 hover:bg-violet-700 text-white px-6 py-3 rounded-full font-medium transition duration-300"
+    >
+      Let's chat <i class="bi bi-chat-square-dots-fill"></i>
+    </a>
+    <a
+      href="#top"
+      aria-label="Back to top"
+      class="w-12 h-12 flex items-center justify-center border border-gray-300 rounded-full bg-white text-gray-500 hover:shadow transition"
+    >
+      <i class="bi bi-arrow-up text-xl"></i>
+    </a>
+  </div>
+
+  <!-- Attribution -->
+  <p class="fade-up mt-10 text-[9px] text-gray-500 max-w-xl mx-auto opacity-0 translate-y-5 transition-all duration-700 ease-out">
+    Designed using Atomize // Icons from Bootstrap // Set in OpenSauceTwo<br />
+    Coded in VS Code // Built using Tailwind CSS // Deployed on Github
+  </p>
+</section>
+
+<script>
+  const fadeElements = document.querySelectorAll('.fade-up');
+
+  const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        const index = Array.from(fadeElements).indexOf(entry.target);
+        setTimeout(() => {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }, index * 100);
+        fadeObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  fadeElements.forEach(el => fadeObserver.observe(el));
+</script>
 
       <footer class="mt-10 text-[10px] text-gray-500 border-t-2">
         <div class="flex justify-between items-center p-4 max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
