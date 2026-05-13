@@ -3,347 +3,806 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Arieff Hizer Portfolio</title>
+    <title>Tradelink — Arieff Hizer Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="theme.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="shortcut icon" type="image/png" href="images/favicon.png">
+    <style>
+      :root {
+        --blue-main: #2B6FFF;
+        --blue-light: #EBF4FF;
+        --blue-mid: #BDDAFF;
+        --blue-dark: #0A3891;
+        --text-dark: #0F1729;
+        --text-mid: #374151;
+        --text-muted: #6B7280;
+        --bg-page: #EEF6FF;
+        --white: #FFFFFF;
+      }
+      * { box-sizing: border-box; }
+      body {
+        font-family: 'Inter', sans-serif;
+        background: #ffffff;
+        color: var(--text-dark);
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      /* ── Background system ──
+         Mostly white page with large soft diagonal blue objects.
+         These shapes use wide parallelograms, extended beyond the viewport,
+         so there are no visible horizontal cut lines or rectangle edges. */
+      .page-bg {
+        position: relative;
+        isolation: isolate;
+        overflow-x: hidden;
+        background: #ffffff;
+      }
+      .page-bg::before,
+      .page-bg::after,
+      .bg-diagonal::before {
+        content: '';
+        position: absolute;
+        pointer-events: none;
+        left: -16vw;
+        width: 132vw;
+        background: linear-gradient(135deg, rgba(43,111,255,0.16) 0%, rgba(43,111,255,0.08) 58%, rgba(255,255,255,0.32) 100%);
+        filter: blur(0.2px);
+      }
+      .page-bg::before,
+      .page-bg::after {
+        z-index: 0;
+      }
+      .page-bg > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Top hero background shape */
+      .page-bg::before {
+        top: 64px;
+        height: 980px;
+        clip-path: polygon(0 42%, 100% 0, 100% 72%, 0 100%);
+      }
+
+      /* Lower page background shape */
+      .page-bg::after {
+        top: 64%;
+        height: 1100px;
+        background: linear-gradient(225deg, rgba(255,255,255,0.22) 0%, rgba(43,111,255,0.14) 45%, rgba(43,111,255,0.06) 100%);
+        clip-path: polygon(0 38%, 100% 0, 100% 66%, 0 100%);
+      }
+
+      /* Disable old global lower diagonal. The lower gradient is now controlled by the Solution section so it can sit between Solution and Results. */
+      .page-bg::after {
+        content: none;
+      }
+
+      .bg-band,
+      .bg-diagonal {
+        position: relative;
+        isolation: isolate;
+        z-index: 1;
+      }
+      .bg-band::before {
+        content: none;
+      }
+
+      /* Section-level diagonal objects */
+      .bg-diagonal::before {
+        z-index: -2;
+        top: -80px;
+        height: 1180px;
+        background: linear-gradient(135deg, rgba(43,111,255,0.14) 0%, rgba(43,111,255,0.07) 62%, rgba(255,255,255,0.28) 100%);
+        /* 2nd gradient: falls from top left to bottom right */
+        clip-path: polygon(0 0, 100% 34%, 100% 100%, 0 68%);
+      }
+      .bg-diagonal:nth-of-type(even)::before {
+        background: linear-gradient(135deg, rgba(255,255,255,0.26) 0%, rgba(43,111,255,0.13) 48%, rgba(43,111,255,0.06) 100%);
+        /* 3rd gradient: falls from top right to bottom left */
+        clip-path: polygon(0 36%, 100% 0, 100% 66%, 0 100%);
+      }
+
+      @media (max-width: 768px) {
+        .page-bg::before,
+        .page-bg::after,
+        .bg-diagonal::before {
+          left: -40vw;
+          width: 180vw;
+        }
+        .page-bg::before {
+          top: 64px;
+          height: 860px;
+          clip-path: polygon(0 38%, 100% 0, 100% 74%, 0 100%);
+        }
+        .page-bg::after {
+          top: 66%;
+          height: 900px;
+        }
+        .bg-diagonal::before {
+          top: -90px;
+          height: 980px;
+        }
+      }
+
+      /* Keep diagonal background shapes behind nearby content */
+      .page-bg > section {
+        position: relative;
+        z-index: 3;
+      }
+      .page-bg > section.bg-diagonal {
+        z-index: 1;
+      }
+      .bg-diagonal > * {
+        position: relative;
+        z-index: 2;
+      }
+      .bg-diagonal::before {
+        z-index: -1;
+      }
+
+      h1, h2, h3, h4 { font-family: 'Sora', sans-serif; }
+
+      /* ── Section label style "The Problem" ── */
+      .section-label {
+        font-family: 'Sora', sans-serif;
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: #0f2a4a;
+        margin-bottom: 1rem;
+      }
+      .section-label span {
+        color: #1a56db;
+      }
+      @media (min-width: 768px) {
+        .section-label { font-size: 2.25rem; }
+      }
+
+      /* ── Pill tags ── */
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 16px;
+        border-radius: 999px;
+        font-size: 0.8125rem;
+        font-weight: 500;
+        background: #DBEAFE;
+        color: #1D4ED8;
+        border: 1px solid #BFDBFE;
+        white-space: nowrap;
+      }
+      .pill.pink {
+        background: #FEE2E2;
+        color: #B91C1C;
+        border-color: #FECACA;
+      }
+
+      /* ── Method cards ── */
+      .method-card {
+        background: rgba(255,255,255,0.72);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 16px;
+        padding: 1.5rem;
+        border: 1px solid rgba(255,255,255,0.6);
+        box-shadow: 0 2px 12px rgba(43,111,255,0.08);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .method-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 28px rgba(43,111,255,0.14);
+      }
+
+      /* ── Color swatch ── */
+      .color-swatch {
+        border-radius: 12px;
+        padding: 1rem 1.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      /* ── Mockup float shadow ──
+         Use transparent PNG mockups and filter: drop-shadow so the shadow follows
+         the actual laptop/screen shape instead of the full image rectangle. */
+      .mockup-float {
+        border-radius: 16px;
+        box-shadow: none;
+        filter: drop-shadow(0 22px 26px rgba(43,111,255,0.16)) drop-shadow(0 6px 10px rgba(0,0,0,0.08));
+        transition: transform 0.4s ease, filter 0.4s ease;
+      }
+      .mockup-float:hover {
+        transform: translateY(-6px);
+        filter: drop-shadow(0 28px 32px rgba(43,111,255,0.2)) drop-shadow(0 8px 14px rgba(0,0,0,0.1));
+      }
+      .mockup-placeholder {
+        filter: none;
+        box-shadow: 0 20px 60px rgba(43,111,255,0.15), 0 4px 16px rgba(0,0,0,0.08);
+      }
+
+      /* ── White content card ── */
+      .content-card {
+        background: white;
+        border-radius: 20px;
+        padding: 2.5rem;
+        border: 1px solid #E5EDFF;
+        box-shadow: 0 2px 16px rgba(43,111,255,0.06);
+      }
+
+      /* ── Learnings card ── */
+      .learning-card {
+        background: rgba(255,255,255,0.72);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 16px;
+        padding: 1.75rem;
+        border: 1px solid rgba(255,255,255,0.6);
+        box-shadow: 0 2px 12px rgba(43,111,255,0.08);
+      }
+      .learning-card .num {
+        font-family: 'Sora', sans-serif;
+        font-size: 0.8125rem;
+        font-weight: 700;
+        color: var(--blue-main);
+        background: #EBF4FF;
+        border-radius: 999px;
+        padding: 2px 10px;
+        display: inline-block;
+        margin-bottom: 0.75rem;
+      }
+
+      /* ── Metadata table ── */
+      .meta-table {
+        border: 1.5px solid rgba(43, 111, 255, 0.18);
+        border-radius: 14px;
+        overflow: hidden;
+        background: rgba(43, 111, 255, 0.06);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        box-shadow: 0 12px 36px rgba(43, 111, 255, 0.08);
+      }
+      .meta-table .header-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        background: rgba(43, 111, 255, 0.10);
+        border-bottom: 1.5px solid rgba(43, 111, 255, 0.14);
+      }
+      .meta-table .header-row div,
+      .meta-table .content-row div {
+        padding: 0.75rem 1rem;
+        text-align: center;
+      }
+      .meta-table .header-row div {
+        font-family: 'Sora', sans-serif;
+        font-weight: 700;
+        color: #2B6FFF;
+        font-size: 0.9rem;
+        border-right: 1.5px solid rgba(43, 111, 255, 0.12);
+      }
+      .meta-table .header-row div:last-child,
+      .meta-table .content-row div:last-child {
+        border-right: none;
+      }
+      .meta-table .content-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        background: rgba(255, 255, 255, 0.58);
+      }
+      .meta-table .content-row div {
+        font-size: 0.875rem;
+        color: #1e3a5f;
+        font-weight: 500;
+        border-right: 1.5px solid rgba(43, 111, 255, 0.10);
+      }
+
+      /* ── Scroll fade-in ── */
+      .fade-up {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+      .fade-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ── Divider ── */
+      .section-divider {
+        border: none;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--blue-mid), transparent);
+        margin: 0;
+      }
+
+      /* ── Results bullets ── */
+      .result-bullet {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 0.9375rem;
+        color: #1e3a5f;
+        margin-bottom: 0.6rem;
+      }
+      .result-bullet::before {
+        content: '';
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #1a56db;
+        margin-top: 7px;
+        flex-shrink: 0;
+      }
+
+      /* Placeholder image */
+      .img-placeholder {
+        background: linear-gradient(135deg, #DBEAFE 0%, #EFF6FF 60%, #BFDBFE 100%);
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #93C5FD;
+        font-size: 0.875rem;
+        font-weight: 500;
+      }
+
+      @media (max-width: 640px) {
+        .meta-table .header-row,
+        .meta-table .content-row {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .meta-table .header-row div:nth-child(2),
+        .meta-table .content-row div:nth-child(2) {
+          border-right: none;
+        }
+        .meta-table .header-row div:nth-child(3),
+        .meta-table .content-row div:nth-child(3) {
+          border-top: 1.5px solid var(--blue-mid);
+          border-right: 1.5px solid var(--blue-mid);
+        }
+        .meta-table .header-row div:nth-child(4),
+        .meta-table .content-row div:nth-child(4) {
+          border-top: 1.5px solid var(--blue-mid);
+        }
+      }
+    </style>
   </head>
-  <body class="bg-gradient-to-r from-[#D9EEFF] to-[#3BAAFF] text-gray-900 font-open sauce two">
+  <body class="page-bg">
 
-      <div class="w-full sticky top-0 z-50 relative">
-  <div id="nav-blur" class="relative" style="-webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); background: rgba(255,255,255,0.1);">
-    <header class="flex justify-between items-center p-4 max-w-6xl mx-auto">
-      
-      <!-- Logo + Name as Home Button -->
-      <a href="index.html" class="flex items-center bg-gray-100 px-4 py-1 rounded-full shadow gap-2 hover:shadow-md transition">
-        <img src="images/logo arieff h 3.png" alt="Logo" class="w-6 h-6 rounded-full shadow" />
-        <span class="text-lg font-semibold text-gray-800">Arieff H.</span>
-      </a>
-
-      <!-- Desktop Nav -->
-      <div class="flex max-md:hidden items-center gap-4">
-        <a
-          href="about.html"
-          class="flex items-center gap-2 px-4 py-1 border border-white rounded-full text-white hover:shadow transition text-sm"
-        >
-          <i class="bi bi-person-fill text-base"></i>
-          About Me
-        </a>
-
-        <a
-          href="index.html#projects"
-          class="flex items-center gap-2 px-4 py-1 border border-white rounded-full text-white hover:shadow transition text-sm"
-        >
-          <i class="bi bi-folder-fill text-base"></i>
-          Projects
-        </a>
-
-        <a
-          href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
-          target="_blank"
-          rel="noopener"
-          class="flex items-center gap-2 bg-white hover:bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm"
-        >
-          Say Hi <i class="bi bi-emoji-smile-fill"></i>
-        </a>
-      </div>
-
-      <!-- Mobile Hamburger -->
-      <button id="menu-btn" class="md:hidden text-2xl text-white">
-        <i class="bi bi-list"></i>
-      </button>
-    </header>
-
-    <!-- Mobile Dropdown -->
-    <div id="mobile-menu" class="hidden flex-col gap-2 p-4 md:hidden absolute top-full left-0 w-full"
-         style="background: rgba(255,255,255,0.95);">
-      <a
-        href="about.html"
-        class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-black hover:shadow transition text-sm mb-2"
-      >
-        <i class="bi bi-person-fill"></i> About Me
-      </a>
-
-      <a
-        href="index.html#projects"
-        class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-black hover:shadow transition text-sm mb-2"
-      >
-        <i class="bi bi-folder-fill"></i> Projects
-      </a>
-
-      <a
-        href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
-        target="_blank"
-        rel="noopener"
-        class="flex items-center gap-2 bg-[#3BAAFF] hover:bg-[#57B6FF] text-white px-4 py-2 rounded-lg text-sm"
-      >
-        <i class="bi bi-emoji-smile-fill"></i> Say Hi
-      </a>
-    </div>
-  </div>
-</div>
-
-<!-- Script to toggle menu -->
-<script>
-  const menuBtn = document.getElementById("menu-btn");
-  const mobileMenu = document.getElementById("mobile-menu");
-  const navBlur = document.getElementById("nav-blur");
-
-  menuBtn.addEventListener("click", () => {
-    mobileMenu.classList.toggle("hidden");
-
-    if (mobileMenu.classList.contains("hidden")) {
-      navBlur.style.background = "rgba(255,255,255,0.1)";
-      menuBtn.classList.remove("text-gray-800");
-      menuBtn.classList.add("text-white");
-    } else {
-      navBlur.style.background = "rgba(255,255,255,0.95)";
-      menuBtn.classList.remove("text-white");
-      menuBtn.classList.add("text-gray-800");
-    }
-  });
-</script>
-
-<section class="min-h-screen -mt-12 w-full bg-gradient-to-r from-[#D9EEFF] to-[#3BAAFF] flex items-center justify-center">
-  <div class="max-w-6xl w-full px-4 grid grid-cols-1 md:grid-cols-2 items-center gap-12">
-    
-    <!-- Left: Text + Logo -->
-    <div class="text-white text-center md:text-left">
-        <img src="images/tradelink logo.png" alt="Selangor FC Logo" class="w-44 mx-auto md:mx-0" />
-      <img src="images/tradelink title.png" alt="SELANGOR FC" class="h-12 md:h-16 object-contain  mt-6" />
-      <p class="text-xl font-medium text-white mt-2">Transport Management System Web App</p>
-    </div>
-
-    <!-- Right: Single Mockup Image -->
-    <div class="flex md:justify-end justify-center hover:scale-105 transition-transform duration-500">
-      <img src="images/tradelink right image.png" alt="Selangor App Mockup" class="w-max md:max-w-xl drop-shadow-xl" />
-    </div>
-  </div>
-</section>
-
-<section class="bg-white text-black font-sans py-16">
-  <div class="max-w-6xl mx-auto px-8 py-18">
-
-    <!-- Top Info Table -->
-    <div class="border border-[#118BE8] rounded-xl overflow-hidden mb-16">
-      <!-- Header Row -->
-      <div class="grid grid-cols-4 text-center font-bold bg-[#D9EEFF] text-[#118BE8] text-lg divide-x divide-[#118BE8]">
-        <div class="py-3">Tools</div>
-        <div class="py-3">Platform</div>
-        <div class="py-3">Role</div>
-        <div class="py-3">Duration</div>
-      </div>
-      <!-- Content Row -->
-      <div class="grid grid-cols-4 text-center divide-x divide-[#118BE8]">
-        <div class="py-4">Figma</div>
-        <div class="py-4">Web App & Tablet</div>
-        <div class="py-4">Lead UI/UX Designer</div>
-        <div class="py-4">8 Weeks</div>
-      </div>
-    </div>
-
-    <!-- Two-column Layout -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-
-      <!-- Left Column -->
-      <div class="space-y-8">
-        <!-- Introduction -->
-        <div>
-          <h2 class="text-2xl font-bold text-[#118BE8] mb-2">Introduction</h2>
-          <p class="leading-relaxed">
-            Tradelink is a SaaS-based transport management system (TMS) web application designed for clients in the US and Mexico. It offers functionality similar to AllWaysTrack and AppSheet, but with a more intuitive interface and enhanced features. The platform enables both delivery clients and carrier companies to track tasks in real time, streamline logistics, and manage cross-border operations with ease. It also allows company admins to update worker information, record expenses, and facilitate reimbursement processes efficiently.
-          </p>
-
-          <p class="leading-relaxed mt-4">
-            The app is designed for small to medium-sized transportation companies (1-50 trucks) that engage in international freight hauling. Additionally, the app will offer a customer portal, allowing transportation companies to provide their clients with real-time access to load tracking and status updates.
-          </p>
-        </div>
-      </div>
-
-      <!-- Right Column -->
-      <div class="space-y-8">
-        <!-- Issues -->
-        <div>
-          <h2 class="text-2xl font-bold text-[#118BE8] mb-2">Issues</h2>
-          <ul class="list-disc list-inside space-y-1">
-            <li>Cross-border transport companies act as both carriers (own trucks) and brokers (third-party)</li>
-            <li>Most software can’t handle this hybrid model</li>
-            <li>Existing solutions are either: Too expensive (starting at $50k+), or Missing key features: reporting, driver payments, accounting, and maintenance tracking.</li>
-          </ul>
-        </div>
-
-        <!-- Goals -->
-        <div>
-          <h2 class="text-2xl font-bold text-[#118BE8] mb-2">Goals</h2>
-          <ul class="list-disc list-inside space-y-1">
-            <li>All-in-one TMS for asset-based + logistics operations</li>
-            <li>Seamless load management with performance reporting</li>
-            <li>Easy payments for drivers & external carriers</li>
-            <li>User-friendly invoicing and accounting tools</li>
-            <li>Affordable & modern UI built for small–medium transport companies</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="max-w-6xl mx-auto px-4 py-20">
-  <div class="flex justify-center">
-    <img src="images/tradelink preview.png" alt="Selangor App Mockup" class="w-full drop-shadow-xl" />
-  </div>
-</section>
-
-<section class="bg-white text-black font-sans py-12">
-  <div class="max-w-6xl mx-auto px-8 py-6">
-
-        <!-- Two-column Layout -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-
-        <!-- Issues -->
-        <div>
-          <h2 class="text-2xl font-bold text-[#118BE8] mb-2">1. Research & Discovery</h2>
-          <ul class="list-disc list-inside space-y-1">
-            <li>Researched client operations in US and Mexico, considering currency handling, cross-border documentation, and country codes</li>
-            <li>Analyzed competitor apps (e.g., All-Ways Track) to identify gaps in flows, UI/UX, and usability</li>
-            <li>Reviewed company’s preferred design language, direction, and target audience to align the app design with operational needs</li>
-          </ul>
-        </div>
-
-        <!-- Issues -->
-        <div>
-          <h2 class="text-2xl font-bold text-[#118BE8] mb-2">2. Design Stage</h2>
-          <ul class="list-disc list-inside space-y-1">
-            <li>Created lo-fi wireframes to validate structure and functionality</li>
-            <li>Progressed to hi-fi mockups after client approval</li>
-            <li>Presented designs bi-weekly in phases, incorporating feedback and making timely amendments</li>
-            <li>Took initiative to design reimbursement page instead of waiting client's sketches to understand the app deeper</li>
-          </ul>
-        </div>
-
-        <!-- Goals -->
-        <div>
-          <h2 class="text-2xl font-bold text-[#118BE8] mb-2">3. Developer Handoff</h2>
-          <ul class="list-disc list-inside space-y-1">
-            <li>Prepared detailed developer notes covering interactions, spacing, and component behaviors</li>
-            <li>Collaborated closely with developers, answering questions in real time and clarifying edge cases</li>
-            <li>Assisted developers with ad hoc requests to ensure the final product remained true to the original UX/UI vision</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Core Features -->
-<section class="max-w-6xl mx-auto px-8 py-16">
-  <h2 class="text-center text-2xl md:text-3xl font-bold text-white mb-6">
-    Core Features
-  </h2>
-  <p class="text-center text-base md:text-lg text-white leading-relaxed mb-12 max-w-6xl mx-auto">
-    This app solves several critical pain points in the transportation industry by implementing these features
-  </p>
-
-  <div class="flex justify-center mb-12">
-    <img src="images/tradelink core features.png" alt="Selangor App Mockup" class="w-full"/>
-  </div>
-</section>
-
-<!-- Key Takeaways -->
-<section class="bg-white">
-  <div class="max-w-6xl mx-auto px-8 py-16">
-  <h2 class="text-center text-2xl md:text-3xl font-bold text-[#118BE8] mb-6">
-    Key Takeaways
-  </h2>
-  <p class="text-center text-base md:text-lg text-gray-900 leading-relaxed mb-6 max-w-6xl mx-auto">
-    Tradelink app enables companies to manage loads efficiently, whether they are acting as asset carriers or brokers. The app provides comprehensive performance analytics for drivers, trucks, and trailers, allowing companies to quickly determine their rolling cost per mile and optimize their operations.
-  </p>
-  <p class="text-center text-base font-bold md:text-lg text-gray-900 leading-relaxed max-w-6xl mx-auto">
-    Offers:
-  </p>
-  <p class="text-center text-base  md:text-lg text-gray-900 leading-relaxed mb-6 max-w-6xl mx-auto">
-    A cost-effective solution for small to medium-sized transportation companies, making advanced transportation management accessible.
-  </p>
-  <p class="text-center text-base font-bold md:text-lg text-gray-900 leading-relaxed max-w-6xl mx-auto">
-    Supports:
-  </p>
-  <p class="text-center text-base  md:text-lg text-gray-900 leading-relaxed mb-6 max-w-6xl mx-auto">
-    USA companies that employ B1 drivers, ensuring correct and efficient driver payments.
-  </p>
-  <p class="text-center text-base font-bold md:text-lg text-gray-900 leading-relaxed max-w-6xl mx-auto">
-    Improves:
-  </p>
-  <p class="text-center text-base  md:text-lg text-gray-900 leading-relaxed max-w-6xl mx-auto">
-    Management of accounts payable and receivable, with planned API integrations for QuickBooks and other accounting platforms, reducing manual data entry and improving financial accuracy.
-  </p>
-</div>
-</section>
-
-<section class="bg-white">
-  <div class="justify-center relative">
-    <img src="images/tradelink all screen.png" alt="Selangor App Mockup" class="w-full max-w-6xl mx-auto">
-  
-    <!-- Left overlay -->
-  <a href="platboard.html" class="hidden lg:flex absolute top-0 left-0 w-[20%] h-full items-center justify-center overflow-hidden group">
-    <img src="images/platboard all  screen bnw.png" alt="Plura Atelier"
-         class="mr-12 h-full object-cover transition-all duration-500">
-    <div class="mr-6 absolute inset-0 flex flex-col items-center justify-center bg-black/0 backdrop-blur-sm opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-      <p class="text-[#897AFF] font-bold text-lg">Platboard</p>
-      <i class="bi bi-arrow-left-circle-fill text-[#897AFF] text-4xl mt-2"></i>
-    </div>
-  </a>
-
-  <!-- Right overlay -->
-  <a href="whiskertracker.html" class="hidden lg:flex absolute top-0 right-0 w-[20%] h-full items-center justify-center overflow-hidden group">
-    <img src="images/wt all screen bnw.png" alt="Whisker Tracker"
-         class="ml-12 w-full h-full object-cover transition-all duration-500">
-    <div class="ml-6 absolute inset-0 flex flex-col items-center justify-center bg-black/0 backdrop-blur-sm opacity-0 transition-opacity duration-400 group-hover:opacity-100">
-      <p class="text-[#ED8946] font-bold text-lg">Whisker</p>
-      <p class="text-[#ED8946] font-bold text-lg">Tracker</p>
-      <i class="bi bi-arrow-right-circle-fill text-[#ED8946] text-4xl mt-2"></i>
-    </div>
-  </a>
-  </div>
-</section>
-
-      <footer class="text-[10px] text-white">
-        <div class="flex justify-between items-center p-4 max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
-          <p>© 2023 Arieff Hizer // All Rights Reserved</p>
-      
-          <div class="flex gap-2">
-            <!-- GitHub Button -->
-            <a
-              href="https://github.com/arieffhizer"
-              target="_blank"
-              class="flex items-center gap-2 px-4 py-1 border border-gray-300 rounded-full bg-white text-gray-700 hover:shadow transition"
-            >
-              <i class="bi bi-github text-xs"></i>
-              GitHub
+    <!-- ═══════════════════════════════════════ NAV (unchanged) ═══ -->
+    <div class="w-full sticky top-0 z-50 relative">
+      <div id="nav-blur" class="relative" style="-webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); background: rgba(255,255,255,0.1);">
+        <header class="flex justify-between items-center p-4 max-w-6xl mx-auto">
+          <a href="index.html" class="flex items-center bg-gray-100 px-4 py-1 rounded-full shadow gap-2 hover:shadow-md transition">
+            <img src="images/logo arieff h 3.png" alt="Logo" class="w-6 h-6 rounded-full shadow" />
+            <span class="text-lg font-semibold text-gray-800">Arieff H.</span>
+          </a>
+          <div class="flex max-md:hidden items-center gap-4">
+            <a href="about.html" class="flex items-center gap-2 px-4 py-1 border border-white rounded-full text-white hover:shadow transition text-sm">
+              <i class="bi bi-person-fill text-base"></i> About Me
             </a>
-      
-            <!-- LinkedIn Button -->
-            <a
-              href="https://www.linkedin.com/in/arieff-hizer-98b412225/"
-              target="_blank"
-              class="flex items-center gap-2 px-4 py-1 border border-gray-300 rounded-full bg-white text-gray-700 hover:shadow transition"
-            >
-              <i class="bi bi-linkedin text-xs"></i>
-              LinkedIn
+            <a href="index.html#projects" class="flex items-center gap-2 px-4 py-1 border border-white rounded-full text-white hover:shadow transition text-sm">
+              <i class="bi bi-folder-fill text-base"></i> Projects
             </a>
-      
-            <!-- Instagram Button -->
-            <a
-              href="https://www.instagram.com/rffhzr"
-              target="_blank"
-              class="flex items-center gap-2 px-4 py-1 border border-gray-300 rounded-full bg-white text-gray-700 hover:shadow transition"
-            >
-              <i class="bi bi-instagram text-xs"></i>
-              Instagram
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position." target="_blank" rel="noopener" class="flex items-center gap-2 bg-white hover:bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm">
+              Say Hi <i class="bi bi-emoji-smile-fill"></i>
             </a>
           </div>
+          <button id="menu-btn" class="md:hidden text-2xl text-white"><i class="bi bi-list"></i></button>
+        </header>
+        <div id="mobile-menu" class="hidden flex-col gap-2 p-4 md:hidden absolute top-full left-0 w-full" style="background: rgba(255,255,255,0.95);">
+          <a href="about.html" class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-black hover:shadow transition text-sm mb-2"><i class="bi bi-person-fill"></i> About Me</a>
+          <a href="index.html#projects" class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-black hover:shadow transition text-sm mb-2"><i class="bi bi-folder-fill"></i> Projects</a>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position." target="_blank" rel="noopener" class="flex items-center gap-2 bg-[#3BAAFF] hover:bg-[#57B6FF] text-white px-4 py-2 rounded-lg text-sm"><i class="bi bi-emoji-smile-fill"></i> Say Hi</a>
         </div>
-      </footer>
+      </div>
+    </div>
+    <script>
+      const menuBtn = document.getElementById("menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const navBlur = document.getElementById("nav-blur");
+      menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+        if (mobileMenu.classList.contains("hidden")) {
+          navBlur.style.background = "rgba(255,255,255,0.1)";
+          menuBtn.classList.remove("text-gray-800"); menuBtn.classList.add("text-white");
+        } else {
+          navBlur.style.background = "rgba(255,255,255,0.95)";
+          menuBtn.classList.remove("text-white"); menuBtn.classList.add("text-gray-800");
+        }
+      });
+    </script>
+
+    <!-- ═══════════════════════════════════════ HERO ═══ -->
+    <section style="height: calc(100vh - 64px); min-height: 560px;" class="w-full flex items-center">
+      <div class="max-w-6xl w-full mx-auto px-6 grid grid-cols-1 md:grid-cols-2 items-center gap-10 py-12">
+        <div class="fade-up">
+          <img src="images/tradelink logo.png" alt="Tradelink Logo" class="w-36 mb-6" onerror="this.style.display='none'" />
+          <h1 class="font-bold text-[#0d2137] leading-tight mb-4" style="font-family:'Sora',sans-serif; font-size: clamp(2.5rem, 6vw, 4rem);">Tradelink</h1>
+          <p class="text-[#1e3a5f] text-lg md:text-xl font-medium leading-snug mb-3">(TMS) Transport Management<br/>System Web Application</p>
+          <div class="flex flex-wrap gap-2 mt-6">
+            <span class="pill">SaaS</span>
+            <span class="pill">Logistics</span>
+            <span class="pill">Web App</span>
+            <span class="pill">B2B</span>
+          </div>
+        </div>
+        <div class="fade-up flex justify-center md:justify-end" style="transition-delay:0.15s">
+          <img src="images/tradelink right image.png" alt="Tradelink App Mockup" class="mockup-float w-full max-w-xl" onerror="this.outerHTML='<div class=\'mockup-float mockup-placeholder img-placeholder w-full max-w-xl\' style=\'height:320px\'>App Mockup</div>'" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ INTRO + META ═══ -->
+    <section class="py-16 md:py-20 bg-band">
+      <div class="max-w-6xl mx-auto px-6">
+
+        <!-- Intro text -->
+        <div class="mb-14 fade-up">
+          <p class="text-base md:text-lg leading-relaxed mb-4" style="color:#1e3a5f;">
+            Tradelink, now known as <strong>HummingbirdTMS</strong>, is a SaaS transport management system designed for logistics companies in the US and Mexico. The platform helps logistics teams manage deliveries, drivers, trucks, documents, and cross-border operations in one centralized system.
+          </p>
+          <p class="text-base md:text-lg leading-relaxed" style="color:#1e3a5f;">
+            My focus was to design a workflow that made logistics operations easier to manage, especially for dispatchers handling complex delivery routes with multiple stops.
+          </p>
+        </div>
+
+        <!-- Metadata table -->
+        <div class="meta-table fade-up">
+          <div class="header-row">
+            <div>Expertise</div>
+            <div>Platforms</div>
+            <div>Tools</div>
+            <div>Duration</div>
+          </div>
+          <div class="content-row">
+            <div>Lead UX Designer</div>
+            <div>Web &amp; Tablet</div>
+            <div>Figma</div>
+            <div>8 Weeks</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ THE PROBLEM ═══ -->
+    <section class="py-16 md:py-24">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="fade-up">
+          <h2 class="section-label">The <span>Problem</span></h2>
+          <p class="text-[#1e3a5f] text-base md:text-lg leading-relaxed mb-4">
+            Many logistics systems do not fail because they lack features. They fail because they are too complex to operate efficiently.
+          </p>
+          <p class="text-[#1e3a5f] text-base md:text-lg leading-relaxed mb-4">
+            When studying existing systems such as AlwaysTrack, I noticed a key limitation: users had to create multiple loads just to complete a multi-stop delivery.
+          </p>
+          <p class="text-[#2d5278] text-sm font-semibold uppercase tracking-widest mb-4">This created several operational issues:</p>
+
+          <!-- Problem pills -->
+          <div class="flex flex-wrap gap-3 mb-6">
+            <span class="pill pink">Redundant steps</span>
+            <span class="pill pink">Slower delivery management</span>
+            <span class="pill pink">Risk of data entry errors</span>
+            <span class="pill pink">Cognitive load for dispatchers</span>
+          </div>
+
+          <p class="text-[#1e3a5f] text-base md:text-lg leading-relaxed mb-4">
+            Instead of supporting how logistics teams actually work, the system forced users to adapt their workflow around system limitations.
+          </p>
+          <p class="text-[#1e3a5f] text-base md:text-lg leading-relaxed">
+            The product goal was to create a transport management experience that supported real-world logistics operations more naturally and efficiently.
+          </p>
+        </div>
+
+        <!-- Problem mockup images -->
+        <div class="mt-16 fade-up">
+          <img src="images/tradelink preview.png" alt="Tradelink transparent screen spread" class="mockup-float w-full" onerror="this.outerHTML='<div class=\'mockup-float mockup-placeholder img-placeholder w-full\' style=\'height:380px\'>Tradelink Screen Preview</div>'" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ THE USER ═══ -->
+    <section class="py-16 md:py-24">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
+
+          <!-- Left: mockup -->
+          <div class="fade-up order-2 md:order-1">
+            <img src="images/user.jpg" alt="Tradelink dashboard preview" class="mockup-float w-full" onerror="this.outerHTML='<div class='mockup-float mockup-placeholder img-placeholder w-full' style='height:360px'>Dashboard Preview</div>'" />
+          </div>
+
+          <!-- Right: text -->
+          <div class="fade-up order-1 md:order-2" style="transition-delay:0.1s">
+            <h2 class="section-label">The <span>User</span></h2>
+            <p class="text-[#1e3a5f] text-base md:text-lg leading-relaxed font-medium mb-4">
+              The main users are logistics teams, especially dispatchers and operations staff, who are responsible for managing loads, drivers, trucks, delivery statuses, and documentation.
+            </p>
+            <p class="text-[#2d5278] text-base leading-relaxed mb-6">
+              These users need to make fast decisions in a high-pressure environment. They are not simply thinking in terms of software features. They are thinking:
+            </p>
+            <blockquote class="border-l-4 border-[#1a56db] pl-5 italic text-[#0f2a4a] text-base md:text-lg leading-relaxed mb-6" style="background:rgba(255,255,255,0.5); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); padding: 1rem 1.25rem; border-radius: 0 12px 12px 0;">
+              "How do I move this delivery from point A to point B, with multiple stops, as efficiently as possible?"
+            </blockquote>
+            <p class="text-[#2d5278] text-base leading-relaxed">
+              Solving this problem would help users reduce repetitive work, track delivery progress more clearly, and manage operational complexity with greater confidence.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ THE METHOD ═══ -->
+    <section class="py-16 md:py-24 bg-diagonal">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="mb-12 fade-up">
+          <h2 class="section-label">The <span>Method</span></h2>
+          <p class="text-[#1e3a5f] text-base md:text-lg leading-relaxed">
+            I approached the project by designing around real logistics workflows instead of designing around system constraints.
+          </p>
+        </div>
+
+        <!-- Method cards: 3 top + 2 bottom centered -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-5 fade-up">
+          <div class="method-card">
+            <p class="font-bold text-[#2B6FFF] mb-2" style="font-family:'Sora',sans-serif;">1. Competitor analysis</p>
+            <p class="text-[#2d5278] text-sm leading-relaxed">I studied existing systems such as AlwaysTrack to understand how current platforms handle multi-stop deliveries and where friction existed.</p>
+          </div>
+          <div class="method-card">
+            <p class="font-bold text-[#2B6FFF] mb-2" style="font-family:'Sora',sans-serif;">2. Workflow mapping</p>
+            <p class="text-[#2d5278] text-sm leading-relaxed">I broke down how dispatchers create, assign, track, and manage deliveries to identify unnecessary steps and decision points.</p>
+          </div>
+          <div class="method-card">
+            <p class="font-bold text-[#2B6FFF] mb-2" style="font-family:'Sora',sans-serif;">3. Information architecture</p>
+            <p class="text-[#2d5278] text-sm leading-relaxed">I organized key operational data so users could scan loads, statuses, drivers, trucks, and delivery information quickly.</p>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-2xl mx-auto fade-up" style="transition-delay:0.1s">
+          <div class="method-card">
+            <p class="font-bold text-[#2B6FFF] mb-2" style="font-family:'Sora',sans-serif;">4. Prototyping</p>
+            <p class="text-[#2d5278] text-sm leading-relaxed">I translated the workflow into dashboards, tables, and task flows to test how the system would function in realistic scenarios.</p>
+          </div>
+          <div class="method-card">
+            <p class="font-bold text-[#2B6FFF] mb-2" style="font-family:'Sora',sans-serif;">5. Stakeholder walkthroughs</p>
+            <p class="text-[#2d5278] text-sm leading-relaxed">I reviewed the design through operational scenarios to validate whether the flow supported business and user needs.</p>
+          </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ THE PROCESS ═══ -->
+    <section class="py-16 md:py-24">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
+
+          <!-- Left: text -->
+          <div class="fade-up">
+            <h2 class="section-label">The <span>Process</span></h2>
+            <p class="text-[#1e3a5f] text-base md:text-lg leading-relaxed font-medium mb-5">
+              I started by understanding how logistics teams manage deliveries in real situations.
+            </p>
+            <p class="text-[#1e3a5f] text-base leading-relaxed mb-4">
+              I looked at how dispatchers create a load, assign a driver and truck, manage several stops, track delivery progress, and handle documents. From this, I found that the main issue was not only the interface. The bigger issue was how the workflow was structured.
+            </p>
+            <p class="text-[#2d5278] text-base leading-relaxed mb-4">
+              In some systems, users had to create a separate load for every stop. This made the process repetitive and harder to manage. To solve this, I designed the workflow so that one load could include multiple delivery stops.
+            </p>
+            <p class="text-[#2d5278] text-base leading-relaxed mb-8">
+              This made the process simpler and closer to how dispatchers actually plan deliveries.
+            </p>
+
+            <!-- Color swatches -->
+            <p class="text-[#2d5278] text-sm leading-relaxed mb-4">
+              For the visual design, I used a white and blue color system. Blue helped the product feel reliable and professional, while white space made the dashboard easier to read.
+            </p>
+            <div class="flex gap-3 flex-wrap">
+              <div class="color-swatch flex-1 min-w-[90px]" style="background:#2B6FFF; min-height: 80px;">
+                <p class="text-white text-xs font-semibold mt-auto" style="font-family:'Sora',sans-serif; margin-top:auto">Primary</p>
+                <p class="text-white/70 text-xs">#2B6FFF</p>
+              </div>
+              <div class="color-swatch flex-1 min-w-[90px]" style="background:#FFFFFF; border:1.5px solid #E5EDFF; min-height:80px;">
+                <p class="text-gray-600 text-xs font-semibold mt-auto" style="font-family:'Sora',sans-serif; margin-top:auto">Secondary</p>
+                <p class="text-gray-400 text-xs">#FFFFFF</p>
+              </div>
+              <div class="color-swatch flex-1 min-w-[90px]" style="background:#003692; min-height:80px;">
+                <p class="text-white text-xs font-semibold mt-auto" style="font-family:'Sora',sans-serif; margin-top:auto">Tertiary</p>
+                <p class="text-white/70 text-xs">#003692</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: mockup -->
+          <div class="fade-up" style="transition-delay:0.1s">
+            <img src="images/tradelink process.png" alt="Tradelink project summary screen" class="mockup-float w-full" onerror="this.outerHTML='<div class='mockup-float mockup-placeholder img-placeholder w-full' style='height:420px'>Project Summary Screen</div>'" />
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ THE INSIGHTS ═══ -->
+    <section class="py-16 md:py-24 bg-band">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="mb-12 fade-up">
+          <h2 class="section-label">The <span>Insights</span></h2>
+          <p class="text-[#1e3a5f] text-base md:text-lg leading-relaxed font-medium mb-4">
+              The main insight was that dispatchers do not want to spend time managing a complicated system. They want to manage deliveries quickly and clearly.
+            </p>
+            <p class="text-[#1e3a5f] text-base md:text-lg leading-relaxed font-medium mb-6">
+              A multi-stop delivery should feel like one connected delivery, not several separate tasks.
+            </p>
+            <p class="text-[#2d5278] text-sm leading-relaxed mb-4">
+              I also learned that clarity is very important in logistics. Dispatchers need to quickly see what is happening, what needs attention, and what action they should take next.
+            </p>
+            <p class="text-[#2d5278] text-xs font-semibold uppercase tracking-widest mb-3">These insights shaped the design decisions:</p>
+            <ul class="space-y-2 mb-4">
+              <li class="result-bullet">One load can include multiple delivery stops</li>
+              <li class="result-bullet">Delivery statuses are clear and easy to scan</li>
+              <li class="result-bullet">Dashboards are organized by priority</li>
+              <li class="result-bullet">Tables help users make faster decisions</li>
+              <li class="result-bullet">The interface avoids unnecessary clutter</li>
+            </ul>
+            <p class="text-[#2d5278] text-sm leading-relaxed">
+              These decisions helped create a product experience that supports both daily user tasks and business operations.
+            </p>
+        </div>
+
+        <!-- Mockup after INSIGHTS -->
+        <div class="mt-16 fade-up">
+          <img src="images/tradelink core features.png" alt="Tradelink transparent screen spread" class="mockup-float w-full" onerror="this.outerHTML='<div class=\'mockup-float mockup-placeholder img-placeholder w-full\' style=\'height:340px\'>Core Features Preview</div>'" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ THE SOLUTION ═══ -->
+    <section class="py-16 md:py-24 bg-diagonal">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
+
+          <!-- Left: text -->
+          <div class="fade-up">
+            <h2 class="section-label">The <span>Solution</span></h2>
+            <p class="text-[#1e3a5f] text-base md:text-lg leading-relaxed font-medium mb-4">
+              The final solution was a SaaS transport management interface that allows logistics teams to manage delivery operations from one centralized platform.
+            </p>
+            <p class="text-[#2d5278] text-sm mb-5">The system allows users to:</p>
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span class="pill">Create and manage loads</span>
+              <span class="pill">Assign drivers and trucks</span>
+              <span class="pill">Handle multi-stop deliveries</span>
+              <span class="pill">Track deliveries in real time</span>
+              <span class="pill">Manage documents and operational workflows</span>
+            </div>
+            <p class="text-[#2d5278] text-base leading-relaxed">
+              The most important solution was the multi-stop load structure. Instead of forcing users to create multiple loads for one delivery route, the system supports multiple stops within a single load.
+            </p>
+          </div>
+
+          <!-- Right: mockup -->
+          <div class="fade-up" style="transition-delay:0.1s">
+            <img src="images/tradelink solution.png" alt="Tradelink project list screen" class="mockup-float w-full" onerror="this.outerHTML='<div class='mockup-float mockup-placeholder img-placeholder w-full' style='height:380px'>Project List Screen</div>'" />
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ THE RESULTS ═══ -->
+    <section class="py-16 md:py-24">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
+
+          <!-- Left: mockup -->
+          <div class="fade-up">
+            <img src="images/tradelink-dashboard-kpi.png" alt="Tradelink dashboard overview" class="mockup-float w-full" onerror="this.outerHTML='<div class='mockup-float mockup-placeholder img-placeholder w-full' style='height:380px'>Dashboard Overview</div>'" />
+          </div>
+
+          <!-- Right: text -->
+          <div class="fade-up" style="transition-delay:0.1s">
+            <h2 class="section-label">The <span>Results</span></h2>
+            <p class="text-[#1e3a5f] text-base md:text-lg leading-relaxed font-medium mb-5">
+              The redesigned workflow helped create a more efficient and operationally realistic transport management system.
+            </p>
+            <p class="text-[#2d5278] text-xs font-semibold uppercase tracking-widest mb-3">The impact included:</p>
+            <ul class="space-y-2 mb-6">
+              <li class="result-bullet">Reduced steps in delivery management</li>
+              <li class="result-bullet">Improved visibility across logistics operations</li>
+              <li class="result-bullet">Faster decision-making for dispatchers</li>
+              <li class="result-bullet">Lower risk of repeated data entry errors</li>
+              <li class="result-bullet">A clearer and more scalable dashboard structure</li>
+            </ul>
+            <p class="text-[#2d5278] text-base leading-relaxed">
+              Instead of managing unnecessary system complexity, users could manage a platform that supported their actual work.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Full-width mockup spread -->
+        <div class="mt-16 fade-up">
+          <img src="images/tradelink all screen.png" alt="Tradelink transparent full screen spread" class="mockup-float w-full" onerror="this.outerHTML='<div class=\'mockup-float mockup-placeholder img-placeholder w-full\' style=\'height:420px\'>All Screens Spread</div>'" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ THE LEARNINGS ═══ -->
+    <section class="py-16 md:py-24">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="max-w-3xl mb-12 fade-up">
+          <h2 class="section-label">The <span>Learnings</span></h2>
+          <p class="text-[#1e3a5f] text-base md:text-lg leading-relaxed">
+            This project reinforced the importance of designing systems around user behavior, not just product features.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 fade-up mb-20">
+          <div class="learning-card">
+            <span class="num">1. What Went Well</span>
+            <p class="text-[#1e3a5f] text-sm leading-relaxed">
+              What went well was the focus on real-world workflow logic. By identifying that multi-stop deliveries should exist within one load, the design solved a deeper operational problem rather than only improving the interface visually.
+            </p>
+          </div>
+          <div class="learning-card">
+            <span class="num" style="background:#FEF3C7; color:#92400E;">2. What Could Be Improved</span>
+            <p class="text-[#1e3a5f] text-sm leading-relaxed">
+              What could be improved in the future is deeper validation with more dispatchers and logistics teams. With more time, I would conduct additional usability testing, compare task completion time between the old and new workflow, and gather more quantitative data on efficiency improvements.
+            </p>
+          </div>
+          <div class="learning-card">
+            <span class="num" style="background:#D1FAE5; color:#065F46;">3. What I Learned</span>
+            <p class="text-[#1e3a5f] text-sm leading-relaxed">
+              This project helped me strengthen my approach to designing complex SaaS systems: understand the user's mental model, reduce unnecessary steps, and create interfaces that improve both user experience and business efficiency.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ FOOTER ═══ -->
+    <footer style="solid #BDDAFF;">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4 p-6 max-w-6xl mx-auto text-center md:text-left">
+        <p style="font-size: 0.8125rem; color: #1e3a5f;">© 2025 Arieff Hizer // All Rights Reserved</p>
+        <div class="flex gap-2">
+          <a href="https://github.com/arieffhizer" target="_blank"
+             class="flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium transition hover:shadow-md"
+             style="border: 1.5px solid #BDDAFF; color: #374151; background: #F0F7FF;">
+            <i class="bi bi-github text-xs"></i> GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/arieff-hizer-98b412225/" target="_blank"
+             class="flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium transition hover:shadow-md"
+             style="border: 1.5px solid #BDDAFF; color: #374151; background: #F0F7FF;">
+            <i class="bi bi-linkedin text-xs"></i> LinkedIn
+          </a>
+          <a href="https://www.instagram.com/rffhzr" target="_blank"
+             class="flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium transition hover:shadow-md"
+             style="border: 1.5px solid #BDDAFF; color: #374151; background: #F0F7FF;">
+            <i class="bi bi-instagram text-xs"></i> Instagram
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ═══════════════════════════════════════ SCROLL ANIMATION ═══ -->
+    <script>
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            observer.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+      // Trigger hero elements immediately
+      document.querySelectorAll('section:first-of-type .fade-up').forEach((el, i) => {
+        setTimeout(() => el.classList.add('visible'), i * 150);
+      });
+    </script>
 
   </body>
 </html>
