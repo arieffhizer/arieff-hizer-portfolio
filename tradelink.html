@@ -298,6 +298,114 @@
         border-right: 1.5px solid rgba(43, 111, 255, 0.10);
       }
 
+
+
+      /* ── Case study typography consistency from Process to Learnings ── */
+      .case-headline {
+        color: #1e3a5f;
+        font-size: 1rem;
+        line-height: 1.75;
+        font-weight: 500;
+      }
+      .case-body {
+        color: #2d5278;
+        font-size: 1rem;
+        line-height: 1.75;
+      }
+      .case-small-label {
+        color: #2d5278;
+        font-size: 0.875rem;
+        line-height: 1.6;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      .method-card p:last-child,
+      .learning-card p {
+        color: #2d5278;
+        font-size: 1rem;
+        line-height: 1.75;
+      }
+      @media (min-width: 768px) {
+        .case-headline { font-size: 1.125rem; }
+      }
+
+
+      /* ── Mobile responsive alignment ── */
+      @media (max-width: 767px) {
+        section {
+          text-align: center;
+        }
+
+        section .fade-up,
+        section .section-label,
+        section .case-headline,
+        section .case-body,
+        section p,
+        section li {
+          text-align: center;
+        }
+
+        .section-label {
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .pill {
+          justify-content: center;
+          text-align: center;
+          white-space: normal;
+        }
+
+        section .flex.flex-wrap {
+          justify-content: center;
+        }
+
+        .method-card,
+        .learning-card {
+          text-align: center;
+        }
+
+        .learning-card .num {
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .result-bullet {
+          justify-content: center;
+          text-align: center;
+          align-items: center;
+        }
+
+        .result-bullet::before {
+          display: none;
+        }
+
+        blockquote {
+          text-align: center !important;
+          border-left: none !important;
+          border-top: 4px solid #1a56db;
+          border-radius: 12px !important;
+          padding: 1rem 1.25rem !important;
+        }
+
+        .color-swatch {
+          align-items: center;
+        }
+
+        .mockup-float {
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .meta-table .header-row div,
+        .meta-table .content-row div {
+          padding: 0.85rem 0.65rem;
+          font-size: 0.8rem;
+        }
+      }
+
       /* ── Scroll fade-in ── */
       .fade-up {
         opacity: 0;
@@ -322,8 +430,8 @@
         display: flex;
         align-items: flex-start;
         gap: 10px;
-        font-size: 0.9375rem;
-        color: #1e3a5f;
+        font-size: 1rem;
+        color: #2d5278;
         margin-bottom: 0.6rem;
       }
       .result-bullet::before {
@@ -350,22 +458,36 @@
       }
 
       @media (max-width: 640px) {
+        .meta-table {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+        }
         .meta-table .header-row,
         .meta-table .content-row {
-          grid-template-columns: repeat(2, 1fr);
+          display: grid;
+          grid-template-columns: 1fr;
         }
-        .meta-table .header-row div:nth-child(2),
-        .meta-table .content-row div:nth-child(2) {
+        .meta-table .header-row {
+          border-bottom: none;
+          border-right: 1.5px solid rgba(43, 111, 255, 0.14);
+        }
+        .meta-table .content-row {
+          background: rgba(255, 255, 255, 0.58);
+        }
+        .meta-table .header-row div,
+        .meta-table .content-row div {
           border-right: none;
+          border-top: 1.5px solid rgba(43, 111, 255, 0.10);
+          min-height: 48px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0.85rem 0.65rem;
+          font-size: 0.8rem;
         }
-        .meta-table .header-row div:nth-child(3),
-        .meta-table .content-row div:nth-child(3) {
-          border-top: 1.5px solid var(--blue-mid);
-          border-right: 1.5px solid var(--blue-mid);
-        }
-        .meta-table .header-row div:nth-child(4),
-        .meta-table .content-row div:nth-child(4) {
-          border-top: 1.5px solid var(--blue-mid);
+        .meta-table .header-row div:first-child,
+        .meta-table .content-row div:first-child {
+          border-top: none;
         }
       }
     </style>
@@ -381,22 +503,22 @@
             <span class="text-lg font-semibold text-gray-800">Arieff H.</span>
           </a>
           <div class="flex max-md:hidden items-center gap-4">
-            <a href="about.html" class="flex items-center gap-2 px-4 py-1 border border-white rounded-full text-white hover:shadow transition text-sm">
+            <a href="about.html" class="flex items-center gap-2 px-4 py-1 bg-[#FFFFFF] rounded-full text-[#374151] hover:shadow transition text-sm">
               <i class="bi bi-person-fill text-base"></i> About Me
             </a>
-            <a href="index.html#projects" class="flex items-center gap-2 px-4 py-1 border border-white rounded-full text-white hover:shadow transition text-sm">
+            <a href="index.html#projects" class="flex items-center gap-2 px-4 py-1 bg-[#FFFFFF] rounded-full text-[#374151] hover:shadow transition text-sm">
               <i class="bi bi-folder-fill text-base"></i> Projects
             </a>
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position." target="_blank" rel="noopener" class="flex items-center gap-2 bg-white hover:bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position." target="_blank" rel="noopener" class="flex items-center gap-2 bg-[#2B6FFF] text-white px-4 py-2 rounded-full text-sm transition hover:shadow-md hover:-translate-y-1 m-0">
               Say Hi <i class="bi bi-emoji-smile-fill"></i>
             </a>
           </div>
-          <button id="menu-btn" class="md:hidden text-2xl text-white"><i class="bi bi-list"></i></button>
+          <button id="menu-btn" class="md:hidden text-2xl text-gray-800"><i class="bi bi-list"></i></button>
         </header>
         <div id="mobile-menu" class="hidden flex-col gap-2 p-4 md:hidden absolute top-full left-0 w-full" style="background: rgba(255,255,255,0.95);">
-          <a href="about.html" class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-black hover:shadow transition text-sm mb-2"><i class="bi bi-person-fill"></i> About Me</a>
-          <a href="index.html#projects" class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-black hover:shadow transition text-sm mb-2"><i class="bi bi-folder-fill"></i> Projects</a>
-          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position." target="_blank" rel="noopener" class="flex items-center gap-2 bg-[#3BAAFF] hover:bg-[#57B6FF] text-white px-4 py-2 rounded-lg text-sm"><i class="bi bi-emoji-smile-fill"></i> Say Hi</a>
+          <a href="about.html" class="flex items-center justify-center gap-2 px-4 py-2 bg-[#FFFFFF] rounded-full text-[#374151] hover:shadow transition text-sm mb-2"><i class="bi bi-person-fill"></i> About Me</a>
+          <a href="index.html#projects" class="flex items-center justify-center gap-2 px-4 py-2 bg-[#FFFFFF] rounded-full text-[#374151] hover:shadow transition text-sm mb-2"><i class="bi bi-folder-fill"></i> Projects</a>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position." target="_blank" rel="noopener" class="flex items-center justify-center gap-2 bg-[#2B6FFF] text-white px-4 py-2 rounded-full text-sm transition hover:shadow-md"><i class="bi bi-emoji-smile-fill"></i> Say Hi</a>
         </div>
       </div>
     </div>
@@ -408,7 +530,7 @@
         mobileMenu.classList.toggle("hidden");
         if (mobileMenu.classList.contains("hidden")) {
           navBlur.style.background = "rgba(255,255,255,0.1)";
-          menuBtn.classList.remove("text-gray-800"); menuBtn.classList.add("text-white");
+          menuBtn.classList.remove("text-white"); menuBtn.classList.add("text-gray-800");
         } else {
           navBlur.style.background = "rgba(255,255,255,0.95)";
           menuBtn.classList.remove("text-white"); menuBtn.classList.add("text-gray-800");
@@ -419,11 +541,13 @@
     <!-- ═══════════════════════════════════════ HERO ═══ -->
     <section style="height: calc(100vh - 64px); min-height: 560px;" class="w-full flex items-center">
       <div class="max-w-6xl w-full mx-auto px-6 grid grid-cols-1 md:grid-cols-2 items-center gap-10 py-12">
-        <div class="fade-up">
-          <img src="images/tradelink logo.png" alt="Tradelink Logo" class="w-36 mb-6" onerror="this.style.display='none'" />
-          <h1 class="font-bold text-[#0d2137] leading-tight mb-4" style="font-family:'Sora',sans-serif; font-size: clamp(2.5rem, 6vw, 4rem);">Tradelink</h1>
+        <div class="fade-up text-center md:text-left">
+          <div class="flex md:block items-center justify-center md:justify-start gap-4 mb-4 md:mb-0">
+            <img src="images/tradelink logo.png" alt="Tradelink Logo" class="w-14 md:w-36 flex-shrink-0 md:mb-6" onerror="this.style.display='none'" />
+            <h1 class="font-bold text-[#0d2137] leading-tight m-0 md:mb-4" style="font-family:'Sora',sans-serif; font-size: clamp(2.5rem, 6vw, 4rem);">Tradelink</h1>
+          </div>
           <p class="text-[#1e3a5f] text-lg md:text-xl font-medium leading-snug mb-3">(TMS) Transport Management<br/>System Web Application</p>
-          <div class="flex flex-wrap gap-2 mt-6">
+          <div class="flex flex-wrap justify-center md:justify-start gap-2 mt-6">
             <span class="pill">SaaS</span>
             <span class="pill">Logistics</span>
             <span class="pill">Web App</span>
@@ -431,7 +555,7 @@
           </div>
         </div>
         <div class="fade-up flex justify-center md:justify-end" style="transition-delay:0.15s">
-          <img src="images/tradelink right image.png" alt="Tradelink App Mockup" class="mockup-float w-full max-w-xl" onerror="this.outerHTML='<div class=\'mockup-float mockup-placeholder img-placeholder w-full max-w-xl\' style=\'height:320px\'>App Mockup</div>'" />
+          <img src="images/tradelink right image.png" alt="Tradelink App Mockup" class="mockup-float w-full max-w-xl mx-auto md:mx-0" onerror="this.outerHTML='<div class=\'mockup-float mockup-placeholder img-placeholder w-full max-w-xl\' style=\'height:320px\'>App Mockup</div>'" />
         </div>
       </div>
     </section>
@@ -474,27 +598,29 @@
       <div class="max-w-6xl mx-auto px-6">
         <div class="fade-up">
           <h2 class="section-label">The <span>Problem</span></h2>
-          <p class="text-[#1e3a5f] text-base md:text-lg leading-relaxed mb-4">
+
+          <p class="text-[#1e3a5f] text-base md:text-lg leading-relaxed font-medium mb-4">
             Many logistics systems do not fail because they lack features. They fail because they are too complex to operate efficiently.
           </p>
-          <p class="text-[#1e3a5f] text-base md:text-lg leading-relaxed mb-4">
+
+          <p class="text-[#2d5278] text-base leading-relaxed mb-4">
             When studying existing systems such as AlwaysTrack, I noticed a key limitation: users had to create multiple loads just to complete a multi-stop delivery.
           </p>
-          <p class="text-[#2d5278] text-sm font-semibold uppercase tracking-widest mb-4">This created several operational issues:</p>
+
+          <p class="text-[#1e3a5f] text-base md:text-lg font-medium mb-2">
+            This created several operational issues:
+          </p>
 
           <!-- Problem pills -->
-          <div class="flex flex-wrap gap-3 mb-6">
-            <span class="pill pink">Redundant steps</span>
-            <span class="pill pink">Slower delivery management</span>
-            <span class="pill pink">Risk of data entry errors</span>
-            <span class="pill pink">Cognitive load for dispatchers</span>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+            <span class="pill pink w-full justify-center">Redundant steps</span>
+            <span class="pill pink w-full justify-center">Slower delivery management</span>
+            <span class="pill pink w-full justify-center">Risk of data entry errors</span>
+            <span class="pill pink w-full justify-center">Cognitive load for dispatchers</span>
           </div>
 
-          <p class="text-[#1e3a5f] text-base md:text-lg leading-relaxed mb-4">
-            Instead of supporting how logistics teams actually work, the system forced users to adapt their workflow around system limitations.
-          </p>
-          <p class="text-[#1e3a5f] text-base md:text-lg leading-relaxed">
-            The product goal was to create a transport management experience that supported real-world logistics operations more naturally and efficiently.
+          <p class="text-[#2d5278] text-base leading-relaxed mb-4">
+            Instead of supporting how logistics teams actually work, the system forced users to adapt their workflow around system limitations. The product goal was to create a transport management experience that supported real-world logistics operations more naturally and efficiently.
           </p>
         </div>
 
@@ -581,21 +707,21 @@
           <!-- Left: text -->
           <div class="fade-up">
             <h2 class="section-label">The <span>Process</span></h2>
-            <p class="text-[#1e3a5f] text-base md:text-lg leading-relaxed font-medium mb-5">
+            <p class="case-headline mb-5">
               I started by understanding how logistics teams manage deliveries in real situations.
             </p>
-            <p class="text-[#1e3a5f] text-base leading-relaxed mb-4">
+            <p class="case-body mb-4">
               I looked at how dispatchers create a load, assign a driver and truck, manage several stops, track delivery progress, and handle documents. From this, I found that the main issue was not only the interface. The bigger issue was how the workflow was structured.
             </p>
-            <p class="text-[#2d5278] text-base leading-relaxed mb-4">
+            <p class="case-body mb-4">
               In some systems, users had to create a separate load for every stop. This made the process repetitive and harder to manage. To solve this, I designed the workflow so that one load could include multiple delivery stops.
             </p>
-            <p class="text-[#2d5278] text-base leading-relaxed mb-8">
+            <p class="case-body mb-8">
               This made the process simpler and closer to how dispatchers actually plan deliveries.
             </p>
 
             <!-- Color swatches -->
-            <p class="text-[#2d5278] text-sm leading-relaxed mb-4">
+            <p class="case-headline mb-4">
               For the visual design, I used a white and blue color system. Blue helped the product feel reliable and professional, while white space made the dashboard easier to read.
             </p>
             <div class="flex gap-3 flex-wrap">
@@ -628,16 +754,16 @@
       <div class="max-w-6xl mx-auto px-6">
         <div class="mb-12 fade-up">
           <h2 class="section-label">The <span>Insights</span></h2>
-          <p class="text-[#1e3a5f] text-base md:text-lg leading-relaxed font-medium mb-4">
+          <p class="case-headline mb-4">
               The main insight was that dispatchers do not want to spend time managing a complicated system. They want to manage deliveries quickly and clearly.
             </p>
-            <p class="text-[#1e3a5f] text-base md:text-lg leading-relaxed font-medium mb-6">
+            <p class="case-headline mb-6">
               A multi-stop delivery should feel like one connected delivery, not several separate tasks.
             </p>
-            <p class="text-[#2d5278] text-sm leading-relaxed mb-4">
+            <p class="case-body mb-4">
               I also learned that clarity is very important in logistics. Dispatchers need to quickly see what is happening, what needs attention, and what action they should take next.
             </p>
-            <p class="text-[#2d5278] text-xs font-semibold uppercase tracking-widest mb-3">These insights shaped the design decisions:</p>
+            <p class="text-[#1e3a5f] text-base md:text-lg font-medium mb-2">These insights shaped the design decisions:</p>
             <ul class="space-y-2 mb-4">
               <li class="result-bullet">One load can include multiple delivery stops</li>
               <li class="result-bullet">Delivery statuses are clear and easy to scan</li>
@@ -645,7 +771,7 @@
               <li class="result-bullet">Tables help users make faster decisions</li>
               <li class="result-bullet">The interface avoids unnecessary clutter</li>
             </ul>
-            <p class="text-[#2d5278] text-sm leading-relaxed">
+            <p class="case-body">
               These decisions helped create a product experience that supports both daily user tasks and business operations.
             </p>
         </div>
@@ -665,18 +791,18 @@
           <!-- Left: text -->
           <div class="fade-up">
             <h2 class="section-label">The <span>Solution</span></h2>
-            <p class="text-[#1e3a5f] text-base md:text-lg leading-relaxed font-medium mb-4">
+            <p class="case-headline mb-4">
               The final solution was a SaaS transport management interface that allows logistics teams to manage delivery operations from one centralized platform.
             </p>
-            <p class="text-[#2d5278] text-sm mb-5">The system allows users to:</p>
-            <div class="flex flex-wrap gap-2 mb-6">
+            <p class="case-body mb-5">The system allows users to:</p>
+            <div class="flex flex-wrap justify-center md:justify-start gap-2 mb-6">
               <span class="pill">Create and manage loads</span>
               <span class="pill">Assign drivers and trucks</span>
               <span class="pill">Handle multi-stop deliveries</span>
               <span class="pill">Track deliveries in real time</span>
               <span class="pill">Manage documents and operational workflows</span>
             </div>
-            <p class="text-[#2d5278] text-base leading-relaxed">
+            <p class="case-body">
               The most important solution was the multi-stop load structure. Instead of forcing users to create multiple loads for one delivery route, the system supports multiple stops within a single load.
             </p>
           </div>
@@ -703,10 +829,10 @@
           <!-- Right: text -->
           <div class="fade-up" style="transition-delay:0.1s">
             <h2 class="section-label">The <span>Results</span></h2>
-            <p class="text-[#1e3a5f] text-base md:text-lg leading-relaxed font-medium mb-5">
+            <p class="case-headline mb-5">
               The redesigned workflow helped create a more efficient and operationally realistic transport management system.
             </p>
-            <p class="text-[#2d5278] text-xs font-semibold uppercase tracking-widest mb-3">The impact included:</p>
+            <p class="text-[#1e3a5f] text-base md:text-lg font-medium mb-2">The impact included:</p>
             <ul class="space-y-2 mb-6">
               <li class="result-bullet">Reduced steps in delivery management</li>
               <li class="result-bullet">Improved visibility across logistics operations</li>
@@ -714,7 +840,7 @@
               <li class="result-bullet">Lower risk of repeated data entry errors</li>
               <li class="result-bullet">A clearer and more scalable dashboard structure</li>
             </ul>
-            <p class="text-[#2d5278] text-base leading-relaxed">
+            <p class="case-body">
               Instead of managing unnecessary system complexity, users could manage a platform that supported their actual work.
             </p>
           </div>
@@ -729,35 +855,46 @@
     </section>
 
     <!-- ═══════════════════════════════════════ THE LEARNINGS ═══ -->
-    <section class="py-16 md:py-24">
+    <section class="py-12 md:py-20">
       <div class="max-w-6xl mx-auto px-6">
         <div class="max-w-3xl mb-12 fade-up">
           <h2 class="section-label">The <span>Learnings</span></h2>
-          <p class="text-[#1e3a5f] text-base md:text-lg leading-relaxed">
+          <p class="case-headline">
             This project reinforced the importance of designing systems around user behavior, not just product features.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 fade-up mb-20">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 fade-up mb-12">
           <div class="learning-card">
             <span class="num">1. What Went Well</span>
-            <p class="text-[#1e3a5f] text-sm leading-relaxed">
+            <p class="case-body">
               What went well was the focus on real-world workflow logic. By identifying that multi-stop deliveries should exist within one load, the design solved a deeper operational problem rather than only improving the interface visually.
             </p>
           </div>
           <div class="learning-card">
             <span class="num" style="background:#FEF3C7; color:#92400E;">2. What Could Be Improved</span>
-            <p class="text-[#1e3a5f] text-sm leading-relaxed">
+            <p class="case-body">
               What could be improved in the future is deeper validation with more dispatchers and logistics teams. With more time, I would conduct additional usability testing, compare task completion time between the old and new workflow, and gather more quantitative data on efficiency improvements.
             </p>
           </div>
           <div class="learning-card">
             <span class="num" style="background:#D1FAE5; color:#065F46;">3. What I Learned</span>
-            <p class="text-[#1e3a5f] text-sm leading-relaxed">
+            <p class="case-body">
               This project helped me strengthen my approach to designing complex SaaS systems: understand the user's mental model, reduce unnecessary steps, and create interfaces that improve both user experience and business efficiency.
             </p>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ BACK TO TOP ═══ -->
+    <section class="py-0 my-0">
+      <div class="max-w-6xl mx-auto px-6 flex justify-center py-0 my-0">
+        <a href="#top"
+           class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition hover:shadow-md hover:-translate-y-1 m-0"
+           style="font-family:'Sora',sans-serif; color:#ffffff; background:#2B6FFF; box-shadow: 0 10px 28px rgba(43,111,255,0.18);">
+          Back to top <i class="bi bi-arrow-up-circle-fill"></i>
+        </a>
       </div>
     </section>
 
@@ -768,17 +905,17 @@
         <div class="flex gap-2">
           <a href="https://github.com/arieffhizer" target="_blank"
              class="flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium transition hover:shadow-md"
-             style="border: 1.5px solid #BDDAFF; color: #374151; background: #F0F7FF;">
+             style="color: #2B6FFF; background: rgba(43, 111, 255, 0.06);">
             <i class="bi bi-github text-xs"></i> GitHub
           </a>
           <a href="https://www.linkedin.com/in/arieff-hizer-98b412225/" target="_blank"
              class="flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium transition hover:shadow-md"
-             style="border: 1.5px solid #BDDAFF; color: #374151; background: #F0F7FF;">
+             style="color: #2B6FFF; background: rgba(43, 111, 255, 0.06);">
             <i class="bi bi-linkedin text-xs"></i> LinkedIn
           </a>
           <a href="https://www.instagram.com/rffhzr" target="_blank"
              class="flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium transition hover:shadow-md"
-             style="border: 1.5px solid #BDDAFF; color: #374151; background: #F0F7FF;">
+             style="color: #2B6FFF; background: rgba(43, 111, 255, 0.06);">
             <i class="bi bi-instagram text-xs"></i> Instagram
           </a>
         </div>

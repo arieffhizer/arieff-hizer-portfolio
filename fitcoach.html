@@ -3,309 +3,872 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Arieff Hizer Portfolio</title>
+    <title>FitCoach — Arieff Hizer Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="theme.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="shortcut icon" type="image/png" href="images/favicon.png">
+    <style>
+      :root {
+        --brand-main: #1C1C1C;
+        --brand-mid: #545352;
+        --brand-muted: #888480;
+        --brand-light: #F7F6F4;
+        --brand-border: #DDDBD6;
+        --text-dark: #1C1C1C;
+        --text-mid: #545352;
+        --text-muted: #888480;
+        --white: #FFFFFF;
+      }
+      * { box-sizing: border-box; }
+      body {
+        font-family: 'Inter', sans-serif;
+        background: #ffffff;
+        color: var(--text-dark);
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      /* ── Background system: flat grey circles with water-ripple contour lines ──
+         Each circle is its own element, so the contour lines are clipped inside
+         that circle only. This removes all diagonal, vertical, and horizontal
+         cross-lines caused by overlapping full-page radial layers. */
+      .page-bg {
+        position: relative;
+        isolation: isolate;
+        overflow-x: hidden;
+        background: #ffffff;
+      }
+
+      .page-bg::before,
+      .page-bg::after,
+      .bg-band::before,
+      .bg-diagonal::before {
+        content: none !important;
+      }
+
+      .fc-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        overflow: hidden;
+      }
+
+      .fc-circle {
+        position: absolute;
+        border-radius: 9999px;
+        background: radial-gradient(
+          circle at center,
+          rgba(112,112,112,0.78) 0%,
+          rgba(166,166,166,0.54) 44%,
+          rgba(236,236,236,0.30) 68%,
+          rgba(255,255,255,0) 86%
+        );
+        overflow: hidden;
+      }
+
+      .fc-circle::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: repeating-radial-gradient(
+          circle at center,
+          rgba(255,255,255,0.78) 0 1px,
+          transparent 1px 34px
+        );
+        opacity: 0.72;
+        -webkit-mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9) 54%, rgba(0,0,0,0) 78%);
+        mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9) 54%, rgba(0,0,0,0) 78%);
+      }
+
+      /* 5 evenly spread background circles across the full case-study page */
+      .fc-circle-1 {
+        width: 760px;
+        height: 760px;
+        top: 7%;
+        right: -250px;
+        transform: translateY(-50%);
+      }
+
+      .fc-circle-2 {
+        width: 520px;
+        height: 520px;
+        top: 27%;
+        left: -80px;
+      }
+
+      .fc-circle-3 {
+        width: 680px;
+        height: 680px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .fc-circle-4 {
+        width: 520px;
+        height: 520px;
+        top: 70%;
+        right: -90px;
+      }
+
+      .fc-circle-5 {
+        width: 760px;
+        height: 760px;
+        top: 88%;
+        left: -250px;
+        transform: translateY(-50%);
+      }
+
+      .page-bg > *:not(.fc-bg):not(.site-nav) {
+        position: relative;
+        z-index: 1;
+      }
+
+      .bg-band,
+      .bg-diagonal {
+        position: relative;
+        isolation: isolate;
+      }
+
+      @media (max-width: 768px) {
+        .fc-circle::after {
+          background: repeating-radial-gradient(
+            circle at center,
+            rgba(255,255,255,0.76) 0 1px,
+            transparent 1px 28px
+          );
+        }
+
+        .fc-circle-1 {
+          width: 520px;
+          height: 520px;
+          top: 6%;
+          right: -210px;
+          transform: translateY(-50%);
+        }
+
+        .fc-circle-2 {
+          width: 360px;
+          height: 360px;
+          top: 27%;
+          left: -130px;
+        }
+
+        .fc-circle-3 {
+          width: 450px;
+          height: 450px;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+
+        .fc-circle-4 {
+          width: 360px;
+          height: 360px;
+          top: 70%;
+          right: -130px;
+        }
+
+        .fc-circle-5 {
+          width: 520px;
+          height: 520px;
+          top: 88%;
+          left: -210px;
+          transform: translateY(-50%);
+        }
+      }
+
+      h1, h2, h3, h4 { font-family: 'Sora', sans-serif; }
+
+      .section-label {
+        font-family: 'Sora', sans-serif;
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: #1C1C1C;
+        margin-bottom: 1rem;
+      }
+      .section-label span { color: #545352; }
+      @media (min-width: 768px) { .section-label { font-size: 2.25rem; } }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 16px;
+        border-radius: 999px;
+        font-size: 0.8125rem;
+        font-weight: 500;
+        background: rgba(28,28,28,0.07);
+        color: #1C1C1C;
+        border: 1px solid rgba(28,28,28,0.12);
+        white-space: nowrap;
+      }
+      .pill.pink {
+        background: #FEE2E2;
+        color: #B91C1C;
+        border-color: #FECACA;
+      }
+
+      .method-card {
+        background: rgba(255,255,255,0.72);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 16px;
+        padding: 1.5rem;
+        border: 1px solid rgba(255,255,255,0.6);
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .method-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 28px rgba(0,0,0,0.10);
+      }
+
+      .color-swatch {
+        border-radius: 12px;
+        padding: 1rem 1.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .mockup-float {
+        border-radius: 16px;
+        box-shadow: none;
+        filter: drop-shadow(0 22px 26px rgba(0,0,0,0.14)) drop-shadow(0 6px 10px rgba(0,0,0,0.08));
+        transition: transform 0.4s ease, filter 0.4s ease;
+      }
+      .mockup-float:hover {
+        transform: translateY(-6px);
+        filter: drop-shadow(0 28px 32px rgba(0,0,0,0.18)) drop-shadow(0 8px 14px rgba(0,0,0,0.10));
+      }
+      .mockup-placeholder {
+        filter: none;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.14), 0 4px 16px rgba(0,0,0,0.08);
+      }
+
+      .learning-card {
+        background: rgba(255,255,255,0.72);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 16px;
+        padding: 1.75rem;
+        border: 1px solid rgba(255,255,255,0.6);
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      }
+      .learning-card .num {
+        font-family: 'Sora', sans-serif;
+        font-size: 0.8125rem;
+        font-weight: 700;
+        color: #1C1C1C;
+        background: rgba(28,28,28,0.07);
+        border-radius: 999px;
+        padding: 2px 10px;
+        display: inline-block;
+        margin-bottom: 0.75rem;
+      }
+
+      .meta-table {
+        border: 1.5px solid rgba(28,28,28,0.14);
+        border-radius: 14px;
+        overflow: hidden;
+        background: rgba(28,28,28,0.04);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        box-shadow: 0 12px 36px rgba(0,0,0,0.06);
+      }
+      .meta-table .header-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        background: rgba(28,28,28,0.08);
+        border-bottom: 1.5px solid rgba(28,28,28,0.12);
+      }
+      .meta-table .header-row div,
+      .meta-table .content-row div {
+        padding: 0.75rem 1rem;
+        text-align: center;
+      }
+      .meta-table .header-row div {
+        font-family: 'Sora', sans-serif;
+        font-weight: 700;
+        color: #1C1C1C;
+        font-size: 0.9rem;
+        border-right: 1.5px solid rgba(28,28,28,0.10);
+      }
+      .meta-table .header-row div:last-child,
+      .meta-table .content-row div:last-child { border-right: none; }
+      .meta-table .content-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        background: rgba(255,255,255,0.58);
+      }
+      .meta-table .content-row div {
+        font-size: 0.875rem;
+        color: #545352;
+        font-weight: 500;
+        border-right: 1.5px solid rgba(28,28,28,0.08);
+      }
+
+      .case-headline {
+        color: #1C1C1C;
+        font-size: 1rem;
+        line-height: 1.75;
+        font-weight: 500;
+      }
+      .case-body {
+        color: #545352;
+        font-size: 1rem;
+        line-height: 1.75;
+      }
+      .method-card p:last-child,
+      .learning-card p {
+        color: #545352;
+        font-size: 1rem;
+        line-height: 1.75;
+      }
+      @media (min-width: 768px) { .case-headline { font-size: 1.125rem; } }
+
+      @media (max-width: 767px) {
+        section { text-align: center; }
+        section .fade-up,
+        section .section-label,
+        section .case-headline,
+        section .case-body,
+        section p,
+        section li { text-align: center; }
+        .section-label { margin-left: auto; margin-right: auto; }
+        .pill { justify-content: center; text-align: center; white-space: normal; }
+        section .flex.flex-wrap { justify-content: center; }
+        .method-card, .learning-card { text-align: center; }
+        .learning-card .num { margin-left: auto; margin-right: auto; }
+        .result-bullet { justify-content: center; text-align: center; align-items: center; }
+        .result-bullet::before { display: none; }
+        blockquote {
+          text-align: center !important;
+          border-left: none !important;
+          border-top: 4px solid #1C1C1C;
+          border-radius: 12px !important;
+          padding: 1rem 1.25rem !important;
+        }
+        .color-swatch { align-items: center; }
+        .mockup-float { display: block; margin-left: auto; margin-right: auto; }
+        .meta-table .header-row div,
+        .meta-table .content-row div {
+          padding: 0.85rem 0.65rem;
+          font-size: 0.8rem;
+        }
+      }
+
+      .fade-up {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+      .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+      .result-bullet {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 1rem;
+        color: #545352;
+        margin-bottom: 0.6rem;
+      }
+      .result-bullet::before {
+        content: '';
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #1C1C1C;
+        margin-top: 7px;
+        flex-shrink: 0;
+      }
+
+      .img-placeholder {
+        background: linear-gradient(135deg, #F7F6F4 0%, #FFFFFF 55%, #E0DFDB 100%);
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #888480;
+        font-size: 0.875rem;
+        font-weight: 500;
+      }
+
+      @media (max-width: 640px) {
+        .meta-table {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+        }
+        .meta-table .header-row,
+        .meta-table .content-row {
+          display: grid;
+          grid-template-columns: 1fr;
+        }
+        .meta-table .header-row {
+          border-bottom: none;
+          border-right: 1.5px solid rgba(28,28,28,0.12);
+        }
+        .meta-table .content-row { background: rgba(255,255,255,0.58); }
+        .meta-table .header-row div,
+        .meta-table .content-row div {
+          border-right: none;
+          border-top: 1.5px solid rgba(28,28,28,0.08);
+          min-height: 48px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0.85rem 0.65rem;
+          font-size: 0.8rem;
+        }
+        .meta-table .header-row div:first-child,
+        .meta-table .content-row div:first-child { border-top: none; }
+      }
+    </style>
   </head>
-  <body class="bg-gradient-to-r from-neutral-300 to-neutral-800 text-gray-900 font-open sauce two">
-
-
-<div class="w-full sticky top-0 z-50 relative">
-  <div id="nav-blur" class="relative" style="-webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); background: rgba(255,255,255,0.1);">
-    <header class="flex justify-between items-center p-4 max-w-6xl mx-auto">
-      
-      <!-- Logo + Name as Home Button -->
-      <a href="index.html" class="flex items-center bg-gray-100 px-4 py-1 rounded-full shadow gap-2 hover:shadow-md transition">
-        <img src="images/logo arieff h 3.png" alt="Logo" class="w-6 h-6 rounded-full shadow" />
-        <span class="text-lg font-semibold text-gray-800">Arieff H.</span>
-      </a>
-
-      <!-- Desktop Nav -->
-      <div class="flex max-md:hidden items-center gap-4">
-        <a
-          href="about.html"
-          class="flex items-center gap-2 px-4 py-1 border border-white rounded-full text-white hover:shadow transition text-sm"
-        >
-          <i class="bi bi-person-fill text-base"></i>
-          About Me
-        </a>
-
-        <a
-          href="index.html#projects"
-          class="flex items-center gap-2 px-4 py-1 border border-white rounded-full text-white hover:shadow transition text-sm"
-        >
-          <i class="bi bi-folder-fill text-base"></i>
-          Projects
-        </a>
-
-        <a
-          href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
-          target="_blank"
-          rel="noopener"
-          class="flex items-center gap-2 bg-white hover:bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm"
-        >
-          Say Hi <i class="bi bi-emoji-smile-fill"></i>
-        </a>
-      </div>
-
-      <!-- Mobile Hamburger -->
-      <button id="menu-btn" class="md:hidden text-2xl text-white">
-        <i class="bi bi-list"></i>
-      </button>
-    </header>
-
-    <!-- Mobile Dropdown -->
-    <div id="mobile-menu" class="hidden flex-col gap-2 p-4 md:hidden absolute top-full left-0 w-full"
-         style="background: rgba(255,255,255,0.95);">
-      <a
-        href="about.html"
-        class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-black hover:shadow transition text-sm mb-2"
-      >
-        <i class="bi bi-person-fill"></i> About Me
-      </a>
-
-      <a
-        href="index.html#projects"
-        class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-black hover:shadow transition text-sm mb-2"
-      >
-        <i class="bi bi-folder-fill"></i> Projects
-      </a>
-
-      <a
-        href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
-        target="_blank"
-        rel="noopener"
-        class="flex items-center gap-2 bg-black hover:bg-black/70 text-white px-4 py-2 rounded-lg text-sm"
-      >
-        <i class="bi bi-emoji-smile-fill"></i> Say Hi
-      </a>
-    </div>
-  </div>
-</div>
-
-<!-- Script to toggle menu -->
-<script>
-  const menuBtn = document.getElementById("menu-btn");
-  const mobileMenu = document.getElementById("mobile-menu");
-  const navBlur = document.getElementById("nav-blur");
-
-  menuBtn.addEventListener("click", () => {
-    mobileMenu.classList.toggle("hidden");
-
-    if (mobileMenu.classList.contains("hidden")) {
-      navBlur.style.background = "rgba(255,255,255,0.1)";
-      menuBtn.classList.remove("text-gray-800");
-      menuBtn.classList.add("text-white");
-    } else {
-      navBlur.style.background = "rgba(255,255,255,0.95)";
-      menuBtn.classList.remove("text-white");
-      menuBtn.classList.add("text-gray-800");
-    }
-  });
-</script>
-
-<section class="min-h-screen -mt-12 w-full bg-gradient-to-r from-neutral-300 to-neutral-800 flex items-center justify-center">
-  <div class="max-w-6xl w-full px-4 grid grid-cols-1 md:grid-cols-2 items-center gap-12">
-    
-    <!-- Left: Text + Logo -->
-    <div class="text-white text-center md:text-left">
-        <img src="images/fc logo.png" alt="Selangor FC Logo" class="w-44 mx-auto md:mx-0" />
-      <img src="images/fc title.png" alt="SELANGOR FC" class="h-12 md:h-20 object-contain  mt-6" />
-      <p class="text-xl font-regular text-white mt-2">Workout and Nutrition Tracking App</p>
+  <body class="page-bg">
+    <div class="fc-bg" aria-hidden="true">
+      <span class="fc-circle fc-circle-1"></span>
+      <span class="fc-circle fc-circle-2"></span>
+      <span class="fc-circle fc-circle-3"></span>
+      <span class="fc-circle fc-circle-4"></span>
+      <span class="fc-circle fc-circle-5"></span>
     </div>
 
-    <!-- Right: Single Mockup Image -->
-    <div class="flex md:justify-end justify-center hover:scale-105 transition-transform duration-500">
-      <img src="images/fc right image.png" alt="Selangor App Mockup" class="w-96 md:max-w-lg drop-shadow-xl" />
-    </div>
-  </div>
-</section>
-
-<section class="bg-white text-black font-sans py-16">
-  <div class="max-w-6xl mx-auto px-8 py-18">
-
-    <!-- Top Info Table -->
-    <div class="border border-gray-800 rounded-xl overflow-hidden mb-16">
-      <!-- Header Row -->
-      <div class="grid grid-cols-4 text-center font-bold bg-neutral-300 text-gray-600 text-lg divide-x divide-gray-800">
-        <div class="py-3">Tools</div>
-        <div class="py-3">Platform</div>
-        <div class="py-3">Role</div>
-        <div class="py-3">Duration</div>
-      </div>
-      <!-- Content Row -->
-      <div class="grid grid-cols-4 text-center divide-x divide-gray-800">
-        <div class="py-4">Figma</div>
-        <div class="py-4">IOS and Android</div>
-        <div class="py-4">Lead UI/UX Designer</div>
-        <div class="py-4">4 Weeks</div>
-      </div>
-    </div>
-
-    <!-- Two-column Layout -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-
-      <!-- Left Column -->
-      <div class="space-y-8">
-        <!-- Introduction -->
-        <div>
-          <h2 class="text-2xl font-bold text-gray-800 mb-4">Introduction</h2>
-          <p class="leading-relaxed">
-            FitCoach is your all-in-one fitness app for workout tracking, nutrition, and recovery. It personalizes your training plan based on your goals, body, and weekly availability—suggesting the best workout split like full-body, upper/lower, or push/pull/legs.
-          </p>
-
-          <p class="leading-relaxed mt-4">
-            From tracking macros to logging workouts and monitoring recovery, FitCoach helps you stay consistent, make progress, and build sustainable habits—all in one place.
-          </p>
-        </div>
-      </div>
-
-      <!-- Right Column -->
-      <div class="space-y-8">
-        <!-- Issues -->
-        <div>
-          <h2 class="text-2xl font-bold text-gray-800 mb-2">Issues</h2>
-          <ul class="list-disc list-inside space-y-1">
-            <li>Lack of information and personalisation</li>
-            <li>Mulitple apps for different purposes</li>
-            <li>No clear structure for user to stay motivated</li>
-          </ul>
-        </div>
-
-        <!-- Goals -->
-        <div>
-          <h2 class="text-2xl font-bold text-gray-800 mb-2">Goals</h2>
-          <p class="leading-relaxed">
-            To provide a personalized, all-in-one fitness platform that adapts to the user’s needs, helping them build consistent, sustainable health and fitness habits.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="max-w-6xl mx-auto px-4 py-20">
-  <div class="flex justify-center">
-    <img src="images/Fc 4 screen.png" alt="Selangor App Mockup" class="w-full drop-shadow-xl" />
-  </div>
-</section>
-
-<!-- User Flows and Key Flows -->
-<section class="bg-white">
-  <div class="max-w-6xl mx-auto px-8 py-16">
-  <h2 class="text-center text-2xl md:text-3xl font-bold text-gray-800 mb-6">
-    User Flows and Key Flows
-  </h2>
-  <p class="text-center text-base md:text-lg text-gray-900 leading-relaxed mb-12 max-w-6xl mx-auto">
-    Information architecture (IA) showing the visual representation of the Platboard's infrastructure, features, flow and hierarchy.
-  </p>
-
-  <div class="flex justify-center">
-    <img src="images/fc uf and kf.png" alt="Selangor App Mockup" class="w-full drop-shadow-xl" />
-  </div>
-</section>
-
-<!-- Design System -->
-<section class="max-w-6xl mx-auto px-8 py-16">
-  <h2 class="text-center text-2xl md:text-3xl font-bold text-white mb-6">
-    Design System
-  </h2>
-  <p class="text-center text-base md:text-lg text-white leading-relaxed mb-4 max-w-6xl mx-auto">
-    The design system was built using Brad Frost’s Atomic Design methodology. starting with core elements like colors and typography, then combining them into components and layouts.
-  </p>
-  <p class="text-center text-base md:text-lg text-white leading-relaxed mb-4 max-w-6xl mx-auto">
-    These elements were then combined into components like buttons, form fields, and navigation items, which formed the foundation for more complex templates, page layouts and final screens.
-  </p>
-  <p class="text-center text-base md:text-lg text-white leading-relaxed mb-12 max-w-6xl mx-auto">
-    This approach ensures consistency, scalability, and ease of maintenance across the product.
-  </p>
-
-  <div class="flex justify-center">
-    <img src="images/fc design system.png" alt="Selangor App Mockup" class="w-full" />
-  </div>
-</section>
-
-<!-- Key Takeaways -->
-<section class="bg-white">
-  <div class="max-w-6xl mx-auto px-8 py-16">
-  <h2 class="text-center text-2xl md:text-3xl font-bold text-gray-800 mb-6">
-    Key Takeaways
-  </h2>
-  <p class="text-center text-base md:text-lg text-gray-900 leading-relaxed mb-6 max-w-6xl mx-auto">
-    The app combines workout tracking, macro and nutrition monitoring, and recovery management into one seamless experience, supported by an AI-powered coach. By integrating these features, users gain a holistic view of their fitness journey—tracking performance, optimizing nutrition, and ensuring proper recovery.
-  <p class="text-center text-base md:text-lg text-gray-900 leading-relaxed max-w-6xl mx-auto">
-    The AI coach personalizes guidance based on individual progress and habits, making the experience more adaptive, motivating, and effective in helping users achieve their health and fitness goals.
-  </p>
-</div>
-</section>
-
-<section class="bg-white">
-  <div class="justify-center relative">
-    <img src="images/fc all screen.png" alt="Selangor App Mockup" class="w-full max-w-6xl mx-auto">
-  
-    <!-- Left overlay -->
-  <a href="whiskertracker.html" class="hidden lg:flex absolute top-0 left-0 w-[20%] h-full items-center justify-center overflow-hidden group">
-    <img src="images/wt all screen bnw.png" alt="Plura Atelier"
-         class="mr-12 h-full object-cover transition-all duration-500">
-    <div class="mr-6 absolute inset-0 flex flex-col items-center justify-center bg-black/0 backdrop-blur-sm opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-      <p class="text-orange-600 font-bold text-lg">Whisker</p>
-      <p class="text-orange-600 font-bold text-lg">Tracker</p>
-      <i class="bi bi-arrow-left-circle-fill text-orange-600 text-4xl mt-2"></i>
-    </div>
-  </a>
-
-  <!-- Right overlay -->
-  <a href="selangorfc.html" class="hidden lg:flex absolute top-0 right-0 w-[20%] h-full items-center justify-center overflow-hidden group">
-    <img src="images/sel all screen bnw.png" alt="Whisker Tracker"
-         class="ml-12 w-full h-full object-cover transition-all duration-500">
-    <div class="ml-6 absolute inset-0 flex flex-col items-center justify-center bg-black/0 backdrop-blur-sm opacity-0 transition-opacity duration-400 group-hover:opacity-100">
-      <p class="text-red-600 font-bold text-lg">Selangor FC</p>
-      <i class="bi bi-arrow-right-circle-fill text-red-600 text-4xl mt-2"></i>
-    </div>
-  </a>
-  </div>
-
-</section>
-
-<footer class="text-[10px] text-white">
-        <div class="flex justify-between items-center p-4 max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
-          <p>© 2023 Arieff Hizer // All Rights Reserved</p>
-      
-          <div class="flex gap-2">
-            <!-- GitHub Button -->
-            <a
-              href="https://github.com/arieffhizer"
-              target="_blank"
-              class="flex items-center gap-2 px-4 py-1 border border-white rounded-full bg-white text-gray-700 hover:shadow transition"
-            >
-              <i class="bi bi-github text-xs"></i>
-              GitHub
+    <!-- ═══════════════════════════════════════ NAV ═══ -->
+    <div class="site-nav w-full sticky top-0 z-50 relative">
+      <div id="nav-blur" class="relative" style="-webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); background: rgba(255,255,255,0.1);">
+        <header class="flex justify-between items-center p-4 max-w-6xl mx-auto">
+          <a href="index.html" class="flex items-center bg-gray-100 px-4 py-1 rounded-full shadow gap-2 hover:shadow-md transition">
+            <img src="images/logo arieff h 3.png" alt="Logo" class="w-6 h-6 rounded-full shadow" />
+            <span class="text-lg font-semibold text-gray-800">Arieff H.</span>
+          </a>
+          <div class="flex max-md:hidden items-center gap-4">
+            <a href="about.html" class="flex items-center gap-2 px-4 py-1 bg-[#FFFFFF] rounded-full text-[#374151] hover:shadow transition text-sm">
+              <i class="bi bi-person-fill text-base"></i> About Me
             </a>
-      
-            <!-- LinkedIn Button -->
-            <a
-              href="https://www.linkedin.com/in/arieff-hizer-98b412225/"
-              target="_blank"
-              class="flex items-center gap-2 px-4 py-1 border border-white rounded-full bg-white text-gray-700 hover:shadow transition"
-            >
-              <i class="bi bi-linkedin text-xs"></i>
-              LinkedIn
+            <a href="index.html#projects" class="flex items-center gap-2 px-4 py-1 bg-[#FFFFFF] rounded-full text-[#374151] hover:shadow transition text-sm">
+              <i class="bi bi-folder-fill text-base"></i> Projects
             </a>
-      
-            <!-- Instagram Button -->
-            <a
-              href="https://www.instagram.com/rffhzr"
-              target="_blank"
-              class="flex items-center gap-2 px-4 py-1 border border-white rounded-full bg-white text-gray-700 hover:shadow transition"
-            >
-              <i class="bi bi-instagram text-xs"></i>
-              Instagram
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position." target="_blank" rel="noopener" class="flex items-center gap-2 bg-[#1C1C1C] text-white px-4 py-2 rounded-full text-sm transition hover:shadow-md hover:-translate-y-1 m-0">
+              Say Hi <i class="bi bi-emoji-smile-fill"></i>
             </a>
           </div>
+          <button id="menu-btn" class="md:hidden text-2xl text-gray-800"><i class="bi bi-list"></i></button>
+        </header>
+        <div id="mobile-menu" class="hidden flex-col gap-2 p-4 md:hidden absolute top-full left-0 w-full" style="background: rgba(255,255,255,0.95);">
+          <a href="about.html" class="flex items-center justify-center gap-2 px-4 py-2 bg-[#FFFFFF] rounded-full text-[#374151] hover:shadow transition text-sm mb-2"><i class="bi bi-person-fill"></i> About Me</a>
+          <a href="index.html#projects" class="flex items-center justify-center gap-2 px-4 py-2 bg-[#FFFFFF] rounded-full text-[#374151] hover:shadow transition text-sm mb-2"><i class="bi bi-folder-fill"></i> Projects</a>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position." target="_blank" rel="noopener" class="flex items-center justify-center gap-2 bg-[#1C1C1C] text-white px-4 py-2 rounded-full text-sm transition hover:shadow-md"><i class="bi bi-emoji-smile-fill"></i> Say Hi</a>
         </div>
-      </footer>
+      </div>
+    </div>
+    <script>
+      const menuBtn = document.getElementById("menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const navBlur = document.getElementById("nav-blur");
+      menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+        if (mobileMenu.classList.contains("hidden")) {
+          navBlur.style.background = "rgba(255,255,255,0.1)";
+          menuBtn.classList.remove("text-white"); menuBtn.classList.add("text-gray-800");
+        } else {
+          navBlur.style.background = "rgba(255,255,255,0.95)";
+          menuBtn.classList.remove("text-white"); menuBtn.classList.add("text-gray-800");
+        }
+      });
+    </script>
+
+    <!-- ═══════════════════════════════════════ HERO ═══ -->
+    <section style="height: calc(100vh - 64px); min-height: 560px;" class="w-full flex items-center">
+      <div class="max-w-6xl w-full mx-auto px-6 grid grid-cols-1 md:grid-cols-2 items-center gap-10 py-12">
+        <div class="fade-up text-center md:text-left">
+          <div class="flex md:block items-center justify-center md:justify-start gap-4 mb-4 md:mb-0">
+            <img src="images/fc logo alt.png" alt="FitCoach Logo" class="w-14 md:w-24 flex-shrink-0 md:mb-6" onerror="this.style.display='none'" />
+            <h1 class="font-bold text-[#1C1C1C] leading-tight m-0 md:mb-4" style="font-family:'Sora',sans-serif; font-size: clamp(2.5rem, 6vw, 4rem);">FitCoach</h1>
+          </div>
+          <p class="text-[#545352] text-lg md:text-xl font-medium leading-snug mb-3">Workout, Nutrition and<br/>Recovery Tracking App</p>
+          <div class="flex flex-wrap justify-center md:justify-start gap-2 mt-6">
+            <span class="pill">Mobile App</span>
+            <span class="pill">iOS &amp; Android</span>
+            <span class="pill">Fitness</span>
+            <span class="pill">B2C</span>
+          </div>
+        </div>
+        <div class="fade-up flex justify-center md:justify-end" style="transition-delay:0.15s">
+          <img src="images/fc right image.png" alt="FitCoach App Mockup" class="mockup-float w-64 md:w-80 mx-auto md:mx-0" onerror="this.outerHTML='<div class=\'mockup-float mockup-placeholder img-placeholder w-64 md:w-80\' style=\'height:500px\'>App Mockup</div>'" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ INTRO + META ═══ -->
+    <section class="py-16 md:py-20 bg-band">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="mb-14 fade-up">
+          <p class="text-base md:text-lg leading-relaxed mb-4" style="color:#1C1C1C;">
+            FitCoach is an all-in-one fitness platform that helps users manage workouts, nutrition, and recovery in one personalized system. Instead of only showing numbers, FitCoach helps users understand their progress and make better decisions about training, food, and rest.
+          </p>
+          <p class="case-body mb-5">The platform helps users:</p>
+          <div class="flex flex-wrap justify-center md:justify-start gap-2">
+            <span class="pill">Follow structured workout</span>
+            <span class="pill">Track macros &amp; nutrition</span>
+            <span class="pill">Monitor recovery</span>
+            <span class="pill">Performance based guidance</span>
+          </div>
+        </div>
+
+        <div class="meta-table fade-up">
+          <div class="header-row">
+            <div>Expertise</div>
+            <div>Platforms</div>
+            <div>Tools</div>
+            <div>Duration</div>
+          </div>
+          <div class="content-row">
+            <div>Sole UX Designer</div>
+            <div>iOS &amp; Android</div>
+            <div>Figma</div>
+            <div>—</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ THE PROBLEM ═══ -->
+    <section class="py-16 md:py-24">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="fade-up">
+          <h2 class="section-label">The <span>Problem</span></h2>
+          <p class="case-headline mb-4">
+            Many fitness apps focus on only one part of the user's fitness journey.
+          </p>
+          <p class="case-body mb-4">
+            Some apps focus on workouts. Others focus on nutrition, recovery, or habit tracking. Because of this, users often need to use multiple apps to manage their health and fitness routine.
+          </p>
+          <p class="case-headline mb-2">This creates a few problems:</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
+            <span class="pill pink w-full justify-center">Switching between apps</span>
+            <span class="pill pink w-full justify-center">Disconnected fitness data</span>
+            <span class="pill pink w-full justify-center">Manual comparison</span>
+            <span class="pill pink w-full justify-center">Unclear next action</span>
+            <span class="pill pink w-full justify-center">Lower motivation</span>
+          </div>
+          <p class="case-body mb-4">
+            The main issue was not the lack of fitness data. The issue was that users were not getting enough guidance from that data. When users feel confused, unsupported, or unsure what to do next, they can become discouraged and stop using the app.
+          </p>
+          <p class="case-body">
+            The product goal was to create a fitness platform that brings workouts, nutrition, and recovery together into one clear experience. By giving users better guidance, FitCoach helps them stay consistent, understand their progress, and feel more confident about what to do next.
+          </p>
+        </div>
+
+        <div class="mt-16 fade-up">
+          <img src="images/Fc 4 screen.png" alt="FitCoach screens" class="mockup-float w-full" onerror="this.outerHTML='<div class=\'mockup-float mockup-placeholder img-placeholder w-full\' style=\'height:380px\'>App Screens Preview</div>'" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ THE USER ═══ -->
+    <section class="py-16 md:py-24">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
+          <div class="fade-up order-2 md:order-1">
+            <img src="images/fitcoach user.png" alt="FitCoach user overview" class="mockup-float w-full" onerror="this.outerHTML='<div class=\'mockup-float mockup-placeholder img-placeholder w-full\' style=\'height:360px\'>User Overview</div>'" />
+          </div>
+          <div class="fade-up order-1 md:order-2" style="transition-delay:0.1s">
+            <h2 class="section-label">The <span>User</span></h2>
+            <p class="case-headline mb-4">
+              The main users are people who want to improve their fitness with more structure and guidance.
+            </p>
+            <p class="case-body mb-4">They may include:</p>
+            <ul class="space-y-2 mb-5">
+              <li class="result-bullet">Beginners who need direction</li>
+              <li class="result-bullet">Regular gym users who want better tracking</li>
+              <li class="result-bullet">Fitness-focused users who want to understand their progress</li>
+              <li class="result-bullet">Users who want to balance training, food, and recovery</li>
+            </ul>
+            <p class="case-body mb-4">
+              These users do not only want to record what they did. They want to know what it means and what they should do next.
+            </p>
+            <p class="case-body">
+              Solving this problem gives users a more complete view of their fitness journey and helps them make better decisions with less guesswork.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ THE METHOD ═══ -->
+    <section class="py-16 md:py-24 bg-diagonal">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="mb-12 fade-up">
+          <h2 class="section-label">The <span>Method</span></h2>
+          <p class="case-headline">
+            I approached the project by first understanding how users manage fitness across workout, nutrition, and recovery.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-5 fade-up">
+          <div class="method-card">
+            <p class="font-bold text-[#1C1C1C] mb-2" style="font-family:'Sora',sans-serif;">Competitor research</p>
+            <p>I studied existing fitness and recovery apps to understand how they present workout data, nutrition tracking, and readiness insights.</p>
+          </div>
+          <div class="method-card">
+            <p class="font-bold text-[#1C1C1C] mb-2" style="font-family:'Sora',sans-serif;">Feature planning</p>
+            <p>I broke down the key parts of the product, including workout creation, macro tracking, recovery scoring, and progress insights.</p>
+          </div>
+          <div class="method-card">
+            <p class="font-bold text-[#1C1C1C] mb-2" style="font-family:'Sora',sans-serif;">Recovery system research</p>
+            <p>I researched recovery-focused platforms such as WHOOP to understand how recovery, readiness, and health signals are presented to users.</p>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-2xl mx-auto fade-up" style="transition-delay:0.1s">
+          <div class="method-card">
+            <p class="font-bold text-[#1C1C1C] mb-2" style="font-family:'Sora',sans-serif;">Design exploration</p>
+            <p>I explored different visual directions before adapting the design to the client's preferred brand style.</p>
+          </div>
+          <div class="method-card">
+            <p class="font-bold text-[#1C1C1C] mb-2" style="font-family:'Sora',sans-serif;">Prototyping and review</p>
+            <p>I created key user flows and reviewed them through realistic scenarios and client feedback.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ THE PROCESS ═══ -->
+    <section class="py-16 md:py-24">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
+          <div class="fade-up">
+            <h2 class="section-label">The <span>Process</span></h2>
+            <p class="case-headline mb-5">
+              I began by mapping the main areas of the platform: workouts, nutrition, and recovery. Each area needed to work on its own, but also connect to the overall user journey.
+            </p>
+            <p class="case-body mb-4">
+              For the workout experience, I focused on helping users create and follow structured training plans. For nutrition, I designed a flow that allows users to track macros and understand how their intake supports their fitness goals.
+            </p>
+            <p class="case-headline mb-4">One of the most important parts of the project was the recovery system.</p>
+            <p class="case-body mb-4">
+              The client had the idea for recovery insights, but the exact logic had not been fully defined. I took initiative to research recovery platforms, study useful fitness metrics, and create a scoring structure that could turn different inputs into a clear recovery score.
+            </p>
+            <p class="case-body mb-8">
+              I also used AI tools to help organize the formula and check which metrics were meaningful for the scoring logic. This helped turn an open-ended feature into a more complete part of the product.
+            </p>
+          </div>
+          <div class="fade-up" style="transition-delay:0.1s">
+            <p class="case-headline mb-4">
+              For the visual direction, I first explored a high-energy style using orange and purple on a dark background. Later, the client requested a black and white direction to create a clean, premium, and distraction-free feel.
+            </p>
+            <div class="flex gap-3 flex-wrap mb-6">
+              <div class="color-swatch flex-1 min-w-[90px]" style="background:#1C1C1C; min-height:80px;">
+                <p class="text-white text-xs font-semibold mt-auto" style="font-family:'Sora',sans-serif; margin-top:auto">Primary</p>
+                <p class="text-white/70 text-xs">#1C1C1C</p>
+              </div>
+              <div class="color-swatch flex-1 min-w-[90px]" style="background:#FFFFFF; border:1.5px solid #DDDBD6; min-height:80px;">
+                <p class="text-gray-600 text-xs font-semibold mt-auto" style="font-family:'Sora',sans-serif; margin-top:auto">Secondary</p>
+                <p class="text-gray-400 text-xs">#FFFFFF</p>
+              </div>
+              <div class="color-swatch flex-1 min-w-[90px]" style="background:#545352; min-height:80px;">
+                <p class="text-white text-xs font-semibold mt-auto" style="font-family:'Sora',sans-serif; margin-top:auto">Tertiary</p>
+                <p class="text-white/70 text-xs">#545352</p>
+              </div>
+            </div>
+            <p class="case-body mb-4">To make the limited color palette work, I focused on:</p>
+            <ul class="space-y-2 mb-4">
+              <li class="result-bullet">Strong contrast for readability</li>
+              <li class="result-bullet">Clear spacing between sections</li>
+              <li class="result-bullet">Different visual states for active, editable, and disabled</li>
+              <li class="result-bullet">Simple layouts that make actions easy to find</li>
+              <li class="result-bullet">A bold look that supports a modern fitness brand</li>
+            </ul>
+            <p class="case-body">
+              The goal was to make the product feel confident, focused, and premium while still being practical for everyday use.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ THE INSIGHTS ═══ -->
+    <section class="py-16 md:py-24 bg-band">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="mb-12 fade-up">
+          <h2 class="section-label">The <span>Insights</span></h2>
+          <p class="case-headline mb-4">
+            The biggest insight was that users do not just need more fitness data. They need help understanding what to do with it.
+          </p>
+          <p class="case-body mb-4">
+            A workout log, nutrition tracker, and recovery score are useful on their own. But they become more valuable when they work together as one system.
+          </p>
+          <p class="case-headline mb-4">
+            Another important insight was that recovery can become a key decision-making tool.
+          </p>
+          <p class="case-body mb-4">
+            If users know when their body is ready to train or when they should rest, they can make smarter choices and avoid pushing themselves without context.
+          </p>
+          <p class="case-headline mb-2">These insights shaped the design decisions:</p>
+          <ul class="space-y-2 mb-4">
+            <li class="result-bullet">Workouts, nutrition, and recovery should be connected in one experience</li>
+            <li class="result-bullet">Recovery should be simple enough for users to understand quickly</li>
+            <li class="result-bullet">The app should guide users, not only record their activity</li>
+            <li class="result-bullet">Key information should be easy to scan</li>
+            <li class="result-bullet">The visual design should feel focused, clean, and motivational</li>
+          </ul>
+          <p class="case-body">
+            These insights helped shape FitCoach into a product that supports both progress tracking and better decision-making.
+          </p>
+        </div>
+        <div class="mt-16 fade-up">
+          <img src="images/fitcoach insights.png" alt="FitCoach insights preview" class="mockup-float w-full" onerror="this.outerHTML='<div class=\'mockup-float mockup-placeholder img-placeholder w-full\' style=\'height:340px\'>Insights Preview</div>'" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ THE SOLUTION ═══ -->
+    <section class="py-16 md:py-24 bg-diagonal">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
+          <div class="fade-up">
+            <h2 class="section-label">The <span>Solution</span></h2>
+            <p class="case-headline mb-4">
+              The final solution was an all-in-one fitness platform that gives users a clearer way to manage their training, nutrition, and recovery.
+            </p>
+            <p class="case-body mb-5">FitCoach allows users to:</p>
+            <div class="flex flex-wrap justify-center md:justify-start gap-2 mb-6">
+              <span class="pill">Create and follow workout plans</span>
+              <span class="pill">Track nutrition and macros</span>
+              <span class="pill">Monitor recovery and readiness</span>
+              <span class="pill">Review performance insights</span>
+              <span class="pill">Adjust routine based on progress</span>
+            </div>
+            <p class="case-body mb-4">
+              The recovery system became one of the most important parts of the product. It helped move the app from simple tracking to guided decision-making.
+            </p>
+            <p class="case-body">
+              Instead of leaving users to interpret everything on their own, FitCoach gives them a clearer understanding of their fitness condition and what actions they can take next.
+            </p>
+          </div>
+          <div class="fade-up" style="transition-delay:0.1s">
+            <img src="images/fitcoach solution.png" alt="FitCoach solution screens" class="mockup-float w-full" onerror="this.outerHTML='<div class=\'mockup-float mockup-placeholder img-placeholder w-full\' style=\'height:380px\'>Solution Screens</div>'" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ THE RESULTS ═══ -->
+    <section class="py-16 md:py-24">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
+          <div class="fade-up order-2 md:order-1">
+            <img src="images/fitcoach results.png" alt="FitCoach results dashboard" class="mockup-float w-full" onerror="this.outerHTML='<div class=\'mockup-float mockup-placeholder img-placeholder w-full\' style=\'height:380px\'>Results Dashboard</div>'" />
+          </div>
+          <div class="fade-up order-1 md:order-2" style="transition-delay:0.1s">
+            <h2 class="section-label">The <span>Results</span></h2>
+            <p class="case-headline mb-5">
+              The result was a more complete and personalized fitness experience.
+            </p>
+            <p class="case-headline mb-2">The product helped create:</p>
+            <ul class="space-y-2 mb-6">
+              <li class="result-bullet">A more structured way to manage workouts</li>
+              <li class="result-bullet">A clearer connection between training, nutrition, and recovery</li>
+              <li class="result-bullet">Less reliance on multiple fitness apps</li>
+              <li class="result-bullet">Better user decision-making through guided insights</li>
+              <li class="result-bullet">A stronger product identity through a clean black and white visual direction</li>
+            </ul>
+            <p class="case-body">
+              Users do not only track their fitness. They gain a better understanding of how their habits, recovery, and performance work together.
+            </p>
+          </div>
+        </div>
+        <div class="mt-16 fade-up">
+          <img src="images/fc all screen.png" alt="FitCoach full screen spread" class="mockup-float w-full" onerror="this.outerHTML='<div class=\'mockup-float mockup-placeholder img-placeholder w-full\' style=\'height:420px\'>All Screens Spread</div>'" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ THE LEARNINGS ═══ -->
+    <section class="py-12 md:py-20">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="mb-12 fade-up">
+          <h2 class="section-label">The <span>Learnings</span></h2>
+          <p class="case-headline mb-3">
+            This project taught me the importance of turning unclear ideas into structured product features.
+          </p>
+          <p class="case-body">
+            The recovery system started as an undefined concept, but through research, planning, and logic-building, it became a core part of the product experience.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 fade-up mb-20">
+          <div class="learning-card">
+            <span class="num">1. What Went Well</span>
+            <p class="case-body">
+              What went well was the ability to connect different parts of the fitness journey into one system. The product became more useful because workouts, nutrition, and recovery were designed to support each other.
+            </p>
+          </div>
+          <div class="learning-card">
+            <span class="num" style="background:#FEF3C7; color:#92400E;">2. What Could Be Improved</span>
+            <p class="case-body">
+              What could be improved is deeper testing with real users. With more time, I would test the recovery score with fitness users, review how easily they understand the insights, and refine the system based on their feedback.
+            </p>
+          </div>
+          <div class="learning-card">
+            <span class="num" style="background:#D1FAE5; color:#065F46;">3. What I Learned</span>
+            <p class="case-body">
+              This project strengthened my ability to design products that are not only visually clear, but also useful, structured, and aligned with user goals.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ BACK TO TOP ═══ -->
+    <section class="py-0 my-0">
+      <div class="max-w-6xl mx-auto px-6 flex justify-center py-0 my-0">
+        <a href="#top" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition hover:shadow-md hover:-translate-y-1 m-0" style="font-family:'Sora',sans-serif; color:#ffffff; background:#1C1C1C; box-shadow: 0 10px 28px rgba(0,0,0,0.18);">
+          Back to top <i class="bi bi-arrow-up-circle-fill"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ FOOTER ═══ -->
+    <footer>
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4 p-6 max-w-6xl mx-auto text-center md:text-left">
+        <p style="font-size: 0.8125rem; color: #545352;">© 2025 Arieff Hizer // All Rights Reserved</p>
+        <div class="flex gap-2">
+          <a href="https://github.com/arieffhizer" target="_blank" class="flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium transition hover:shadow-md" style="color: #1C1C1C; background: rgba(28,28,28,0.06);">
+            <i class="bi bi-github text-xs"></i> GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/arieff-hizer-98b412225/" target="_blank" class="flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium transition hover:shadow-md" style="color: #1C1C1C; background: rgba(28,28,28,0.06);">
+            <i class="bi bi-linkedin text-xs"></i> LinkedIn
+          </a>
+          <a href="https://www.instagram.com/rffhzr" target="_blank" class="flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium transition hover:shadow-md" style="color: #1C1C1C; background: rgba(28,28,28,0.06);">
+            <i class="bi bi-instagram text-xs"></i> Instagram
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ═══════════════════════════════════════ SCROLL ANIMATION ═══ -->
+    <script>
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            observer.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+      document.querySelectorAll('section:first-of-type .fade-up').forEach((el, i) => {
+        setTimeout(() => el.classList.add('visible'), i * 150);
+      });
+    </script>
 
   </body>
 </html>
