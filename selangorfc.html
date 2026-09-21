@@ -3,412 +3,721 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Arieff Hizer Portfolio</title>
+    <title>Selangor FC — Arieff Hizer Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="theme.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="shortcut icon" type="image/png" href="images/favicon.png">
+    <style>
+      :root {
+        --brand-main: #a9353e;
+        --brand-deep: #7a232b;
+        --brand-heading: #d44b5c;
+        --gold: #FFD036;
+        --text-dark: #1C1C1C;
+        --text-mid: #545352;
+        --text-muted: #888480;
+        --white: #FFFFFF;
+      }
+      * { box-sizing: border-box; }
+      body {
+        font-family: 'Inter', sans-serif;
+        background: #ffffff;
+        color: var(--text-dark);
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      /* ── Background system: flat red circles with water-ripple contour lines ── */
+      .page-bg {
+        position: relative;
+        isolation: isolate;
+        overflow-x: hidden;
+        background: #ffffff;
+      }
+
+      .page-bg::before,
+      .page-bg::after,
+      .bg-band::before,
+      .bg-diagonal::before {
+        content: none !important;
+      }
+
+      .sel-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        overflow: hidden;
+      }
+
+      .sel-circle {
+        position: absolute;
+        border-radius: 9999px;
+        background: radial-gradient(
+          circle at center,
+          rgba(169,53,62,0.75) 0%,
+          rgba(200,110,117,0.50) 44%,
+          rgba(238,206,209,0.28) 68%,
+          rgba(255,255,255,0) 86%
+        );
+        overflow: hidden;
+      }
+
+      .sel-circle::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: repeating-radial-gradient(
+          circle at center,
+          rgba(255,255,255,0.78) 0 1px,
+          transparent 1px 34px
+        );
+        opacity: 0.72;
+        -webkit-mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9) 54%, rgba(0,0,0,0) 78%);
+        mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9) 54%, rgba(0,0,0,0) 78%);
+      }
+
+      .sel-circle-1 { width: 760px; height: 760px; top: 7%; right: -250px; transform: translateY(-50%); }
+      .sel-circle-2 { width: 520px; height: 520px; top: 27%; left: -80px; }
+      .sel-circle-3 { width: 680px; height: 680px; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+      .sel-circle-4 { width: 520px; height: 520px; top: 70%; right: -90px; }
+      .sel-circle-5 { width: 760px; height: 760px; top: 88%; left: -250px; transform: translateY(-50%); }
+
+      .page-bg > *:not(.sel-bg):not(.site-nav) {
+        position: relative;
+        z-index: 1;
+      }
+
+      .bg-band,
+      .bg-diagonal {
+        position: relative;
+        isolation: isolate;
+      }
+
+      @media (max-width: 768px) {
+        .sel-circle::after {
+          background: repeating-radial-gradient(
+            circle at center,
+            rgba(255,255,255,0.76) 0 1px,
+            transparent 1px 28px
+          );
+        }
+        .sel-circle-1 { width: 520px; height: 520px; top: 6%; right: -210px; transform: translateY(-50%); }
+        .sel-circle-2 { width: 360px; height: 360px; top: 27%; left: -130px; }
+        .sel-circle-3 { width: 450px; height: 450px; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+        .sel-circle-4 { width: 360px; height: 360px; top: 70%; right: -130px; }
+        .sel-circle-5 { width: 520px; height: 520px; top: 88%; left: -210px; transform: translateY(-50%); }
+      }
+
+      h1, h2, h3, h4 { font-family: 'Sora', sans-serif; }
+
+      .sel-nav-pill {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        height: 32px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: rgba(169,53,62,0.06);
+        color: #1C1C1C;
+        border: 1px solid rgba(169,53,62,0.14);
+        font-size: 0.8125rem;
+        font-weight: 600;
+        white-space: nowrap;
+        transition: background 0.2s ease;
+      }
+      .sel-nav-pill:hover { background: rgba(169,53,62,0.12); }
+      .sel-nav-pill-mobile {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 10px 16px;
+        border-radius: 999px;
+        background: rgba(169,53,62,0.06);
+        color: #1C1C1C;
+        border: 1px solid rgba(169,53,62,0.14);
+        font-size: 0.875rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+
+      .section-label {
+        font-family: 'Sora', sans-serif;
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: var(--brand-heading);
+        margin-bottom: 1rem;
+      }
+      .section-label span { color: var(--gold); -webkit-text-stroke: 0.5px rgba(169,53,62,0.35); }
+      @media (min-width: 768px) { .section-label { font-size: 2.25rem; } }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 16px;
+        border-radius: 999px;
+        font-size: 0.8125rem;
+        font-weight: 500;
+        background: rgba(169,53,62,0.08);
+        color: var(--brand-main);
+        border: 1px solid rgba(169,53,62,0.16);
+        white-space: nowrap;
+      }
+      .pill.pink {
+        background: #FEE2E2;
+        color: #B91C1C;
+        border-color: #FECACA;
+      }
+
+      .method-card {
+        background: rgba(255,255,255,0.72);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 16px;
+        padding: 1.5rem;
+        border: 1px solid rgba(255,255,255,0.6);
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .method-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 28px rgba(0,0,0,0.10);
+      }
+
+      .color-swatch {
+        border-radius: 12px;
+        padding: 1rem 1.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .mockup-float {
+        border-radius: 16px;
+        box-shadow: none;
+        filter: drop-shadow(0 22px 26px rgba(0,0,0,0.14)) drop-shadow(0 6px 10px rgba(0,0,0,0.08));
+        transition: transform 0.4s ease, filter 0.4s ease;
+      }
+      .mockup-float:hover {
+        transform: translateY(-6px);
+        filter: drop-shadow(0 28px 32px rgba(0,0,0,0.18)) drop-shadow(0 8px 14px rgba(0,0,0,0.10));
+      }
+      .mockup-placeholder {
+        filter: none;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.14), 0 4px 16px rgba(0,0,0,0.08);
+      }
+
+      .learning-card {
+        background: rgba(255,255,255,0.72);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 16px;
+        padding: 1.75rem;
+        border: 1px solid rgba(255,255,255,0.6);
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      }
+      .learning-card .num {
+        font-family: 'Sora', sans-serif;
+        font-size: 0.8125rem;
+        font-weight: 700;
+        color: var(--brand-main);
+        background: rgba(169,53,62,0.08);
+        border-radius: 999px;
+        padding: 2px 10px;
+        display: inline-block;
+        margin-bottom: 0.75rem;
+      }
+
+      .meta-table {
+        border: 1.5px solid rgba(169,53,62,0.20);
+        border-radius: 14px;
+        overflow: hidden;
+        background: rgba(169,53,62,0.04);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        box-shadow: 0 12px 36px rgba(0,0,0,0.06);
+      }
+      .meta-table .header-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        background: rgba(169,53,62,0.10);
+        border-bottom: 1.5px solid rgba(169,53,62,0.16);
+      }
+      .meta-table .header-row div,
+      .meta-table .content-row div {
+        padding: 0.75rem 1rem;
+        text-align: center;
+      }
+      .meta-table .header-row div {
+        font-family: 'Sora', sans-serif;
+        font-weight: 700;
+        color: var(--brand-main);
+        font-size: 0.9rem;
+        border-right: 1.5px solid rgba(169,53,62,0.14);
+      }
+      .meta-table .header-row div:last-child,
+      .meta-table .content-row div:last-child { border-right: none; }
+      .meta-table .content-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        background: rgba(255,255,255,0.58);
+      }
+      .meta-table .content-row div {
+        font-size: 0.875rem;
+        color: #545352;
+        font-weight: 500;
+        border-right: 1.5px solid rgba(169,53,62,0.10);
+      }
+
+      .case-headline {
+        color: #1C1C1C;
+        font-size: 1rem;
+        line-height: 1.75;
+        font-weight: 500;
+      }
+      .case-body {
+        color: #545352;
+        font-size: 1rem;
+        line-height: 1.75;
+      }
+      .method-card p:last-child,
+      .learning-card p {
+        color: #545352;
+        font-size: 1rem;
+        line-height: 1.75;
+      }
+      @media (min-width: 768px) { .case-headline { font-size: 1.125rem; } }
+
+      @media (max-width: 767px) {
+        section { text-align: center; }
+        section .fade-up,
+        section .section-label,
+        section .case-headline,
+        section .case-body,
+        section p,
+        section li { text-align: center; }
+        .section-label { margin-left: auto; margin-right: auto; }
+        .pill { justify-content: center; text-align: center; white-space: normal; }
+        section .flex.flex-wrap { justify-content: center; }
+        .method-card, .learning-card { text-align: center; }
+        .learning-card .num { margin-left: auto; margin-right: auto; }
+        .result-bullet { justify-content: center; text-align: center; align-items: center; }
+        .result-bullet::before { display: none; }
+        .color-swatch { align-items: center; }
+        .mockup-float { display: block; margin-left: auto; margin-right: auto; }
+        .meta-table .header-row div,
+        .meta-table .content-row div {
+          padding: 0.85rem 0.65rem;
+          font-size: 0.8rem;
+        }
+      }
+
+      .fade-up {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+      .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+      .result-bullet {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 1rem;
+        color: #1C1C1C;
+        margin-bottom: 0.6rem;
+      }
+      .result-bullet::before {
+        content: '';
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--brand-main);
+        margin-top: 7px;
+        flex-shrink: 0;
+      }
+
+      .img-placeholder {
+        background: linear-gradient(135deg, #FDF3F4 0%, #FFFFFF 55%, #F0DEE0 100%);
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #888480;
+        font-size: 0.875rem;
+        font-weight: 500;
+      }
+
+      @media (max-width: 640px) {
+        .meta-table {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+        }
+        .meta-table .header-row,
+        .meta-table .content-row {
+          display: grid;
+          grid-template-columns: 1fr;
+        }
+        .meta-table .header-row {
+          border-bottom: none;
+          border-right: 1.5px solid rgba(169,53,62,0.16);
+        }
+        .meta-table .content-row { background: rgba(255,255,255,0.58); }
+        .meta-table .header-row div,
+        .meta-table .content-row div {
+          border-right: none;
+          border-top: 1.5px solid rgba(169,53,62,0.10);
+          min-height: 48px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0.85rem 0.65rem;
+          font-size: 0.8rem;
+        }
+        .meta-table .header-row div:first-child,
+        .meta-table .content-row div:first-child { border-top: none; }
+      }
+    </style>
   </head>
-  <body class="bg-gradient-to-r from-[#E39999] to-[#a9353e] text-gray-900 font-open sauce two">
-
-      <div class="w-full sticky top-0 z-50 relative">
-  <div id="nav-blur" class="relative" style="-webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); background: rgba(255,255,255,0.1);">
-    <header class="flex justify-between items-center p-4 max-w-6xl mx-auto">
-      
-      <!-- Logo + Name as Home Button -->
-      <a href="index.html" class="flex items-center bg-gray-100 px-4 py-1 rounded-full shadow gap-2 hover:shadow-md transition">
-        <img src="images/logo arieff h 3.png" alt="Logo" class="w-6 h-6 rounded-full shadow" />
-        <span class="text-lg font-semibold text-gray-800">Arieff H.</span>
-      </a>
-
-      <!-- Desktop Nav -->
-      <div class="flex max-md:hidden items-center gap-4">
-        <a
-          href="about.html"
-          class="flex items-center gap-2 px-4 py-1 border border-white rounded-full text-white hover:shadow transition text-sm"
-        >
-          <i class="bi bi-person-fill text-base"></i>
-          About Me
-        </a>
-
-        <a
-          href="index.html#projects"
-          class="flex items-center gap-2 px-4 py-1 border border-white rounded-full text-white hover:shadow transition text-sm"
-        >
-          <i class="bi bi-folder-fill text-base"></i>
-          Projects
-        </a>
-
-        <a
-          href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
-          target="_blank"
-          rel="noopener"
-          class="flex items-center gap-2 bg-white hover:bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm"
-        >
-          Say Hi <i class="bi bi-emoji-smile-fill"></i>
-        </a>
-      </div>
-
-      <!-- Mobile Hamburger -->
-      <button id="menu-btn" class="md:hidden text-2xl text-white">
-        <i class="bi bi-list"></i>
-      </button>
-    </header>
-
-    <!-- Mobile Dropdown -->
-    <div id="mobile-menu" class="hidden flex-col gap-2 p-4 md:hidden absolute top-full left-0 w-full"
-         style="background: rgba(255,255,255,0.95);">
-      <a
-        href="about.html"
-        class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-black hover:shadow transition text-sm mb-2"
-      >
-        <i class="bi bi-person-fill"></i> About Me
-      </a>
-
-      <a
-        href="index.html#projects"
-        class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-black hover:shadow transition text-sm mb-2"
-      >
-        <i class="bi bi-folder-fill"></i> Projects
-      </a>
-
-      <a
-        href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
-        target="_blank"
-        rel="noopener"
-        class="flex items-center gap-2 bg-[#a9353e] hover:bg-[#BC565C] text-white px-4 py-2 rounded-lg text-sm"
-      >
-        <i class="bi bi-emoji-smile-fill"></i> Say Hi
-      </a>
-    </div>
-  </div>
-</div>
-
-<!-- Script to toggle menu -->
-<script>
-  const menuBtn = document.getElementById("menu-btn");
-  const mobileMenu = document.getElementById("mobile-menu");
-  const navBlur = document.getElementById("nav-blur");
-
-  menuBtn.addEventListener("click", () => {
-    mobileMenu.classList.toggle("hidden");
-
-    if (mobileMenu.classList.contains("hidden")) {
-      navBlur.style.background = "rgba(255,255,255,0.1)";
-      menuBtn.classList.remove("text-gray-800");
-      menuBtn.classList.add("text-white");
-    } else {
-      navBlur.style.background = "rgba(255,255,255,0.95)";
-      menuBtn.classList.remove("text-white");
-      menuBtn.classList.add("text-gray-800");
-    }
-  });
-</script>
-
-<section class="min-h-screen -mt-12 w-full bg-gradient-to-r from-[#E39999] to-[#a9353e] flex items-center justify-center">
-  <div class="max-w-6xl w-full px-4 grid grid-cols-1 md:grid-cols-2 items-center gap-12">
-    
-    <!-- Left: Text + Logo -->
-    <div class="text-white text-center md:text-left">
-        <img src="images/sel logo.png" alt="Selangor FC Logo" class="w-48 mx-auto md:mx-0" />
-      <img src="images/SELANGOR FC.png" alt="SELANGOR FC" class="h-12 md:h-16 object-contain  mt-6" />
-      <p class="text-xl font-regular text-white/80 mt-2">(Un)Official Mobile App</p>
+  <body class="page-bg">
+    <div class="sel-bg" aria-hidden="true">
+      <span class="sel-circle sel-circle-1"></span>
+      <span class="sel-circle sel-circle-2"></span>
+      <span class="sel-circle sel-circle-3"></span>
+      <span class="sel-circle sel-circle-4"></span>
+      <span class="sel-circle sel-circle-5"></span>
     </div>
 
-    <!-- Right: Single Mockup Image -->
-    <div class="flex md:justify-end justify-center hover:scale-105 transition-transform duration-500">
-      <img src="images/sel right image.png" alt="Selangor App Mockup" class="w-96 md:max-w-lg drop-shadow-xl" />
-    </div>
-  </div>
-</section>
-
-<section class="bg-white text-black font-sans py-16">
-  <div class="max-w-6xl mx-auto px-8 py-18">
-
-    <!-- Top Info Table -->
-    <div class="border border-rose-500 rounded-xl overflow-hidden mb-16">
-      <!-- Header Row -->
-      <div class="grid grid-cols-4 text-center font-bold bg-rose-100 text-rose-500 text-lg divide-x divide-rose-500">
-        <div class="py-3">Tools</div>
-        <div class="py-3">Platform</div>
-        <div class="py-3">Role</div>
-        <div class="py-3">Duration</div>
-      </div>
-      <!-- Content Row -->
-      <div class="grid grid-cols-4 text-center divide-x divide-rose-500">
-        <div class="py-4">Figma</div>
-        <div class="py-4">Mobile App</div>
-        <div class="py-4">UI/UX Designer</div>
-        <div class="py-4">6 Weeks</div>
-      </div>
-    </div>
-
-    <!-- Two-column Layout -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-
-      <!-- Left Column -->
-      <div class="space-y-8">
-        <!-- Introduction -->
-        <div>
-          <h2 class="text-2xl font-bold text-rose-500 mb-2">Introduction</h2>
-          <p class="leading-relaxed">
-            Selangor FC is one of the most successful professional football club in Malaysia, representing the state of Selangor Darul Ehsan. Nicknamed as the Red Giants, Gergasi Merah, the association was established on 22nd February 1936 when two football entities; Selangor Association Football League (SAFL) and Selangor Football Association (SFA) merged to form a new club. Currently, Selangor FC did not have an official mobile app as they managed their club news, jersey and merchandise shop, and also ticket selling through their official website.
-          </p>
-        </div>
-      </div>
-
-      <!-- Right Column -->
-      <div class="space-y-8">
-        <!-- Issues -->
-        <div>
-          <h2 class="text-2xl font-bold text-rose-500 mb-2">Issues</h2>
-          <ul class="list-disc list-inside space-y-1">
-            <li>UI experience is not convenient</li>
-            <li>Making a purchase through browser is unsafety</li>
-            <li>Opportunity to propose digital team card</li>
-          </ul>
-        </div>
-
-        <!-- Goals -->
-        <div>
-          <h2 class="text-2xl font-bold text-rose-500 mb-2">Goals</h2>
-          <p class="leading-relaxed">
-            Selangor FC Mobile App propose feature improvements that help increase the effectiveness of the app and provide the users a convenient and better experience while using the app.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="max-w-6xl mx-auto px-4 py-20">
-  <div class="flex justify-center">
-    <img src="images/sel 4 screen display.png" alt="Selangor App Mockup" class="w-full drop-shadow-xl" />
-  </div>
-</section>
-
-<!-- Research Strategy -->
-<section class="bg-white">
-  <div class="max-w-6xl mx-auto px-8 py-16">
-  <h2 class="text-center text-2xl md:text-3xl font-bold text-[#d44b5c] mb-6">
-    Research Strategy
-  </h2>
-
-  <!-- Description -->
-  <p class="text-center text-base md:text-lg text-black leading-relaxed mb-6 max-w-6xl mx-auto">
-    I conducted a usability testing with a group of Selangor FC fans to uncover problems in the design, discover opportunities to improve the design, and to learn about users behaviour and preferences. The research revealed that the website homepage did not provide the league fixtures and standings information, the website feels not secure when making purchases and also, the whole UI design is not mobile friendly.
-  </p>
-
-  <!-- Follow-up line -->
-  <p class="text-center text-base md:text-lg mb-12">
-    Based on the research, I made my design choices based on several goals in mind.
-  </p>
-
-  <!-- Container for the 3 cards -->
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch mt-10">
-
-  <!-- CARD1 -->
-  <div class="relative h-full">
-    <!-- Floating title -->
-    <div class="absolute -top-4 transform bg-white ml-3 px-3">
-      <h3 class="text-lg font-bold text-rose-500 border-b-4 border-[#FFD036] inline-block">
-        1. REDEFINE
-      </h3>
-    </div>
-
-    <!-- Card box -->
-    <div class="border border-rose-500 rounded-xl p-6 pt-10 flex flex-col h-full">
-      <p class="mb-4">Proposing digital team card as the new main focus of the app</p>
-      <img src="images/Redefine.png" alt="Redefine Mockup" class="mb-4 mx-auto max-h-80 object-contain">
-      <p class="font-bold mb-2">Design Improvement</p>
-      <ul class="text-sm list-disc list-inside space-y-1">
-        <li>Proposed digital team card as the new main focus of the app</li>
-        <li>Added Anchored Team card button on navigation bar for easy access</li>
-        <li>Introduced digital version of the team card to create user friendly product</li>
-        <li>Added 'Refer a Friend' feature to encourage fans become part of SFC Community</li>
-      </ul>
-    </div>
-  </div>
-
-    <!-- CARD2 -->
-  <div class="relative h-full">
-    <!-- Floating title -->
-    <div class="absolute -top-4 transform bg-white ml-3 px-3">
-      <h3 class="text-lg font-bold text-rose-500 border-b-4 border-[#FFD036] inline-block">
-        2. REIMAGINE
-      </h3>
-    </div>
-
-    <!-- Card box -->
-    <div class="border border-rose-500 rounded-xl p-6 pt-10 flex flex-col h-full">
-      <p class="mb-4">Proposing a new user experience, different from the website</p>
-      <img src="images/Reimagine.png" alt="Redefine Mockup" class="mb-4 mx-auto max-h-80 object-contain">
-      <p class="font-bold mb-2">Design Improvement</p>
-      <ul class="text-sm list-disc list-inside space-y-1">
-        <li>Proposing a new user experience, Different From the website</li>
-        <li>Change the static hero image to hero slider to maximize product advertisement</li>
-        <li>Added Match Fixtures and Calendar features for practicality</li>
-        <li>Added Customizable and attractive Account page to create enjoyable user experience</li>
-      </ul>
-    </div>
-  </div>
-
-    <!-- CARD3 -->
-  <div class="relative h-full">
-    <!-- Floating title -->
-    <div class="absolute -top-4 transform bg-white ml-3 px-3">
-      <h3 class="text-lg font-bold text-rose-500 border-b-4 border-[#FFD036] inline-block">
-        3. REDESIGN
-      </h3>
-    </div>
-
-    <!-- Card box -->
-    <div class="border border-rose-500 rounded-xl p-6 pt-10 flex flex-col h-full">
-      <p class="mb-4">Propose new UI outlook with user accessibility in mind</p>
-      <img src="images/Reimagine.png" alt="Redefine Mockup" class="mb-4 mx-auto max-h-80 object-contain">
-      <p class="font-bold mb-2">Design Improvement</p>
-      <ul class="text-sm list-disc list-inside space-y-1">
-        <li>Propose new user interface outlook with user accesibility in mind</li>
-        <li>Centralized store for buying SFC products through mobile app for safety transaction</li>
-        <li>Added Track Order features with real time delivery tracking</li>
-        <li>Categories button designed at the top to create clear userflow</li>
-      </ul>
-    </div>
-  </div>
-
-  </div>
-</section>
-
-<!-- User Flows -->
-<section class="max-w-6xl mx-auto px-8 py-16">
-  <h2 class="text-center text-2xl md:text-3xl font-bold text-white mb-6">
-    User Flows
-  </h2>
-  <p class="text-center text-base md:text-lg text-white leading-relaxed mb-6 max-w-6xl mx-auto">
-    The flow of the app is relatively unchanged to retain familiarity. However, several features are added to ease the overall workflow of the app.
-  </p>
-
-  <div class="flex justify-center">
-    <img src="images/selangor user flows.png" alt="Selangor App Mockup" class="w-full drop-shadow-xl" />
-  </div>
-</section>
-
-<!-- Design system -->
-<section class="bg-white">
-  <div class="max-w-6xl mx-auto px-8 py-16">
-  <h2 class="text-center text-2xl md:text-3xl font-bold text-[#d44b5c] mb-6">
-    Design System
-  </h2>
-  <p class="text-center text-base md:text-lg text-gray-900 leading-relaxed mb-6 max-w-6xl mx-auto">
-    The flow of the app is relatively unchanged to retain familiarity. However, several features are added to ease the overall workflow of the app.
-  </p>
-
-  <div class="flex justify-center">
-    <img src="images/sel ds.png" alt="Selangor App Mockup" class="w-full" />
-  </div>
-</section>
-
-<!-- Design Comparison -->
-<section class="max-w-6xl mx-auto px-8 py-16">
-  <h2 class="text-center text-2xl md:text-3xl font-bold text-white mb-6">
-    Design Comparison
-  </h2>
-  <p class="text-center text-base md:text-lg text-white leading-relaxed mb-12 max-w-6xl mx-auto">
-    The most important parts - the problem of each page from previous designs, and my proposed design solutions. Only some pages are showed as they have more distinct differences.
-  </p>
-
-  <div class="flex justify-center">
-    <img src="images/sel des diff.png" alt="Selangor App Mockup" class="w-full drop-shadow-xl" />
-  </div>
-</section>
-
-<!-- Key Takeaways -->
-<section class="bg-white">
-  <div class="max-w-6xl mx-auto px-8 py-12">
-  <h2 class="text-center text-2xl md:text-3xl font-bold text-[#d44b5c] mb-6">
-    Key Takeaways
-  </h2>
-  <p class="text-center text-base md:text-lg text-gray-900 leading-relaxed mb-6 max-w-6xl mx-auto">
-    The development and implementation of Selangor FC mobile app marks a significant stride towards enhancing fan engagement, fostering a sense of community, and expanding the club's digital presence.
-  </p>
-  <p class="text-center text-base md:text-lg text-gray-900 leading-relaxed mb-6 max-w-6xl mx-auto">
-    Through this platform, fans can access exclusive content, stay updated on the latest news, purchase tickets conveniently, and interact with fellow supporters, players, and the club management.
-  </p>
-  <div class="aspect-[16/9] w-full">
-    <iframe 
-      src="https://player.vimeo.com/video/953130094?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" 
-      frameborder="0" 
-      allow="autoplay; fullscreen; picture-in-picture" 
-      allowfullscreen
-      class="w-full h-full rounded-xl">
-    </iframe>
-  </div>
-</section>
-
-<section class="bg-white">
-  <div class="justify-center relative">
-    <img src="images/sel all screen.png" alt="Selangor App Mockup" class="w-full max-w-6xl mx-auto">
-  
-    <!-- Left overlay -->
-  <a href="fitcoach.html" class="hidden lg:flex absolute top-0 left-0 w-[20%] h-full items-center justify-center overflow-hidden group">
-    <img src="images/fc all screen bnw.png" alt="Plura Atelier"
-         class="mr-12 h-full object-cover transition-all duration-500">
-    <div class="mr-6 absolute inset-0 flex flex-col items-center justify-center bg-black/0 backdrop-blur-sm opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-      <p class="text-white font-bold text-lg">FitCoach</p>
-      <i class="bi bi-arrow-left-circle-fill text-white text-4xl mt-2"></i>
-    </div>
-  </a>
-
-  <!-- Right overlay -->
-  <a href="plura.html" class="hidden lg:flex absolute top-0 right-0 w-[20%] h-full items-center justify-center overflow-hidden group">
-    <img src="images/plura all screen bnw.png" alt="Whisker Tracker"
-         class="ml-12 w-full h-full object-cover transition-all duration-500">
-    <div class="ml-6 absolute inset-0 flex flex-col items-center justify-center bg-black/0 backdrop-blur-sm opacity-0 transition-opacity duration-400 group-hover:opacity-100">
-      <p class="text-emerald-400 font-bold text-lg">Plura</p>
-      <p class="text-emerald-400 font-bold text-lg">Atelier</p>
-      <i class="bi bi-arrow-right-circle-fill text-emerald-400 text-4xl mt-2"></i>
-    </div>
-  </a>
-  </div>
-</section>
-
-      <footer class="text-[10px] text-white backdrop-blur bg-white/10">
-        <div class="flex justify-between items-center p-4 max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
-          <p>© 2023 Arieff Hizer // All Rights Reserved</p>
-      
-          <div class="flex gap-2">
-            <!-- GitHub Button -->
-            <a
-              href="https://github.com/arieffhizer"
-              target="_blank"
-              class="flex items-center gap-2 px-4 py-1 border border-white rounded-full bg-white text-gray-700 hover:shadow transition"
-            >
-              <i class="bi bi-github text-xs"></i>
-              GitHub
-            </a>
-      
-            <!-- LinkedIn Button -->
-            <a
-              href="https://www.linkedin.com/in/arieff-hizer-98b412225/"
-              target="_blank"
-              class="flex items-center gap-2 px-4 py-1 border border-white rounded-full bg-white text-gray-700 hover:shadow transition"
-            >
-              <i class="bi bi-linkedin text-xs"></i>
-              LinkedIn
-            </a>
-      
-            <!-- Instagram Button -->
-            <a
-              href="https://www.instagram.com/rffhzr"
-              target="_blank"
-              class="flex items-center gap-2 px-4 py-1 border border-white rounded-full bg-white text-gray-700 hover:shadow transition"
-            >
-              <i class="bi bi-instagram text-xs"></i>
-              Instagram
+    <!-- ═══════════════════════════════════════ NAV ═══ -->
+    <div class="site-nav w-full sticky top-0 z-50 relative">
+      <div id="nav-blur" class="relative" style="-webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); background: rgba(255,255,255,0.1);">
+        <header class="flex justify-between items-center px-6 md:px-[72px] py-4">
+          <a href="index.html" class="flex items-center bg-gray-100 px-4 py-1 rounded-full shadow gap-2 hover:shadow-md transition">
+            <img src="images/logo arieff h 3.png" alt="Logo" class="w-6 h-6 rounded-full shadow" />
+            <span class="text-lg font-semibold text-gray-800">Arieff H.</span>
+          </a>
+          <div class="flex max-md:hidden items-center gap-3">
+            <a href="index.html#about" class="sel-nav-pill"><i class="bi bi-person-fill"></i> About Me</a>
+            <a href="index.html#work" class="sel-nav-pill"><i class="bi bi-folder-fill"></i> Work Projects</a>
+            <a href="index.html#gallery" class="sel-nav-pill"><i class="bi bi-image-fill"></i> Gallery</a>
+            <a href="index.html#personal" class="sel-nav-pill"><i class="bi bi-briefcase-fill"></i> Personal Projects</a>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position." target="_blank" rel="noopener" class="flex items-center gap-2 bg-[#a9353e] text-white px-4 py-2 rounded-full text-sm transition hover:shadow-md hover:-translate-y-1 m-0">
+              Say Hi <i class="bi bi-emoji-smile-fill"></i>
             </a>
           </div>
+          <button id="menu-btn" class="md:hidden text-2xl text-gray-800"><i class="bi bi-list"></i></button>
+        </header>
+        <div id="mobile-menu" class="hidden flex-col gap-2 p-4 md:hidden absolute top-full left-0 w-full" style="background: rgba(255,255,255,0.98); border-top:1px solid rgba(169,53,62,0.10);">
+          <a href="index.html#about" class="sel-nav-pill-mobile"><i class="bi bi-person-fill"></i> About Me</a>
+          <a href="index.html#work" class="sel-nav-pill-mobile"><i class="bi bi-folder-fill"></i> Work Projects</a>
+          <a href="index.html#gallery" class="sel-nav-pill-mobile"><i class="bi bi-image-fill"></i> Gallery</a>
+          <a href="index.html#personal" class="sel-nav-pill-mobile"><i class="bi bi-briefcase-fill"></i> Personal Projects</a>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position." target="_blank" rel="noopener" class="flex items-center justify-center gap-2 bg-[#a9353e] text-white px-4 py-2 rounded-full text-sm transition hover:shadow-md"><i class="bi bi-emoji-smile-fill"></i> Say Hi</a>
         </div>
-      </footer>
+      </div>
+    </div>
+    <script>
+      const menuBtn = document.getElementById("menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const navBlur = document.getElementById("nav-blur");
+      menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+        if (mobileMenu.classList.contains("hidden")) {
+          navBlur.style.background = "rgba(255,255,255,0.1)";
+          menuBtn.classList.remove("text-white"); menuBtn.classList.add("text-gray-800");
+        } else {
+          navBlur.style.background = "rgba(255,255,255,0.95)";
+          menuBtn.classList.remove("text-white"); menuBtn.classList.add("text-gray-800");
+        }
+      });
+    </script>
+
+    <!-- ═══════════════════════════════════════ HERO ═══ -->
+    <section style="height: calc(100vh - 64px); min-height: 560px;" class="w-full flex items-center">
+      <div class="max-w-6xl w-full mx-auto px-6 grid grid-cols-1 md:grid-cols-2 items-center gap-10 py-12">
+        <div class="fade-up text-center md:text-left">
+          <img src="images/sel logo.png" alt="Selangor FC Logo" class="w-20 md:w-28 mx-auto md:mx-0 mb-4" />
+          <img src="images/SELANGOR FC.png" alt="Selangor FC" class="h-10 md:h-14 object-contain mx-auto md:mx-0 mb-3" />
+          <p class="text-[#545352] text-lg md:text-xl font-medium leading-snug mb-3">(Un)Official Mobile App</p>
+          <div class="flex flex-wrap justify-center md:justify-start gap-2 mt-6">
+            <span class="pill">Mobile App</span>
+            <span class="pill">Sports</span>
+            <span class="pill">B2C</span>
+          </div>
+        </div>
+        <div class="fade-up flex justify-center md:justify-end" style="transition-delay:0.15s">
+          <img src="images/sel right image.png" alt="Selangor App Mockup" class="mockup-float w-64 md:w-80 mx-auto md:mx-0" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ INTRO + META ═══ -->
+    <section class="py-16 md:py-20 bg-band">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="mb-14 fade-up">
+          <p class="text-base md:text-lg leading-relaxed mb-4" style="color:#1C1C1C;">
+            Selangor FC is one of the most successful professional football clubs in Malaysia, representing the state of Selangor Darul Ehsan. Nicknamed the Red Giants, Gergasi Merah, the association was established on 22nd February 1936 when two football entities, Selangor Association Football League (SAFL) and Selangor Football Association (SFA), merged to form a new club. Currently, Selangor FC does not have an official mobile app, managing club news, jersey and merchandise shop, and ticket selling through their official website instead.
+          </p>
+        </div>
+
+        <div class="meta-table fade-up">
+          <div class="header-row">
+            <div>Tools</div>
+            <div>Platform</div>
+            <div>Role</div>
+            <div>Duration</div>
+          </div>
+          <div class="content-row">
+            <div>Figma</div>
+            <div>Mobile App</div>
+            <div>UI/UX Designer</div>
+            <div>6 Weeks</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ THE PROBLEM ═══ -->
+    <section class="py-16 md:py-24">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="fade-up">
+          <h2 class="section-label">The <span>Problem</span></h2>
+          <p class="case-headline mb-4">
+            Without an official app, fans are left managing everything through a browser experience that was not built for mobile.
+          </p>
+          <p class="case-headline mb-2">This creates a few problems:</p>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+            <span class="pill pink w-full justify-center">UI experience is not convenient</span>
+            <span class="pill pink w-full justify-center">Making a purchase through browser is unsafe</span>
+            <span class="pill pink w-full justify-center">Opportunity to propose digital team card</span>
+          </div>
+          <p class="case-body">
+            Selangor FC Mobile App proposes feature improvements that help increase the effectiveness of the app and provide users a convenient and better experience while using the app.
+          </p>
+        </div>
+
+        <div class="mt-16 fade-up">
+          <img src="images/sel 4 screen display.png" alt="Selangor App Mockup" class="mockup-float w-full" onerror="this.outerHTML='<div class=\'mockup-float mockup-placeholder img-placeholder w-full\' style=\'height:380px\'>App Screens Preview</div>'" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ RESEARCH STRATEGY (untouched — font only) ═══ -->
+    <section>
+      <div class="max-w-6xl mx-auto px-8 py-16">
+      <h2 class="section-label text-center">
+        Research <span>Strategy</span>
+      </h2>
+
+      <!-- Description -->
+      <p class="text-center text-base md:text-lg text-black leading-relaxed mb-6 max-w-6xl mx-auto">
+        I conducted a usability testing with a group of Selangor FC fans to uncover problems in the design, discover opportunities to improve the design, and to learn about users behaviour and preferences. The research revealed that the website homepage did not provide the league fixtures and standings information, the website feels not secure when making purchases and also, the whole UI design is not mobile friendly.
+      </p>
+
+      <!-- Follow-up line -->
+      <p class="text-center text-base md:text-lg mb-12">
+        Based on the research, I made my design choices based on several goals in mind.
+      </p>
+
+      <!-- Container for the 3 cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch mt-10">
+
+      <!-- CARD1 -->
+      <div class="relative h-full">
+        <!-- Floating title -->
+        <div class="absolute -top-4 transform bg-white ml-3 px-3">
+          <h3 class="text-lg font-bold text-rose-500 border-b-4 border-[#FFD036] inline-block">
+            1. REDEFINE
+          </h3>
+        </div>
+
+        <!-- Card box -->
+        <div class="border border-rose-500 rounded-xl p-6 pt-10 flex flex-col h-full">
+          <p class="mb-4">Proposing digital team card as the new main focus of the app</p>
+          <img src="images/Redefine.png" alt="Redefine Mockup" class="mb-4 mx-auto max-h-80 object-contain">
+          <p class="font-bold mb-2">Design Improvement</p>
+          <ul class="text-sm list-disc list-inside space-y-1">
+            <li>Proposed digital team card as the new main focus of the app</li>
+            <li>Added Anchored Team card button on navigation bar for easy access</li>
+            <li>Introduced digital version of the team card to create user friendly product</li>
+            <li>Added 'Refer a Friend' feature to encourage fans become part of SFC Community</li>
+          </ul>
+        </div>
+      </div>
+
+        <!-- CARD2 -->
+      <div class="relative h-full">
+        <!-- Floating title -->
+        <div class="absolute -top-4 transform bg-white ml-3 px-3">
+          <h3 class="text-lg font-bold text-rose-500 border-b-4 border-[#FFD036] inline-block">
+            2. REIMAGINE
+          </h3>
+        </div>
+
+        <!-- Card box -->
+        <div class="border border-rose-500 rounded-xl p-6 pt-10 flex flex-col h-full">
+          <p class="mb-4">Proposing a new user experience, different from the website</p>
+          <img src="images/Reimagine.png" alt="Redefine Mockup" class="mb-4 mx-auto max-h-80 object-contain">
+          <p class="font-bold mb-2">Design Improvement</p>
+          <ul class="text-sm list-disc list-inside space-y-1">
+            <li>Proposing a new user experience, Different From the website</li>
+            <li>Change the static hero image to hero slider to maximize product advertisement</li>
+            <li>Added Match Fixtures and Calendar features for practicality</li>
+            <li>Added Customizable and attractive Account page to create enjoyable user experience</li>
+          </ul>
+        </div>
+      </div>
+
+        <!-- CARD3 -->
+      <div class="relative h-full">
+        <!-- Floating title -->
+        <div class="absolute -top-4 transform bg-white ml-3 px-3">
+          <h3 class="text-lg font-bold text-rose-500 border-b-4 border-[#FFD036] inline-block">
+            3. REDESIGN
+          </h3>
+        </div>
+
+        <!-- Card box -->
+        <div class="border border-rose-500 rounded-xl p-6 pt-10 flex flex-col h-full">
+          <p class="mb-4">Propose new UI outlook with user accessibility in mind</p>
+          <img src="images/Reimagine.png" alt="Redefine Mockup" class="mb-4 mx-auto max-h-80 object-contain">
+          <p class="font-bold mb-2">Design Improvement</p>
+          <ul class="text-sm list-disc list-inside space-y-1">
+            <li>Propose new user interface outlook with user accesibility in mind</li>
+            <li>Centralized store for buying SFC products through mobile app for safety transaction</li>
+            <li>Added Track Order features with real time delivery tracking</li>
+            <li>Categories button designed at the top to create clear userflow</li>
+          </ul>
+        </div>
+      </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ USER FLOWS ═══ -->
+    <section class="py-16 md:py-24 bg-diagonal">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="fade-up mb-10 text-center">
+          <h2 class="section-label">User <span>Flows</span></h2>
+          <p class="case-body max-w-2xl mx-auto">
+            The flow of the app is relatively unchanged to retain familiarity. However, several features are added to ease the overall workflow of the app.
+          </p>
+        </div>
+        <div class="fade-up" style="transition-delay:0.1s">
+          <img src="images/selangor user flows.png" alt="Selangor App User Flows" class="mockup-float w-full" onerror="this.outerHTML='<div class=\'mockup-float mockup-placeholder img-placeholder w-full\' style=\'height:380px\'>User Flows</div>'" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ DESIGN SYSTEM ═══ -->
+    <section class="py-16 md:py-24">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="fade-up mb-10 text-center">
+          <h2 class="section-label">Design <span>System</span></h2>
+          <p class="case-body max-w-2xl mx-auto">
+            A consistent set of components, colors, and typography built to keep the app cohesive across every screen.
+          </p>
+        </div>
+        <div class="fade-up" style="transition-delay:0.1s">
+          <img src="images/sel ds.png" alt="Selangor App Design System" class="mockup-float w-full" onerror="this.outerHTML='<div class=\'mockup-float mockup-placeholder img-placeholder w-full\' style=\'height:380px\'>Design System</div>'" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ DESIGN COMPARISON ═══ -->
+    <section class="py-16 md:py-24 bg-diagonal">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="fade-up mb-10 text-center">
+          <h2 class="section-label">Design <span>Comparison</span></h2>
+          <p class="case-body max-w-2xl mx-auto">
+            The most important parts — the problem of each page from previous designs, and my proposed design solutions. Only some pages are shown as they have more distinct differences.
+          </p>
+        </div>
+        <div class="fade-up" style="transition-delay:0.1s">
+          <img src="images/sel des diff.png" alt="Selangor App Design Comparison" class="mockup-float w-full" onerror="this.outerHTML='<div class=\'mockup-float mockup-placeholder img-placeholder w-full\' style=\'height:380px\'>Design Comparison</div>'" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ KEY TAKEAWAYS ═══ -->
+    <section class="py-16 md:py-24">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="fade-up mb-10 text-center">
+          <h2 class="section-label">Key <span>Takeaways</span></h2>
+          <p class="case-body max-w-2xl mx-auto mb-3">
+            The development and implementation of Selangor FC mobile app marks a significant stride towards enhancing fan engagement, fostering a sense of community, and expanding the club's digital presence.
+          </p>
+          <p class="case-body max-w-2xl mx-auto">
+            Through this platform, fans can access exclusive content, stay updated on the latest news, purchase tickets conveniently, and interact with fellow supporters, players, and the club management.
+          </p>
+        </div>
+        <div class="fade-up aspect-[16/9] w-full" style="transition-delay:0.1s">
+          <iframe
+            src="https://player.vimeo.com/video/953130094?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+            frameborder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen
+            class="w-full h-full rounded-xl">
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ ALL SCREENS ═══ -->
+    <section class="pb-16 md:pb-20 bg-diagonal">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="fade-up">
+          <img src="images/sel all screen.png" alt="Selangor FC all screens" class="w-full" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ BACK TO TOP ═══ -->
+    <section class="pt-0 pb-16 md:pb-20">
+      <div class="max-w-6xl mx-auto px-6 flex justify-center">
+        <a href="#top" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition hover:shadow-md hover:-translate-y-1 m-0" style="font-family:'Sora',sans-serif; color:#ffffff; background:#a9353e; box-shadow: 0 10px 28px rgba(169,53,62,0.25);">
+          Back to top <i class="bi bi-arrow-up-circle-fill"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ FOOTER ═══ -->
+    <footer style="background:#ffffff; border-top:1px solid rgba(169,53,62,0.14);">
+      <div class="flex items-center justify-between px-6 md:px-[72px] py-4">
+        <p class="text-[10px] md:text-xs" style="color: #1C1C1C;">© 2023 Arieff Hizer // All Rights Reserved</p>
+        <div class="flex gap-2">
+          <a href="https://github.com/arieffhizer" target="_blank" class="flex items-center gap-1 px-3 py-1 rounded-full text-[10px] md:text-xs" style="color: #a9353e; background: rgba(169,53,62,0.06);">
+            <i class="bi bi-github"></i> GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/arieff-hizer-98b412225/" target="_blank" class="flex items-center gap-1 px-3 py-1 rounded-full text-[10px] md:text-xs" style="color: #a9353e; background: rgba(169,53,62,0.06);">
+            <i class="bi bi-linkedin"></i> LinkedIn
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ═══════════════════════════════════════ SCROLL ANIMATION ═══ -->
+    <script>
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            observer.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+      document.querySelectorAll('section:first-of-type .fade-up').forEach((el, i) => {
+        setTimeout(() => el.classList.add('visible'), i * 150);
+      });
+    </script>
 
   </body>
 </html>

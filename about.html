@@ -1,517 +1,649 @@
 <!DOCTYPE html>
-<html class="scroll-smooth" lang="en">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Arieff Hizer Portfolio</title>
+    <title>AI Claude Test</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="theme.css">
     <link rel="shortcut icon" type="image/png" href="images/favicon.png">
   </head>
-  <body class="bg-white text-gray-900 font-open sauce two">
+  <body class="bg-black text-white overflow-x-hidden">
 
-
-
-    <div class="border-b-2 w-full sticky top-0 z-50 relative">
-  <div id="nav-blur" class="relative" style="-webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); background: rgba(255,255,255,0.1);">
-    <header class="flex justify-between items-center p-4 max-w-6xl mx-auto">
-      
-      <!-- Logo + Name as Home Button -->
-      <a href="index.html" class="flex items-center bg-gray-100 px-4 py-1 rounded-full shadow gap-2 hover:shadow-md transition">
-        <img src="images/logo arieff h 3.png" alt="Logo" class="w-6 h-6 rounded-full shadow" />
-        <span class="text-lg font-semibold text-gray-800">Arieff H.</span>
-      </a>
-
-      <!-- Desktop Nav -->
-      <div class="flex max-md:hidden items-center gap-4">
-        <a
-          href="about.html"
-          class="flex items-center gap-2 px-4 py-1 border border-gray-300 rounded-full bg-white text-gray-700 hover:shadow transition text-sm"
-        >
-          <i class="bi bi-person-fill text-base"></i>
-          About Me
+    <!-- ===================== NAV ===================== -->
+    <div id="hero-nav" class="fixed top-0 left-0 z-50 w-full">
+      <header class="flex justify-between items-center px-6 md:px-[72px] h-[72px] bg-black">
+        <a href="index.html" class="flex items-center bg-black/80 pl-2 pr-4 py-2 rounded-full gap-2">
+          <img src="images/logo arieff h 3.png" alt="Logo" class="w-8 h-8 rounded-full shrink-0" />
+          <span class="text-lg font-bold text-white whitespace-nowrap">Arieff H.</span>
         </a>
 
-        <a
-          href="index.html#projects"
-          class="flex items-center gap-2 px-4 py-1 border border-gray-300 rounded-full bg-white text-gray-700 hover:shadow transition text-sm"
-        >
-          <i class="bi bi-folder-fill text-base"></i>
-          Projects
+        <div class="hidden md:flex items-center gap-3">
+          <a href="index.html#about" class="nav-pill"><i class="bi bi-person-fill"></i> About Me</a>
+          <a href="index.html#work" class="nav-pill"><i class="bi bi-folder-fill"></i> Work Projects</a>
+          <a href="index.html#gallery" class="nav-pill"><i class="bi bi-image-fill"></i> Gallery</a>
+          <a href="index.html#personal" class="nav-pill"><i class="bi bi-briefcase-fill"></i> Personal Projects</a>
+          <button type="button" data-goto="cta" class="say-hi-btn flex items-center gap-2 bg-[#7b5cfa] hover:bg-[#6a4ce8] text-white px-4 py-2 rounded-full text-sm font-semibold transition">
+            Say Hi <i class="bi bi-emoji-smile-fill"></i>
+          </button>
+        </div>
+
+        <button id="menu-btn" class="md:hidden text-2xl text-white">
+          <i class="bi bi-list"></i>
+        </button>
+      </header>
+
+      <div id="mobile-menu" class="hidden flex-col gap-2 p-4 md:hidden bg-black/95 border-t border-white/10">
+        <a href="index.html#about" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#1f1f1f] text-white text-sm">
+          <i class="bi bi-person-fill"></i> About Me
         </a>
-
-        <a
-          href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
-          target="_blank"
-          rel="noopener"
-          class="flex items-center gap-2 bg-violet-600 hover:bg-violet-700 text-white px-4 py-2 rounded-full text-sm"
-        >
-          Say Hi <i class="bi bi-emoji-smile-fill"></i>
+        <a href="index.html#work" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#1f1f1f] text-white text-sm">
+          <i class="bi bi-folder-fill"></i> Work Projects
         </a>
-      </div>
-
-      <!-- Mobile Hamburger -->
-      <button id="menu-btn" class="md:hidden text-2xl text-violet-800">
-        <i class="bi bi-list"></i>
-      </button>
-    </header>
-
-    <!-- Mobile Dropdown -->
-    <div id="mobile-menu" class="border-b-2 hidden flex-col gap-2 p-4 md:hidden absolute top-full left-0 w-full"
-         style="background: rgba(255,255,255,0.95);">
-      <a
-        href="about.html"
-        class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-700 hover:shadow transition text-sm mb-2"
-      >
-        <i class="bi bi-person-fill"></i> About Me
-      </a>
-
-      <a
-        href="index.html#projects"
-        class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-700 hover:shadow transition text-sm mb-2"
-      >
-        <i class="bi bi-folder-fill"></i> Projects
-      </a>
-
-      <a
-        href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
-        target="_blank"
-        rel="noopener"
-        class="flex items-center gap-2 bg-violet-600 hover:bg-violet-700 text-white px-4 py-2 rounded-lg text-sm"
-      >
-        <i class="bi bi-emoji-smile-fill"></i> Say Hi
-      </a>
-    </div>
-  </div>
-</div>
-
-<!-- Script to toggle menu -->
-<script>
-  const menuBtn = document.getElementById("menu-btn");
-  const mobileMenu = document.getElementById("mobile-menu");
-  const navBlur = document.getElementById("nav-blur");
-  
-  menuBtn.addEventListener("click", () => {
-    mobileMenu.classList.toggle("hidden");
-
-    if (mobileMenu.classList.contains("hidden")) {
-      navBlur.style.background = "rgba(255,255,255,0.1)";
-    } else {
-      navBlur.style.background = "rgba(255,255,255,0.95)";
-    }
-  });
-</script>
-
-<div class="px-8 md:px-0">
-  <!-- Profile Section -->
-  <section class="mt-36 px-4 max-w-6xl mx-auto flex flex-col md:flex-row items-center text-center gap-14">
-
-    <!-- Image on the left -->
-    <div class="flex-shrink-0">
-      <img src="images/me.jpeg" alt="Arieff Hizer" class="w-96 h-96 rounded-full shadow-md object-cover" />
-    </div>
-
-    <!-- Introduction on the right -->
-    <div class="flex-1">
-      <!-- Animated Greeting -->
-      <p class="inline-flex items-center border border-gray-300 px-4 py-1 rounded-full bg-white text-gray-700 text-sm h-[2rem]">
-        <i class="text-gray-500 text-center"></i>
-        <span id="greeting" class="transition-opacity duration-700 opacity-100">Hello!</span>
-      </p>
-
-      <!-- Name and Role -->
-      <h1 class="text-5xl font-bold mt-2 leading-tight h-32 md:h-28">
-    <div>
-      <span id="typed-before" class="inline"></span>
-      <span id="typed-name" class="inline text-violet-600"></span>
-      <span id="cursor-line1" class="blinking-cursor -ml-4">|</span>
-    </div>
-    <div>
-      <span id="typed-after" class="inline"></span>
-      <span id="cursor-line2" class="blinking-cursor hidden -ml-4">|</span>
-    </div>
-  </h1>
-
-      <!-- Description -->
-      <p class="mt-12 text-gray-600">
-        With a background in architecture and a keen eye for detail, I bring a unique perspective & diverse set of skills to UI/UX. I’m a fast learner, curious by nature, and always exploring ways to solve problems.
-      </p>
-      <p class="mt-4 text-gray-600">
-        I constantly strive to improve both my skills and the outcomes of my work. In addition, I also have basic knowledge of HTML and CSS. Proof? Well, you’re literally looking at it.
-      </p>
-    </div>
-  </section>
-
-  <!-- Experience Section -->
-  <section id="experience" class="mt-24 max-w-6xl mx-auto">
-    <h2 class="text-2xl font-semibold mb-28 max-md:mb-8 text-center">Experiences</h2>
-
-    <!-- Mobile View: Image only -->
-    <div class="md:hidden flex justify-center">
-      <img src="images/experience.png" alt="Experiences Timeline" class="w-full max-w-sm" />
-    </div>
-
-    <!-- Desktop View: Timeline -->
-  <div class="max-md:hidden relative w-full h-[36px]">
-      <!-- Timeline Line -->
-      <div class="absolute -top-3 w-full h-1 bg-gray-200 transform -translate-y-1/2"></div>
-
-      <!-- Top Items -->
-      <div class="absolute left-0 w-1/5 text-center top-[-4.5rem]">
-        <p class="text-sm text-gray-500">Dec 2021 - Aug 2022</p>
-        <p class="font-semibold">Sabirin Rosli Arkitek</p>
-        <div class="w-4 h-4 bg-gray-600 rounded-full mx-auto mt-2 border-2 border-white" style="top: 3.25rem;"></div>
-      </div>
-
-      <div class="hidden absolute left-[20%] w-1/5 text-center top-[-4.7rem]">
-        <img src="images/sno.png" class="h-12 align-middle mx-auto py-3">
-        <div class="w-4 h-4 bg-gray-600 rounded-full mx-auto mt-2 border-2 border-white" style="top: 3.25rem;"></div>
-      </div>
-
-      <div class="absolute left-[40%] w-1/5 text-center top-[-4.7rem]">
-        <p class="text-sm text-gray-500">Sep 2024 - Present</p>
-        <p class="font-semibold text-violet-600">Upstack Studio</p>
-        <div class="w-6 h-6 bg-purple-600 rounded-full mx-auto mt-2 border-2 border-white" style="top: 1rem;"></div>
-      </div>
-
-      <div class="absolute left-[80%] w-1/5 text-center top-[-4.5rem]">
-        <p class="text-sm text-gray-500">Future</p>
-        <p class="font-semibold text-purple-400">Or even you!</p>
-        <div class="w-4 h-4 bg-purple-400 rounded-full mx-auto mt-2 border-2 border-white" style="top: 3.25rem;"></div>
-      </div>
-
-      <!-- Bottom Items -->
-      <div class="absolute left-[20%] w-1/5 text-center top-[-1.2rem]">
-        <div class="w-4 h-4 bg-gray-600 rounded-full mx-auto mb-2 border-2 border-white" style="bottom: 3.25rem;"></div>
-        <p class="text-sm text-gray-500">Sep 2022 - Aug 2024</p>
-        <p class="font-semibold">SNO Architects</p>
-      </div>
-
-      <div class="absolute left-[60%] w-1/5 text-center top-[-1.2rem]">
-        <div class="w-4 h-4 bg-purple-400 rounded-full mx-auto mb-2 border-2 border-white" style="bottom: 3.25rem;"></div>
-        <p class="text-sm text-gray-500">Future</p>
-        <p class="font-semibold text-purple-400">It might be you!</p>
-      </div>
-
-      <div class="hidden absolute left-[0%] w-1/5 text-center top-[-1.2rem]">
-        <div class="w-4 h-4 bg-gray-600 rounded-full mx-auto mb-2 border-2 border-white" style="bottom: 3.25rem;"></div>
-        <img src="images/sra 2.png" class="h-14 align-middle mx-auto py-2">
-      </div>
-
-      <div class="absolute left-[40%] w-1/5 text-center top-[-1.4rem]">
-        <div class="w-4 h-4 bg-purple-600 rounded-full mx-auto mb-2" style="bottom: 3.25rem;"></div>
-        <img src="images/us.png" class="h-14 align-middle mx-auto py-3">
-      </div>
-
-      <!-- I'm here badge -->
-      <div class="absolute left-[50%] transform -translate-x-1/2 -top-[2.6rem] translate-y-[1rem] z-10">
-        <span class="inline-block px-3 py-1 text-sm text-white bg-violet-600 rounded-full">
-          I'm here
-        </span>
+        <a href="index.html#gallery" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#1f1f1f] text-white text-sm">
+          <i class="bi bi-image-fill"></i> Gallery
+        </a>
+        <a href="index.html#personal" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#1f1f1f] text-white text-sm">
+          <i class="bi bi-briefcase-fill"></i> Personal Projects
+        </a>
+        <button type="button" data-goto="cta" class="say-hi-btn flex items-center gap-2 bg-[#7b5cfa] text-white px-4 py-2 rounded-lg text-sm font-semibold text-left">
+          <i class="bi bi-emoji-smile-fill"></i> Say Hi
+        </button>
       </div>
     </div>
-  </section>
 
-      <!-- About Me Section -->
-      <section class="mt-24 px-4 max-w-6xl mx-auto">
-        <h2 class="text-2xl font-semibold mb-6 text-center">About Me</h2>
-        <p class="text-gray-700 mb-4 text-center">
-          I’m a bit of a cliché — in the best way. I’m into a lot of the same things as most people, which helps me connect easily with others. I’m naturally tuned in to what people are thinking or feeling, even without a conversation. That awareness helps me read the room, spot patterns, and design experiences that make sense to real users.
-        </p>
-        <p class="text-gray-700 mb-4 text-center">
-          Outside of design, I’m into sports like badminton and football — and I’m always up for trying something new, like wall climbing or cricket. When I’m not being active, I enjoy gaming (Valorant and Mobile Legends are my go-tos). I’m also a car enthusiast with a soft spot for old JDMs, and a bit of a tech geek who loves discovering new gadgets. You might also find me in the kitchen cooking or baking.
-        </p>
-        <p class="text-gray-700 text-center">
-          Need an extra player, a gaming buddy, or my Crème Brûlée recipe? Just reach out :)
-        </p>
-      </section>
+    <!-- ===================== HORIZONTAL SCROLL WRAPPER ===================== -->
+    <div id="hz-wrapper" class="hz-wrapper">
+      <div id="hz-panels" class="hz-panels">
 
-  <section class="mt-20 px-4 max-w-6xl mx-auto">
-    <h2 class="text-2xl font-semibold mb-6 text-center">Courses & Certificates</h2>
-    <div id="cert-list">
+        <!-- ============ 1. HERO / INTRO ============ -->
+        <section class="hz-panel bg-black flex flex-col" data-panel="hero">
+          <div class="deco-grunge opacity-30" style="background-image:url('images/deco-grunge-hero.png');"></div>
+          <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,0) 12%, rgba(0,0,0,0) 82%, rgba(0,0,0,.35) 100%);"></div>
 
-      <!-- Certificate Item 1 -->
-      <div class="py-4 border-b border-gray-300 group cursor-pointer" onclick="toggleActive(this)">
-        <div class="flex justify-between items-center">
-          <div>
-            <p class="font-medium">HTML & CSS Full Course</p>
-            <p class="text-sm text-gray-500">Supersimple.dev</p>
+          <div class="hero-content-row relative z-10 flex-1 min-h-0 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 px-6 md:px-[72px]">
+            <div class="shrink-0 relative" style="--photo-size:clamp(180px, 38.5vh, 420px);">
+              <img src="images/metallic hand.png" alt="" class="hero-hand-img pointer-events-none select-none absolute z-0" style="width:calc(var(--photo-size) * 1.6 + 180px); max-width:none; height:auto; left:calc(var(--photo-size) * -0.54 - 100px); top:calc(var(--photo-size) * -0.14 + 48px);" />
+              <div class="hero-hand-grunge pointer-events-none select-none absolute opacity-30" style="width:calc(var(--photo-size) * 1.6 + 180px); left:calc(var(--photo-size) * -0.54 - 100px); top:calc(var(--photo-size) * -0.14 + 48px); height:calc((var(--photo-size) * 1.6 + 180px) * 0.6635); z-index:5; background-image:url('images/deco-grunge-hero.png'); background-repeat:repeat; background-size:45%; mix-blend-mode:hard-light;"></div>
+              <img src="images/me.jpeg" alt="Arieff Hizer" class="hero-photo rounded-full object-cover relative z-10" style="width:var(--photo-size); height:var(--photo-size); border: 6px solid #7b5cfa;" />
+            </div>
+            <div class="hero-text-col flex-1 text-center md:text-left max-w-xl">
+              <span id="greeting" class="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-white transition-opacity duration-500" style="font-size:clamp(0.8rem, 1.6vh, 0.95rem); background:#7b5cfa;">Hello!</span>
+              <h1 class="hero-title font-display font-medium text-white mt-3 leading-tight" style="font-size:clamp(1.7rem, 6.2vh, 3.4rem); min-height:clamp(4.6rem, 13.5vh, 7.8rem);">
+                <div><span id="typed-before"></span><span id="typed-name" class="text-[#7b5cfa]"></span><span id="cursor-line1" class="blinking-cursor">|</span></div>
+                <div><span id="typed-after"></span><span id="cursor-line2" class="blinking-cursor cursor-hidden">|</span></div>
+              </h1>
+              <p class="hero-desc text-[#c3c6cc] leading-relaxed mt-4" style="font-size:clamp(0.85rem, 2vh, 1.1rem);">
+                With a background in architecture and a keen eye for detail, I bring a unique perspective &amp; diverse set of skills to UI/UX. I'm a fast learner, curious by nature, and always exploring ways to solve problems. I also have basic knowledge of HTML and CSS — proof? You're literally looking at it.
+              </p>
+            </div>
           </div>
-          <div>
-            <i class="bi bi-chevron-down text-xl text-gray-600 group-[.active]:hidden"></i>
-            <i class="bi bi-chevron-up text-xl text-gray-600 hidden group-[.active]:inline"></i>
+
+          <div class="hero-footer relative z-10 flex items-center justify-between px-6 md:px-[72px] py-5">
+            <p class="footer-copyright text-xs md:text-sm text-white/90">© 2023 Arieff Hizer // All Rights Reserved</p>
+            <div class="flex gap-2">
+              <a href="https://github.com/arieffhizer" target="_blank" class="nav-pill"><i class="bi bi-github"></i> GitHub</a>
+              <a href="https://www.linkedin.com/in/arieff-hizer-98b412225/" target="_blank" class="nav-pill"><i class="bi bi-linkedin"></i> LinkedIn</a>
+            </div>
           </div>
-        </div>
-        <div class="cert-content max-h-0 opacity-0 overflow-hidden transition-all duration-500 ease-in-out group-[.active]:max-h-[500px] group-[.active]:opacity-100 mt-4">
-          <img src="images/imagescert-html-css.jpg" alt="HTML CSS Certificate" class="w-full max-w-md mx-auto" />
-        </div>
-      </div>
-
-      <!-- Certificate Item 2 -->
-      <div class="py-4 border-b border-gray-300 group cursor-pointer" onclick="toggleActive(this)">
-        <div class="flex justify-between items-center">
-          <div>
-            <p class="font-medium">Google UX Design Professional Certificate</p>
-            <p class="text-sm text-gray-500">Coursera | Google</p>
-          </div>
-          <div>
-            <i class="bi bi-chevron-down text-xl text-gray-600 group-[.active]:hidden"></i>
-            <i class="bi bi-chevron-up text-xl text-gray-600 hidden group-[.active]:inline"></i>
-          </div>
-        </div>
-        <div class="cert-content max-h-0 opacity-0 overflow-hidden transition-all duration-500 ease-in-out group-[.active]:max-h-[500px] group-[.active]:opacity-100 mt-4">
-          <img src="images/imagescert-google-ux.jpg" alt="Google UX Certificate" class="w-full max-w-md mx-auto" />
-        </div>
-      </div>
-
-      <!-- Certificate Item 3 (No Border Bottom) -->
-      <div class="py-4 group cursor-pointer" onclick="toggleActive(this)">
-        <div class="flex justify-between items-center">
-          <div>
-            <p class="font-medium">Bachelor of Science in Architectural Studies</p>
-            <p class="text-sm text-gray-500">International Islamic University Malaysia</p>
-          </div>
-          <div>
-            <i class="bi bi-chevron-down text-xl text-gray-600 group-[.active]:hidden"></i>
-            <i class="bi bi-chevron-up text-xl text-gray-600 hidden group-[.active]:inline"></i>
-          </div>
-        </div>
-        <div class="cert-content max-h-0 opacity-0 overflow-hidden transition-all duration-500 ease-in-out group-[.active]:max-h-[800px] group-[.active]:opacity-100 mt-4">
-          <img src="images/imagescert-architecture.jpg" alt="Transcript" class="w-full max-w-md mx-auto" />
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <script>
-    function toggleActive(el) {
-      const allItems = document.querySelectorAll('#cert-list > div');
-      const isActive = el.classList.contains('active');
-
-      // Remove active class from all
-      allItems.forEach(item => item.classList.remove('active'));
-
-      // Add active only if it wasn't already active
-      if (!isActive) {
-        el.classList.add('active');
-      }
-    }
-  </script>
-
-  <script>
-    const greetings = [
-      "Hello!",
-      "Selamat!",
-      "大家好!",
-      "வணக்கம்!",
-      "Hola!",
-      "Bonjour!",
-      "Здравствуйте!",
-      "Ciao!",
-      "Hallo!",
-      "مرحبا!",
-      "こんにちは!",
-      "안녕하세요!",
-    ];
-
-    let current = 0;
-    const greetingEl = document.getElementById("greeting");
-
-    setInterval(() => {
-      greetingEl.classList.add("opacity-0");
-
-      setTimeout(() => {
-        current = (current + 1) % greetings.length;
-        greetingEl.textContent = greetings[current];
-        greetingEl.classList.remove("opacity-0");
-      }, 500);
-    }, 5445);
-  </script>
-
-  <section class="mt-12 px-4 max-w-4xl mx-auto text-center">
-          <h3 class="text-2xl font-semibold text-center mb-10">Like what you see?</h3>
-          <h2 class="text-5xl font-bold leading-tight mb-6">Let’s work together!</h2>
-          <p class="text-lg mb-8 text-gray-600 max-w-lg mx-auto">
-            I'm always looking for new opportunities and ready to face design challenges. Drop your messages!
-          </p>
-        
-          <!-- Button group -->
-          <div class="flex items-center justify-center gap-4 max-w-md mx-auto">
-            <a
-              href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
-              target="_blank"
-              rel="noopener"
-              class="flex-1 inline-flex items-center justify-center gap-2 bg-violet-600 hover:bg-violet-700 text-white px-6 py-3 rounded-full font-medium transition duration-300"
-            >
-              Let’s chat <i class="bi bi-chat-square-dots-fill"></i>
-            </a>
-        
-            <!-- Back to top button -->
-            <a
-              href="#top"
-              aria-label="Back to top"
-              class="w-12 h-12 flex items-center justify-center border border-gray-300 rounded-full bg-white text-gray-500 hover:shadow transition"
-            >
-              <i class="bi bi-arrow-up text-xl"></i>
-            </a>
-          </div>
-        
-          <!-- Attribution -->
-          <p class="mt-10 text-[8px] text-gray-500 max-w-xl mx-auto">
-            Designed using Atomize DS // Icons from BootstrapIcon // Font set in Open Sauce Two<br />
-            Coded in Visual Studio Code // Built using Tailwind CSS // Deployed on Github
-          </p>
         </section>
-</div>
 
-      <footer class="mt-10 text-[10px] text-gray-500 border-t-2">
-        <div class="flex justify-between items-center p-4 max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
-          <p>© 2023 Arieff Hizer // All Rights Reserved</p>
-      
-          <div class="flex gap-2">
-            <!-- GitHub Button -->
-            <a
-              href="https://github.com/arieffhizer"
-              target="_blank"
-              class="flex items-center gap-2 px-4 py-1 border border-gray-300 rounded-full bg-white text-gray-700 hover:shadow transition"
-            >
-              <i class="bi bi-github text-xs"></i>
-              GitHub
-            </a>
-      
-            <!-- LinkedIn Button -->
-            <a
-              href="https://www.linkedin.com/in/arieff-hizer-98b412225/"
-              target="_blank"
-              class="flex items-center gap-2 px-4 py-1 border border-gray-300 rounded-full bg-white text-gray-700 hover:shadow transition"
-            >
-              <i class="bi bi-linkedin text-xs"></i>
-              LinkedIn
-            </a>
-      
-            <!-- Instagram Button -->
-            <a
-              href="https://www.instagram.com/rffhzr"
-              target="_blank"
-              class="flex items-center gap-2 px-4 py-1 border border-gray-300 rounded-full bg-white text-gray-700 hover:shadow transition"
-            >
-              <i class="bi bi-instagram text-xs"></i>
-              Instagram
-            </a>
+        <!-- ============ 2. ABOUT ME + EXPERIENCES ============ -->
+        <section class="hz-panel bg-[#7b5cfa] flex flex-col" data-panel="about">
+          <img src="images/deco-swirl-bg.png" class="deco-swirl" alt="" />
+          <div class="deco-grunge opacity-50" style="background-image:url('images/deco-grunge-about.png');"></div>
+          <img src="images/metallic heart.png" alt="" class="about-heart pointer-events-none select-none absolute z-0" style="left:50%; top:50%; width:clamp(644px, calc(32vh + 384px), 824px); max-width:none; height:auto; transform:translate(-50%, -50%); opacity:0.85;" />
+
+          <div class="about-text-block relative z-10 flex-1 min-h-0 flex flex-col items-center justify-center gap-[clamp(1.5rem,4vh,2.5rem)] lg:gap-2 px-6 md:px-[72px] text-center">
+            <h2 class="about-heading font-display font-medium text-white" style="font-size:clamp(1.6rem, 6.5vh, 3rem);">More about me</h2>
+            <p class="text-white leading-snug max-w-3xl lg:max-w-[1120px]" style="font-size:clamp(0.8rem, 2.1vh, 1.1rem);">
+              I'm a bit of a cliché, in the best way. I'm into a lot of the same things as most people, which helps me connect easily with others. I'm naturally tuned in to what people are thinking or feeling, even without a conversation. That awareness helps me read the room, spot patterns, and design experiences that make sense to real users.
+            </p>
+            <p class="text-white leading-snug max-w-3xl lg:max-w-[1120px]" style="font-size:clamp(0.8rem, 2.1vh, 1.1rem);">
+              Outside of design, I'm into sports like badminton and football, and I'm always up for trying something new, like wall climbing or cricket. When I'm not being active, I enjoy gaming (Valorant and Mobile Legends are my go-tos). I'm also a car enthusiast with a soft spot for old JDMs, and a bit of a tech geek who loves discovering new gadgets. You might also find me in the kitchen cooking or baking.
+            </p>
+            <p class="text-white leading-snug max-w-3xl lg:max-w-[1120px]" style="font-size:clamp(0.8rem, 2.1vh, 1.1rem);">
+              Need an extra player, a gaming buddy, or my Crème Brûlée recipe? Just reach out :)
+            </p>
           </div>
-        </div>
-      </footer>
 
-    <style>
-  .blinking-cursor {
-    display: inline-block;
-    font-family: monospace;
-    width: 1ch;
-    animation: blink 1s step-start infinite;
-    color: #9333ea;
-  }
+          <div class="experiences-block relative z-10 flex-1 min-h-0 flex flex-col justify-center px-6 md:px-[72px] pb-6 md:pb-10">
+            <h3 class="font-display font-medium text-white text-center" style="font-size:clamp(1.1rem, 4.2vh, 1.9rem);">Experiences</h3>
 
-  @keyframes blink {
-    50% { opacity: 0; }
-  }
+            <!-- Desktop: single line edge-to-edge, dots pinned exactly on it, labels alternating above/below -->
+            <div class="timeline-desktop relative" style="width:100vw; margin-left:calc(50% - 50vw); margin-top:0.5rem; height:clamp(120px, 20vh, 180px);">
+              <div class="absolute top-1/2 left-0 w-full h-px bg-white/30 -translate-y-1/2"></div>
 
-  .hidden {
-    visibility: hidden;
-  }
-</style>
+              <!-- Sabirin Rosli Arkitek — top -->
+              <div class="absolute top-1/2 left-[8%] w-3 h-3 bg-white/60 rounded-full border-2 border-[#7b5cfa] -translate-x-1/2 -translate-y-1/2"></div>
+              <div class="absolute left-[8%] text-center -translate-x-1/2" style="bottom:calc(50% + 18px);">
+                <p class="text-white/70" style="font-size:clamp(0.6rem, 1.3vh, 0.75rem);">Dec 2021 – Aug 2022</p>
+                <p class="text-white font-semibold whitespace-nowrap" style="font-size:clamp(0.7rem, 1.7vh, 0.95rem);">Sabirin Rosli Arkitek</p>
+              </div>
 
-<script>
-const typedBefore = document.getElementById("typed-before");
-const typedName = document.getElementById("typed-name");
-const typedAfter = document.getElementById("typed-after");
-const cursor1 = document.getElementById("cursor-line1");
-const cursor2 = document.getElementById("cursor-line2");
+              <!-- SNO Architects — bottom -->
+              <div class="absolute top-1/2 left-[25%] w-3 h-3 bg-white/60 rounded-full border-2 border-[#7b5cfa] -translate-x-1/2 -translate-y-1/2"></div>
+              <div class="absolute left-[25%] text-center -translate-x-1/2" style="top:calc(50% + 18px);">
+                <p class="text-white/70" style="font-size:clamp(0.6rem, 1.3vh, 0.75rem);">Sep 2022 – Aug 2024</p>
+                <p class="text-white font-semibold whitespace-nowrap" style="font-size:clamp(0.7rem, 1.7vh, 0.95rem);">SNO Architects</p>
+              </div>
 
-const phrases = [
-  { intro: "I’m", name: "Arieff,", job: "UI/UX Designer" },
-  { intro: "Saya", name: "Arieff,", job: "Pereka bentuk UI/UX" },
-  { intro: "我是", name: "Arieff,", job: "用户界面/用户体验设计师" },
-  { intro: "நான்", name: "Arieff,", job: "UI/UX வடிவமைப்பாளர்" },
-  { intro: "Soy", name: "Arieff,", job: "Diseñador UI/UX" },
-  { intro: "Je suis", name: "Arieff,", job: "Designer UI/UX" },
-  { intro: "Я", name: "Arieff,", job: "дизайнер UI/UX" },
-  { intro: "Sono", name: "Arieff,", job: "Designer UI/UX" },
-  { intro: "Ich bin", name: "Arieff,", job: "UI/UX-Designer" },
-  { intro: "أنا", name: "عريف,", job: "UI/UX مهندس ديكور" },
-  { intro: "私は", name: "Arieff,", job: "UI/UXデザイナーです" },
-  { intro: "나는", name: "Arieff,", job: "UI/UX 디자이너야" },
-];
+              <!-- Upstack Studio — top -->
+              <div class="absolute top-1/2 left-[42%] w-3 h-3 bg-white/60 rounded-full border-2 border-[#7b5cfa] -translate-x-1/2 -translate-y-1/2"></div>
+              <div class="absolute left-[42%] text-center -translate-x-1/2" style="bottom:calc(50% + 18px);">
+                <p class="text-white/70" style="font-size:clamp(0.6rem, 1.3vh, 0.75rem);">Sep 2024 – Apr 2026</p>
+                <p class="text-white font-semibold whitespace-nowrap" style="font-size:clamp(0.7rem, 1.7vh, 0.95rem);">Upstack Studio</p>
+              </div>
 
-let phraseIndex = 0;
-let letterIndex = 0;
-let isDeleting = false;
+              <!-- Appetiser Apps — bottom, current -->
+              <div class="absolute top-1/2 left-[58%] w-4 h-4 bg-white rounded-full border-2 border-[#7b5cfa] -translate-x-1/2 -translate-y-1/2 z-10"></div>
+              <div class="absolute left-[58%] text-center -translate-x-1/2" style="top:calc(50% + 18px);">
+                <p class="text-white/70" style="font-size:clamp(0.6rem, 1.3vh, 0.75rem);">Apr 2026 – Present</p>
+                <p class="text-white font-bold whitespace-nowrap" style="font-size:clamp(0.7rem, 1.7vh, 0.95rem);">Appetiser Apps</p>
+              </div>
+              <div class="absolute left-[58%] -translate-x-1/2 z-10" style="bottom:calc(50% + 18px);">
+                <span class="inline-block px-3 py-1 text-white bg-black/40 border border-white/40 rounded-full whitespace-nowrap" style="font-size:clamp(0.65rem, 1.5vh, 0.85rem);">I'm here</span>
+              </div>
 
-function type() {
-  const { intro, name, job } = phrases[phraseIndex];
-  const fullIntro = intro + name;
-  const totalIntroLen = fullIntro.length;
-  const totalJobLen = job.length;
-  const totalLength = totalIntroLen + totalJobLen;
+              <!-- It might be you! — top -->
+              <div class="absolute top-1/2 left-[75%] w-3 h-3 bg-white/40 rounded-full border-2 border-[#7b5cfa] -translate-x-1/2 -translate-y-1/2"></div>
+              <div class="absolute left-[75%] text-center -translate-x-1/2" style="bottom:calc(50% + 18px);">
+                <p class="text-white/70" style="font-size:clamp(0.6rem, 1.3vh, 0.75rem);">Future</p>
+                <p class="text-white/80 font-semibold whitespace-nowrap" style="font-size:clamp(0.7rem, 1.7vh, 0.95rem);">It might be you!</p>
+              </div>
 
-  // Update typing
-  if (!isDeleting) {
-    if (letterIndex <= totalIntroLen) {
-      typedBefore.textContent = fullIntro.substring(0, Math.min(letterIndex, intro.length));
-      typedName.textContent = letterIndex > intro.length ? name.substring(0, letterIndex - intro.length) : '';
-      typedAfter.textContent = "";
-      showCursor("line1");
-    } else {
-      typedBefore.textContent = intro;
-      typedName.textContent = name;
-      typedAfter.textContent = job.substring(0, letterIndex - totalIntroLen);
-      showCursor("line2");
-    }
-    letterIndex++;
-  } else {
-    if (letterIndex > totalIntroLen) {
-      typedAfter.textContent = job.substring(0, letterIndex - totalIntroLen);
-      showCursor("line2");
-    } else {
-      typedBefore.textContent = fullIntro.substring(0, Math.min(letterIndex, intro.length));
-      typedName.textContent = letterIndex > intro.length ? name.substring(0, letterIndex - intro.length) : '';
-      typedAfter.textContent = "";
-      showCursor("line1");
-    }
-    letterIndex--;
-  }
+              <!-- Or even you! — bottom -->
+              <div class="absolute top-1/2 left-[92%] w-3 h-3 bg-white/40 rounded-full border-2 border-[#7b5cfa] -translate-x-1/2 -translate-y-1/2"></div>
+              <div class="absolute left-[92%] text-center -translate-x-1/2" style="top:calc(50% + 18px);">
+                <p class="text-white/70" style="font-size:clamp(0.6rem, 1.3vh, 0.75rem);">Future</p>
+                <p class="text-white/80 font-semibold whitespace-nowrap" style="font-size:clamp(0.7rem, 1.7vh, 0.95rem);">Or even you!</p>
+              </div>
+            </div>
 
-  // Pause before deleting
-  if (!isDeleting && letterIndex === totalLength + 1) {
-    isDeleting = true;
-    setTimeout(type, 1500);
-    return;
-  }
+            <!-- Mobile: vertical zigzag, line down the middle, dots on the line, labels alternating left/right -->
+            <div class="timeline-mobile relative mx-auto w-full" style="max-width:380px; margin-top:clamp(1.5rem, 4vh, 2.5rem);">
+              <div class="absolute left-1/2 top-0 bottom-0 w-px bg-white/30 -translate-x-1/2"></div>
+              <div class="relative flex flex-col" style="gap:clamp(1.3rem, 4vh, 2.2rem);">
 
-  // Move to next phrase
-  if (isDeleting && letterIndex === 0) {
-    isDeleting = false;
-    phraseIndex = (phraseIndex + 1) % phrases.length;
-  }
+                <div class="relative flex items-center">
+                  <div class="w-1/2 pr-4 text-right">
+                    <p class="text-white/70 text-xs">Dec 2021 – Aug 2022</p>
+                    <p class="text-white font-semibold text-sm">Sabirin Rosli Arkitek</p>
+                  </div>
+                  <div class="absolute left-1/2 -translate-x-1/2 w-3 h-3 bg-white/60 rounded-full border-2 border-[#7b5cfa]"></div>
+                  <div class="w-1/2"></div>
+                </div>
 
-  setTimeout(type, isDeleting ? 40 : 100);
-}
+                <div class="relative flex items-center">
+                  <div class="w-1/2"></div>
+                  <div class="absolute left-1/2 -translate-x-1/2 w-3 h-3 bg-white/60 rounded-full border-2 border-[#7b5cfa]"></div>
+                  <div class="w-1/2 pl-4 text-left">
+                    <p class="text-white/70 text-xs">Sep 2022 – Aug 2024</p>
+                    <p class="text-white font-semibold text-sm">SNO Architects</p>
+                  </div>
+                </div>
 
-function showCursor(line) {
-  if (line === "line1") {
-    cursor1.classList.remove("hidden");
-    cursor2.classList.add("hidden");
-  } else {
-    cursor1.classList.add("hidden");
-    cursor2.classList.remove("hidden");
-  }
-}
+                <div class="relative flex items-center">
+                  <div class="w-1/2 pr-4 text-right">
+                    <p class="text-white/70 text-xs">Sep 2024 – Apr 2026</p>
+                    <p class="text-white font-semibold text-sm">Upstack Studio</p>
+                  </div>
+                  <div class="absolute left-1/2 -translate-x-1/2 w-3 h-3 bg-white/60 rounded-full border-2 border-[#7b5cfa]"></div>
+                  <div class="w-1/2"></div>
+                </div>
 
-document.addEventListener("DOMContentLoaded", type);
-</script>
+                <div class="relative flex items-center">
+                  <div class="w-1/2 pr-4 flex justify-end">
+                    <span class="inline-block px-2.5 py-1 text-white bg-black/40 border border-white/40 rounded-full text-xs whitespace-nowrap">I'm here</span>
+                  </div>
+                  <div class="absolute left-1/2 -translate-x-1/2 w-4 h-4 bg-white rounded-full border-2 border-[#7b5cfa] z-10"></div>
+                  <div class="w-1/2 pl-4 text-left">
+                    <p class="text-white/70 text-xs">Apr 2026 – Present</p>
+                    <p class="text-white font-bold text-sm">Appetiser Apps</p>
+                  </div>
+                </div>
 
+                <div class="relative flex items-center">
+                  <div class="w-1/2 pr-4 text-right">
+                    <p class="text-white/70 text-xs">Future</p>
+                    <p class="text-white/80 font-semibold text-sm">It might be you!</p>
+                  </div>
+                  <div class="absolute left-1/2 -translate-x-1/2 w-3 h-3 bg-white/40 rounded-full border-2 border-[#7b5cfa]"></div>
+                  <div class="w-1/2"></div>
+                </div>
 
+                <div class="relative flex items-center">
+                  <div class="w-1/2"></div>
+                  <div class="absolute left-1/2 -translate-x-1/2 w-3 h-3 bg-white/40 rounded-full border-2 border-[#7b5cfa]"></div>
+                  <div class="w-1/2 pl-4 text-left">
+                    <p class="text-white/70 text-xs">Future</p>
+                    <p class="text-white/80 font-semibold text-sm">Or even you!</p>
+                  </div>
+                </div>
 
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ 3. COURSES & CERTIFICATES ============ -->
+        <section class="hz-panel bg-white flex flex-col" data-panel="courses">
+          <div class="section-header-row relative z-20 flex items-start justify-between px-6 md:px-[72px] pt-2 md:pt-10 pb-4 md:pb-6 gap-6">
+            <img src="images/metallic bag.png" alt="" class="deco-motif courses-bag pointer-events-none select-none absolute z-10" style="width:clamp(200px, 20vw, 320px); left:calc(-3vw - 24px); top:calc(50% - 4px); transform:translateY(-50%);" />
+            <h2 class="section-title relative z-20 font-display font-medium text-[#7b5cfa]" style="font-size:clamp(1.8rem, 4.4vw, 3.6rem);">Courses &amp; Certificates</h2>
+            <div class="hidden md:flex items-center gap-3 max-w-xs">
+              <p class="text-sm text-neutral-500">I'm always looking for new opportunities and ready to face design challenges. Drop your messages!</p>
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
+                 target="_blank" class="shrink-0 w-6 h-6 rounded-full bg-[#897aff] text-white flex items-center justify-center text-xs">
+                <i class="bi bi-arrow-up-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="relative z-0 flex-1 min-h-0 grid grid-cols-1 md:grid-cols-3 gap-[clamp(16px,2.5vw,32px)] px-6 md:px-[72px] pb-6 md:pb-10 courses-row">
+            <div class="course-card rounded-2xl flex flex-col items-center gap-4 pt-0 pb-6 px-[36px]" style="background:#e3edfb;">
+              <img src="images/imagescert-google-ux.jpg" alt="Google UX Certificate" class="rounded-b-lg course-card-img" />
+              <div class="text-center">
+                <p class="font-semibold text-black">Google UX Design Professional Certificate</p>
+                <p class="text-sm text-neutral-600">Coursera | Google</p>
+              </div>
+            </div>
+            <div class="course-card rounded-2xl flex flex-col items-center gap-4 pt-0 pb-6 px-[36px]" style="background:#f6ecd9;">
+              <img src="images/imagescert-architecture.jpg" alt="Transcript" class="rounded-b-lg course-card-img" />
+              <div class="text-center">
+                <p class="font-semibold text-black">Bachelor of Science in Architectural Studies</p>
+                <p class="text-sm text-neutral-600">International Islamic University Malaysia</p>
+              </div>
+            </div>
+            <div class="course-card rounded-2xl flex flex-col items-center gap-4 pt-0 pb-6 px-[36px]" style="background:#dcf3e9;">
+              <img src="images/imagescert-html-css.jpg" alt="HTML CSS Certificate" class="rounded-b-lg course-card-img" />
+              <div class="text-center">
+                <p class="font-semibold text-black">HTML &amp; CSS Full Course</p>
+                <p class="text-sm text-neutral-600">Supersimple.dev</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ 4. CTA / WHAT'S NEXT (same as index.html) ============ -->
+        <section class="hz-panel bg-black flex flex-col md:flex-row" data-panel="cta">
+          <!-- Left: closing statement -->
+          <div class="relative flex-1 flex flex-col items-center justify-center px-6 pt-0 pb-16 md:py-0 text-center">
+            <div class="deco-grunge opacity-30" style="background-image:url('images/deco-grunge-hero.png');"></div>
+            <img src="images/deco-spider.png" alt="" class="cta-spider-mobile pointer-events-none select-none absolute z-20 max-w-none" />
+
+            <div class="relative z-10 flex flex-col items-center gap-6 max-w-lg">
+              <p class="relative z-30 text-white text-lg font-semibold">What's next?</p>
+              <h2 class="cta-heading font-display font-medium text-white whitespace-nowrap" style="font-size:clamp(1.2rem, 3.4vw, 2.75rem);">
+                Let's work <span class="together-anchor relative inline-block">together!
+                  <img src="images/deco-spider.png" alt="" class="cta-spider cta-spider-desktop pointer-events-none select-none absolute left-1/2 -translate-x-1/2 top-full z-20 max-w-none" style="width:calc(clamp(120px, 15vw, 220px) + 84px); margin-top:calc(-0.9em - 254px); left:calc(50% + 2px);" />
+                </span>
+              </h2>
+              <p class="text-[#c3c6cc] text-base md:text-lg">I'm always looking for new opportunities and ready to face design challenges. Drop your messages!</p>
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
+                 target="_blank" rel="noopener"
+                 class="cta-chat-btn w-full inline-flex items-center justify-center gap-2 bg-[#897aff] hover:bg-[#7b5cfa] text-white px-6 py-4 rounded-full text-base font-semibold transition">
+                Let's chat <i class="bi bi-chat-square-dots-fill"></i>
+              </a>
+              <p class="cta-credits text-[10px] text-[#8c929c] mt-4 leading-relaxed">
+                Designed in Figma // Icons from Bootstrap // Set in Unbounded &amp; Plus Jakarta Sans<br />
+                Coded in VS Code // Built with Tailwind CSS // Deployed on Github
+              </p>
+            </div>
+          </div>
+
+          <!-- Right: quick links -->
+          <div class="flex-1 flex flex-col">
+            <div class="quick-link flex-1">
+              <span class="quick-link-stack">
+                <span class="quick-link-face bg-white">
+                  <a href="index.html#about" class="flex items-center w-full h-full text-left">
+                    <span class="font-display text-2xl md:text-4xl text-black">About me</span>
+                  </a>
+                </span>
+                <span class="quick-link-face bg-[#7b5cfa]">
+                  <span class="flex flex-wrap items-center gap-2">
+                    <a href="index.html#about" class="quick-link-pill">A little about me</a>
+                    <button type="button" data-goto="hero" class="quick-link-pill">More about me</button>
+                  </span>
+                </span>
+              </span>
+              <button type="button" class="quick-link-toggle" aria-label="Expand About me" aria-expanded="false">
+                <i class="bi bi-chevron-down"></i>
+              </button>
+            </div>
+            <div class="quick-link flex-1 border-t border-black/10">
+              <span class="quick-link-stack">
+                <span class="quick-link-face bg-white">
+                  <a href="index.html" class="flex items-center w-full h-full text-left">
+                    <span class="font-display text-2xl md:text-4xl text-black">Work Project</span>
+                  </a>
+                </span>
+                <span class="quick-link-face bg-[#ef7747]">
+                  <span class="flex flex-wrap items-center gap-2">
+                    <a href="shetrades.html" class="quick-link-pill">SheTrades</a>
+                    <a href="fitcoach.html" class="quick-link-pill">Fitcoach</a>
+                    <a href="tradelink.html" class="quick-link-pill">Tradelink</a>
+                    <a href="whiskertracker.html" class="quick-link-pill">WhiskerTracker</a>
+                    <a href="landingportfolio.html" class="quick-link-pill">Landing/Portfolio/CMS</a>
+                    <a href="artworkbanner.html" class="quick-link-pill">Artworks/Banner</a>
+                  </span>
+                </span>
+              </span>
+              <button type="button" class="quick-link-toggle" aria-label="Expand Work Project" aria-expanded="false">
+                <i class="bi bi-chevron-down"></i>
+              </button>
+            </div>
+            <div class="quick-link flex-1 border-t border-black/10">
+              <span class="quick-link-stack">
+                <span class="quick-link-face bg-white">
+                  <a href="index.html" class="flex items-center w-full h-full text-left">
+                    <span class="font-display text-2xl md:text-4xl text-black">Gallery</span>
+                  </a>
+                </span>
+                <span class="quick-link-face bg-[#fcbf04]">
+                  <span class="flex flex-wrap items-center gap-2">
+                    <a href="index.html" class="quick-link-pill">Gallery</a>
+                  </span>
+                </span>
+              </span>
+              <button type="button" class="quick-link-toggle" aria-label="Expand Gallery" aria-expanded="false">
+                <i class="bi bi-chevron-down"></i>
+              </button>
+            </div>
+            <div class="quick-link flex-1 border-t border-black/10">
+              <span class="quick-link-stack">
+                <span class="quick-link-face bg-white">
+                  <a href="index.html" class="flex items-center w-full h-full text-left">
+                    <span class="font-display text-2xl md:text-4xl text-black">Personal Project</span>
+                  </a>
+                </span>
+                <span class="quick-link-face bg-[#f03d3d]">
+                  <span class="flex flex-wrap items-center gap-2">
+                    <a href="selangorfc.html" class="quick-link-pill">Selangor FC</a>
+                    <a href="plura.html" class="quick-link-pill">Plura Atelier</a>
+                    <a href="myasuh.html" class="quick-link-pill">MyAsuh</a>
+                    <a href="mori.html" class="quick-link-pill">Mori Barbershop</a>
+                  </span>
+                </span>
+              </span>
+              <button type="button" class="quick-link-toggle" aria-label="Expand Personal Project" aria-expanded="false">
+                <i class="bi bi-chevron-down"></i>
+              </button>
+            </div>
+            <div class="quick-link flex-1 border-t border-black/10">
+              <span class="quick-link-stack">
+                <span class="quick-link-face bg-white">
+                  <a href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
+                     target="_blank" rel="noopener" class="flex items-center w-full h-full text-left">
+                    <span class="font-display text-2xl md:text-4xl text-black">Contact us</span>
+                  </a>
+                </span>
+                <span class="quick-link-face bg-[#118be8]">
+                  <span class="flex flex-wrap items-center gap-2">
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
+                       target="_blank" rel="noopener" class="quick-link-pill">
+                      <span class="quick-link-pill-icon" style="background:#ea4335;"><i class="bi bi-envelope-fill"></i></span>Gmail
+                    </a>
+                    <a href="#" target="_blank" rel="noopener" class="quick-link-pill">
+                      <span class="quick-link-pill-icon" style="background:#25d366;"><i class="bi bi-whatsapp"></i></span>Whatsapp
+                    </a>
+                    <a href="https://www.instagram.com/rffhzr" target="_blank" rel="noopener" class="quick-link-pill">
+                      <span class="quick-link-pill-icon" style="background:radial-gradient(circle at 30% 107%, #fdf497, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);"><i class="bi bi-instagram"></i></span>Instagram
+                    </a>
+                  </span>
+                </span>
+              </span>
+              <button type="button" class="quick-link-toggle" aria-label="Expand Contact us" aria-expanded="false">
+                <i class="bi bi-chevron-down"></i>
+              </button>
+            </div>
+            <div class="quick-link flex-1 border-t border-black/10">
+              <span class="quick-link-stack">
+                <span class="quick-link-face bg-white">
+                  <a href="legal.html" class="flex items-center w-full h-full text-left">
+                    <span class="font-display text-2xl md:text-4xl text-black">Legal</span>
+                  </a>
+                </span>
+                <span class="quick-link-face bg-[#484b40]">
+                  <span class="flex flex-wrap items-center gap-2">
+                    <a href="legal.html" class="quick-link-pill">Confidentiality &amp; Copyright Notice</a>
+                  </span>
+                </span>
+              </span>
+              <button type="button" class="quick-link-toggle" aria-label="Expand Legal" aria-expanded="false">
+                <i class="bi bi-chevron-down"></i>
+              </button>
+            </div>
+
+            <div class="bg-white flex items-center justify-between px-6 md:px-[72px] py-4 border-t border-black/10">
+              <p class="footer-copyright text-[10px] md:text-xs text-black">© 2023 Arieff Hizer // All Rights Reserved</p>
+              <div class="flex gap-2">
+                <a href="https://github.com/arieffhizer" target="_blank" class="flex items-center gap-1 px-3 py-1 rounded-full bg-[#1f1f1f] text-white text-[10px] md:text-xs"><i class="bi bi-github"></i> GitHub</a>
+                <a href="https://www.linkedin.com/in/arieff-hizer-98b412225/" target="_blank" class="flex items-center gap-1 px-3 py-1 rounded-full bg-[#1f1f1f] text-white text-[10px] md:text-xs"><i class="bi bi-linkedin"></i> LinkedIn</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+    <!-- ===================== SCRIPTS ===================== -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Observer.min.js"></script>
+    <script>
+      gsap.registerPlugin(Observer);
+
+      const panelNames = () => gsap.utils.toArray(".hz-panel").map(p => p.dataset.panel);
+
+      let horizontalGoTo = null;
+
+      const mm = gsap.matchMedia();
+
+      mm.add("(min-width: 1024px)", () => {
+        const panels = gsap.utils.toArray(".hz-panel");
+        let currentIndex = 0;
+        let animating = false;
+
+        document.body.style.overflow = "hidden";
+
+        function goTo(index) {
+          index = Math.max(0, Math.min(panels.length - 1, index));
+          if (index === currentIndex || animating) return;
+          animating = true;
+          currentIndex = index;
+          gsap.to(panels, {
+            xPercent: -100 * currentIndex,
+            duration: 0.9,
+            ease: "power2.inOut",
+            onComplete: () => { animating = false; },
+          });
+        }
+
+        const observer = Observer.create({
+          target: window,
+          type: "wheel,touch,pointer",
+          wheelSpeed: 1,
+          tolerance: 10,
+          preventDefault: true,
+          onDown: () => !animating && goTo(currentIndex + 1),
+          onUp: () => !animating && goTo(currentIndex - 1),
+        });
+
+        horizontalGoTo = goTo;
+
+        return () => {
+          observer.kill();
+          gsap.set(panels, { clearProps: "x,xPercent" });
+          document.body.style.overflow = "";
+          horizontalGoTo = null;
+        };
+      });
+
+      function scrollToPanel(name) {
+        const idx = panelNames().indexOf(name);
+        if (idx === -1) return;
+
+        if (window.matchMedia("(min-width: 1024px)").matches && horizontalGoTo) {
+          horizontalGoTo(idx);
+        } else {
+          document.querySelector(`[data-panel="${name}"]`).scrollIntoView({ behavior: "smooth" });
+        }
+      }
+
+      document.querySelectorAll("[data-goto]").forEach(el => {
+        el.addEventListener("click", () => scrollToPanel(el.dataset.goto));
+      });
+
+      const menuBtn = document.getElementById("menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+        mobileMenu.classList.toggle("flex");
+      });
+      mobileMenu.querySelectorAll("[data-goto], a").forEach(el => {
+        el.addEventListener("click", () => mobileMenu.classList.add("hidden"));
+      });
+
+      // Highlight the top-navbar button matching whichever section is
+      // currently in view (same pattern as index.html).
+      const navPills = document.querySelectorAll(".hidden.md\\:flex .nav-pill[data-goto], .hidden.md\\:flex .say-hi-btn[data-goto]");
+      function setActiveNav(name) {
+        navPills.forEach(el => el.classList.toggle("active", el.dataset.goto === name));
+      }
+      const navSectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            setActiveNav(entry.target.dataset.panel);
+          }
+        });
+      }, { threshold: 0.5 });
+      document.querySelectorAll(".hz-panel").forEach(p => navSectionObserver.observe(p));
+
+      // Hero: cycling "Hello!" greeting pill + multi-language typewriter for
+      // the name/role heading. The greeting is driven off the SAME
+      // phraseIndex as the typewriter (see typeHero below) so both switch
+      // language at exactly the same moment, regardless of how long each
+      // phrase takes to type out.
+      const greetings = ["Hello!", "Selamat!", "大家好!", "வணக்கம்!", "Hola!", "Bonjour!", "Здравствуйте!", "Ciao!", "Hallo!", "مرحبا!", "こんにちは!", "안녕하세요!"];
+      const greetingEl = document.getElementById("greeting");
+      function updateGreeting(index) {
+        greetingEl.style.opacity = 0;
+        setTimeout(() => {
+          greetingEl.textContent = greetings[index];
+          greetingEl.style.opacity = 1;
+        }, 250);
+      }
+
+      const typedBefore = document.getElementById("typed-before");
+      const typedName = document.getElementById("typed-name");
+      const typedAfter = document.getElementById("typed-after");
+      const cursor1 = document.getElementById("cursor-line1");
+      const cursor2 = document.getElementById("cursor-line2");
+
+      const phrases = [
+        { intro: "I'm ", name: "Arieff,", job: "UI/UX Designer" },
+        { intro: "Saya ", name: "Arieff,", job: "Pereka bentuk UI/UX" },
+        { intro: "我是", name: "Arieff,", job: "用户界面/用户体验设计师" },
+        { intro: "நான் ", name: "Arieff,", job: "UI/UX வடிவமைப்பாளர்" },
+        { intro: "Soy ", name: "Arieff,", job: "Diseñador UI/UX" },
+        { intro: "Je suis ", name: "Arieff,", job: "Designer UI/UX" },
+        { intro: "Я ", name: "Arieff,", job: "дизайнер UI/UX" },
+        { intro: "Sono ", name: "Arieff,", job: "Designer UI/UX" },
+        { intro: "Ich bin ", name: "Arieff,", job: "UI/UX-Designer" },
+        { intro: "أنا ", name: "عريف,", job: "UI/UX مهندس ديكور" },
+        { intro: "私は", name: "Arieff,", job: "UI/UXデザイナーです" },
+        { intro: "나는 ", name: "Arieff,", job: "UI/UX 디자이너야" },
+      ];
+
+      let phraseIndex = 0;
+      let letterIndex = 0;
+      let isDeleting = false;
+
+      function showCursor(line) {
+        cursor1.classList.toggle("cursor-hidden", line !== "line1");
+        cursor2.classList.toggle("cursor-hidden", line !== "line2");
+      }
+
+      function typeHero() {
+        const { intro, name, job } = phrases[phraseIndex];
+        const fullIntro = intro + name;
+        const totalIntroLen = fullIntro.length;
+        const totalLength = totalIntroLen + job.length;
+
+        if (!isDeleting) {
+          if (letterIndex <= totalIntroLen) {
+            typedBefore.textContent = fullIntro.substring(0, Math.min(letterIndex, intro.length));
+            typedName.textContent = letterIndex > intro.length ? name.substring(0, letterIndex - intro.length) : "";
+            // Avoid a dangling trailing space at the end of the visible text
+            // (e.g. "Saya " with no name yet) — some languages' intro ends in
+            // a space, and showing it alone can wrap onto its own blank line.
+            if (!typedName.textContent) typedBefore.textContent = typedBefore.textContent.trimEnd();
+            typedAfter.textContent = "";
+            showCursor("line1");
+          } else {
+            typedBefore.textContent = intro;
+            typedName.textContent = name;
+            typedAfter.textContent = job.substring(0, letterIndex - totalIntroLen);
+            showCursor("line2");
+          }
+          letterIndex++;
+        } else {
+          if (letterIndex > totalIntroLen) {
+            typedAfter.textContent = job.substring(0, letterIndex - totalIntroLen);
+            showCursor("line2");
+          } else {
+            typedBefore.textContent = fullIntro.substring(0, Math.min(letterIndex, intro.length));
+            typedName.textContent = letterIndex > intro.length ? name.substring(0, letterIndex - intro.length) : "";
+            // Avoid a dangling trailing space at the end of the visible text
+            // (e.g. "Saya " with no name yet) — some languages' intro ends in
+            // a space, and showing it alone can wrap onto its own blank line.
+            if (!typedName.textContent) typedBefore.textContent = typedBefore.textContent.trimEnd();
+            typedAfter.textContent = "";
+            showCursor("line1");
+          }
+          letterIndex--;
+        }
+
+        if (!isDeleting && letterIndex === totalLength + 1) {
+          isDeleting = true;
+          setTimeout(typeHero, 1500);
+          return;
+        }
+
+        if (isDeleting && letterIndex === 0) {
+          isDeleting = false;
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+          updateGreeting(phraseIndex);
+        }
+
+        setTimeout(typeHero, isDeleting ? 40 : 100);
+      }
+
+      typeHero();
+
+      // CTA quick-links accordion (mobile only, same behavior as index.html).
+      const quickLinks = document.querySelectorAll(".quick-link");
+      quickLinks.forEach(link => {
+        const toggle = link.querySelector(".quick-link-toggle");
+        if (!toggle) return;
+        toggle.addEventListener("click", () => {
+          const wasExpanded = link.classList.contains("expanded");
+          quickLinks.forEach(l => {
+            l.classList.remove("expanded");
+            l.querySelector(".quick-link-toggle")?.setAttribute("aria-expanded", "false");
+          });
+          if (!wasExpanded) {
+            link.classList.add("expanded");
+            toggle.setAttribute("aria-expanded", "true");
+          }
+        });
+      });
+    </script>
   </body>
 </html>

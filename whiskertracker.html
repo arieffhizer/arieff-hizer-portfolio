@@ -3,306 +3,732 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Arieff Hizer Portfolio</title>
+    <title>WhiskerTracker — Arieff Hizer Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="theme.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="shortcut icon" type="image/png" href="images/favicon.png">
+    <style>
+      :root {
+        --orange-main: #ED8946;
+        --orange-dark: #B85C1E;
+        --orange-light: #FFD9C5;
+        --text-dark: #3A2618;
+        --text-mid: #6B5240;
+        --text-muted: #9C8672;
+        --white: #FFFFFF;
+      }
+      * { box-sizing: border-box; }
+      body {
+        font-family: 'Inter', sans-serif;
+        background: #ffffff;
+        color: var(--text-dark);
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      /* ── Background system: soft warm circles with ripple contour lines ──
+         Same mechanic as the FitCoach template (isolated circles so contour
+         rings stay clipped inside each one), tinted orange/peach to match
+         WhiskerTracker's warm, playful pet-app brand. */
+      .page-bg {
+        position: relative;
+        isolation: isolate;
+        overflow-x: hidden;
+        background: #ffffff;
+      }
+
+      .wt-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        overflow: hidden;
+      }
+
+      .wt-circle {
+        position: absolute;
+        border-radius: 9999px;
+        background: radial-gradient(
+          circle at center,
+          rgba(237,137,70,0.32) 0%,
+          rgba(255,196,156,0.30) 44%,
+          rgba(255,226,204,0.20) 68%,
+          rgba(255,255,255,0) 86%
+        );
+        overflow: hidden;
+      }
+
+      /* Paw print sits on top of the gradient as its own layer (not a child
+         of .wt-circle), so it is never clipped to the circle's round shape.
+         Shares the same wt-circle-N sizing/position classes for placement. */
+      .wt-paw {
+        position: absolute;
+        background-image: url('images/paw print.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        opacity: 0.4;
+        pointer-events: none;
+      }
+
+      .wt-circle-1 { width: 760px; height: 760px; top: 7%; right: -250px; transform: translateY(-50%); }
+      .wt-circle-2 { width: 520px; height: 520px; top: 27%; left: -80px; }
+      .wt-circle-3 { width: 680px; height: 680px; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+      .wt-circle-4 { width: 520px; height: 520px; top: 70%; right: -90px; }
+      .wt-circle-5 { width: 760px; height: 760px; top: 88%; left: -250px; transform: translateY(-50%); }
+
+      .page-bg > *:not(.wt-bg):not(.site-nav) {
+        position: relative;
+        z-index: 1;
+      }
+
+      @media (max-width: 768px) {
+        .wt-circle-1 { width: 520px; height: 520px; top: 6%; right: -210px; transform: translateY(-50%); }
+        .wt-circle-2 { width: 360px; height: 360px; top: 27%; left: -130px; }
+        .wt-circle-3 { width: 450px; height: 450px; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+        .wt-circle-4 { width: 360px; height: 360px; top: 70%; right: -130px; }
+        .wt-circle-5 { width: 520px; height: 520px; top: 88%; left: -210px; transform: translateY(-50%); }
+      }
+
+      h1, h2, h3, h4 { font-family: 'Sora', sans-serif; }
+
+      /* ── Nav pills: same light pill treatment as the footer links ── */
+      .wt-nav-pill {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        height: 32px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: rgba(237,137,70,0.10);
+        color: var(--orange-dark);
+        border: 1px solid rgba(237,137,70,0.22);
+        font-size: 0.8125rem;
+        font-weight: 600;
+        white-space: nowrap;
+        transition: background 0.2s ease;
+      }
+      .wt-nav-pill:hover { background: rgba(237,137,70,0.18); }
+      .wt-nav-pill-mobile {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 10px 16px;
+        border-radius: 999px;
+        background: rgba(237,137,70,0.10);
+        color: var(--orange-dark);
+        border: 1px solid rgba(237,137,70,0.22);
+        font-size: 0.875rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+
+      .section-label {
+        font-family: 'Sora', sans-serif;
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 1rem;
+      }
+      .section-label span { color: var(--orange-dark); }
+      @media (min-width: 768px) { .section-label { font-size: 2.25rem; } }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 16px;
+        border-radius: 999px;
+        font-size: 0.8125rem;
+        font-weight: 500;
+        background: rgba(237,137,70,0.10);
+        color: var(--orange-dark);
+        border: 1px solid rgba(237,137,70,0.22);
+        white-space: nowrap;
+      }
+      .pill.pink {
+        background: #FEE2E2;
+        color: #B91C1C;
+        border-color: #FECACA;
+      }
+
+      .method-card {
+        background: rgba(255,255,255,0.72);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 16px;
+        padding: 1.5rem;
+        border: 1px solid rgba(255,255,255,0.6);
+        box-shadow: 0 2px 12px rgba(184,92,30,0.08);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .method-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 28px rgba(184,92,30,0.14);
+      }
+
+      .color-swatch {
+        border-radius: 12px;
+        padding: 1rem 1.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .mockup-float {
+        border-radius: 16px;
+        box-shadow: none;
+        filter: drop-shadow(0 22px 26px rgba(184,92,30,0.16)) drop-shadow(0 6px 10px rgba(0,0,0,0.08));
+        transition: transform 0.4s ease, filter 0.4s ease;
+      }
+      .mockup-float:hover {
+        transform: translateY(-6px);
+        filter: drop-shadow(0 28px 32px rgba(184,92,30,0.2)) drop-shadow(0 8px 14px rgba(0,0,0,0.10));
+      }
+      .mockup-placeholder {
+        filter: none;
+        box-shadow: 0 20px 60px rgba(184,92,30,0.15), 0 4px 16px rgba(0,0,0,0.08);
+      }
+
+      .learning-card {
+        background: rgba(255,255,255,0.72);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 16px;
+        padding: 1.75rem;
+        border: 1px solid rgba(255,255,255,0.6);
+        box-shadow: 0 2px 12px rgba(184,92,30,0.08);
+      }
+      .learning-card .num {
+        font-family: 'Sora', sans-serif;
+        font-size: 0.8125rem;
+        font-weight: 700;
+        color: var(--orange-dark);
+        background: rgba(237,137,70,0.10);
+        border-radius: 999px;
+        padding: 2px 10px;
+        display: inline-block;
+        margin-bottom: 0.75rem;
+      }
+
+      .meta-table {
+        border: 1.5px solid rgba(237,137,70,0.24);
+        border-radius: 14px;
+        overflow: hidden;
+        background: rgba(237,137,70,0.06);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        box-shadow: 0 12px 36px rgba(184,92,30,0.08);
+      }
+      .meta-table .header-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        background: rgba(237,137,70,0.12);
+        border-bottom: 1.5px solid rgba(237,137,70,0.18);
+      }
+      .meta-table .header-row div,
+      .meta-table .content-row div {
+        padding: 0.75rem 1rem;
+        text-align: center;
+      }
+      .meta-table .header-row div {
+        font-family: 'Sora', sans-serif;
+        font-weight: 700;
+        color: var(--orange-dark);
+        font-size: 0.9rem;
+        border-right: 1.5px solid rgba(237,137,70,0.14);
+      }
+      .meta-table .header-row div:last-child,
+      .meta-table .content-row div:last-child { border-right: none; }
+      .meta-table .content-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        background: rgba(255,255,255,0.6);
+      }
+      .meta-table .content-row div {
+        font-size: 0.875rem;
+        color: var(--text-mid);
+        font-weight: 500;
+        border-right: 1.5px solid rgba(237,137,70,0.12);
+      }
+
+      .case-headline {
+        color: var(--text-dark);
+        font-size: 1rem;
+        line-height: 1.75;
+        font-weight: 500;
+      }
+      .case-body {
+        color: var(--text-mid);
+        font-size: 1rem;
+        line-height: 1.75;
+      }
+      .method-card p:last-child,
+      .learning-card p {
+        color: var(--text-mid);
+        font-size: 1rem;
+        line-height: 1.75;
+      }
+      @media (min-width: 768px) { .case-headline { font-size: 1.125rem; } }
+
+      @media (max-width: 767px) {
+        section { text-align: center; }
+        section .fade-up,
+        section .section-label,
+        section .case-headline,
+        section .case-body,
+        section p,
+        section li { text-align: center; }
+        .section-label { margin-left: auto; margin-right: auto; }
+        .pill { justify-content: center; text-align: center; white-space: normal; }
+        section .flex.flex-wrap { justify-content: center; }
+        .method-card, .learning-card { text-align: center; }
+        .learning-card .num { margin-left: auto; margin-right: auto; }
+        .result-bullet { justify-content: center; text-align: center; align-items: center; }
+        .result-bullet::before { display: none; }
+        .color-swatch { align-items: center; }
+        .mockup-float { display: block; margin-left: auto; margin-right: auto; }
+        .meta-table .header-row div,
+        .meta-table .content-row div {
+          padding: 0.85rem 0.65rem;
+          font-size: 0.8rem;
+        }
+      }
+
+      .fade-up {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+      .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+      .result-bullet {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 1rem;
+        color: var(--text-dark);
+        margin-bottom: 0.6rem;
+      }
+      .result-bullet::before {
+        content: '';
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--orange-dark);
+        margin-top: 7px;
+        flex-shrink: 0;
+      }
+
+      .img-placeholder {
+        background: linear-gradient(135deg, #FFF6EF 0%, #FFFFFF 55%, #FFE2CC 100%);
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-muted);
+        font-size: 0.875rem;
+        font-weight: 500;
+      }
+
+      @media (max-width: 640px) {
+        .meta-table {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+        }
+        .meta-table .header-row,
+        .meta-table .content-row {
+          display: grid;
+          grid-template-columns: 1fr;
+        }
+        .meta-table .header-row {
+          border-bottom: none;
+          border-right: 1.5px solid rgba(237,137,70,0.18);
+        }
+        .meta-table .content-row { background: rgba(255,255,255,0.6); }
+        .meta-table .header-row div,
+        .meta-table .content-row div {
+          border-right: none;
+          border-top: 1.5px solid rgba(237,137,70,0.14);
+          min-height: 48px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0.85rem 0.65rem;
+          font-size: 0.8rem;
+        }
+        .meta-table .header-row div:first-child,
+        .meta-table .content-row div:first-child { border-top: none; }
+      }
+    </style>
   </head>
-  <body class="bg-gradient-to-r from-[#FFD9C5] to-[#ED8946] text-gray-900 font-open sauce two">
-
-      <div class="w-full sticky top-0 z-50 relative">
-  <div id="nav-blur" class="relative" style="-webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); background: rgba(255,255,255,0.1);">
-    <header class="flex justify-between items-center p-4 max-w-6xl mx-auto">
-      
-      <!-- Logo + Name as Home Button -->
-      <a href="index.html" class="flex items-center bg-gray-100 px-4 py-1 rounded-full shadow gap-2 hover:shadow-md transition">
-        <img src="images/logo arieff h 3.png" alt="Logo" class="w-6 h-6 rounded-full shadow" />
-        <span class="text-lg font-semibold text-gray-800">Arieff H.</span>
-      </a>
-
-      <!-- Desktop Nav -->
-      <div class="flex max-md:hidden items-center gap-4">
-        <a
-          href="about.html"
-          class="flex items-center gap-2 px-4 py-1 border border-white rounded-full text-white hover:shadow transition text-sm"
-        >
-          <i class="bi bi-person-fill text-base"></i>
-          About Me
-        </a>
-
-        <a
-          href="index.html#projects"
-          class="flex items-center gap-2 px-4 py-1 border border-white rounded-full text-white hover:shadow transition text-sm"
-        >
-          <i class="bi bi-folder-fill text-base"></i>
-          Projects
-        </a>
-
-        <a
-          href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
-          target="_blank"
-          rel="noopener"
-          class="flex items-center gap-2 bg-white hover:bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm"
-        >
-          Say Hi <i class="bi bi-emoji-smile-fill"></i>
-        </a>
-      </div>
-
-      <!-- Mobile Hamburger -->
-      <button id="menu-btn" class="md:hidden text-2xl text-white">
-        <i class="bi bi-list"></i>
-      </button>
-    </header>
-
-    <!-- Mobile Dropdown -->
-    <div id="mobile-menu" class="hidden flex-col gap-2 p-4 md:hidden absolute top-full left-0 w-full"
-         style="background: rgba(255,255,255,0.95);">
-      <a
-        href="about.html"
-        class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-black hover:shadow transition text-sm mb-2"
-      >
-        <i class="bi bi-person-fill"></i> About Me
-      </a>
-
-      <a
-        href="index.html#projects"
-        class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-black hover:shadow transition text-sm mb-2"
-      >
-        <i class="bi bi-folder-fill"></i> Projects
-      </a>
-
-      <a
-        href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
-        target="_blank"
-        rel="noopener"
-        class="flex items-center gap-2 bg-[#ED8946] hover:bg-[#F69756] text-white px-4 py-2 rounded-lg text-sm"
-      >
-        <i class="bi bi-emoji-smile-fill"></i> Say Hi
-      </a>
-    </div>
-  </div>
-</div>
-
-<!-- Script to toggle menu -->
-<script>
-  const menuBtn = document.getElementById("menu-btn");
-  const mobileMenu = document.getElementById("mobile-menu");
-  const navBlur = document.getElementById("nav-blur");
-
-  menuBtn.addEventListener("click", () => {
-    mobileMenu.classList.toggle("hidden");
-
-    if (mobileMenu.classList.contains("hidden")) {
-      navBlur.style.background = "rgba(255,255,255,0.1)";
-      menuBtn.classList.remove("text-gray-800");
-      menuBtn.classList.add("text-white");
-    } else {
-      navBlur.style.background = "rgba(255,255,255,0.95)";
-      menuBtn.classList.remove("text-white");
-      menuBtn.classList.add("text-gray-800");
-    }
-  });
-</script>
-
-<section class="min-h-screen -mt-12 w-full bg-gradient-to-r from-[#FFD9C5] to-[#ED8946] flex items-center justify-center">
-  <div class="max-w-6xl w-full px-4 grid grid-cols-1 md:grid-cols-2 items-center gap-12">
-    
-    <!-- Left: Text + Logo -->
-    <div class="text-white text-center md:text-left">
-        <img src="images/wt logo.png" alt="Selangor FC Logo" class="w-44 mx-auto md:mx-0" />
-      <img src="images/wt title.png" alt="SELANGOR FC" class="h-12 md:h-20 object-contain  mt-6" />
-      <p class="text-xl font-regular text-white mt-2">Cat Facial Recognition and Catalog App</p>
+  <body class="page-bg">
+    <div class="wt-bg" aria-hidden="true">
+      <span class="wt-circle wt-circle-1"></span>
+      <span class="wt-circle wt-circle-2"></span>
+      <span class="wt-circle wt-circle-3"></span>
+      <span class="wt-circle wt-circle-4"></span>
+      <span class="wt-circle wt-circle-5"></span>
+      <span class="wt-paw wt-circle-1"></span>
+      <span class="wt-paw wt-circle-2"></span>
+      <span class="wt-paw wt-circle-3"></span>
+      <span class="wt-paw wt-circle-4"></span>
+      <span class="wt-paw wt-circle-5"></span>
     </div>
 
-    <!-- Right: Single Mockup Image -->
-    <div class="flex md:justify-end justify-center hover:scale-105 transition-transform duration-500">
-      <img src="images/wt right image.png" alt="Selangor App Mockup" class="w-96 md:max-w-lg drop-shadow-xl" />
-    </div>
-  </div>
-</section>
-
-<section class="bg-white text-black font-sans py-16">
-  <div class="max-w-6xl mx-auto px-8 py-18">
-
-    <!-- Top Info Table -->
-    <div class="border border-[#ED8946] rounded-xl overflow-hidden mb-16">
-      <!-- Header Row -->
-      <div class="grid grid-cols-4 text-center font-bold bg-[#FFD9C5] text-purple-600 text-lg divide-x divide-[#ED8946]">
-        <div class="py-3">Tools</div>
-        <div class="py-3">Platform</div>
-        <div class="py-3">Role</div>
-        <div class="py-3">Duration</div>
-      </div>
-      <!-- Content Row -->
-      <div class="grid grid-cols-4 text-center divide-x divide-[#ED8946]">
-        <div class="py-4">Figma</div>
-        <div class="py-4">IOS and Android</div>
-        <div class="py-4">Interim UI/UX Designer</div>
-        <div class="py-4">2 Weeks</div>
-      </div>
-    </div>
-
-    <!-- Two-column Layout -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-
-      <!-- Left Column -->
-      <div class="space-y-8">
-        <!-- Introduction -->
-        <div>
-          <h2 class="text-2xl font-bold text-purple-600 mb-4">Introduction</h2>
-          <p class="leading-relaxed">
-            Whisker Tracker is a mobile app that uses cat facial recognition to identify and catalog cats. It’s purrfect for people who take pictures of outdoor cats! You can track your walks, take pictures of cats, make cat profiles, and see your cats and cat colonies on a map. 
-          </p>
-
-          <p class="leading-relaxed mt-4">
-            As interim designer, I was tasked to add new features to the app including cat gender, connect cat manually and also create a notification page for when someone commented or connected to user's cats.
-          </p>
-        </div>
-      </div>
-
-      <!-- Right Column -->
-      <div class="space-y-8">
-        <!-- Issues -->
-        <div>
-          <h2 class="text-2xl font-bold text-purple-600 mb-2">Issues</h2>
-          <ul class="list-disc list-inside space-y-1">
-            <li>Can only connect cat during create profile</li>
-            <li>No information on gender and microchip ID</li>
-            <li>No clear structure for user to stay motivated</li>
-          </ul>
-        </div>
-
-        <!-- Goals -->
-        <div>
-          <h2 class="text-2xl font-bold text-purple-600 mb-2">Goals</h2>
-          <p class="leading-relaxed">
-            To update the design according to the latest requirements, and more importantly, to figure out the logic and design on how to connect cat entity manually to other entities or sub-entities — and vice versa for sub-entities.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="max-w-6xl mx-auto px-4 py-20">
-  <div class="flex justify-center">
-    <img src="images/wt 4 screen.png" alt="Selangor App Mockup" class="w-full drop-shadow-xl" />
-  </div>
-</section>
-
-<!-- Design Update -->
-<section class="bg-white">
-  <div class="max-w-6xl mx-auto px-8 py-16">
-  <h2 class="text-center text-2xl md:text-3xl font-bold text-purple-600 mb-6">
-    Design Update
-  </h2>
-  <p class="text-center text-base md:text-lg text-gray-900 leading-relaxed mb-12 max-w-6xl mx-auto">
-    Served as an interim designer, handling client requests for Phase 2.5 and updating the design accordingly.
-  </p>
-
-  <div class="flex justify-center">
-    <img src="images/wt design update.png" alt="Selangor App Mockup" class="w-full drop-shadow-xl" />
-  </div>
-</section>
-
-<!-- App Logics Update -->
-<section class="max-w-6xl mx-auto px-8 py-16">
-  <h2 class="text-center text-2xl md:text-3xl font-bold text-white mb-6">
-    App Logics Update
-  </h2>
-  <p class="text-center text-base md:text-lg text-white leading-relaxed mb-12 max-w-6xl mx-auto">
-    Redesigned the app logic to allow users to manually connect cats even after creation, whereas previously connections were only possible during the create-cat flow.”
-  </p>
-
-  <div class="flex justify-center">
-    <img src="images/wt logic update 1.png" alt="Selangor App Mockup" class="w-full" />
-  </div>
-</section>
-
-<!-- Key Takeaways -->
-<section class="bg-white">
-  <div class="max-w-6xl mx-auto px-8 py-16">
-  <h2 class="text-center text-2xl md:text-3xl font-bold text-purple-600 mb-6">
-    Key Takeaways
-  </h2>
-  <p class="text-center text-base md:text-lg text-gray-900 leading-relaxed mb-4 max-w-6xl mx-auto">
-    1. User-Centered Improvements – Enhanced usability by adding features like gender icons, microchip ID (private view only), and counters for cats and comments, giving users more visibility and control.
-  <p class="text-center text-base md:text-lg text-gray-900 leading-relaxed mb-4 max-w-6xl mx-auto">
-    2. Flexible App Logic – Redesigned the flow to allow cats to be connected manually even after creation, solving major limitations in the original design.
-  <p class="text-center text-base md:text-lg text-gray-900 leading-relaxed mb-4 max-w-6xl mx-auto">
-    3. Organized Profile Structure – Proposed grouping profile items into categories to handle the growing number of settings, improving clarity and navigation.
-  <p class="text-center text-base md:text-lg text-gray-900 leading-relaxed mb-4 max-w-6xl mx-auto">
-    4. Personalization & Engagement – Introduced notifications for comments and linked cats, helping users stay connected and engaged with their cat community.
-  <p class="text-center text-base md:text-lg text-gray-900 leading-relaxed mb-4 max-w-6xl mx-auto">
-    5. Trust & Safety Focus – Ensured sensitive information (like microchip IDs) remains private to protect user and pet safety.
-</div>
-</section>
-
-<section class="bg-white">
-  <div class="justify-center relative">
-    <img src="images/wt all screen.png" alt="Selangor App Mockup" class="w-full max-w-6xl mx-auto">
-  
-    <!-- Left overlay -->
-  <a href="tradelink.html" class="hidden lg:flex absolute top-0 left-0 w-[20%] h-full items-center justify-center overflow-hidden group">
-    <img src="images/tradelink all screen bnw.png" alt="Plura Atelier"
-         class="mr-12 h-full object-cover transition-all duration-500">
-    <div class="mr-6 absolute inset-0 flex flex-col items-center justify-center bg-black/0 backdrop-blur-sm opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-      <p class="text-sky-500 font-bold text-lg">Tradelink</p>
-      <i class="bi bi-arrow-left-circle-fill text-sky-500 text-4xl mt-2"></i>
-    </div>
-  </a>
-
-  <!-- Right overlay -->
-  <a href="fitcoach.html" class="hidden lg:flex absolute top-0 right-0 w-[20%] h-full items-center justify-center overflow-hidden group">
-    <img src="images/fc all screen bnw.png" alt="Whisker Tracker"
-         class="ml-12 w-full h-full object-cover transition-all duration-500">
-    <div class="ml-6 absolute inset-0 flex flex-col items-center justify-center bg-black/0 backdrop-blur-sm opacity-0 transition-opacity duration-400 group-hover:opacity-100">
-      <p class="text-white font-bold text-lg">FitCoach</p>
-      <i class="bi bi-arrow-right-circle-fill text-white text-4xl mt-2"></i>
-    </div>
-  </a>
-  </div>
-
-</section>
-
-<footer class="text-[10px] text-white">
-        <div class="flex justify-between items-center p-4 max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
-          <p>© 2023 Arieff Hizer // All Rights Reserved</p>
-      
-          <div class="flex gap-2">
-            <!-- GitHub Button -->
-            <a
-              href="https://github.com/arieffhizer"
-              target="_blank"
-              class="flex items-center gap-2 px-4 py-1 border border-white rounded-full bg-white text-gray-700 hover:shadow transition"
-            >
-              <i class="bi bi-github text-xs"></i>
-              GitHub
-            </a>
-      
-            <!-- LinkedIn Button -->
-            <a
-              href="https://www.linkedin.com/in/arieff-hizer-98b412225/"
-              target="_blank"
-              class="flex items-center gap-2 px-4 py-1 border border-white rounded-full bg-white text-gray-700 hover:shadow transition"
-            >
-              <i class="bi bi-linkedin text-xs"></i>
-              LinkedIn
-            </a>
-      
-            <!-- Instagram Button -->
-            <a
-              href="https://www.instagram.com/rffhzr"
-              target="_blank"
-              class="flex items-center gap-2 px-4 py-1 border border-white rounded-full bg-white text-gray-700 hover:shadow transition"
-            >
-              <i class="bi bi-instagram text-xs"></i>
-              Instagram
+    <!-- ═══════════════════════════════════════ NAV ═══ -->
+    <div class="site-nav w-full sticky top-0 z-50 relative">
+      <div id="nav-blur" class="relative" style="-webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); background: rgba(255,255,255,0.1);">
+        <header class="flex justify-between items-center px-6 md:px-[72px] py-4">
+          <a href="index.html" class="flex items-center bg-gray-100 px-4 py-1 rounded-full shadow gap-2 hover:shadow-md transition">
+            <img src="images/logo arieff h 3.png" alt="Logo" class="w-6 h-6 rounded-full shadow" />
+            <span class="text-lg font-semibold text-gray-800">Arieff H.</span>
+          </a>
+          <div class="flex max-md:hidden items-center gap-3">
+            <a href="index.html#about" class="wt-nav-pill"><i class="bi bi-person-fill"></i> About Me</a>
+            <a href="index.html#work" class="wt-nav-pill"><i class="bi bi-folder-fill"></i> Work Projects</a>
+            <a href="index.html#gallery" class="wt-nav-pill"><i class="bi bi-image-fill"></i> Gallery</a>
+            <a href="index.html#personal" class="wt-nav-pill"><i class="bi bi-briefcase-fill"></i> Personal Projects</a>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position." target="_blank" rel="noopener" class="flex items-center gap-2 bg-[#ED8946] text-white px-4 py-2 rounded-full text-sm transition hover:shadow-md hover:-translate-y-1 m-0">
+              Say Hi <i class="bi bi-emoji-smile-fill"></i>
             </a>
           </div>
+          <button id="menu-btn" class="md:hidden text-2xl text-gray-800"><i class="bi bi-list"></i></button>
+        </header>
+        <div id="mobile-menu" class="hidden flex-col gap-2 p-4 md:hidden absolute top-full left-0 w-full" style="background: rgba(255,255,255,0.98); border-top:1px solid rgba(237,137,70,0.18);">
+          <a href="index.html#about" class="wt-nav-pill-mobile"><i class="bi bi-person-fill"></i> About Me</a>
+          <a href="index.html#work" class="wt-nav-pill-mobile"><i class="bi bi-folder-fill"></i> Work Projects</a>
+          <a href="index.html#gallery" class="wt-nav-pill-mobile"><i class="bi bi-image-fill"></i> Gallery</a>
+          <a href="index.html#personal" class="wt-nav-pill-mobile"><i class="bi bi-briefcase-fill"></i> Personal Projects</a>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position." target="_blank" rel="noopener" class="flex items-center justify-center gap-2 bg-[#ED8946] text-white px-4 py-2 rounded-full text-sm transition hover:shadow-md"><i class="bi bi-emoji-smile-fill"></i> Say Hi</a>
         </div>
-      </footer>
+      </div>
+    </div>
+    <script>
+      const menuBtn = document.getElementById("menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const navBlur = document.getElementById("nav-blur");
+      menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+        if (mobileMenu.classList.contains("hidden")) {
+          navBlur.style.background = "rgba(255,255,255,0.1)";
+          menuBtn.classList.remove("text-white"); menuBtn.classList.add("text-gray-800");
+        } else {
+          navBlur.style.background = "rgba(255,255,255,0.95)";
+          menuBtn.classList.remove("text-white"); menuBtn.classList.add("text-gray-800");
+        }
+      });
+    </script>
+
+    <!-- ═══════════════════════════════════════ HERO ═══ -->
+    <section style="height: calc(100vh - 64px); min-height: 560px;" class="w-full flex items-center">
+      <div class="max-w-6xl w-full mx-auto px-6 grid grid-cols-1 md:grid-cols-2 items-center gap-10 py-12">
+        <div class="fade-up text-center md:text-left">
+          <div class="flex flex-col md:block items-center md:items-start justify-center md:justify-start gap-2 md:gap-0 mb-4 md:mb-0">
+            <img src="images/wt logo.png" alt="WhiskerTracker Logo" class="w-14 md:w-24 flex-shrink-0 md:mb-6" onerror="this.style.display='none'" />
+            <h1 class="font-bold text-[#3A2618] leading-tight m-0 md:mb-4" style="font-family:'Sora',sans-serif; font-size: clamp(2.5rem, 6vw, 4rem);">WhiskerTracker</h1>
+          </div>
+          <p class="text-[#6B5240] text-lg md:text-xl font-medium leading-snug mb-3">Cat Facial Recognition and<br/>Catalog App</p>
+          <div class="flex flex-wrap justify-center md:justify-start gap-2 mt-6">
+            <span class="pill">iOS &amp; Android</span>
+            <span class="pill">Pet Tech</span>
+            <span class="pill">B2C</span>
+          </div>
+        </div>
+        <div class="fade-up flex justify-center md:justify-end" style="transition-delay:0.15s">
+          <img src="images/wt right image.png" alt="WhiskerTracker App Mockup" class="mockup-float w-64 md:w-80 mx-auto md:mx-0" onerror="this.outerHTML='<div class=\'mockup-float mockup-placeholder img-placeholder w-64 md:w-80\' style=\'height:500px\'>App Mockup</div>'" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ INTRO + META ═══ -->
+    <section class="py-16 md:py-20 bg-band">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="mb-14 fade-up">
+          <p class="text-base md:text-lg leading-relaxed mb-4" style="color:#3A2618;">
+            WhiskerTracker is a mobile app that uses cat facial recognition to identify and catalog cats. It's purrfect for people who take pictures of outdoor cats — you can track your walks, take pictures of cats, make cat profiles, and see your cats and cat colonies on a map.
+          </p>
+          <p class="case-body mb-5">As interim designer, I was tasked to:</p>
+          <div class="flex flex-wrap justify-center md:justify-start gap-2">
+            <span class="pill">Add cat gender &amp; microchip ID</span>
+            <span class="pill">Design a manual-connect flow</span>
+            <span class="pill">Create a notification page</span>
+          </div>
+        </div>
+
+        <div class="meta-table fade-up">
+          <div class="header-row">
+            <div>Expertise</div>
+            <div>Platforms</div>
+            <div>Tools</div>
+            <div>Duration</div>
+          </div>
+          <div class="content-row">
+            <div>Interim UI/UX Designer</div>
+            <div>iOS &amp; Android</div>
+            <div>Figma</div>
+            <div>2 weeks</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ THE PROBLEM ═══ -->
+    <section class="py-16 md:py-24">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="fade-up">
+          <h2 class="section-label">The <span>Problem</span></h2>
+          <p class="case-headline mb-4">
+            The app's cat-connection logic was locked to a single moment: you could only link cats to each other while creating a new profile.
+          </p>
+          <p class="case-body mb-4">
+            Once a cat profile existed, there was no way to go back and connect it to another cat, or to a colony, without starting over. On top of that, cat profiles were missing basic information users expected, and there was no structure to keep people motivated to keep tracking.
+          </p>
+          <p class="case-headline mb-2">This created a few problems:</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+            <span class="pill pink w-full justify-center">Connections locked to create-profile</span>
+            <span class="pill pink w-full justify-center">No gender or microchip info</span>
+            <span class="pill pink w-full justify-center">No structure to stay motivated</span>
+          </div>
+          <p class="case-body">
+            The product goal was to update the design to the client's latest requirements, and — more importantly — figure out the logic and design for connecting a cat to other cats and sub-entities (and vice versa) at any time, not just during creation.
+          </p>
+        </div>
+
+        <div class="mt-16 fade-up">
+          <img src="images/wt 4 screen.png" alt="WhiskerTracker screens" class="mockup-float w-full" onerror="this.outerHTML='<div class=\'mockup-float mockup-placeholder img-placeholder w-full\' style=\'height:380px\'>App Screens Preview</div>'" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ THE USER ═══ -->
+    <section class="py-16 md:py-24">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
+          <div class="fade-up order-2 md:order-1">
+            <img src="images/wt cover.png" alt="WhiskerTracker overview" class="mockup-float w-full" onerror="this.outerHTML='<div class=\'mockup-float mockup-placeholder img-placeholder w-full\' style=\'height:360px\'>User Overview</div>'" />
+          </div>
+          <div class="fade-up order-1 md:order-2" style="transition-delay:0.1s">
+            <h2 class="section-label">The <span>User</span></h2>
+            <p class="case-headline mb-4">
+              The main users are people who look after outdoor and community cats, often across a whole colony rather than a single pet.
+            </p>
+            <p class="case-body mb-4">They may include:</p>
+            <ul class="space-y-2 mb-5">
+              <li class="result-bullet">Cat feeders who track individual cats they recognize on their walks</li>
+              <li class="result-bullet">Colony caretakers managing many cats at once</li>
+              <li class="result-bullet">Users who want a private record of a cat's identity, like a microchip ID</li>
+            </ul>
+            <p class="case-body">
+              These users needed profiles and connections that could grow and change over time, since real relationships between cats and colonies are rarely known all at once when a profile is first created.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ THE METHOD ═══ -->
+    <section class="py-16 md:py-24 bg-diagonal">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="mb-12 fade-up">
+          <h2 class="section-label">The <span>Method</span></h2>
+          <p class="case-headline">
+            Joining as an interim designer meant working inside an existing product, so I started by understanding what was already built before proposing changes.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-5 max-w-4xl mx-auto fade-up">
+          <div class="method-card">
+            <p class="font-bold text-[#3A2618] mb-2" style="font-family:'Sora',sans-serif;">Existing flow review</p>
+            <p>I reviewed the current create-profile and connection flows to understand exactly where the "connect only at creation" limitation came from.</p>
+          </div>
+          <div class="method-card">
+            <p class="font-bold text-[#3A2618] mb-2" style="font-family:'Sora',sans-serif;">Client requirement handling</p>
+            <p>I translated Phase 2.5 client requests into concrete design tasks: gender, microchip ID, manual connect, and notifications.</p>
+          </div>
+          <div class="method-card">
+            <p class="font-bold text-[#3A2618] mb-2" style="font-family:'Sora',sans-serif;">Logic &amp; entity mapping</p>
+            <p>I mapped how cats, colonies, and sub-entities could reference each other, so a connection could be made in either direction, at any time.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ THE PROCESS ═══ -->
+    <section class="py-16 md:py-24">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="fade-up">
+          <h2 class="section-label">The <span>Process</span></h2>
+          <p class="case-headline mb-5">
+            Serving as an interim designer, I handled the client's Phase 2.5 requests and updated the design accordingly.
+          </p>
+          <p class="case-body mb-4">
+            I added gender and microchip ID fields to the cat profile, keeping microchip ID visible only to the profile owner to protect sensitive information. I also designed a notification page so users know when someone comments on or connects to their cats.
+          </p>
+          <p class="case-headline mb-4">The most involved part was redesigning the connection logic itself.</p>
+          <p class="case-body mb-4">
+            Previously, cats could only be linked to each other during profile creation. I redesigned the flow so users can manually connect cats even after a profile already exists, which matches how people actually discover relationships between cats over time.
+          </p>
+        </div>
+        <div class="mt-16 fade-up" style="transition-delay:0.1s">
+          <img src="images/wt design update.png" alt="WhiskerTracker design update" class="mockup-float w-full" onerror="this.outerHTML='<div class=\'mockup-float mockup-placeholder img-placeholder w-full\' style=\'height:380px\'>Design Update</div>'" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ THE INSIGHTS ═══ -->
+    <section class="py-16 md:py-24 bg-diagonal">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="mb-4 fade-up">
+          <h2 class="section-label">The <span>Insights</span></h2>
+          <p class="case-headline mb-4">
+            The biggest insight was that a growing profile needs room to grow — connections, settings, and identity details all pile up over time, and the design has to keep up.
+          </p>
+          <p class="case-body mb-4">
+            As more fields like gender and microchip ID were added, the profile page risked feeling cluttered. Grouping profile items into clear categories kept it easy to scan even as it grew.
+          </p>
+          <p class="case-headline mb-2">These insights shaped the design decisions:</p>
+          <ul class="space-y-2 mb-4">
+            <li class="result-bullet">Sensitive info like microchip ID should stay private by default</li>
+            <li class="result-bullet">Profile settings should be grouped, not listed flat</li>
+            <li class="result-bullet">Notifications help users feel connected to their cat community</li>
+            <li class="result-bullet">Connections should be possible at any point, not just at creation</li>
+          </ul>
+          <p class="case-body">
+            These insights helped shape a version of WhiskerTracker that gives users more visibility and control as their cat catalog grows.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ THE SOLUTION ═══ -->
+    <section class="py-16 md:py-24">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="fade-up">
+          <h2 class="section-label">The <span>Solution</span></h2>
+          <p class="case-headline mb-4">
+            The final solution redesigned WhiskerTracker's app logic so cats can be manually connected to each other even after their profiles already exist.
+          </p>
+          <p class="case-body mb-5">WhiskerTracker now allows users to:</p>
+          <div class="flex flex-wrap justify-center md:justify-start gap-2 mb-6">
+            <span class="pill">Connect cats manually, any time</span>
+            <span class="pill">Add gender &amp; private microchip ID</span>
+            <span class="pill">See notifications for comments &amp; connections</span>
+            <span class="pill">Browse a grouped, organized profile</span>
+          </div>
+          <p class="case-body">
+            Instead of forcing every relationship to be defined upfront, the app now supports how people actually get to know a colony: gradually, one connection at a time.
+          </p>
+        </div>
+        <div class="mt-16 fade-up" style="transition-delay:0.1s">
+          <img src="images/wt logic update 1.png" alt="WhiskerTracker logic update" class="mockup-float w-full" onerror="this.outerHTML='<div class=\'mockup-float mockup-placeholder img-placeholder w-full\' style=\'height:380px\'>App Logic Update</div>'" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ THE RESULTS ═══ -->
+    <section class="py-16 md:py-24 bg-diagonal">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="mb-12 fade-up">
+          <h2 class="section-label">The <span>Results</span></h2>
+          <p class="case-headline mb-5">
+            The updated design gave WhiskerTracker a more complete and flexible cat-catalog experience.
+          </p>
+          <p class="case-headline mb-2">The update helped create:</p>
+          <ul class="space-y-2 mb-4">
+            <li class="result-bullet">More visibility and control through gender icons, microchip ID, and cat/comment counters</li>
+            <li class="result-bullet">Flexible connections, solving a major limitation of the original create-only flow</li>
+            <li class="result-bullet">A more organized profile structure as settings continue to grow</li>
+            <li class="result-bullet">More engagement through notifications for comments and linked cats</li>
+            <li class="result-bullet">Stronger trust and safety by keeping sensitive info like microchip ID private</li>
+          </ul>
+        </div>
+        <div class="fade-up">
+          <img src="images/wt all screen.png" alt="WhiskerTracker full screen spread" class="mockup-float w-full" onerror="this.outerHTML='<div class=\'mockup-float mockup-placeholder img-placeholder w-full\' style=\'height:420px\'>All Screens Spread</div>'" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ THE LEARNINGS ═══ -->
+    <section class="py-12 md:py-20">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="mb-12 fade-up">
+          <h2 class="section-label">The <span>Learnings</span></h2>
+          <p class="case-headline mb-3">
+            This project taught me how to design inside a live, existing product rather than starting from a blank canvas.
+          </p>
+          <p class="case-body">
+            Working within a tight two-week interim scope meant every decision had to fit logic and patterns that were already in place, while still solving real limitations for users.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 fade-up mb-20">
+          <div class="learning-card">
+            <span class="num">1. What Went Well</span>
+            <p class="case-body">
+              What went well was shipping several meaningful features — gender, microchip ID, manual connect, and notifications — within a short two-week interim engagement, without disrupting the app's existing flows.
+            </p>
+          </div>
+          <div class="learning-card">
+            <span class="num" style="background:#FEF3C7; color:#92400E;">2. What Could Be Improved</span>
+            <p class="case-body">
+              What could be improved is deeper testing with real cat caretakers. With more time, I would validate the new manual-connect flow and notification page with actual users to see how intuitive they feel.
+            </p>
+          </div>
+          <div class="learning-card">
+            <span class="num" style="background:#D1FAE5; color:#065F46;">3. What I Learned</span>
+            <p class="case-body">
+              This project strengthened my ability to work as an interim designer: reading an existing system quickly, respecting what already works, and finding where the design logic needs to flex to support real user behavior.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ BACK TO TOP ═══ -->
+    <section class="pt-0 pb-16 md:pb-20">
+      <div class="max-w-6xl mx-auto px-6 flex justify-center">
+        <a href="#top" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition hover:shadow-md hover:-translate-y-1 m-0" style="font-family:'Sora',sans-serif; color:#ffffff; background:#ED8946; box-shadow: 0 10px 28px rgba(184,92,30,0.24);">
+          Back to top <i class="bi bi-arrow-up-circle-fill"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ FOOTER ═══ -->
+    <footer style="background:#ffffff; border-top:1px solid rgba(237,137,70,0.18);">
+      <div class="flex items-center justify-between px-6 md:px-[72px] py-4">
+        <p class="text-[10px] md:text-xs" style="color: #3A2618;">© 2025 Arieff Hizer // All Rights Reserved</p>
+        <div class="flex gap-2">
+          <a href="https://github.com/arieffhizer" target="_blank" class="flex items-center gap-1 px-3 py-1 rounded-full text-[10px] md:text-xs" style="color: #B85C1E; background: rgba(237,137,70,0.10);">
+            <i class="bi bi-github"></i> GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/arieff-hizer-98b412225/" target="_blank" class="flex items-center gap-1 px-3 py-1 rounded-full text-[10px] md:text-xs" style="color: #B85C1E; background: rgba(237,137,70,0.10);">
+            <i class="bi bi-linkedin"></i> LinkedIn
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ═══════════════════════════════════════ SCROLL ANIMATION ═══ -->
+    <script>
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            observer.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+      document.querySelectorAll('section:first-of-type .fade-up').forEach((el, i) => {
+        setTimeout(() => el.classList.add('visible'), i * 150);
+      });
+    </script>
 
   </body>
 </html>

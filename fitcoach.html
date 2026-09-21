@@ -185,6 +185,39 @@
 
       h1, h2, h3, h4 { font-family: 'Sora', sans-serif; }
 
+      /* ── Nav pills: same light pill treatment as the footer links, so the
+         top navbar and footer share one consistent white-bg-suitable style. ── */
+      .fc-nav-pill {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        height: 32px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: rgba(28,28,28,0.06);
+        color: #1C1C1C;
+        border: 1px solid rgba(28,28,28,0.10);
+        font-size: 0.8125rem;
+        font-weight: 600;
+        white-space: nowrap;
+        transition: background 0.2s ease;
+      }
+      .fc-nav-pill:hover { background: rgba(28,28,28,0.12); }
+      .fc-nav-pill-mobile {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 10px 16px;
+        border-radius: 999px;
+        background: rgba(28,28,28,0.06);
+        color: #1C1C1C;
+        border: 1px solid rgba(28,28,28,0.10);
+        font-size: 0.875rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+
       .section-label {
         font-family: 'Sora', sans-serif;
         font-size: 1.75rem;
@@ -443,27 +476,27 @@
     <!-- ═══════════════════════════════════════ NAV ═══ -->
     <div class="site-nav w-full sticky top-0 z-50 relative">
       <div id="nav-blur" class="relative" style="-webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); background: rgba(255,255,255,0.1);">
-        <header class="flex justify-between items-center p-4 max-w-6xl mx-auto">
+        <header class="flex justify-between items-center px-6 md:px-[72px] py-4">
           <a href="index.html" class="flex items-center bg-gray-100 px-4 py-1 rounded-full shadow gap-2 hover:shadow-md transition">
             <img src="images/logo arieff h 3.png" alt="Logo" class="w-6 h-6 rounded-full shadow" />
             <span class="text-lg font-semibold text-gray-800">Arieff H.</span>
           </a>
-          <div class="flex max-md:hidden items-center gap-4">
-            <a href="about.html" class="flex items-center gap-2 px-4 py-1 bg-[#FFFFFF] rounded-full text-[#374151] hover:shadow transition text-sm">
-              <i class="bi bi-person-fill text-base"></i> About Me
-            </a>
-            <a href="index.html#projects" class="flex items-center gap-2 px-4 py-1 bg-[#FFFFFF] rounded-full text-[#374151] hover:shadow transition text-sm">
-              <i class="bi bi-folder-fill text-base"></i> Projects
-            </a>
+          <div class="flex max-md:hidden items-center gap-3">
+            <a href="index.html#about" class="fc-nav-pill"><i class="bi bi-person-fill"></i> About Me</a>
+            <a href="index.html#work" class="fc-nav-pill"><i class="bi bi-folder-fill"></i> Work Projects</a>
+            <a href="index.html#gallery" class="fc-nav-pill"><i class="bi bi-image-fill"></i> Gallery</a>
+            <a href="index.html#personal" class="fc-nav-pill"><i class="bi bi-briefcase-fill"></i> Personal Projects</a>
             <a href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position." target="_blank" rel="noopener" class="flex items-center gap-2 bg-[#1C1C1C] text-white px-4 py-2 rounded-full text-sm transition hover:shadow-md hover:-translate-y-1 m-0">
               Say Hi <i class="bi bi-emoji-smile-fill"></i>
             </a>
           </div>
           <button id="menu-btn" class="md:hidden text-2xl text-gray-800"><i class="bi bi-list"></i></button>
         </header>
-        <div id="mobile-menu" class="hidden flex-col gap-2 p-4 md:hidden absolute top-full left-0 w-full" style="background: rgba(255,255,255,0.95);">
-          <a href="about.html" class="flex items-center justify-center gap-2 px-4 py-2 bg-[#FFFFFF] rounded-full text-[#374151] hover:shadow transition text-sm mb-2"><i class="bi bi-person-fill"></i> About Me</a>
-          <a href="index.html#projects" class="flex items-center justify-center gap-2 px-4 py-2 bg-[#FFFFFF] rounded-full text-[#374151] hover:shadow transition text-sm mb-2"><i class="bi bi-folder-fill"></i> Projects</a>
+        <div id="mobile-menu" class="hidden flex-col gap-2 p-4 md:hidden absolute top-full left-0 w-full" style="background: rgba(255,255,255,0.98); border-top:1px solid rgba(28,28,28,0.08);">
+          <a href="index.html#about" class="fc-nav-pill-mobile"><i class="bi bi-person-fill"></i> About Me</a>
+          <a href="index.html#work" class="fc-nav-pill-mobile"><i class="bi bi-folder-fill"></i> Work Projects</a>
+          <a href="index.html#gallery" class="fc-nav-pill-mobile"><i class="bi bi-image-fill"></i> Gallery</a>
+          <a href="index.html#personal" class="fc-nav-pill-mobile"><i class="bi bi-briefcase-fill"></i> Personal Projects</a>
           <a href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position." target="_blank" rel="noopener" class="flex items-center justify-center gap-2 bg-[#1C1C1C] text-white px-4 py-2 rounded-full text-sm transition hover:shadow-md"><i class="bi bi-emoji-smile-fill"></i> Say Hi</a>
         </div>
       </div>
@@ -828,8 +861,8 @@
     </section>
 
     <!-- ═══════════════════════════════════════ BACK TO TOP ═══ -->
-    <section class="py-0 my-0">
-      <div class="max-w-6xl mx-auto px-6 flex justify-center py-0 my-0">
+    <section class="pt-0 pb-16 md:pb-20">
+      <div class="max-w-6xl mx-auto px-6 flex justify-center">
         <a href="#top" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition hover:shadow-md hover:-translate-y-1 m-0" style="font-family:'Sora',sans-serif; color:#ffffff; background:#1C1C1C; box-shadow: 0 10px 28px rgba(0,0,0,0.18);">
           Back to top <i class="bi bi-arrow-up-circle-fill"></i>
         </a>
@@ -837,18 +870,15 @@
     </section>
 
     <!-- ═══════════════════════════════════════ FOOTER ═══ -->
-    <footer>
-      <div class="flex flex-col md:flex-row justify-between items-center gap-4 p-6 max-w-6xl mx-auto text-center md:text-left">
-        <p style="font-size: 0.8125rem; color: #545352;">© 2025 Arieff Hizer // All Rights Reserved</p>
+    <footer style="background:#ffffff; border-top:1px solid rgba(28,28,28,0.1);">
+      <div class="flex items-center justify-between px-6 md:px-[72px] py-4">
+        <p class="text-[10px] md:text-xs" style="color: #1C1C1C;">© 2025 Arieff Hizer // All Rights Reserved</p>
         <div class="flex gap-2">
-          <a href="https://github.com/arieffhizer" target="_blank" class="flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium transition hover:shadow-md" style="color: #1C1C1C; background: rgba(28,28,28,0.06);">
-            <i class="bi bi-github text-xs"></i> GitHub
+          <a href="https://github.com/arieffhizer" target="_blank" class="flex items-center gap-1 px-3 py-1 rounded-full text-[10px] md:text-xs" style="color: #1C1C1C; background: rgba(28,28,28,0.06);">
+            <i class="bi bi-github"></i> GitHub
           </a>
-          <a href="https://www.linkedin.com/in/arieff-hizer-98b412225/" target="_blank" class="flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium transition hover:shadow-md" style="color: #1C1C1C; background: rgba(28,28,28,0.06);">
-            <i class="bi bi-linkedin text-xs"></i> LinkedIn
-          </a>
-          <a href="https://www.instagram.com/rffhzr" target="_blank" class="flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium transition hover:shadow-md" style="color: #1C1C1C; background: rgba(28,28,28,0.06);">
-            <i class="bi bi-instagram text-xs"></i> Instagram
+          <a href="https://www.linkedin.com/in/arieff-hizer-98b412225/" target="_blank" class="flex items-center gap-1 px-3 py-1 rounded-full text-[10px] md:text-xs" style="color: #1C1C1C; background: rgba(28,28,28,0.06);">
+            <i class="bi bi-linkedin"></i> LinkedIn
           </a>
         </div>
       </div>

@@ -1,0 +1,601 @@
+/* ===== Fonts ===== */
+@font-face {
+  font-family: 'Open Sauce Two';
+  src: local('Open Sauce Two');
+  font-display: swap;
+}
+
+:root {
+  --font-display: 'Unbounded', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+
+  --color-purple: #7b5cfa;
+  --color-purple-med: #897aff;
+  --color-black: #0a0c11;
+
+  --nav-h: 72px;
+}
+
+body {
+  font-family: var(--font-body);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* ===== Horizontal scroll experience (desktop) ===== */
+.hz-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Desktop: the wrapper becomes a fixed, full-viewport stage. Section changes are
+   driven by discrete gesture events (see Observer in the script), not scroll position. */
+@media (min-width: 1024px) {
+  .hz-wrapper {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+  }
+}
+
+.hz-panels {
+  display: flex;
+  height: 100vh;
+  will-change: transform;
+}
+
+.hz-panel {
+  position: relative;
+  flex: 0 0 100vw;
+  width: 100vw;
+  height: 100vh;
+  padding-top: var(--nav-h);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Mobile / below the horizontal-scroll breakpoint: normal vertical flow */
+@media (max-width: 1023px) {
+  .hz-wrapper,
+  .hz-panels {
+    height: auto;
+  }
+  .hz-panels {
+    flex-direction: column;
+  }
+  .hz-panel {
+    flex: none;
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+  }
+  .wp-row {
+    flex-direction: column;
+    overflow-y: visible;
+  }
+  .hero-line {
+    font-size: clamp(2.2rem, 15vw, 4.5rem) !important;
+  }
+  .hero-lines {
+    justify-content: center !important;
+    gap: 6px;
+  }
+  .about-skills-break {
+    display: block;
+  }
+  .about-chain {
+    left: 50% !important;
+    top: 50% !important;
+  }
+  [data-panel="about"] {
+    padding-bottom: var(--nav-h);
+  }
+  .deco-motif {
+    width: 144px !important;
+    top: -4px !important;
+    opacity: 1 !important;
+  }
+  .section-header-row {
+    transform: translateY(-24px);
+  }
+  .section-title {
+    font-size: clamp(2.2rem, 9vw, 3.4rem) !important;
+    line-height: 1 !important;
+  }
+  .about-heading {
+    line-height: 1 !important;
+  }
+  .cta-spider-desktop {
+    display: none !important;
+  }
+  .cta-heading {
+    white-space: normal !important;
+    font-size: clamp(2rem, 8vw, 3rem) !important;
+    line-height: 1 !important;
+  }
+  .cta-chat-btn {
+    padding: 10px 20px !important;
+    font-size: 14px !important;
+  }
+  .cta-credits {
+    font-size: 8px !important;
+  }
+  .quick-link {
+    min-height: 110px;
+    flex: none;
+  }
+  [data-panel="about"] .absolute.left-\[70\%\].-translate-x-1\/2 {
+    top: calc(-1vh - 3.2rem) !important;
+  }
+  .hero-content-row {
+    padding-top: 24px;
+    margin-bottom: 20px;
+  }
+  .hero-photo {
+    width: clamp(180px, 38.5vh, 420px) !important;
+    height: clamp(108px, 23.1vh, 252px) !important;
+  }
+  .hero-title {
+    font-size: clamp(1.4rem, calc(6.2vh - 16px), 3.4rem) !important;
+  }
+  .hero-desc {
+    text-align: justify !important;
+  }
+  .hero-text-col {
+    max-width: clamp(180px, 38.5vh, 420px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    position: relative !important;
+    z-index: 20 !important;
+  }
+  .hero-hand-img {
+    width: calc(50vh + 48px) !important;
+    max-width: none !important;
+    height: auto !important;
+    left: -13.3vh !important;
+    top: calc(-8.4vh + 60px) !important;
+  }
+  .hero-hand-grunge {
+    width: calc(50vh + 48px) !important;
+    left: -13.3vh !important;
+    top: calc(-8.4vh + 60px) !important;
+    height: calc((50vh + 48px) * 0.6635) !important;
+  }
+  .footer-copyright {
+    font-size: 10px !important;
+    line-height: 12px !important;
+  }
+  .hero-footer .nav-pill {
+    height: auto !important;
+    padding: 4px 12px !important;
+    gap: 4px !important;
+    font-size: 10px !important;
+  }
+  .about-heart {
+    width: clamp(428px, calc(32vh + 168px), 608px) !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .courses-bag {
+    width: clamp(164px, calc(20vw - 36px), 284px) !important;
+    transform: translateY(-50%) rotate(15deg) !important;
+  }
+  .hero-text-col {
+    position: relative;
+    z-index: 20;
+  }
+  .hero-content-row {
+    gap: 96px !important;
+  }
+}
+
+/* ===== Grunge / texture overlays ===== */
+.deco-grunge {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-repeat: repeat;
+  background-size: 45%;
+  pointer-events: none;
+  mix-blend-mode: hard-light;
+}
+
+.deco-swirl {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  mix-blend-mode: lighten;
+  opacity: 0.3;
+}
+
+/* Mobile-only CTA spider: a separate element from .cta-spider-desktop so it
+   can be pinned to the section's own top-right corner instead of being
+   trapped inside the small "together!" text span's positioning context. */
+.cta-spider-mobile {
+  display: none;
+  position: absolute;
+}
+@media (max-width: 1023px) {
+  .cta-spider-mobile {
+    display: block;
+    top: -120px;
+    right: -24px;
+    width: 120px;
+  }
+  [data-panel="cta"] .deco-grunge {
+    top: -72px;
+  }
+}
+
+/* ===== Skill chips ticker (About) ===== */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--color-black);
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  box-shadow: 0 6px 6px -3px rgba(0,0,0,0.04);
+}
+
+/* ===== Personal project cards: 2x2 grid of wide/short cards ===== */
+.carousel-track {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: clamp(16px, 2.5vw, 32px);
+  min-height: 0;
+  overflow-y: auto;
+}
+.carousel-card {
+  min-width: 0;
+  min-height: 0;
+}
+@media (max-width: 1023px) {
+  .carousel-track {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    grid-auto-rows: auto;
+  }
+  .carousel-card {
+    width: 100%;
+    height: 40vh;
+  }
+}
+
+/* ===== Work project cards: edge-to-edge, no gap, square corners ===== */
+.wp-row {
+  display: flex;
+  min-height: 0;
+  overflow-y: auto;
+}
+/* Work Project holds an old-set and a new-set of cards sharing one panel slot
+   on desktop (toggled via the extra wheel-scroll step in the horizontal-scroll
+   script); on mobile both sets just stack and scroll normally. */
+@media (min-width: 1024px) {
+  .wp-groups {
+    position: relative;
+  }
+  .wp-groups .wp-row {
+    position: absolute;
+    inset: 0;
+  }
+}
+.wp-card {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width: 1023px) {
+  .wp-card {
+    flex: none;
+  }
+}
+.wp-card-media {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+}
+.wp-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center calc(50% - 12px);
+  transform: scale(0.8);
+  transform-origin: center;
+}
+@media (max-width: 1023px) {
+  .wp-card-media {
+    flex: none;
+    aspect-ratio: 4 / 3;
+  }
+}
+.wp-card-media--dark img {
+  filter: drop-shadow(0 0 30px rgba(0, 0, 0, 0.4)) drop-shadow(0 0 80px rgba(0, 0, 0, 0.28)) drop-shadow(0 0 150px rgba(0, 0, 0, 0.18));
+}
+.wp-card-media--blue img {
+  filter: drop-shadow(0 0 30px rgba(17, 139, 232, 0.35)) drop-shadow(0 0 80px rgba(17, 139, 232, 0.24)) drop-shadow(0 0 150px rgba(17, 139, 232, 0.14));
+}
+.wp-card-media--purple img {
+  filter: drop-shadow(0 0 30px rgba(123, 92, 250, 0.35)) drop-shadow(0 0 80px rgba(123, 92, 250, 0.24)) drop-shadow(0 0 150px rgba(123, 92, 250, 0.14));
+}
+.wp-card-media--green img {
+  filter: drop-shadow(0 0 30px rgba(15, 138, 107, 0.35)) drop-shadow(0 0 80px rgba(15, 138, 107, 0.24)) drop-shadow(0 0 150px rgba(15, 138, 107, 0.14));
+}
+.wp-card-media--cyan img {
+  filter: drop-shadow(0 0 30px rgba(84, 83, 82, 0.35)) drop-shadow(0 0 80px rgba(84, 83, 82, 0.24)) drop-shadow(0 0 150px rgba(84, 83, 82, 0.14));
+  object-fit: contain;
+  object-position: center center;
+  transform: scale(0.65);
+}
+.wp-card-media--coral img {
+  filter: drop-shadow(0 0 30px rgba(241, 134, 113, 0.35)) drop-shadow(0 0 80px rgba(241, 134, 113, 0.24)) drop-shadow(0 0 150px rgba(241, 134, 113, 0.14));
+}
+
+/* ===== About page: Experiences timeline (desktop horizontal vs mobile vertical) ===== */
+.about-text-block {
+  margin-bottom: clamp(1.5rem, 4vh, 2.5rem);
+}
+.timeline-mobile {
+  display: block;
+}
+.timeline-desktop {
+  display: none;
+}
+@media (min-width: 1024px) {
+  .timeline-mobile {
+    display: none;
+  }
+  .timeline-desktop {
+    display: block;
+  }
+  .experiences-block {
+    transform: translateY(-24px);
+  }
+  .about-text-block {
+    transform: translateY(72px);
+    margin-bottom: 0;
+  }
+}
+
+/* ===== About page: hero typewriter cursor ===== */
+.blinking-cursor {
+  display: inline;
+  font-family: monospace;
+  animation: hero-cursor-blink 1s step-start infinite;
+}
+.cursor-hidden {
+  display: none;
+}
+@keyframes hero-cursor-blink {
+  50% { opacity: 0; }
+}
+
+/* ===== About page: Courses & Certificates cards ===== */
+.courses-row {
+  min-height: 0;
+}
+.course-card {
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+.course-card-img {
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  flex: 1 1 auto;
+  object-fit: contain;
+}
+
+/* ===== Gallery mosaic ===== */
+/* Designed at a fixed 1920x1080 reference canvas, then scaled as one unit so
+   every tile's size, position, and rotation shrink together on smaller
+   viewports without distorting the 533:320 aspect ratio of each tile. */
+.gallery-canvas {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1920px;
+  height: 1080px;
+  transform-origin: center center;
+  transform: translate(-50%, -50%) scale(min(1, calc(100vw / 1920px)));
+}
+.gallery-tile {
+  position: absolute;
+}
+.gallery-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%);
+  box-shadow: 0 20px 40px -20px rgba(0,0,0,0.4);
+  transition: filter 0.4s ease, transform 0.4s ease;
+  transform-origin: center;
+}
+.gallery-tile:hover {
+  z-index: 5;
+}
+.gallery-tile:hover img {
+  filter: grayscale(0%);
+  transform: scale(1.35);
+}
+/* Mobile: abandon the shared-scale 1920x1080 canvas (it shrinks the whole
+   mosaic into a tiny centered band) and pin each tile directly to the
+   section in two clusters that bleed off the top/bottom edges, like the
+   desktop version's tiles overflowing the viewport. */
+@media (max-width: 1023px) {
+  [data-panel="gallery"] {
+    min-height: calc(100vh - var(--nav-h));
+  }
+  .gallery-canvas {
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    transform: none !important;
+  }
+  .gallery-tile {
+    width: clamp(140px, 46vw, 220px) !important;
+    height: auto !important;
+    aspect-ratio: 5 / 3;
+  }
+  .gallery-tile-1 { left: -6vw !important; top: calc(-6vh + 144px) !important; right: auto !important; bottom: auto !important; transform: rotate(-10deg) !important; }
+  .gallery-tile-8 { left: calc(20vw - 60px) !important; top: -2vh !important; right: auto !important; bottom: auto !important; transform: rotate(6deg) !important; }
+  .gallery-tile-6 { right: -6vw !important; top: calc(-6vh + 156px) !important; left: auto !important; bottom: auto !important; transform: rotate(10deg) !important; }
+  .gallery-tile-7 { right: calc(20vw - 60px) !important; top: calc(-2vh + 12px) !important; left: auto !important; bottom: auto !important; transform: rotate(-6deg) !important; }
+  .gallery-tile-3 { left: -6vw !important; bottom: calc(-6vh + 144px) !important; top: auto !important; right: auto !important; transform: rotate(12deg) !important; }
+  .gallery-tile-2 { left: calc(20vw - 60px) !important; bottom: -2vh !important; top: auto !important; right: auto !important; transform: rotate(-8deg) !important; }
+  .gallery-tile-4 { right: -6vw !important; bottom: calc(-6vh + 156px) !important; top: auto !important; left: auto !important; transform: rotate(-12deg) !important; }
+  .gallery-tile-5 { right: calc(20vw - 60px) !important; bottom: calc(-2vh + 12px) !important; top: auto !important; left: auto !important; transform: rotate(8deg) !important; }
+}
+
+/* ===== CTA quick-link rows: slide-reveal hover (white face slides up to reveal the colored face) ===== */
+.quick-link {
+  position: relative;
+  overflow: hidden;
+}
+.quick-link-stack {
+  position: absolute;
+  inset: 0;
+  height: 200%;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.quick-link-face {
+  height: 50%;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+}
+@media (min-width: 768px) {
+  .quick-link-face {
+    padding: 0 72px;
+  }
+}
+.quick-link-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--color-black);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 13px;
+  white-space: nowrap;
+  transition: transform 0.2s ease;
+}
+.quick-link-pill:hover {
+  transform: translateY(-2px);
+}
+.quick-link-pill-icon {
+  width: 17px;
+  height: 17px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 9px;
+  flex-shrink: 0;
+}
+.quick-link-toggle {
+  display: none;
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--color-black);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  z-index: 20;
+  transition: transform 0.3s ease, background 0.2s ease;
+}
+.quick-link-toggle:hover {
+  background: #f2f2f2;
+}
+@media (min-width: 768px) {
+  .quick-link-toggle {
+    right: 72px;
+  }
+}
+@media (max-width: 1023px) {
+  .quick-link-toggle {
+    display: inline-flex;
+  }
+}
+.quick-link.expanded .quick-link-toggle {
+  transform: translateY(-50%) rotate(180deg);
+}
+.quick-link.expanded .quick-link-stack {
+  transform: translateY(-50%);
+}
+@media (min-width: 1024px) {
+  .quick-link:hover .quick-link-stack,
+  .quick-link:focus-visible .quick-link-stack {
+    transform: translateY(-50%);
+  }
+}
+
+/* ===== Nav pills ===== */
+.nav-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #1f1f1f;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background 0.2s ease;
+}
+.nav-pill:hover {
+  background: #333;
+}
+.nav-pill.active {
+  background: #fff;
+  color: var(--color-black);
+}
+.nav-pill.active:hover {
+  background: #fff;
+}
+.say-hi-btn.active {
+  background: #fff !important;
+  color: #7b5cfa !important;
+}
+.say-hi-btn.active:hover {
+  background: #f2f2f2 !important;
+}
+
+/* ===== Utility ===== */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }

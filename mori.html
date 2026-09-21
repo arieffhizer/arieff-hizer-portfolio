@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mori Barbershop — Arieff Hizer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png">
+    <style>
+      :root {
+        --brand-main: #7D2327;
+        --brand-deep: #5C1A1D;
+        --brand-cream: #F6F3EB;
+        --text-dark: #1C1C1C;
+        --text-mid: #545352;
+        --text-muted: #888480;
+        --white: #FFFFFF;
+      }
+      * { box-sizing: border-box; }
+      body {
+        font-family: 'Inter', sans-serif;
+        background: #ffffff;
+        color: var(--text-dark);
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      .page-bg {
+        position: relative;
+        isolation: isolate;
+        overflow-x: hidden;
+        background: #ffffff;
+      }
+
+      .mr-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        overflow: hidden;
+      }
+
+      .mr-circle {
+        position: absolute;
+        border-radius: 9999px;
+        background: radial-gradient(
+          circle at center,
+          rgba(125,35,39,0.70) 0%,
+          rgba(166,90,93,0.46) 44%,
+          rgba(220,196,197,0.26) 68%,
+          rgba(255,255,255,0) 86%
+        );
+        overflow: hidden;
+      }
+
+      .mr-circle::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: repeating-radial-gradient(
+          circle at center,
+          rgba(255,255,255,0.78) 0 1px,
+          transparent 1px 34px
+        );
+        opacity: 0.72;
+        -webkit-mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9) 54%, rgba(0,0,0,0) 78%);
+        mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9) 54%, rgba(0,0,0,0) 78%);
+      }
+
+      .mr-circle-1 { width: 760px; height: 760px; top: 7%; right: -250px; transform: translateY(-50%); }
+      .mr-circle-2 { width: 520px; height: 520px; top: 27%; left: -80px; }
+      .mr-circle-3 { width: 680px; height: 680px; top: 78%; right: -140px; }
+
+      .page-bg > *:not(.mr-bg):not(.site-nav) {
+        position: relative;
+        z-index: 1;
+      }
+
+      @media (max-width: 768px) {
+        .mr-circle::after {
+          background: repeating-radial-gradient(
+            circle at center,
+            rgba(255,255,255,0.76) 0 1px,
+            transparent 1px 28px
+          );
+        }
+        .mr-circle-1 { width: 520px; height: 520px; top: 6%; right: -210px; transform: translateY(-50%); }
+        .mr-circle-2 { width: 360px; height: 360px; top: 27%; left: -130px; }
+        .mr-circle-3 { width: 450px; height: 450px; top: 78%; right: -160px; }
+      }
+
+      h1, h2, h3, h4 { font-family: 'Sora', sans-serif; }
+
+      .mr-nav-pill {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        height: 32px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: rgba(125,35,39,0.07);
+        color: #1C1C1C;
+        border: 1px solid rgba(125,35,39,0.18);
+        font-size: 0.8125rem;
+        font-weight: 600;
+        white-space: nowrap;
+        transition: background 0.2s ease;
+      }
+      .mr-nav-pill:hover { background: rgba(125,35,39,0.14); }
+      .mr-nav-pill-mobile {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 10px 16px;
+        border-radius: 999px;
+        background: rgba(125,35,39,0.07);
+        color: #1C1C1C;
+        border: 1px solid rgba(125,35,39,0.18);
+        font-size: 0.875rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+
+      .section-label {
+        font-family: 'Sora', sans-serif;
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: var(--brand-deep);
+        margin-bottom: 1rem;
+      }
+      .section-label span { color: var(--text-mid); }
+      @media (min-width: 768px) { .section-label { font-size: 2.25rem; } }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 16px;
+        border-radius: 999px;
+        font-size: 0.8125rem;
+        font-weight: 500;
+        background: rgba(125,35,39,0.08);
+        color: var(--brand-deep);
+        border: 1px solid rgba(125,35,39,0.18);
+        white-space: nowrap;
+      }
+
+      .mockup-float {
+        border-radius: 16px;
+        box-shadow: none;
+        filter: drop-shadow(0 22px 26px rgba(0,0,0,0.14)) drop-shadow(0 6px 10px rgba(0,0,0,0.08));
+        transition: transform 0.4s ease, filter 0.4s ease;
+      }
+      .mockup-float:hover {
+        transform: translateY(-6px);
+        filter: drop-shadow(0 28px 32px rgba(0,0,0,0.18)) drop-shadow(0 8px 14px rgba(0,0,0,0.10));
+      }
+
+      .meta-table {
+        border: 1.5px solid rgba(125,35,39,0.20);
+        border-radius: 14px;
+        overflow: hidden;
+        background: rgba(125,35,39,0.04);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        box-shadow: 0 12px 36px rgba(0,0,0,0.06);
+      }
+      .meta-table .header-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        background: rgba(125,35,39,0.09);
+        border-bottom: 1.5px solid rgba(125,35,39,0.16);
+      }
+      .meta-table .header-row div,
+      .meta-table .content-row div {
+        padding: 0.75rem 1rem;
+        text-align: center;
+      }
+      .meta-table .header-row div {
+        font-family: 'Sora', sans-serif;
+        font-weight: 700;
+        color: var(--brand-deep);
+        font-size: 0.9rem;
+        border-right: 1.5px solid rgba(125,35,39,0.14);
+      }
+      .meta-table .header-row div:last-child,
+      .meta-table .content-row div:last-child { border-right: none; }
+      .meta-table .content-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        background: rgba(255,255,255,0.58);
+      }
+      .meta-table .content-row div {
+        font-size: 0.875rem;
+        color: #545352;
+        font-weight: 500;
+        border-right: 1.5px solid rgba(125,35,39,0.10);
+      }
+
+      .case-headline {
+        color: #1C1C1C;
+        font-size: 1rem;
+        line-height: 1.75;
+        font-weight: 500;
+      }
+      .case-body {
+        color: #545352;
+        font-size: 1rem;
+        line-height: 1.75;
+      }
+      @media (min-width: 768px) { .case-headline { font-size: 1.125rem; } }
+
+      /* ── Live preview browser-window frame ── */
+      .browser-frame {
+        border-radius: 16px;
+        overflow: hidden;
+        background: #E9E7E0;
+        box-shadow: 0 24px 70px rgba(28,18,16,0.22), 0 6px 18px rgba(0,0,0,0.10);
+        border: 1px solid rgba(28,18,16,0.10);
+      }
+      .browser-frame-bar {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 14px;
+        background: #EFEDE6;
+        border-bottom: 1px solid rgba(28,18,16,0.08);
+      }
+      .browser-frame-dots { display: flex; gap: 6px; flex-shrink: 0; }
+      .browser-frame-dots span { width: 10px; height: 10px; border-radius: 50%; display: block; }
+      .browser-frame-url {
+        flex: 1;
+        background: #ffffff;
+        border-radius: 999px;
+        padding: 5px 14px;
+        font-size: 0.75rem;
+        color: var(--text-mid);
+        border: 1px solid rgba(28,18,16,0.08);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        min-width: 0;
+      }
+      .browser-frame-url span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      .browser-frame iframe {
+        display: block;
+        width: 100%;
+        aspect-ratio: 1920 / 1080;
+        border: none;
+        background: #7D2327;
+      }
+
+      @media (max-width: 767px) {
+        section { text-align: center; }
+        section .fade-up,
+        section .section-label,
+        section .case-headline,
+        section .case-body,
+        section p,
+        section li { text-align: center; }
+        .section-label { margin-left: auto; margin-right: auto; }
+        .pill { justify-content: center; text-align: center; white-space: normal; }
+        section .flex.flex-wrap { justify-content: center; }
+        .mockup-float { display: block; margin-left: auto; margin-right: auto; }
+        .meta-table .header-row div,
+        .meta-table .content-row div {
+          padding: 0.85rem 0.65rem;
+          font-size: 0.8rem;
+        }
+        .browser-frame iframe { aspect-ratio: 375 / 812; }
+      }
+
+      .fade-up {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+      .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+      @media (max-width: 640px) {
+        .meta-table {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+        }
+        .meta-table .header-row,
+        .meta-table .content-row {
+          display: grid;
+          grid-template-columns: 1fr;
+        }
+        .meta-table .header-row {
+          border-bottom: none;
+          border-right: 1.5px solid rgba(125,35,39,0.16);
+        }
+        .meta-table .content-row { background: rgba(255,255,255,0.58); }
+        .meta-table .header-row div,
+        .meta-table .content-row div {
+          border-right: none;
+          border-top: 1.5px solid rgba(125,35,39,0.10);
+          min-height: 48px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0.85rem 0.65rem;
+          font-size: 0.8rem;
+        }
+        .meta-table .header-row div:first-child,
+        .meta-table .content-row div:first-child { border-top: none; }
+      }
+    </style>
+  </head>
+  <body class="page-bg">
+    <div class="mr-bg" aria-hidden="true">
+      <span class="mr-circle mr-circle-1"></span>
+      <span class="mr-circle mr-circle-2"></span>
+      <span class="mr-circle mr-circle-3"></span>
+    </div>
+
+    <!-- ═══════════════════════════════════════ NAV ═══ -->
+    <div class="site-nav w-full sticky top-0 z-50 relative">
+      <div id="nav-blur" class="relative" style="-webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); background: rgba(255,255,255,0.1);">
+        <header class="flex justify-between items-center px-6 md:px-[72px] py-4">
+          <a href="index.html" class="flex items-center bg-gray-100 px-4 py-1 rounded-full shadow gap-2 hover:shadow-md transition">
+            <img src="images/logo arieff h 3.png" alt="Logo" class="w-6 h-6 rounded-full shadow" />
+            <span class="text-lg font-semibold text-gray-800">Arieff H.</span>
+          </a>
+          <div class="flex max-md:hidden items-center gap-3">
+            <a href="index.html#about" class="mr-nav-pill"><i class="bi bi-person-fill"></i> About Me</a>
+            <a href="index.html#work" class="mr-nav-pill"><i class="bi bi-folder-fill"></i> Work Projects</a>
+            <a href="index.html#gallery" class="mr-nav-pill"><i class="bi bi-image-fill"></i> Gallery</a>
+            <a href="index.html#personal" class="mr-nav-pill"><i class="bi bi-briefcase-fill"></i> Personal Projects</a>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position." target="_blank" rel="noopener" class="flex items-center gap-2 bg-[#7D2327] text-white px-4 py-2 rounded-full text-sm transition hover:shadow-md hover:-translate-y-1 m-0">
+              Say Hi <i class="bi bi-emoji-smile-fill"></i>
+            </a>
+          </div>
+          <button id="menu-btn" class="md:hidden text-2xl text-gray-800"><i class="bi bi-list"></i></button>
+        </header>
+        <div id="mobile-menu" class="hidden flex-col gap-2 p-4 md:hidden absolute top-full left-0 w-full" style="background: rgba(255,255,255,0.98); border-top:1px solid rgba(125,35,39,0.18);">
+          <a href="index.html#about" class="mr-nav-pill-mobile"><i class="bi bi-person-fill"></i> About Me</a>
+          <a href="index.html#work" class="mr-nav-pill-mobile"><i class="bi bi-folder-fill"></i> Work Projects</a>
+          <a href="index.html#gallery" class="mr-nav-pill-mobile"><i class="bi bi-image-fill"></i> Gallery</a>
+          <a href="index.html#personal" class="mr-nav-pill-mobile"><i class="bi bi-briefcase-fill"></i> Personal Projects</a>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position." target="_blank" rel="noopener" class="flex items-center justify-center gap-2 bg-[#7D2327] text-white px-4 py-2 rounded-full text-sm transition hover:shadow-md"><i class="bi bi-emoji-smile-fill"></i> Say Hi</a>
+        </div>
+      </div>
+    </div>
+    <script>
+      const menuBtn = document.getElementById("menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const navBlur = document.getElementById("nav-blur");
+      menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+        if (mobileMenu.classList.contains("hidden")) {
+          navBlur.style.background = "rgba(255,255,255,0.1)";
+          menuBtn.classList.remove("text-white"); menuBtn.classList.add("text-gray-800");
+        } else {
+          navBlur.style.background = "rgba(255,255,255,0.95)";
+          menuBtn.classList.remove("text-white"); menuBtn.classList.add("text-gray-800");
+        }
+      });
+    </script>
+
+    <!-- ═══════════════════════════════════════ HERO ═══ -->
+    <section class="w-full">
+      <div class="max-w-6xl w-full mx-auto px-6 pt-16 pb-10 text-center">
+        <div class="fade-up">
+          <h1 class="font-bold leading-tight m-0 mb-4" style="font-family:'Sora',sans-serif; font-size: clamp(2.5rem, 6vw, 4rem); color:#1C1C1C;">Mori Barbershop</h1>
+          <p class="text-lg md:text-xl font-medium leading-snug mb-6" style="color:#545352;">An Editorial Hair Studio Website</p>
+          <div class="flex flex-wrap justify-center gap-2">
+            <span class="pill">Web Design</span>
+            <span class="pill">Front-End Development</span>
+            <span class="pill">B2C</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ LIVE PREVIEW ═══ -->
+    <section class="py-12 md:py-16">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="browser-frame fade-up">
+          <div class="browser-frame-bar">
+            <div class="browser-frame-dots">
+              <span style="background:#ED6A5E;"></span>
+              <span style="background:#F4BF4F;"></span>
+              <span style="background:#61C454;"></span>
+            </div>
+            <div class="browser-frame-url">
+              <i class="bi bi-lock-fill" style="font-size:0.7rem; color:#888480;"></i>
+              <span>mori.atelier</span>
+            </div>
+            <button type="button" id="refresh-preview" class="flex-shrink-0 flex items-center gap-1 text-[11px] font-semibold px-3 py-1.5 rounded-full transition hover:shadow-md" style="color:#7D2327; background:rgba(125,35,39,0.08); border:1px solid rgba(125,35,39,0.18);">
+              <i class="bi bi-arrow-clockwise"></i> Refresh
+            </button>
+          </div>
+          <iframe id="mori-iframe" src="mori-site/Mori.html" title="Mori Barbershop — live website" loading="lazy"></iframe>
+        </div>
+        <p class="text-center text-xs mt-4" style="color:#888480;">The real site, running inside this page, fully interactive. Hit "Refresh" to replay the splash animation.</p>
+      </div>
+    </section>
+    <script>
+      document.getElementById('refresh-preview').addEventListener('click', () => {
+        const frame = document.getElementById('mori-iframe');
+        frame.src = frame.src;
+      });
+    </script>
+
+    <!-- ═══════════════════════════════════════ DETAILS ═══ -->
+    <section class="py-16 md:py-20">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="mb-14 fade-up text-center">
+          <p class="text-base md:text-lg leading-relaxed mb-4 max-w-3xl mx-auto" style="color:#1C1C1C;">
+            Mori is a men's hair studio and barbershop, positioned as an editorial, high-art take on grooming. I designed and built the website end to end, from the branding-led wordmark and hero motion down to a working booking flow.
+          </p>
+          <p class="case-body mb-5">The site covers:</p>
+          <div class="flex flex-wrap justify-center gap-2">
+            <span class="pill">Brand storytelling</span>
+            <span class="pill">Service menu &amp; pricing</span>
+            <span class="pill">Gallery</span>
+            <span class="pill">Location finder</span>
+            <span class="pill">Live appointment booking</span>
+          </div>
+        </div>
+
+        <div class="meta-table fade-up">
+          <div class="header-row">
+            <div>Role</div>
+            <div>Platform</div>
+            <div>Tools</div>
+            <div>Duration</div>
+          </div>
+          <div class="content-row">
+            <div>Designer &amp; Developer</div>
+            <div>Web</div>
+            <div>Figma, HTML/CSS, Tailwind</div>
+            <div>Personal Project</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ BACK TO TOP ═══ -->
+    <section class="pt-0 pb-16 md:pb-20">
+      <div class="max-w-6xl mx-auto px-6 flex justify-center">
+        <a href="#top" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition hover:shadow-md hover:-translate-y-1 m-0" style="font-family:'Sora',sans-serif; color:#ffffff; background:#7D2327; box-shadow: 0 10px 28px rgba(125,35,39,0.28);">
+          Back to top <i class="bi bi-arrow-up-circle-fill"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ FOOTER ═══ -->
+    <footer style="background:#ffffff; border-top:1px solid rgba(125,35,39,0.18);">
+      <div class="flex items-center justify-between px-6 md:px-[72px] py-4">
+        <p class="text-[10px] md:text-xs" style="color: #1C1C1C;">© 2025 Arieff Hizer // All Rights Reserved</p>
+        <div class="flex gap-2">
+          <a href="https://github.com/arieffhizer" target="_blank" class="flex items-center gap-1 px-3 py-1 rounded-full text-[10px] md:text-xs" style="color: #7D2327; background: rgba(125,35,39,0.07);">
+            <i class="bi bi-github"></i> GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/arieff-hizer-98b412225/" target="_blank" class="flex items-center gap-1 px-3 py-1 rounded-full text-[10px] md:text-xs" style="color: #7D2327; background: rgba(125,35,39,0.07);">
+            <i class="bi bi-linkedin"></i> LinkedIn
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ═══════════════════════════════════════ SCROLL ANIMATION ═══ -->
+    <script>
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            observer.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+      document.querySelectorAll('section:first-of-type .fade-up').forEach((el, i) => {
+        setTimeout(() => el.classList.add('visible'), i * 150);
+      });
+    </script>
+
+  </body>
+</html>

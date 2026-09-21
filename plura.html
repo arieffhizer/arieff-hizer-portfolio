@@ -3,295 +3,551 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Arieff Hizer Portfolio</title>
+    <title>Plura Atelier — Arieff Hizer Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="theme.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="shortcut icon" type="image/png" href="images/favicon.png">
+    <style>
+      :root {
+        --brand-main: #8fa197;
+        --brand-deep: #6C8175;
+        --brand-heading: #6C8175;
+        --accent: #A9B7AC;
+        --text-dark: #1C1C1C;
+        --text-mid: #545352;
+        --text-muted: #888480;
+        --white: #FFFFFF;
+      }
+      * { box-sizing: border-box; }
+      body {
+        font-family: 'Inter', sans-serif;
+        background: #ffffff;
+        color: var(--text-dark);
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      /* ── Background system: large diagonal polygon wedges, same mechanic
+         as the Tradelink/Artworks template, tinted with Plura's sage palette. ── */
+      .page-bg {
+        position: relative;
+        isolation: isolate;
+        overflow-x: hidden;
+        background: #ffffff;
+      }
+      .page-bg::before,
+      .page-bg::after,
+      .bg-diagonal::before {
+        content: '';
+        position: absolute;
+        pointer-events: none;
+        left: -16vw;
+        width: 132vw;
+        background: linear-gradient(135deg, rgba(143,161,151,0.16) 0%, rgba(143,161,151,0.08) 58%, rgba(255,255,255,0.32) 100%);
+        filter: blur(0.2px);
+      }
+      .page-bg::before,
+      .page-bg::after {
+        z-index: 0;
+      }
+      .page-bg > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Hero background shape */
+      .page-bg::before {
+        top: 64px;
+        height: 900px;
+        clip-path: polygon(0 42%, 100% 0, 100% 72%, 0 100%);
+      }
+      .page-bg::after {
+        content: none;
+      }
+
+      .bg-diagonal {
+        position: relative;
+        isolation: isolate;
+        z-index: 1;
+        overflow: hidden;
+      }
+      .bg-diagonal::before {
+        z-index: -2;
+        top: -80px;
+        height: 1100px;
+        background: linear-gradient(135deg, rgba(255,255,255,0.26) 0%, rgba(143,161,151,0.14) 48%, rgba(143,161,151,0.07) 100%);
+        clip-path: polygon(0 36%, 100% 0, 100% 66%, 0 100%);
+      }
+
+      @media (max-width: 768px) {
+        .page-bg::before,
+        .page-bg::after,
+        .bg-diagonal::before {
+          left: -40vw;
+          width: 180vw;
+        }
+        .page-bg::before {
+          top: 64px;
+          height: 780px;
+          clip-path: polygon(0 38%, 100% 0, 100% 74%, 0 100%);
+        }
+        .bg-diagonal::before {
+          top: -90px;
+          height: 900px;
+        }
+      }
+
+      .page-bg > section {
+        position: relative;
+        z-index: 3;
+      }
+      .page-bg > section.bg-diagonal {
+        z-index: 1;
+      }
+      .bg-diagonal > * {
+        position: relative;
+        z-index: 2;
+      }
+      .bg-diagonal::before {
+        z-index: -1;
+      }
+
+      h1, h2, h3, h4 { font-family: 'Sora', sans-serif; }
+
+      .pl-nav-pill {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        height: 32px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: rgba(143,161,151,0.10);
+        color: #1C1C1C;
+        border: 1px solid rgba(143,161,151,0.22);
+        font-size: 0.8125rem;
+        font-weight: 600;
+        white-space: nowrap;
+        transition: background 0.2s ease;
+      }
+      .pl-nav-pill:hover { background: rgba(143,161,151,0.18); }
+      .pl-nav-pill-mobile {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 10px 16px;
+        border-radius: 999px;
+        background: rgba(143,161,151,0.10);
+        color: #1C1C1C;
+        border: 1px solid rgba(143,161,151,0.22);
+        font-size: 0.875rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+
+      .section-label {
+        font-family: 'Sora', sans-serif;
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: var(--brand-heading);
+        margin-bottom: 1rem;
+      }
+      .section-label span { color: var(--accent); }
+      @media (min-width: 768px) { .section-label { font-size: 2.25rem; } }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 16px;
+        border-radius: 999px;
+        font-size: 0.8125rem;
+        font-weight: 500;
+        background: rgba(143,161,151,0.12);
+        color: var(--brand-deep);
+        border: 1px solid rgba(143,161,151,0.24);
+        white-space: nowrap;
+      }
+      .pill.pink {
+        background: #FEE2E2;
+        color: #B91C1C;
+        border-color: #FECACA;
+      }
+
+      .method-card {
+        background: rgba(255,255,255,0.72);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 16px;
+        padding: 1.5rem;
+        border: 1px solid rgba(255,255,255,0.6);
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .method-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 28px rgba(0,0,0,0.10);
+      }
+      .method-card h3 {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--brand-deep);
+        margin-bottom: 0.5rem;
+      }
+
+      .mockup-float {
+        border-radius: 16px;
+        box-shadow: none;
+        filter: drop-shadow(0 22px 26px rgba(0,0,0,0.14)) drop-shadow(0 6px 10px rgba(0,0,0,0.08));
+        transition: transform 0.4s ease, filter 0.4s ease;
+      }
+      .mockup-float:hover {
+        transform: translateY(-6px);
+        filter: drop-shadow(0 28px 32px rgba(0,0,0,0.18)) drop-shadow(0 8px 14px rgba(0,0,0,0.10));
+      }
+
+      .meta-table {
+        border: 1.5px solid rgba(143,161,151,0.26);
+        border-radius: 14px;
+        overflow: hidden;
+        background: rgba(143,161,151,0.05);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        box-shadow: 0 12px 36px rgba(0,0,0,0.06);
+      }
+      .meta-table .header-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        background: rgba(143,161,151,0.14);
+        border-bottom: 1.5px solid rgba(143,161,151,0.20);
+      }
+      .meta-table .header-row div,
+      .meta-table .content-row div {
+        padding: 0.75rem 1rem;
+        text-align: center;
+      }
+      .meta-table .header-row div {
+        font-family: 'Sora', sans-serif;
+        font-weight: 700;
+        color: var(--brand-deep);
+        font-size: 0.9rem;
+        border-right: 1.5px solid rgba(143,161,151,0.18);
+      }
+      .meta-table .header-row div:last-child,
+      .meta-table .content-row div:last-child { border-right: none; }
+      .meta-table .content-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        background: rgba(255,255,255,0.58);
+      }
+      .meta-table .content-row div {
+        font-size: 0.875rem;
+        color: #545352;
+        font-weight: 500;
+        border-right: 1.5px solid rgba(143,161,151,0.12);
+      }
+
+      .case-headline {
+        color: #1C1C1C;
+        font-size: 1rem;
+        line-height: 1.75;
+        font-weight: 500;
+      }
+      .case-body {
+        color: #545352;
+        font-size: 1rem;
+        line-height: 1.75;
+      }
+      .method-card p:last-child {
+        color: #545352;
+        font-size: 1rem;
+        line-height: 1.75;
+      }
+      @media (min-width: 768px) { .case-headline { font-size: 1.125rem; } }
+
+      @media (max-width: 767px) {
+        section { text-align: center; }
+        section .fade-up,
+        section .section-label,
+        section .case-headline,
+        section .case-body,
+        section p,
+        section li { text-align: center; }
+        .section-label { margin-left: auto; margin-right: auto; }
+        .pill { justify-content: center; text-align: center; white-space: normal; }
+        section .flex.flex-wrap { justify-content: center; }
+        .method-card { text-align: center; }
+        .mockup-float { display: block; margin-left: auto; margin-right: auto; }
+        .meta-table .header-row div,
+        .meta-table .content-row div {
+          padding: 0.85rem 0.65rem;
+          font-size: 0.8rem;
+        }
+      }
+
+      .fade-up {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+      .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+      .result-bullet {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 1rem;
+        color: #1C1C1C;
+        margin-bottom: 0.6rem;
+      }
+      .result-bullet::before {
+        content: '';
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--brand-main);
+        margin-top: 7px;
+        flex-shrink: 0;
+      }
+
+      .img-placeholder {
+        background: linear-gradient(135deg, #F5F7F5 0%, #FFFFFF 55%, #E0E7E2 100%);
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #888480;
+        font-size: 0.875rem;
+        font-weight: 500;
+      }
+
+      @media (max-width: 640px) {
+        .meta-table {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+        }
+        .meta-table .header-row,
+        .meta-table .content-row {
+          display: grid;
+          grid-template-columns: 1fr;
+        }
+        .meta-table .header-row {
+          border-bottom: none;
+          border-right: 1.5px solid rgba(143,161,151,0.20);
+        }
+        .meta-table .content-row { background: rgba(255,255,255,0.58); }
+        .meta-table .header-row div,
+        .meta-table .content-row div {
+          border-right: none;
+          border-top: 1.5px solid rgba(143,161,151,0.14);
+          min-height: 48px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0.85rem 0.65rem;
+          font-size: 0.8rem;
+        }
+        .meta-table .header-row div:first-child,
+        .meta-table .content-row div:first-child { border-top: none; }
+      }
+    </style>
   </head>
-  <body class="bg-gradient-to-r from-[#E1E4DB] to-[#8fa197] text-gray-900 font-open sauce two">
+  <body class="page-bg">
 
-      <div class="w-full sticky top-0 z-50 relative">
-  <div id="nav-blur" class="relative" style="-webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); background: rgba(255,255,255,0.1);">
-    <header class="flex justify-between items-center p-4 max-w-6xl mx-auto">
-      
-      <!-- Logo + Name as Home Button -->
-      <a href="index.html" class="flex items-center bg-gray-100 px-4 py-1 rounded-full shadow gap-2 hover:shadow-md transition">
-        <img src="images/logo arieff h 3.png" alt="Logo" class="w-6 h-6 rounded-full shadow" />
-        <span class="text-lg font-semibold text-gray-800">Arieff H.</span>
-      </a>
-
-      <!-- Desktop Nav -->
-      <div class="flex max-md:hidden items-center gap-4">
-        <a
-          href="about.html"
-          class="flex items-center gap-2 px-4 py-1 border border-white rounded-full text-white hover:shadow transition text-sm"
-        >
-          <i class="bi bi-person-fill text-base"></i>
-          About Me
-        </a>
-
-        <a
-          href="index.html#projects"
-          class="flex items-center gap-2 px-4 py-1 border border-white rounded-full text-white hover:shadow transition text-sm"
-        >
-          <i class="bi bi-folder-fill text-base"></i>
-          Projects
-        </a>
-
-        <a
-          href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
-          target="_blank"
-          rel="noopener"
-          class="flex items-center gap-2 bg-white hover:bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm"
-        >
-          Say Hi <i class="bi bi-emoji-smile-fill"></i>
-        </a>
-      </div>
-
-      <!-- Mobile Hamburger -->
-      <button id="menu-btn" class="md:hidden text-2xl text-white">
-        <i class="bi bi-list"></i>
-      </button>
-    </header>
-
-    <!-- Mobile Dropdown -->
-    <div id="mobile-menu" class="hidden flex-col gap-2 p-4 md:hidden absolute top-full left-0 w-full"
-         style="background: rgba(255,255,255,0.95);">
-      <a
-        href="about.html"
-        class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-black hover:shadow transition text-sm mb-2"
-      >
-        <i class="bi bi-person-fill"></i> About Me
-      </a>
-
-      <a
-        href="index.html#projects"
-        class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-black hover:shadow transition text-sm mb-2"
-      >
-        <i class="bi bi-folder-fill"></i> Projects
-      </a>
-
-      <a
-        href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
-        target="_blank"
-        rel="noopener"
-        class="flex items-center gap-2 bg-[#8fa197] hover:bg-[#A7B4AB] text-white px-4 py-2 rounded-lg text-sm"
-      >
-        <i class="bi bi-emoji-smile-fill"></i> Say Hi
-      </a>
-    </div>
-  </div>
-</div>
-
-<!-- Script to toggle menu -->
-<script>
-  const menuBtn = document.getElementById("menu-btn");
-  const mobileMenu = document.getElementById("mobile-menu");
-  const navBlur = document.getElementById("nav-blur");
-
-  menuBtn.addEventListener("click", () => {
-    mobileMenu.classList.toggle("hidden");
-
-    if (mobileMenu.classList.contains("hidden")) {
-      navBlur.style.background = "rgba(255,255,255,0.1)";
-      menuBtn.classList.remove("text-gray-800");
-      menuBtn.classList.add("text-white");
-    } else {
-      navBlur.style.background = "rgba(255,255,255,0.95)";
-      menuBtn.classList.remove("text-white");
-      menuBtn.classList.add("text-gray-800");
-    }
-  });
-</script>
-
-<section class="min-h-screen -mt-12 w-full bg-gradient-to-r from-[#E1E4DB] to-[#8fa197] flex items-center justify-center">
-  <div class="max-w-6xl w-full px-4 grid grid-cols-1 md:grid-cols-2 items-center gap-12">
-    
-    <!-- Left: Text + Logo -->
-    <div class="text-white text-center md:text-left">
-        <img src="images/PLura Logo.png" alt="Selangor FC Logo" class="w-44 mx-auto md:mx-0" />
-      <img src="images/plura title.png" alt="SELANGOR FC" class="h-12 md:h-16 object-contain  mt-6" />
-      <p class="text-xl font-regular text-white/80 mt-2">Design Atelier Web Landing Page</p>
-    </div>
-
-    <!-- Right: Single Mockup Image -->
-    <div class="flex md:justify-end justify-center hover:scale-105 transition-transform duration-500">
-      <img src="images/plura right image.png" alt="Selangor App Mockup" class="w-112 md:max-w-lg drop-shadow-xl" />
-    </div>
-  </div>
-</section>
-
-<section class="bg-white text-black font-sans py-16">
-  <div class="max-w-6xl mx-auto px-8 py-18">
-
-    <!-- Top Info Table -->
-    <div class="border-2 border-[#8fa197] rounded-xl overflow-hidden mb-16">
-      <!-- Header Row -->
-      <div class="grid grid-cols-4 text-center font-bold bg-[#E1E4DB] text-[#8fa197] text-lg divide-x divide-[#8fa197]">
-        <div class="py-3">Tools</div>
-        <div class="py-3">Platform</div>
-        <div class="py-3">Role</div>
-        <div class="py-3">Duration</div>
-      </div>
-      <!-- Content Row -->
-      <div class="grid grid-cols-4 text-center divide-x divide-[#8fa197]">
-        <div class="py-4">Figma & Photoshop</div>
-        <div class="py-4">Web Landing Page</div>
-        <div class="py-4">UI/UX Designer</div>
-        <div class="py-4">4 Weeks</div>
-      </div>
-    </div>
-
-    <!-- Two-column Layout -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-
-      <!-- Left Column -->
-      <div class="space-y-8">
-        <!-- Introduction -->
-        <div>
-          <h2 class="text-2xl font-bold text-[#8fa197] mb-4">Introduction</h2>
-          <p class="leading-relaxed">
-            Plura Atelier is a design and build atelier that provides architecture and interior design services such as design, 3D modelling, drawing submission and also renovation works. PLura Atelier may not big in terms of the size of our Design and Build Atelier, but they have big ideas, thinking approach and creativity.
-          </p>
-
-          <p class="leading-relaxed mt-4">
-            Being bold is in their DNA. Plura Atelier dare to do what others will not and embrace everything to create impactful work. Moreover, their work quality outcomes is fantastic. In the end, it’s just better to have an atelier that will deliver perfect quality.
-          </p>
-        </div>
-      </div>
-
-      <!-- Right Column -->
-      <div class="space-y-8">
-        <!-- Issues -->
-        <div>
-          <h2 class="text-2xl font-bold text-[#8fa197] mb-2">Job Scope</h2>
-          <ul class="leading-relaxed">
-            My task was to create a landing page based on their branding and to market and advertise their projects that have been done for their target markets. This landing page are also designed with a single call to action, which is to directly contact their representative for enquiry and request for quotation.
-          </p>
-          </ul>
-        </div>
-
-        <!-- Goals -->
-        <div>
-          <h2 class="text-2xl font-bold text-[#8fa197] mb-2">Goals</h2>
-          <p class="leading-relaxed">
-            To introduce the company and service provided, highlighting their completed projects, and to increase future client engagement.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="max-w-6xl mx-auto px-4 py-20">
-  <div class="flex justify-center">
-    <img src="images/plura 4 screens display.png" alt="Selangor App Mockup" class="w-full drop-shadow-xl" />
-  </div>
-</section>
-
-<section class="bg-white text-black font-sans py-12">
-  <div class="max-w-6xl mx-auto px-8 py-6">
-
-        <!-- Two-column Layout -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-
-        <!-- Issues -->
-        <div>
-          <h2 class="text-2xl font-bold text-[#8fa197] mb-2 text-center">Brief & Research</h2>
-          <ul class="leading-relaxed text-center">
-            After I sit down with the client and was given the brief, I did my research on the brand and collected examples to best highlight the services and completed projects.
-          </p>
-          </ul>
-        </div>
-
-        <!-- Issues -->
-        <div>
-          <h2 class="text-2xl font-bold text-[#8fa197] mb-2 text-center">Design Stage</h2>
-          <ul class="leading-relaxed text-center">
-            I produced two sets of design for the client to choose from. Based on their feedback I did some iterations on the design.
-          </p>
-          </ul>
-        </div>
-
-        <!-- Goals -->
-        <div>
-          <h2 class="text-2xl font-bold text-[#8fa197] mb-2 text-center">Final Handoffs</h2>
-          <p class="leading-relaxed text-center">
-            I sent my Figma file to the developer and currently under development for the clients to use as one of their marketing materials.
-          </p>
-        </div>
-      </div>
-      <div class="flex justify-center mt-12">
-    <img src="images/plura long ss.png" alt="Selangor App Mockup" class="w-full drop-shadow-xl" />
-    </div>
-  </div>
-</section>
-
-<section class="bg-white">
-  <div class="justify-center relative">
-    <img src="images/plura all screen.png" alt="Selangor App Mockup" class="w-full max-w-6xl mx-auto">
-  
-    <!-- Left overlay -->
-  <a href="selangorfc.html" class="hidden lg:flex absolute top-0 left-0 w-[20%] h-full items-center justify-center overflow-hidden group">
-    <img src="images/sel all screen bnw.png" alt="Plura Atelier"
-         class="mr-12 h-full object-cover transition-all duration-500">
-    <div class="mr-6 absolute inset-0 flex flex-col items-center justify-center bg-black/0 backdrop-blur-sm opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-      <p class="text-red-600 font-bold text-lg">Selangor</p>
-      <p class="text-red-600 font-bold text-lg">FC</p>
-      <i class="bi bi-arrow-left-circle-fill text-red-600 text-4xl mt-2"></i>
-    </div>
-  </a>
-
-  <!-- Right overlay -->
-  <a href="myasuh.html" class="hidden lg:flex absolute top-0 right-0 w-[20%] h-full items-center justify-center overflow-hidden group">
-    <img src="images/myasuh all screen bnw.png" alt="Whisker Tracker"
-         class="ml-12 w-full h-full object-cover transition-all duration-500">
-    <div class="ml-6 absolute inset-0 flex flex-col items-center justify-center bg-black/0 backdrop-blur-sm opacity-0 transition-opacity duration-400 group-hover:opacity-100">
-      <p class="text-orange-300 font-bold text-lg">MyAsuh</p>
-      <i class="bi bi-arrow-right-circle-fill text-orange-300 text-4xl mt-2"></i>
-    </div>
-  </a>
-  </div>
-</section>
-
-      <footer class="text-[10px] text-white">
-        <div class="flex justify-between items-center p-4 max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
-          <p>© 2023 Arieff Hizer // All Rights Reserved</p>
-      
-          <div class="flex gap-2">
-            <!-- GitHub Button -->
-            <a
-              href="https://github.com/arieffhizer"
-              target="_blank"
-              class="flex items-center gap-2 px-4 py-1 border border-white rounded-full bg-white text-gray-700 hover:shadow transition"
-            >
-              <i class="bi bi-github text-xs"></i>
-              GitHub
-            </a>
-      
-            <!-- LinkedIn Button -->
-            <a
-              href="https://www.linkedin.com/in/arieff-hizer-98b412225/"
-              target="_blank"
-              class="flex items-center gap-2 px-4 py-1 border border-white rounded-full bg-white text-gray-700 hover:shadow transition"
-            >
-              <i class="bi bi-linkedin text-xs"></i>
-              LinkedIn
-            </a>
-      
-            <!-- Instagram Button -->
-            <a
-              href="https://www.instagram.com/rffhzr"
-              target="_blank"
-              class="flex items-center gap-2 px-4 py-1 border border-white rounded-full bg-white text-gray-700 hover:shadow transition"
-            >
-              <i class="bi bi-instagram text-xs"></i>
-              Instagram
+    <!-- ═══════════════════════════════════════ NAV ═══ -->
+    <div class="site-nav w-full sticky top-0 z-50 relative">
+      <div id="nav-blur" class="relative" style="-webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); background: rgba(255,255,255,0.1);">
+        <header class="flex justify-between items-center px-6 md:px-[72px] py-4">
+          <a href="index.html" class="flex items-center bg-gray-100 px-4 py-1 rounded-full shadow gap-2 hover:shadow-md transition">
+            <img src="images/logo arieff h 3.png" alt="Logo" class="w-6 h-6 rounded-full shadow" />
+            <span class="text-lg font-semibold text-gray-800">Arieff H.</span>
+          </a>
+          <div class="flex max-md:hidden items-center gap-3">
+            <a href="index.html#about" class="pl-nav-pill"><i class="bi bi-person-fill"></i> About Me</a>
+            <a href="index.html#work" class="pl-nav-pill"><i class="bi bi-folder-fill"></i> Work Projects</a>
+            <a href="index.html#gallery" class="pl-nav-pill"><i class="bi bi-image-fill"></i> Gallery</a>
+            <a href="index.html#personal" class="pl-nav-pill"><i class="bi bi-briefcase-fill"></i> Personal Projects</a>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position." target="_blank" rel="noopener" class="flex items-center gap-2 bg-[#6C8175] text-white px-4 py-2 rounded-full text-sm transition hover:shadow-md hover:-translate-y-1 m-0">
+              Say Hi <i class="bi bi-emoji-smile-fill"></i>
             </a>
           </div>
+          <button id="menu-btn" class="md:hidden text-2xl text-gray-800"><i class="bi bi-list"></i></button>
+        </header>
+        <div id="mobile-menu" class="hidden flex-col gap-2 p-4 md:hidden absolute top-full left-0 w-full" style="background: rgba(255,255,255,0.98); border-top:1px solid rgba(143,161,151,0.20);">
+          <a href="index.html#about" class="pl-nav-pill-mobile"><i class="bi bi-person-fill"></i> About Me</a>
+          <a href="index.html#work" class="pl-nav-pill-mobile"><i class="bi bi-folder-fill"></i> Work Projects</a>
+          <a href="index.html#gallery" class="pl-nav-pill-mobile"><i class="bi bi-image-fill"></i> Gallery</a>
+          <a href="index.html#personal" class="pl-nav-pill-mobile"><i class="bi bi-briefcase-fill"></i> Personal Projects</a>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position." target="_blank" rel="noopener" class="flex items-center justify-center gap-2 bg-[#6C8175] text-white px-4 py-2 rounded-full text-sm transition hover:shadow-md"><i class="bi bi-emoji-smile-fill"></i> Say Hi</a>
         </div>
-      </footer>
+      </div>
+    </div>
+    <script>
+      const menuBtn = document.getElementById("menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const navBlur = document.getElementById("nav-blur");
+      menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+        if (mobileMenu.classList.contains("hidden")) {
+          navBlur.style.background = "rgba(255,255,255,0.1)";
+          menuBtn.classList.remove("text-white"); menuBtn.classList.add("text-gray-800");
+        } else {
+          navBlur.style.background = "rgba(255,255,255,0.95)";
+          menuBtn.classList.remove("text-white"); menuBtn.classList.add("text-gray-800");
+        }
+      });
+    </script>
+
+    <!-- ═══════════════════════════════════════ HERO ═══ -->
+    <section style="height: calc(100vh - 64px); min-height: 560px;" class="w-full flex items-center">
+      <div class="max-w-6xl w-full mx-auto px-6 grid grid-cols-1 md:grid-cols-2 items-center gap-10 py-12">
+        <div class="fade-up text-center md:text-left">
+          <img src="images/PLura Logo.png" alt="Plura Atelier Logo" class="w-24 md:w-32 mx-auto md:mx-0 mb-4" />
+          <img src="images/plura title.png" alt="Plura Atelier" class="h-10 md:h-14 object-contain mx-auto md:mx-0 mb-3" />
+          <p class="text-[#545352] text-lg md:text-xl font-medium leading-snug mb-3">Design Atelier Web Landing Page</p>
+          <div class="flex flex-wrap justify-center md:justify-start gap-2 mt-6">
+            <span class="pill">Web Design</span>
+            <span class="pill">Branding</span>
+            <span class="pill">B2C</span>
+          </div>
+        </div>
+        <div class="fade-up flex justify-center md:justify-end" style="transition-delay:0.15s">
+          <img src="images/plura right image.png" alt="Plura Atelier Landing Page Mockup" class="mockup-float w-72 md:w-96 mx-auto md:mx-0" style="border-radius:0;" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ INTRO + META ═══ -->
+    <section class="py-16 md:py-20 bg-band">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="mb-14 fade-up">
+          <p class="text-base md:text-lg leading-relaxed mb-4" style="color:#1C1C1C;">
+            Plura Atelier is a design and build atelier that provides architecture and interior design services such as design, 3D modelling, drawing submission and also renovation works. Plura Atelier may not be big in terms of the size of their design and build atelier, but they have big ideas, thinking approach and creativity.
+          </p>
+          <p class="case-body">
+            Being bold is in their DNA. Plura Atelier dare to do what others will not and embrace everything to create impactful work. Moreover, their work quality outcomes is fantastic. In the end, it's just better to have an atelier that will deliver perfect quality.
+          </p>
+        </div>
+
+        <div class="meta-table fade-up">
+          <div class="header-row">
+            <div>Tools</div>
+            <div>Platform</div>
+            <div>Role</div>
+            <div>Duration</div>
+          </div>
+          <div class="content-row">
+            <div>Figma &amp; Photoshop</div>
+            <div>Web Landing Page</div>
+            <div>UI/UX Designer</div>
+            <div>4 Weeks</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ THE BRIEF ═══ -->
+    <section class="py-16 md:py-24">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="fade-up">
+          <h2 class="section-label">The <span>Brief</span></h2>
+          <p class="case-headline mb-4">
+            My task was to create a landing page based on Plura Atelier's branding, to market and advertise their completed projects for their target markets.
+          </p>
+          <p class="case-body mb-4">
+            This landing page was designed with a single call to action: to directly contact their representative for enquiry and request for quotation.
+          </p>
+          <p class="case-body">
+            The goal was to introduce the company and services provided, highlighting their completed projects, and to increase future client engagement.
+          </p>
+        </div>
+
+        <div class="mt-16 fade-up">
+          <img src="images/plura 4 screens display.png" alt="Plura Atelier landing page screens" class="mockup-float w-full" style="border-radius:0;" onerror="this.outerHTML='<div class=\'mockup-float img-placeholder w-full\' style=\'height:380px\'>Landing Page Screens</div>'" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ THE PROCESS ═══ -->
+    <section class="py-16 md:py-24 bg-diagonal">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="mb-12 fade-up text-center">
+          <h2 class="section-label">The <span>Process</span></h2>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 fade-up" style="transition-delay:0.1s">
+          <div class="method-card">
+            <h3>Brief &amp; Research</h3>
+            <p>After I sit down with the client and was given the brief, I did my research on the brand and collected examples to best highlight the services and completed projects.</p>
+          </div>
+          <div class="method-card">
+            <h3>Design Stage</h3>
+            <p>I produced two sets of design for the client to choose from. Based on their feedback I did some iterations on the design.</p>
+          </div>
+          <div class="method-card">
+            <h3>Final Handoffs</h3>
+            <p>I sent my Figma file to the developer and currently under development for the clients to use as one of their marketing materials.</p>
+          </div>
+        </div>
+
+        <div class="mt-12 fade-up" style="transition-delay:0.15s">
+          <img src="images/plura long ss.png" alt="Plura Atelier full landing page" class="mockup-float w-full" onerror="this.outerHTML='<div class=\'mockup-float img-placeholder w-full\' style=\'height:420px\'>Full Landing Page</div>'" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ ALL SCREENS ═══ -->
+    <section class="pb-16 md:pb-20">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="fade-up">
+          <img src="images/plura all screen.png" alt="Plura Atelier all screens" class="w-full" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ BACK TO TOP ═══ -->
+    <section class="pt-0 pb-16 md:pb-20">
+      <div class="max-w-6xl mx-auto px-6 flex justify-center">
+        <a href="#top" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition hover:shadow-md hover:-translate-y-1 m-0" style="font-family:'Sora',sans-serif; color:#ffffff; background:#6C8175; box-shadow: 0 10px 28px rgba(108,129,117,0.25);">
+          Back to top <i class="bi bi-arrow-up-circle-fill"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ FOOTER ═══ -->
+    <footer style="background:#ffffff; border-top:1px solid rgba(143,161,151,0.22);">
+      <div class="flex items-center justify-between px-6 md:px-[72px] py-4">
+        <p class="text-[10px] md:text-xs" style="color: #1C1C1C;">© 2023 Arieff Hizer // All Rights Reserved</p>
+        <div class="flex gap-2">
+          <a href="https://github.com/arieffhizer" target="_blank" class="flex items-center gap-1 px-3 py-1 rounded-full text-[10px] md:text-xs" style="color: #6C8175; background: rgba(143,161,151,0.10);">
+            <i class="bi bi-github"></i> GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/arieff-hizer-98b412225/" target="_blank" class="flex items-center gap-1 px-3 py-1 rounded-full text-[10px] md:text-xs" style="color: #6C8175; background: rgba(143,161,151,0.10);">
+            <i class="bi bi-linkedin"></i> LinkedIn
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ═══════════════════════════════════════ SCROLL ANIMATION ═══ -->
+    <script>
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            observer.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+      document.querySelectorAll('section:first-of-type .fade-up').forEach((el, i) => {
+        setTimeout(() => el.classList.add('visible'), i * 150);
+      });
+    </script>
 
   </body>
 </html>

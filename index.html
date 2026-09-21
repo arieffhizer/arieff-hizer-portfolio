@@ -1,576 +1,747 @@
 <!DOCTYPE html>
-<html class="scroll-smooth" lang="en">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Arieff Hizer Portfolio</title>
+    <title>AI Claude Test</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="theme.css">
     <link rel="shortcut icon" type="image/png" href="images/favicon.png">
   </head>
-  <body class="bg-white text-gray-900 font-open sauce two">
+  <body class="bg-black text-white overflow-x-hidden">
 
-    <div class="border-b-2 w-full sticky top-0 z-50 relative">
-  <div id="nav-blur" class="relative" style="-webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); background: rgba(255,255,255,0.1);">
-    <header class="flex justify-between items-center p-4 max-w-6xl mx-auto">
-      
-      <!-- Logo + Name as Home Button -->
-      <a href="index.html" class="flex items-center bg-gray-100 px-4 py-1 rounded-full shadow gap-2 hover:shadow-md transition">
-        <img src="images/logo arieff h 3.png" alt="Logo" class="w-6 h-6 rounded-full shadow" />
-        <span class="text-lg font-semibold text-gray-800">Arieff H.</span>
-      </a>
-
-      <!-- Desktop Nav -->
-      <div class="flex max-md:hidden items-center gap-4">
-        <a
-          href="about.html"
-          class="flex items-center gap-2 px-4 py-1 border border-gray-300 rounded-full bg-white text-gray-700 hover:shadow transition text-sm"
-        >
-          <i class="bi bi-person-fill text-base"></i>
-          About Me
+    <!-- ===================== NAV ===================== -->
+    <div id="hero-nav" class="fixed top-0 left-0 z-50 w-full">
+      <header class="flex justify-between items-center px-6 md:px-[72px] h-[72px] bg-black">
+        <a href="index.html" class="flex items-center bg-black/80 pl-2 pr-4 py-2 rounded-full gap-2">
+          <img src="images/logo arieff h 3.png" alt="Logo" class="w-8 h-8 rounded-full shrink-0" />
+          <span class="text-lg font-bold text-white whitespace-nowrap">Arieff H.</span>
         </a>
 
-        <a
-          href="index.html#projects"
-          class="flex items-center gap-2 px-4 py-1 border border-gray-300 rounded-full bg-white text-gray-700 hover:shadow transition text-sm"
-        >
-          <i class="bi bi-folder-fill text-base"></i>
-          Projects
-        </a>
-
-        <a
-          href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
-          target="_blank"
-          rel="noopener"
-          class="flex items-center gap-2 bg-violet-600 hover:bg-violet-700 text-white px-4 py-2 rounded-full text-sm"
-        >
-          Say Hi <i class="bi bi-emoji-smile-fill"></i>
-        </a>
-      </div>
-
-      <!-- Mobile Hamburger -->
-      <button id="menu-btn" class="md:hidden text-2xl text-violet-800">
-        <i class="bi bi-list"></i>
-      </button>
-    </header>
-
-    <!-- Mobile Dropdown -->
-    <div id="mobile-menu" class="border-b-2 hidden flex-col gap-2 p-4 md:hidden absolute top-full left-0 w-full"
-         style="background: rgba(255,255,255,0.95);">
-      <a
-        href="about.html"
-        class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-700 hover:shadow transition text-sm mb-2"
-      >
-        <i class="bi bi-person-fill"></i> About Me
-      </a>
-
-      <a
-        href="index.html#projects"
-        class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-700 hover:shadow transition text-sm mb-2"
-      >
-        <i class="bi bi-folder-fill"></i> Projects
-      </a>
-
-      <a
-        href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
-        target="_blank"
-        rel="noopener"
-        class="flex items-center gap-2 bg-violet-600 hover:bg-violet-700 text-white px-4 py-2 rounded-lg text-sm"
-      >
-        <i class="bi bi-emoji-smile-fill"></i> Say Hi
-      </a>
-    </div>
-  </div>
-</div>
-
-<!-- Script to toggle menu -->
-<script>
-  const menuBtn = document.getElementById("menu-btn");
-  const mobileMenu = document.getElementById("mobile-menu");
-  const navBlur = document.getElementById("nav-blur");
-  
-  menuBtn.addEventListener("click", () => {
-    mobileMenu.classList.toggle("hidden");
-
-    if (mobileMenu.classList.contains("hidden")) {
-      navBlur.style.background = "rgba(255,255,255,0.1)";
-    } else {
-      navBlur.style.background = "rgba(255,255,255,0.95)";
-    }
-  });
-</script>
-
-
-<section class="hero-section relative text-center py-32 md:py-44 px-8 overflow-hidden">
-
-  <!-- Background glowing blob -->
-  <div
-    id="glow-blob"
-    class="absolute w-[200px] h-[200px] bg-violet-600 rounded-full blur-[60px] -z-10 pointer-events-none"
-    style="left: calc(75% - 100px); top: 76px;"
-  ></div>
-
-<!-- Status badge -->
-<div class="inline-flex items-center gap-2 text-sm text-gray-500 border border-gray-200 rounded-full px-4 py-1 mb-8 bg-gray-50 opacity-0"
-     style="animation: fadeUp 0.7s ease forwards 0.1s;">
-  <span class="w-2 h-2 rounded-full bg-violet-500 animate-pulse inline-block"></span>
-  Currently at Upstack Studio
-</div>
-
-<h1 class="text-5xl md:text-7xl font-bold leading-tight mb-1 opacity-0"
-    style="font-family: 'Open Sauce Two', sans-serif; animation: fadeUp 0.7s ease forwards 0.3s;">
-  Crafting Brand Triumph
-</h1>
-<h1 class="text-5xl md:text-7xl leading-tight italic text-violet-600 mb-10 opacity-0"
-    style="font-family: 'Open Sauce Two', sans-serif; animation: fadeUp 0.7s ease forwards 0.5s;">
-  —— Through Design
-</h1>
-
-<p class="text-lg text-gray-600 max-w-2xl mx-auto mt-6 leading-relaxed opacity-0"
-   style="animation: fadeUp 0.7s ease forwards 0.7s;">
-  I'm <span class="font-medium text-gray-800">Arieff Hizer</span>, a detail-oriented UI/UX designer based in Malaysia.
-  I'm motivated in creating products, experiences, and aesthetics that elevate our lives.
-</p>
-
-<div class="flex flex-col sm:flex-row justify-center gap-3 mt-10 opacity-0"
-     style="animation: fadeUp 0.7s ease forwards 0.9s;">
-  <a
-    href="https://drive.google.com/file/d/19z18HedpqwU7mfYNprhHXv7vflBT08ju/view"
-    target="_blank"
-    class="inline-flex items-center justify-center gap-2 bg-violet-600 hover:bg-violet-700 text-white px-6 py-2.5 rounded-full text-sm font-medium transition"
-  >
-    <i class="bi bi-file-earmark-text-fill"></i>
-    My resume
-  </a>
-  <a
-    href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
-    target="_blank"
-    rel="noopener"
-    class="inline-flex items-center justify-center gap-2 border border-gray-300 px-6 py-2.5 rounded-full bg-white text-gray-700 hover:shadow text-sm font-medium transition"
-  >
-    <i class="bi bi-chat-square-dots-fill"></i>
-    Let's work together
-  </a>
-</div>
-
-  <!-- Skills Section (now inside hero) -->
-<div class="text-center mt-36 max-w-6xl mx-auto opacity-0" style="animation: fadeUp 0.7s ease forwards 1.1s;">
-  <h2 class="text-2xl font-semibold mb-4">Skills</h2>
-  <div class="relative space-y-1 overflow-hidden group">
-
-    <!-- First row -->
-    <div class="opacity-0" style="animation: fadeUp 0.7s ease forwards 1.3s;">
-      <div class="text-xl whitespace-nowrap flex gap-8 animate-scroll-left text-gray-600">
-        <span>• Mobile App and Web Design</span>
-        <span>• Framer and Webflow</span>
-        <span>• Product Design (UI/UX)</span>
-        <span>• Visual Design</span>
-        <span>• Mobile App and Web Design</span>
-        <span>• Framer and Webflow</span>
-        <span>• Product Design (UI/UX)</span>
-        <span>• Visual Design</span>
-      </div>
-    </div>
-
-    <!-- Second row (opposite direction) -->
-    <div class="opacity-0" style="animation: fadeUp 0.7s ease forwards 1.5s;">
-      <div class="text-xl whitespace-nowrap flex gap-8 animate-scroll-right text-gray-600">
-        <span>• Wireframes & Prototyping</span>
-        <span>• Usability Testing</span>
-        <span>• UX Research</span>
-        <span>• Basic HTML CSS</span>
-        <span>• VS Code</span>
-        <span>• Wireframes & Prototyping</span>
-        <span>• Usability Testing</span>
-        <span>• UX Research</span>
-        <span>• Basic HTML CSS</span>
-        <span>• VS Code</span>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-  <style>
-    @keyframes scroll-left {
-      0% { transform: translateX(0%); }
-      100% { transform: translateX(-50%); }
-    }
-    @keyframes scroll-right {
-      0% { transform: translateX(-50%); }
-      100% { transform: translateX(0%); }
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .animate-scroll-left { animation: scroll-left 20s linear infinite; }
-    .animate-scroll-right { animation: scroll-right 20s linear infinite; }
-  </style>
-
-  <script>
-    const hero = document.querySelector('.hero-section');
-    const blob = document.getElementById('glow-blob');
-
-    let targetX = window.innerWidth * 0.75;
-    let targetY = 176;
-    let currentX = targetX;
-    let currentY = targetY;
-
-    hero.addEventListener('mousemove', (e) => {
-      const rect = hero.getBoundingClientRect();
-      targetX = e.clientX - rect.left;
-      targetY = e.clientY - rect.top;
-    });
-
-    hero.addEventListener('mouseleave', () => {
-      targetX = hero.offsetWidth * 0.75;
-      targetY = 176;
-    });
-
-    function animate() {
-      currentX += (targetX - currentX) * 0.08;
-      currentY += (targetY - currentY) * 0.08;
-      blob.style.left = (currentX - 100) + 'px';
-      blob.style.top = (currentY - 100) + 'px';
-      requestAnimationFrame(animate);
-    }
-
-    animate();
-  </script>
-
-</section>
-
-
-      <section id="projects" class="scroll-mt-28 mt-20 px-8 max-w-6xl mx-auto">
-  <h2 class="text-2xl font-semibold text-center mb-10">Work Projects</h2>
-  <div class="grid md:grid-cols-1 gap-10">
-
-    <!-- Project 1 -->
-    <div class="project-card bg-neutral-300 p-6 rounded-2xl flex flex-col md:flex-row items-center gap-6 transition-transform duration-500 ease-out scale-100">
-      <div class="md:w-1/2 w-full">
-        <img src="images/fc cover.png" alt="FitCoach" class="rounded w-full" />
-      </div>
-      <div class="md:w-1/2 w-full">
-        <p class="text-sm font-medium text-gray-500 mb-2">Mobile App</p>
-        <h3 class="text-xl font-bold text-neutral-900">
-          FitCoach
-          <span class="ml-2 text-sm text-yellow-600 bg-yellow-100 px-2 py-0.5 rounded-full">IN PROGRESS</span>
-        </h3>
-        <p class="text-gray-700 mt-2">
-          I designed the interface and assist with the app's logic to create 2-in-1 workout and nutrition tracking app.
-        </p>
-        <a href="fitcoach.html" class="inline-flex items-center gap-2 mt-4 bg-neutral-800 hover:bg-neutral-700 text-white px-4 py-2 rounded-full">
-          <i class="bi bi-arrow-up-right"></i> View Project
-        </a>
-      </div>
-    </div>
-
-    <!-- Project 2 -->
-    <div class="project-card bg-[#FFD9C5] p-6 rounded-2xl flex flex-col md:flex-row items-center gap-6 transition-transform duration-500 ease-out scale-100">
-      <div class="md:w-1/2 w-full order-1 md:order-1">
-        <img src="images/wt cover.png" alt="WhiskerTracker" class="rounded w-full" />
-      </div>
-      <div class="md:w-1/2 w-full order-2 md:order-2">
-        <p class="text-sm font-medium text-gray-500 mb-2">Mobile App</p>
-        <h3 class="text-xl font-bold text-orange-500">
-          WhiskerTracker
-          <span class="ml-2 text-sm text-yellow-600 bg-yellow-100 px-2 py-0.5 rounded-full">IN PROGRESS</span>
-        </h3>
-        <p class="text-gray-700 mt-2">
-          I updated the design and proposed logics and flows that improved user experience.
-        </p>
-        <a href="whiskertracker.html" class="inline-flex items-center gap-2 mt-4 bg-[#ED8946] hover:bg-orange-500 text-white px-4 py-2 rounded-full">
-          <i class="bi bi-arrow-up-right"></i> View Project
-        </a>
-      </div>
-    </div>
-
-    <!-- Project 3 -->
-    <div class="project-card bg-blue-100 p-6 rounded-2xl flex flex-col md:flex-row items-center gap-6 transition-transform duration-500 ease-out scale-100">
-      <div class="md:w-1/2 w-full">
-        <img src="images/tradelink cover.png" alt="Tradelink" class="rounded w-full" />
-      </div>
-      <div class="md:w-1/2 w-full">
-        <p class="text-sm font-medium text-gray-500 mb-2">Web App</p>
-        <h3 class="text-xl font-bold text-blue-900">
-          Tradelink
-          <span class="ml-2 text-sm text-yellow-600 bg-yellow-100 px-2 py-0.5 rounded-full">IN PROGRESS</span>
-        </h3>
-        <p class="text-gray-700 mt-2">
-          I designed the interface and created interactions for my first client's Crypto Wallet Managing App
-        </p>
-        <a href="tradelink.html" class="inline-flex items-center gap-2 mt-4 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full">
-          <i class="bi bi-arrow-up-right"></i> View Project
-        </a>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<style>
-  .project-card.visible {
-    transform: scale(1);
-    opacity: 1;
-  }
-</style>
-
-<script>
-  const cards = document.querySelectorAll('.project-card');
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.transform = 'scale(1.05)';
-        entry.target.style.opacity = '1';
-      } else {
-        entry.target.style.transform = 'scale(1)';
-        entry.target.style.opacity = '1';
-      }
-    });
-  }, { threshold: 0.5,
-  rootMargin: '-150px 0px -100px 0px'
-});
-  cards.forEach(card => observer.observe(card));
-</script>
-
-
-      <section class="mt-20 px-8 max-w-6xl mx-auto">
-  <h2 id="personal-title" class="text-2xl font-semibold text-center mb-10 opacity-0 translate-y-5 transition-all duration-700 ease-out">Personal Projects</h2>
-  <div class="grid md:grid-cols-3 gap-8">
-
-    <!-- Project Card -->
-    <div class="personal-card bg-red-100 p-4 rounded-2xl opacity-0 translate-y-5 transition-all duration-700 ease-out">
-      <img src="images/selangor.png" class="rounded mb-4" />
-      <p class="text-sm font-medium text-gray-500 mt-2 mb-2">Mobile App</p>
-      <h3 class="text-lg font-bold text-red-700">Selangor FC <span class="text-xs bg-green-200 text-green-600 ml-2 px-2 py-0.5 rounded-full">COMPLETED</span></h3>
-      <p class="text-gray-700 mt-1">I reimagined and redesigned the interface of the Selangor FC Mobile App</p>
-      <a href="selangorfc.html" class="inline-flex items-center gap-2 mt-4 bg-red-700 hover:bg-red-800 text-white px-4 py-2 rounded-full">
-        <i class="bi bi-arrow-up-right"></i> View Project
-      </a>
-    </div>
-
-    <!-- Plura Atelier -->
-    <div class="personal-card bg-green-100 p-4 rounded-2xl opacity-0 translate-y-5 transition-all duration-700 ease-out">
-      <img src="images/plura.png" class="rounded mb-4" />
-      <p class="text-sm font-medium text-gray-500 mt-2 mb-2">Web Landing Page</p>
-      <h3 class="text-lg font-bold text-green-700">Plura Atelier <span class="text-xs bg-green-200 text-green-600 ml-2 px-2 py-0.5 rounded-full">COMPLETED</span></h3>
-      <p class="text-gray-700 mt-1">I designed an innovative web landing page for a Design and Build Atelier</p>
-      <a href="plura.html" class="inline-flex items-center gap-2 mt-4 bg-[#8fa197] hover:bg-[#7CA18C] text-white px-4 py-2 rounded-full">
-        <i class="bi bi-arrow-up-right"></i> View Project
-      </a>
-    </div>
-
-    <!-- MyAsuh -->
-    <div class="personal-card bg-yellow-100 p-4 rounded-2xl opacity-0 translate-y-5 transition-all duration-700 ease-out">
-      <img src="images/myasuh home.png" class="rounded mb-4" />
-      <p class="text-sm font-medium text-gray-500 mt-2 mb-2">Mobile App</p>
-      <h3 class="text-lg font-bold text-yellow-500">MyAsuh <span class="text-xs bg-green-200 text-green-600 ml-2 px-2 py-0.5 rounded-full">COMPLETED</span></h3>
-      <p class="text-gray-700 mt-1">I created and designed the UX patterns of an Online Baby-sitting Mobile App.</p>
-      <a href="myasuh.html" class="inline-flex items-center gap-2 mt-4 bg-[#FFC260] hover:bg-yellow-500 text-white px-4 py-2 rounded-full">
-        <i class="bi bi-arrow-up-right"></i> View Project
-      </a>
-    </div>
-
-  </div>
-</section>
-
-<script>
-  const personalCards = document.querySelectorAll('.personal-card');
-
-  const personalObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const index = Array.from(personalCards).indexOf(entry.target);
-        setTimeout(() => {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }, index * 350);
-        personalObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.35 });
-
-  personalCards.forEach(card => personalObserver.observe(card));
-
-  const personalTitle = document.getElementById('personal-title');
-
-  const titleObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-        titleObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.5 });
-
-  titleObserver.observe(personalTitle);
-</script>
-      
-      <style>
-        .carousel-img {
-          width: 250px;
-          height: 160px;
-          object-fit: cover;
-          border-radius: 0.5rem;
-          transition: transform 0.3s ease;
-          flex-shrink: 0;
-        }
-      
-        .carousel-img:hover {
-          transform: scale(1.1);
-          z-index: 10;
-        }
-      
-        @keyframes scroll {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
-        }
-      
-        .animate-scroll {
-          animation: scroll 30s linear infinite;
-        }
-      </style>
-      
-      <script>
-        const carousel = document.getElementById("carousel");
-      
-        function pauseCarousel() {
-          carousel.style.animationPlayState = "paused";
-        }
-      
-        function startCarousel() {
-          carousel.style.animationPlayState = "running";
-        }
-      </script>
-
-<section class="mt-20 px-4 max-w-6xl mx-auto">
-  <h2 class="fade-up text-2xl font-semibold text-center opacity-0 translate-y-5 transition-all duration-700 ease-out">Case Studies</h2>
-
-  <div
-    class="fade-up overflow-hidden relative group h-[240px] opacity-0 translate-y-5 transition-all duration-700 ease-out"
-    onmouseenter="pauseCarousel()"
-    onmouseleave="startCarousel()"
-  >
-    <div
-      id="carousel"
-      class="flex w-max animate-scroll gap-4 items-center h-full"
-      style="animation-play-state: running"
-    >
-      <img src="images/gallery1.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
-      <img src="images/gallery2.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
-      <img src="images/gallery3.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
-      <img src="images/gallery4.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
-      <img src="images/gallery5.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
-      <img src="images/gallery6.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
-      <img src="images/gallery7.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
-      <img src="images/gallery1.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
-      <img src="images/gallery2.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
-      <img src="images/gallery3.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
-      <img src="images/gallery4.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
-      <img src="images/gallery5.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
-      <img src="images/gallery6.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
-      <img src="images/gallery7.jpg" class="carousel-img saturate-0 transition-all duration-300 hover:saturate-100" />
-    </div>
-  </div>
-</section>
-
-<section class="mt-12 px-8 max-w-4xl mx-auto text-center">
-  <h3 class="fade-up text-2xl font-semibold text-center mb-10 opacity-0 translate-y-5 transition-all duration-700 ease-out">Like what you see?</h3>
-  <h2 class="fade-up text-5xl font-bold leading-tight mb-6 opacity-0 translate-y-5 transition-all duration-700 ease-out">Let's work together!</h2>
-  <p class="fade-up text-lg mb-8 text-gray-600 max-w-lg mx-auto opacity-0 translate-y-5 transition-all duration-700 ease-out">
-    I'm always looking for new opportunities and ready to face design challenges. Drop your messages!
-  </p>
-
-  <!-- Button group -->
-  <div class="fade-up flex items-center justify-center gap-4 max-w-md mx-auto opacity-0 translate-y-5 transition-all duration-700 ease-out">
-    <a
-      href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
-      target="_blank"
-      rel="noopener"
-      class="flex-1 inline-flex items-center justify-center gap-2 bg-violet-600 hover:bg-violet-700 text-white px-6 py-3 rounded-full font-medium transition duration-300"
-    >
-      Let's chat <i class="bi bi-chat-square-dots-fill"></i>
-    </a>
-    <a
-      href="#top"
-      aria-label="Back to top"
-      class="w-12 h-12 flex items-center justify-center border border-gray-300 rounded-full bg-white text-gray-500 hover:shadow transition"
-    >
-      <i class="bi bi-arrow-up text-xl"></i>
-    </a>
-  </div>
-
-  <!-- Attribution -->
-  <p class="fade-up mt-10 text-[9px] text-gray-500 max-w-xl mx-auto opacity-0 translate-y-5 transition-all duration-700 ease-out">
-    Designed using Atomize // Icons from Bootstrap // Set in OpenSauceTwo<br />
-    Coded in VS Code // Built using Tailwind CSS // Deployed on Github
-  </p>
-</section>
-
-<script>
-  const fadeElements = document.querySelectorAll('.fade-up');
-
-  const fadeObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        const index = Array.from(fadeElements).indexOf(entry.target);
-        setTimeout(() => {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }, index * 100);
-        fadeObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15 });
-
-  fadeElements.forEach(el => fadeObserver.observe(el));
-</script>
-
-      <footer class="mt-10 text-[10px] text-gray-500 border-t-2">
-        <div class="flex justify-between items-center p-4 max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
-          <p>© 2023 Arieff Hizer // All Rights Reserved</p>
-      
-          <div class="flex gap-2">
-            <!-- GitHub Button -->
-            <a
-              href="https://github.com/arieffhizer"
-              target="_blank"
-              class="flex items-center gap-2 px-4 py-1 border border-gray-300 rounded-full bg-white text-gray-700 hover:shadow transition"
-            >
-              <i class="bi bi-github text-xs"></i>
-              GitHub
-            </a>
-      
-            <!-- LinkedIn Button -->
-            <a
-              href="https://www.linkedin.com/in/arieff-hizer-98b412225/"
-              target="_blank"
-              class="flex items-center gap-2 px-4 py-1 border border-gray-300 rounded-full bg-white text-gray-700 hover:shadow transition"
-            >
-              <i class="bi bi-linkedin text-xs"></i>
-              LinkedIn
-            </a>
-      
-            <!-- Instagram Button -->
-            <a
-              href="https://www.instagram.com/rffhzr"
-              target="_blank"
-              class="flex items-center gap-2 px-4 py-1 border border-gray-300 rounded-full bg-white text-gray-700 hover:shadow transition"
-            >
-              <i class="bi bi-instagram text-xs"></i>
-              Instagram
-            </a>
-          </div>
+        <div class="hidden md:flex items-center gap-3">
+          <button type="button" data-goto="about" class="nav-pill"><i class="bi bi-person-fill"></i> About Me</button>
+          <button type="button" data-goto="work" class="nav-pill"><i class="bi bi-folder-fill"></i> Work Projects</button>
+          <button type="button" data-goto="gallery" class="nav-pill"><i class="bi bi-image-fill"></i> Gallery</button>
+          <button type="button" data-goto="personal" class="nav-pill"><i class="bi bi-briefcase-fill"></i> Personal Projects</button>
+          <button
+            type="button" data-goto="cta"
+            class="say-hi-btn flex items-center gap-2 bg-[#7b5cfa] hover:bg-[#6a4ce8] text-white px-4 py-2 rounded-full text-sm font-semibold transition"
+          >
+            Say Hi <i class="bi bi-emoji-smile-fill"></i>
+          </button>
         </div>
-      </footer>
+
+        <button id="menu-btn" class="md:hidden text-2xl text-white">
+          <i class="bi bi-list"></i>
+        </button>
+      </header>
+
+      <div id="mobile-menu" class="hidden flex-col gap-2 p-4 md:hidden bg-black/95 border-t border-white/10">
+        <button type="button" data-goto="about" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#1f1f1f] text-white text-sm text-left">
+          <i class="bi bi-person-fill"></i> About Me
+        </button>
+        <button type="button" data-goto="work" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#1f1f1f] text-white text-sm text-left">
+          <i class="bi bi-folder-fill"></i> Work Projects
+        </button>
+        <button type="button" data-goto="gallery" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#1f1f1f] text-white text-sm text-left">
+          <i class="bi bi-image-fill"></i> Gallery
+        </button>
+        <button type="button" data-goto="personal" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#1f1f1f] text-white text-sm text-left">
+          <i class="bi bi-briefcase-fill"></i> Personal Projects
+        </button>
+        <button
+          type="button" data-goto="cta"
+          class="say-hi-btn flex items-center gap-2 bg-[#7b5cfa] text-white px-4 py-2 rounded-lg text-sm font-semibold text-left"
+        >
+          <i class="bi bi-emoji-smile-fill"></i> Say Hi
+        </button>
+      </div>
+    </div>
+
+    <script>
+      const menuBtn = document.getElementById("menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+        mobileMenu.classList.toggle("flex");
+      });
+      mobileMenu.querySelectorAll("[data-goto]").forEach(btn => {
+        btn.addEventListener("click", () => mobileMenu.classList.add("hidden"));
+      });
+    </script>
+
+    <!-- ===================== HORIZONTAL SCROLL WRAPPER ===================== -->
+    <div id="hz-wrapper" class="hz-wrapper">
+      <div id="hz-panels" class="hz-panels">
+
+        <!-- ============ 1. HERO ============ -->
+        <section class="hz-panel bg-black flex flex-col" data-panel="hero">
+          <div class="deco-grunge opacity-30" style="background-image:url('images/deco-grunge-hero.png');"></div>
+          <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,0) 12%, rgba(0,0,0,0) 82%, rgba(0,0,0,.35) 100%);"></div>
+
+          <div class="hero-lines relative z-10 flex-1 flex flex-col items-center justify-evenly text-center font-display font-medium select-none px-4 py-2">
+            <p class="hero-line text-white leading-none" data-dir="left" style="font-size:clamp(2.4rem, 13vh, 9rem);">Crafting</p>
+            <p class="hero-line text-[#7b5cfa] leading-none" data-dir="right" style="font-size:clamp(2.4rem, 13vh, 9rem);">Brand</p>
+            <p class="hero-line text-[#7b5cfa] leading-none" data-dir="left" style="font-size:clamp(2.4rem, 13vh, 9rem);">Triumph</p>
+            <p class="hero-line text-white leading-none" data-dir="right" style="font-size:clamp(2.4rem, 13vh, 9rem);">Through</p>
+            <p class="hero-line text-[#7b5cfa] leading-none" data-dir="left" style="font-size:clamp(2.4rem, 13vh, 9rem);">Design</p>
+
+            <img src="images/deco-chain-hero.png" alt="" class="hero-chain pointer-events-none select-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20" style="width:clamp(280px, 40vw, 640px);" />
+          </div>
+
+          <div class="hero-footer relative z-10 flex items-center justify-between px-6 md:px-[72px] py-5">
+            <p class="text-xs md:text-sm text-white/90">© 2023 Arieff Hizer // All Rights Reserved</p>
+            <div class="flex gap-2">
+              <a href="https://github.com/arieffhizer" target="_blank" class="nav-pill"><i class="bi bi-github"></i> GitHub</a>
+              <a href="https://www.linkedin.com/in/arieff-hizer-98b412225/" target="_blank" class="nav-pill"><i class="bi bi-linkedin"></i> LinkedIn</a>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ 2. ABOUT ============ -->
+        <section class="hz-panel bg-[#7b5cfa] flex items-center justify-center" data-panel="about">
+          <img src="images/deco-swirl-bg.png" class="deco-swirl" alt="" />
+          <div class="deco-grunge opacity-50" style="background-image:url('images/deco-grunge-about.png');"></div>
+          <img src="images/deco-chain-about.png" alt="" class="about-chain pointer-events-none select-none absolute z-0" style="left:calc(50% - 24px); top:calc(58% + 128px); width:105vw; max-width:none; height:auto; transform:translate(-50%,-50%) rotate(171deg); filter:contrast(85%) brightness(90%);" />
+
+          <div class="relative z-10 w-full max-w-5xl px-6 text-center flex flex-col items-center gap-4">
+            <h2 class="about-heading font-display font-medium text-white" style="font-size:clamp(2rem, 5vw, 4.2rem);">About me <span class="about-skills-break">&amp; my skills</span></h2>
+            <p class="text-white text-lg md:text-[22px] leading-relaxed max-w-[891px]">
+              Hello, I'm <span class="font-extrabold">Arieff Hizer</span>, a detail-oriented <span class="font-extrabold">UI/UX designer</span> based in Malaysia.
+              I'm motivated in creating products, experiences, and aesthetics that elevate our lives.
+            </p>
+
+            <div class="w-full max-w-[937px] flex flex-wrap items-center justify-center gap-2 md:gap-3 mt-8 md:mt-44">
+              <span class="chip"><i class="bi bi-check-circle-fill text-[#7b5cfa] text-xs"></i>UI/UX Design</span>
+              <span class="chip"><i class="bi bi-check-circle-fill text-[#7b5cfa] text-xs"></i>Visual Design</span>
+              <span class="chip"><i class="bi bi-check-circle-fill text-[#7b5cfa] text-xs"></i>UX Research</span>
+              <span class="chip"><i class="bi bi-check-circle-fill text-[#7b5cfa] text-xs"></i>Usability Testing</span>
+              <span class="chip"><i class="bi bi-check-circle-fill text-[#7b5cfa] text-xs"></i>Wireframe</span>
+              <span class="chip"><i class="bi bi-check-circle-fill text-[#7b5cfa] text-xs"></i>Prototyping</span>
+              <span class="chip"><i class="bi bi-check-circle-fill text-[#7b5cfa] text-xs"></i>Mobile App</span>
+              <span class="chip"><i class="bi bi-check-circle-fill text-[#7b5cfa] text-xs"></i>Web Design</span>
+              <span class="chip"><i class="bi bi-check-circle-fill text-[#7b5cfa] text-xs"></i>Figma</span>
+              <span class="chip"><i class="bi bi-check-circle-fill text-[#7b5cfa] text-xs"></i>Framer</span>
+              <span class="chip"><i class="bi bi-check-circle-fill text-[#7b5cfa] text-xs"></i>Claude Code</span>
+              <span class="chip"><i class="bi bi-check-circle-fill text-[#7b5cfa] text-xs"></i>VS Code</span>
+              <span class="chip"><i class="bi bi-check-circle-fill text-[#7b5cfa] text-xs"></i>Html</span>
+              <span class="chip"><i class="bi bi-check-circle-fill text-[#7b5cfa] text-xs"></i>Css</span>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-3 mt-4 w-full max-w-md">
+              <a href="https://drive.google.com/file/d/19z18HedpqwU7mfYNprhHXv7vflBT08ju/view" target="_blank"
+                 class="flex-1 inline-flex items-center justify-center gap-2 bg-black hover:bg-neutral-900 text-white px-6 py-3.5 rounded-full text-sm font-semibold transition">
+                <i class="bi bi-file-earmark-text-fill"></i> My resume
+              </a>
+              <a href="about.html"
+                 class="flex-1 inline-flex items-center justify-center gap-2 bg-white hover:shadow-lg text-neutral-700 px-6 py-3.5 rounded-full text-sm font-semibold transition">
+                <i class="bi bi-person-vcard-fill"></i> More about me
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ 3. WORK PROJECT ============ -->
+        <section class="hz-panel bg-white flex flex-col" data-panel="work">
+          <div class="section-header-row relative z-20 flex items-start justify-between px-6 md:px-[72px] pt-2 md:pt-10 pb-4 md:pb-6 gap-6">
+            <img src="images/deco-chain-work.png" alt="" class="deco-motif pointer-events-none select-none absolute z-10" style="width:clamp(200px, 20vw, 320px); left:calc(-3vw - 24px); top:calc(50% - 4px); transform:translateY(-50%);" />
+            <h2 class="section-title relative z-20 font-display font-medium text-[#7b5cfa]" style="font-size:clamp(1.8rem, 4.4vw, 3.6rem);">Work Project</h2>
+            <div class="hidden md:flex items-center gap-3 max-w-xs">
+              <p class="text-sm text-neutral-500">I'm always looking for new opportunities and ready to face design challenges. Drop your messages!</p>
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
+                 target="_blank" class="shrink-0 w-6 h-6 rounded-full bg-[#897aff] text-white flex items-center justify-center text-xs">
+                <i class="bi bi-arrow-up-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="relative z-0 flex-1 wp-groups">
+            <div class="wp-row wp-row-old">
+              <!-- SheTrades -->
+              <div class="wp-card bg-[#fde3dc]">
+                <div class="wp-card-media wp-card-media--coral">
+                  <img src="images/SheTrades Killer Image.png" alt="SheTrades" class="object-cover block" />
+                </div>
+                <div class="shrink-0 p-6 md:p-8 flex flex-col gap-3 md:gap-4">
+                  <div class="flex items-center justify-between">
+                    <p class="text-sm font-medium text-black/50">Web App</p>
+                    <span class="text-xs font-semibold text-[#0a9c55] bg-[#e9ffea] px-3 py-1 rounded-full">COMPLETED</span>
+                  </div>
+                  <div>
+                    <h3 class="text-2xl md:text-3xl font-extrabold text-[#F18671]">SheTrades</h3>
+                    <p class="text-neutral-600 mt-2 text-sm min-h-[40px]">A trades marketplace designed to give women a safer way to book home services.</p>
+                  </div>
+                  <a href="shetrades.html" class="inline-flex items-center justify-center gap-2 bg-[#F18671] hover:bg-[#D9654E] text-white px-4 py-3 rounded-full text-sm font-semibold">
+                    <i class="bi bi-arrow-up-right"></i> View Project
+                  </a>
+                </div>
+              </div>
+
+              <!-- FitCoach -->
+              <div class="wp-card bg-[#ddd]">
+                <div class="wp-card-media wp-card-media--dark">
+                  <img src="images/Fitcoach killer image.png" alt="FitCoach" class="object-cover block" />
+                </div>
+                <div class="shrink-0 p-6 md:p-8 flex flex-col gap-3 md:gap-4">
+                  <div class="flex items-center justify-between">
+                    <p class="text-sm font-medium text-black/50">Mobile App</p>
+                    <span class="text-xs font-semibold text-[#d07d00] bg-[#fff5db] px-3 py-1 rounded-full">IN PROGRESS</span>
+                  </div>
+                  <div>
+                    <h3 class="text-2xl md:text-3xl font-extrabold text-black">FitCoach</h3>
+                    <p class="text-neutral-600 mt-2 text-sm min-h-[40px]">I designed the interface and assist with the app's logic to create 2-in-1 workout and nutrition tracking app.</p>
+                  </div>
+                  <a href="fitcoach.html" class="inline-flex items-center justify-center gap-2 bg-black hover:bg-neutral-800 text-white px-4 py-3 rounded-full text-sm font-semibold">
+                    <i class="bi bi-arrow-up-right"></i> View Project
+                  </a>
+                </div>
+              </div>
+
+              <!-- Tradelink -->
+              <div class="wp-card bg-[#deeffd]">
+                <div class="wp-card-media wp-card-media--blue">
+                  <img src="images/tradelink killer image.png" alt="Tradelink" class="object-cover block" />
+                </div>
+                <div class="shrink-0 p-6 md:p-8 flex flex-col gap-3 md:gap-4">
+                  <div class="flex items-center justify-between">
+                    <p class="text-sm font-medium text-black/50">Web App</p>
+                    <span class="text-xs font-semibold text-[#d07d00] bg-[#fff5db] px-3 py-1 rounded-full">IN PROGRESS</span>
+                  </div>
+                  <div>
+                    <h3 class="text-2xl md:text-3xl font-extrabold text-[#118be8]">Tradelink</h3>
+                    <p class="text-neutral-600 mt-2 text-sm min-h-[40px]">I designed the interface and created interactions for my first client's Crypto Wallet Managing App.</p>
+                  </div>
+                  <a href="tradelink.html" class="inline-flex items-center justify-center gap-2 bg-[#118be8] hover:bg-blue-700 text-white px-4 py-3 rounded-full text-sm font-semibold">
+                    <i class="bi bi-arrow-up-right"></i> View Project
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="wp-row wp-row-new">
+              <!-- WhiskerTracker -->
+              <div class="wp-card bg-[#ffd1be]">
+                <div class="wp-card-media wp-card-media--purple">
+                  <img src="images/whiskertracker killer image.png" alt="WhiskerTracker" class="object-cover block" />
+                </div>
+                <div class="shrink-0 p-6 md:p-8 flex flex-col gap-3 md:gap-4">
+                  <div class="flex items-center justify-between">
+                    <p class="text-sm font-medium text-black/50">Mobile App</p>
+                    <span class="text-xs font-semibold text-[#d07d00] bg-[#fff5db] px-3 py-1 rounded-full">IN PROGRESS</span>
+                  </div>
+                  <div>
+                    <h3 class="text-2xl md:text-3xl font-extrabold text-[#ef7747]">WhiskerTracker</h3>
+                    <p class="text-neutral-600 mt-2 text-sm min-h-[40px]">I updated the design and proposed logics and flows that improved user experience.</p>
+                  </div>
+                  <a href="whiskertracker.html" class="inline-flex items-center justify-center gap-2 bg-[#ef7747] hover:bg-orange-500 text-white px-4 py-3 rounded-full text-sm font-semibold">
+                    <i class="bi bi-arrow-up-right"></i> View Project
+                  </a>
+                </div>
+              </div>
+
+              <!-- Landing/Portfolio (placeholder) -->
+              <div class="wp-card bg-[#e3f5ef]">
+                <div class="wp-card-media wp-card-media--green">
+                  <img src="images/Payzen mockup.png" alt="Landing/Portfolio" class="object-cover block" />
+                </div>
+                <div class="shrink-0 p-6 md:p-8 flex flex-col gap-3 md:gap-4">
+                  <div class="flex items-center justify-between">
+                    <p class="text-sm font-medium text-black/50">Website</p>
+                    <span class="text-xs font-semibold text-[#0a9c55] bg-[#e9ffea] px-3 py-1 rounded-full">COMPLETED</span>
+                  </div>
+                  <div>
+                    <h3 class="text-2xl md:text-3xl font-extrabold text-[#0F8A6B]">Landing/Portfolio/CMS</h3>
+                    <p class="text-neutral-600 mt-2 text-sm min-h-[40px]">Landing pages, a portfolio page for Payzen, and CMS interfaces for YesChef and Verge.</p>
+                  </div>
+                  <a href="landingportfolio.html" class="inline-flex items-center justify-center gap-2 bg-[#0F8A6B] hover:bg-emerald-700 text-white px-4 py-3 rounded-full text-sm font-semibold">
+                    <i class="bi bi-arrow-up-right"></i> View Project
+                  </a>
+                </div>
+              </div>
+
+              <!-- Artworks/Banner (placeholder) -->
+              <div class="wp-card bg-[#ececeb]">
+                <div class="wp-card-media wp-card-media--cyan">
+                  <img src="images/Tuks mockup.png" alt="Artworks/Banner" class="object-cover block" />
+                </div>
+                <div class="shrink-0 p-6 md:p-8 flex flex-col gap-3 md:gap-4">
+                  <div class="flex items-center justify-between">
+                    <p class="text-sm font-medium text-black/50">Graphic Design</p>
+                    <span class="text-xs font-semibold text-[#0a9c55] bg-[#e9ffea] px-3 py-1 rounded-full">COMPLETED</span>
+                  </div>
+                  <div>
+                    <h3 class="text-2xl md:text-3xl font-extrabold text-[#545352]">Artworks/Banner</h3>
+                    <p class="text-neutral-600 mt-2 text-sm min-h-[40px]">App Store artwork and Google Play Store banners for mobile app clients.</p>
+                  </div>
+                  <a href="artworkbanner.html" class="inline-flex items-center justify-center gap-2 bg-[#545352] hover:bg-neutral-700 text-white px-4 py-3 rounded-full text-sm font-semibold">
+                    <i class="bi bi-arrow-up-right"></i> View Project
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ 4. GALLERY ============ -->
+        <section class="hz-panel bg-[#7b5cfa] flex items-center justify-center" data-panel="gallery">
+          <img src="images/deco-swirl-bg.png" class="deco-swirl" alt="" />
+          <div class="deco-grunge opacity-50" style="background-image:url('images/deco-grunge-about.png');"></div>
+
+          <div class="gallery-canvas">
+            <div class="absolute gallery-tile gallery-tile-1" style="left:-140px; top:28px; width:640px; height:384px; transform:rotate(-6deg);">
+              <img src="images/gallery1.jpg" alt="Gallery work sample" />
+            </div>
+            <div class="absolute gallery-tile gallery-tile-2" style="left:380px; top:784px; width:640px; height:384px; transform:rotate(-8deg);">
+              <img src="images/gallery2.jpg" alt="Gallery work sample" />
+            </div>
+            <div class="absolute gallery-tile gallery-tile-3" style="left:-140px; top:684px; width:640px; height:384px; transform:rotate(13deg);">
+              <img src="images/gallery3.jpg" alt="Gallery work sample" />
+            </div>
+            <div class="absolute gallery-tile gallery-tile-4" style="left:980px; top:764px; width:640px; height:384px; transform:rotate(3deg);">
+              <img src="images/gallery4.jpg" alt="Gallery work sample" />
+            </div>
+            <div class="absolute gallery-tile gallery-tile-5" style="left:1420px; top:724px; width:640px; height:384px; transform:rotate(-7deg);">
+              <img src="images/gallery5.jpg" alt="Gallery work sample" />
+            </div>
+            <div class="absolute gallery-tile gallery-tile-6" style="left:1480px; top:28px; width:640px; height:384px; transform:rotate(14deg);">
+              <img src="images/gallery6.jpg" alt="Gallery work sample" />
+            </div>
+            <div class="absolute gallery-tile gallery-tile-7" style="left:1000px; top:-66px; width:640px; height:384px; transform:rotate(-9deg);">
+              <img src="images/gallery7.jpg" alt="Gallery work sample" />
+            </div>
+            <div class="absolute gallery-tile gallery-tile-8" style="left:470px; top:-16px; width:640px; height:384px; transform:rotate(3deg);">
+              <img src="images/gallery8.jpg" alt="Gallery work sample" />
+            </div>
+          </div>
+
+          <img src="images/deco-balloon-dog.png" alt="" class="pointer-events-none select-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10" style="width:clamp(320px, 40vw, 560px);" />
+          <h2 class="relative z-20 font-display font-medium text-white text-center" style="font-size:clamp(2.4rem, 6vw, 4.8rem); text-shadow: 0 2px 24px rgba(0,0,0,0.35);">Gallery</h2>
+        </section>
+
+        <!-- ============ 5. PERSONAL PROJECT ============ -->
+        <section class="hz-panel bg-white flex flex-col" data-panel="personal">
+          <div class="section-header-row relative z-20 flex items-start justify-between px-6 md:px-[72px] pt-2 md:pt-10 pb-4 md:pb-6 gap-6">
+            <img src="images/deco-butterfly-personal.png" alt="" class="deco-motif pointer-events-none select-none absolute z-10" style="width:clamp(170px, 17vw, 260px); left:calc(-2vw - 24px); top:calc(50% - 4px); transform:translateY(-50%) rotate(30deg);" />
+            <h2 class="section-title relative z-20 font-display font-medium text-[#7b5cfa]" style="font-size:clamp(1.8rem, 4.4vw, 3.6rem);">Personal Project</h2>
+            <div class="hidden md:flex items-center gap-3 max-w-xs">
+              <p class="text-sm text-neutral-500">I'm always looking for new opportunities and ready to face design challenges. Drop your messages!</p>
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
+                 target="_blank" class="shrink-0 w-6 h-6 rounded-full bg-[#897aff] text-white flex items-center justify-center text-xs">
+                <i class="bi bi-arrow-up-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="relative z-0 flex-1 min-h-0 flex flex-col px-6 md:px-[72px] pb-12 md:pb-[72px]">
+            <div class="carousel-track flex-1">
+              <!-- Selangor FC -->
+              <a href="selangorfc.html" class="group carousel-card relative rounded-2xl overflow-hidden flex items-end" style="background:#fcd9d9;">
+                <img src="images/sel right image.png" alt="Selangor FC" class="absolute inset-0 w-full h-full object-cover" />
+                <div class="absolute inset-0" style="background:linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.75) 100%);"></div>
+                <div class="absolute top-0 left-0 right-0 z-10 p-6 flex items-center justify-between">
+                  <p class="text-sm text-white/90">Mobile App</p>
+                  <span class="text-xs font-semibold text-[#0a9c55] bg-[#e9ffea] px-3 py-1 rounded-full">COMPLETED</span>
+                </div>
+                <div class="relative z-10 w-full p-6 flex flex-col gap-3">
+                  <h3 class="text-2xl font-extrabold text-[#f03d3d]">Selangor FC</h3>
+                  <p class="text-white text-sm">I reimagined and redesigned the interface of the Selangor FC Mobile App.</p>
+                  <span class="inline-flex items-center justify-center gap-2 bg-[#f03d3d] group-hover:brightness-90 transition text-white px-4 py-3 rounded-full text-sm font-semibold mt-1">
+                    <i class="bi bi-arrow-up-right"></i> View Project
+                  </span>
+                </div>
+              </a>
+
+              <!-- Plura Atelier -->
+              <a href="plura.html" class="group carousel-card relative rounded-2xl overflow-hidden flex items-end" style="background:#d7eae2;">
+                <img src="images/plura.png" alt="Plura Atelier" class="absolute inset-0 w-full h-full object-cover" />
+                <div class="absolute inset-0" style="background:linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.75) 100%);"></div>
+                <div class="absolute top-0 left-0 right-0 z-10 p-6 flex items-center justify-between">
+                  <p class="text-sm text-black/90">Web Landing Page</p>
+                  <span class="text-xs font-semibold text-[#0a9c55] bg-[#e9ffea] px-3 py-1 rounded-full">COMPLETED</span>
+                </div>
+                <div class="relative z-10 w-full p-6 flex flex-col gap-3">
+                  <h3 class="text-2xl font-extrabold text-[#67bc99]">Plura Atelier</h3>
+                  <p class="text-white text-sm">I designed an innovative web landing page for a Design and Build Atelier.</p>
+                  <span class="inline-flex items-center justify-center gap-2 bg-[#67bc99] group-hover:brightness-90 transition text-white px-4 py-3 rounded-full text-sm font-semibold mt-1">
+                    <i class="bi bi-arrow-up-right"></i> View Project
+                  </span>
+                </div>
+              </a>
+
+              <!-- MyAsuh -->
+              <a href="myasuh.html" class="group carousel-card relative rounded-2xl overflow-hidden flex items-end" style="background:#fef2cd;">
+                <img src="images/myasuh right image.png" alt="MyAsuh" class="absolute inset-0 w-full h-full object-cover" />
+                <div class="absolute inset-0" style="background:linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.75) 100%);"></div>
+                <div class="absolute top-0 left-0 right-0 z-10 p-6 flex items-center justify-between">
+                  <p class="text-sm text-black/90">Mobile App</p>
+                  <span class="text-xs font-semibold text-[#0a9c55] bg-[#e9ffea] px-3 py-1 rounded-full">COMPLETED</span>
+                </div>
+                <div class="relative z-10 w-full p-6 flex flex-col gap-3">
+                  <h3 class="text-2xl font-extrabold text-[#fcbf04]">MyAsuh</h3>
+                  <p class="text-white text-sm">I created and designed the UX patterns of an Online Baby-sitting Mobile App.</p>
+                  <span class="inline-flex items-center justify-center gap-2 bg-[#fcbf04] group-hover:brightness-90 transition text-white px-4 py-3 rounded-full text-sm font-semibold mt-1">
+                    <i class="bi bi-arrow-up-right"></i> View Project
+                  </span>
+                </div>
+              </a>
+
+              <!-- Mori Barbershop -->
+              <a href="mori.html" class="group carousel-card relative rounded-2xl overflow-hidden flex items-end" style="background:#5c1414;">
+                <img src="images/mori barbershop cover.png" alt="Mori Barbershop" class="absolute inset-0 w-full h-full object-cover" />
+                <div class="absolute inset-0" style="background:linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.75) 100%);"></div>
+                <div class="absolute top-0 left-0 right-0 z-10 p-6 flex items-center justify-between">
+                  <p class="text-sm text-white/90">Website</p>
+                  <span class="text-xs font-semibold text-[#0a9c55] bg-[#e9ffea] px-3 py-1 rounded-full">COMPLETED</span>
+                </div>
+                <div class="relative z-10 w-full p-6 flex flex-col gap-3">
+                  <h3 class="text-2xl font-extrabold text-white">Mori Barbershop</h3>
+                  <p class="text-white text-sm">I created the branding and design the website for an Editorial Hair Studio.</p>
+                  <span class="inline-flex items-center justify-center gap-2 bg-[#7a1f1f] group-hover:brightness-90 transition text-white px-4 py-3 rounded-full text-sm font-semibold mt-1">
+                    <i class="bi bi-arrow-up-right"></i> View Project
+                  </span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ 6. CTA / WHAT'S NEXT ============ -->
+        <section class="hz-panel bg-black flex flex-col md:flex-row" data-panel="cta">
+          <!-- Left: closing statement -->
+          <div class="relative flex-1 flex flex-col items-center justify-center px-6 pt-0 pb-16 md:py-0 text-center">
+            <div class="deco-grunge opacity-30" style="background-image:url('images/deco-grunge-hero.png');"></div>
+            <img src="images/deco-spider.png" alt="" class="cta-spider-mobile pointer-events-none select-none absolute z-20 max-w-none" />
+
+            <div class="relative z-10 flex flex-col items-center gap-6 max-w-lg">
+              <p class="relative z-30 text-white text-lg font-semibold">What's next?</p>
+              <h2 class="cta-heading font-display font-medium text-white whitespace-nowrap" style="font-size:clamp(1.2rem, 3.4vw, 2.75rem);">
+                Let's work <span class="together-anchor relative inline-block">together!
+                  <img src="images/deco-spider.png" alt="" class="cta-spider cta-spider-desktop pointer-events-none select-none absolute left-1/2 -translate-x-1/2 top-full z-20 max-w-none" style="width:calc(clamp(120px, 15vw, 220px) + 84px); margin-top:calc(-0.9em - 254px); left:calc(50% + 2px);" />
+                </span>
+              </h2>
+              <p class="text-[#c3c6cc] text-base md:text-lg">I'm always looking for new opportunities and ready to face design challenges. Drop your messages!</p>
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
+                 target="_blank" rel="noopener"
+                 class="cta-chat-btn w-full inline-flex items-center justify-center gap-2 bg-[#897aff] hover:bg-[#7b5cfa] text-white px-6 py-4 rounded-full text-base font-semibold transition">
+                Let's chat <i class="bi bi-chat-square-dots-fill"></i>
+              </a>
+              <p class="cta-credits text-[10px] text-[#8c929c] mt-4 leading-relaxed">
+                Designed in Figma // Icons from Bootstrap // Set in Unbounded &amp; Plus Jakarta Sans<br />
+                Coded in VS Code // Built with Tailwind CSS + GSAP // Deployed on Github
+              </p>
+            </div>
+          </div>
+
+          <!-- Right: quick links -->
+          <div class="flex-1 flex flex-col">
+            <div class="quick-link flex-1">
+              <span class="quick-link-stack">
+                <span class="quick-link-face bg-white">
+                  <button type="button" data-goto="about" class="flex items-center w-full h-full text-left">
+                    <span class="font-display text-2xl md:text-4xl text-black">About me</span>
+                  </button>
+                </span>
+                <span class="quick-link-face bg-[#7b5cfa]">
+                  <span class="flex flex-wrap items-center gap-2">
+                    <button type="button" data-goto="about" class="quick-link-pill">A little about me</button>
+                    <a href="about.html" class="quick-link-pill">More about me</a>
+                  </span>
+                </span>
+              </span>
+              <button type="button" class="quick-link-toggle" aria-label="Expand About me" aria-expanded="false">
+                <i class="bi bi-chevron-down"></i>
+              </button>
+            </div>
+            <div class="quick-link flex-1 border-t border-black/10">
+              <span class="quick-link-stack">
+                <span class="quick-link-face bg-white">
+                  <button type="button" data-goto="work" class="flex items-center w-full h-full text-left">
+                    <span class="font-display text-2xl md:text-4xl text-black">Work Project</span>
+                  </button>
+                </span>
+                <span class="quick-link-face bg-[#ef7747]">
+                  <span class="flex flex-wrap items-center gap-2">
+                    <a href="shetrades.html" class="quick-link-pill">SheTrades</a>
+                    <a href="fitcoach.html" class="quick-link-pill">Fitcoach</a>
+                    <a href="tradelink.html" class="quick-link-pill">Tradelink</a>
+                    <a href="whiskertracker.html" class="quick-link-pill">WhiskerTracker</a>
+                    <a href="landingportfolio.html" class="quick-link-pill">Landing/Portfolio/CMS</a>
+                    <a href="artworkbanner.html" class="quick-link-pill">Artworks/Banner</a>
+                  </span>
+                </span>
+              </span>
+              <button type="button" class="quick-link-toggle" aria-label="Expand Work Project" aria-expanded="false">
+                <i class="bi bi-chevron-down"></i>
+              </button>
+            </div>
+            <div class="quick-link flex-1 border-t border-black/10">
+              <span class="quick-link-stack">
+                <span class="quick-link-face bg-white">
+                  <button type="button" data-goto="gallery" class="flex items-center w-full h-full text-left">
+                    <span class="font-display text-2xl md:text-4xl text-black">Gallery</span>
+                  </button>
+                </span>
+                <span class="quick-link-face bg-[#fcbf04]">
+                  <span class="flex flex-wrap items-center gap-2">
+                    <button type="button" data-goto="gallery" class="quick-link-pill">Gallery</button>
+                  </span>
+                </span>
+              </span>
+              <button type="button" class="quick-link-toggle" aria-label="Expand Gallery" aria-expanded="false">
+                <i class="bi bi-chevron-down"></i>
+              </button>
+            </div>
+            <div class="quick-link flex-1 border-t border-black/10">
+              <span class="quick-link-stack">
+                <span class="quick-link-face bg-white">
+                  <button type="button" data-goto="personal" class="flex items-center w-full h-full text-left">
+                    <span class="font-display text-2xl md:text-4xl text-black">Personal Project</span>
+                  </button>
+                </span>
+                <span class="quick-link-face bg-[#f03d3d]">
+                  <span class="flex flex-wrap items-center gap-2">
+                    <a href="selangorfc.html" class="quick-link-pill">Selangor FC</a>
+                    <a href="plura.html" class="quick-link-pill">Plura Atelier</a>
+                    <a href="myasuh.html" class="quick-link-pill">MyAsuh</a>
+                    <a href="mori.html" class="quick-link-pill">Mori Barbershop</a>
+                  </span>
+                </span>
+              </span>
+              <button type="button" class="quick-link-toggle" aria-label="Expand Personal Project" aria-expanded="false">
+                <i class="bi bi-chevron-down"></i>
+              </button>
+            </div>
+            <div class="quick-link flex-1 border-t border-black/10">
+              <span class="quick-link-stack">
+                <span class="quick-link-face bg-white">
+                  <a href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
+                     target="_blank" rel="noopener" class="flex items-center w-full h-full text-left">
+                    <span class="font-display text-2xl md:text-4xl text-black">Contact us</span>
+                  </a>
+                </span>
+                <span class="quick-link-face bg-[#118be8]">
+                  <span class="flex flex-wrap items-center gap-2">
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
+                       target="_blank" rel="noopener" class="quick-link-pill">
+                      <span class="quick-link-pill-icon" style="background:#ea4335;"><i class="bi bi-envelope-fill"></i></span>Gmail
+                    </a>
+                    <a href="#" target="_blank" rel="noopener" class="quick-link-pill">
+                      <span class="quick-link-pill-icon" style="background:#25d366;"><i class="bi bi-whatsapp"></i></span>Whatsapp
+                    </a>
+                    <a href="https://www.instagram.com/rffhzr" target="_blank" rel="noopener" class="quick-link-pill">
+                      <span class="quick-link-pill-icon" style="background:radial-gradient(circle at 30% 107%, #fdf497, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);"><i class="bi bi-instagram"></i></span>Instagram
+                    </a>
+                  </span>
+                </span>
+              </span>
+              <button type="button" class="quick-link-toggle" aria-label="Expand Contact us" aria-expanded="false">
+                <i class="bi bi-chevron-down"></i>
+              </button>
+            </div>
+            <div class="quick-link flex-1 border-t border-black/10">
+              <span class="quick-link-stack">
+                <span class="quick-link-face bg-white">
+                  <a href="legal.html" class="flex items-center w-full h-full text-left">
+                    <span class="font-display text-2xl md:text-4xl text-black">Legal</span>
+                  </a>
+                </span>
+                <span class="quick-link-face bg-[#484b40]">
+                  <span class="flex flex-wrap items-center gap-2">
+                    <a href="legal.html" class="quick-link-pill">Confidentiality &amp; Copyright Notice</a>
+                  </span>
+                </span>
+              </span>
+              <button type="button" class="quick-link-toggle" aria-label="Expand Legal" aria-expanded="false">
+                <i class="bi bi-chevron-down"></i>
+              </button>
+            </div>
+
+            <div class="bg-white flex items-center justify-between px-6 md:px-[72px] py-4 border-t border-black/10">
+              <p class="text-[10px] md:text-xs text-black">© 2023 Arieff Hizer // All Rights Reserved</p>
+              <div class="flex gap-2">
+                <a href="https://github.com/arieffhizer" target="_blank" class="flex items-center gap-1 px-3 py-1 rounded-full bg-[#1f1f1f] text-white text-[10px] md:text-xs"><i class="bi bi-github"></i> GitHub</a>
+                <a href="https://www.linkedin.com/in/arieff-hizer-98b412225/" target="_blank" class="flex items-center gap-1 px-3 py-1 rounded-full bg-[#1f1f1f] text-white text-[10px] md:text-xs"><i class="bi bi-linkedin"></i> LinkedIn</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+    <!-- ===================== SCRIPTS ===================== -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Observer.min.js"></script>
+    <script>
+      gsap.registerPlugin(Observer);
+
+      // Hero intro: words slide in one by one (left/right per data-dir),
+      // then the nav bar and hero footer fade in. Runs once on load,
+      // independent of breakpoint.
+      gsap.set('[data-panel="hero"] .hero-line[data-dir="left"]', { opacity: 0, x: -80 });
+      gsap.set('[data-panel="hero"] .hero-line[data-dir="right"]', { opacity: 0, x: 80 });
+      gsap.set('#hero-nav, [data-panel="hero"] .hero-footer, [data-panel="hero"] .hero-chain', { opacity: 0 });
+
+      gsap.timeline({ defaults: { ease: "power2.out" } })
+        .to('[data-panel="hero"] .hero-line', { opacity: 1, x: 0, duration: 0.7, stagger: 0.25 })
+        .to('#hero-nav, [data-panel="hero"] .hero-footer, [data-panel="hero"] .hero-chain', { opacity: 1, duration: 0.6 }, "+=0.1");
+
+      const panelNames = () => gsap.utils.toArray(".hz-panel").map(p => p.dataset.panel);
+
+      let horizontalGoTo = null;
+
+      const mm = gsap.matchMedia();
+
+      mm.add("(min-width: 1024px)", () => {
+        const panels = gsap.utils.toArray(".hz-panel");
+        let currentIndex = 0;
+        let animating = false;
+
+        document.body.style.overflow = "hidden";
+
+        // Work Project holds two card sets (old: Fitcoach/Tradelink/WhiskerTracker,
+        // new: CMS/Landing-Portfolio/Artworks-Banner) that share the same panel slot.
+        // Reading order is old-set -> new-set, so scrolling forward into the panel
+        // (from About) lands on the old set, and scrolling backward into it (from
+        // Gallery) lands on the new set; one more scroll in that same direction swaps
+        // the set in place before a further scroll actually changes panel.
+        const workIdx = panelNames().indexOf("work");
+        let workSubIndex = 0;
+        const workOldRow = document.querySelector(".wp-row-old");
+        const workNewRow = document.querySelector(".wp-row-new");
+        gsap.set(workOldRow, { xPercent: 0 });
+        gsap.set(workNewRow, { xPercent: 100 });
+
+        // Instant positioning, used when the whole Work panel is already sliding
+        // into view as part of the outer panel transition below.
+        function setWorkSet(idx) {
+          workSubIndex = idx;
+          gsap.set(workOldRow, { xPercent: idx === 0 ? 0 : -100 });
+          gsap.set(workNewRow, { xPercent: idx === 1 ? 0 : 100 });
+        }
+
+        // Animated swap, used when the user scrolls again while already sitting
+        // on the Work panel: the incoming set slides in from the same side the
+        // outer panels slide from (right when moving forward, left when moving
+        // back), and locks out further scroll input for the duration, exactly
+        // like a normal panel-to-panel transition does via `animating`.
+        function slideWorkSet(idx) {
+          const dir = idx === 1 ? 1 : -1;
+          const incoming = idx === 1 ? workNewRow : workOldRow;
+          const outgoing = idx === 1 ? workOldRow : workNewRow;
+          workSubIndex = idx;
+          animating = true;
+          gsap.set(incoming, { xPercent: dir * 100 });
+          gsap.to(outgoing, { xPercent: dir * -100, duration: 0.7, ease: "power2.inOut" });
+          gsap.to(incoming, { xPercent: 0, duration: 0.7, ease: "power2.inOut", onComplete: () => { animating = false; } });
+        }
+
+        function goTo(index) {
+          index = Math.max(0, Math.min(panels.length - 1, index));
+          if (index === currentIndex || animating) return;
+          if (index === workIdx) setWorkSet(index > currentIndex ? 0 : 1);
+          animating = true;
+          currentIndex = index;
+          gsap.to(panels, {
+            xPercent: -100 * currentIndex,
+            duration: 0.9,
+            ease: "power2.inOut",
+            onComplete: () => { animating = false; },
+          });
+        }
+
+        // One wheel/swipe notch = one section. Observer normalizes wheel, touch,
+        // and trackpad input into discrete onUp/onDown gestures for us.
+        const observer = Observer.create({
+          target: window,
+          type: "wheel,touch,pointer",
+          wheelSpeed: 1,
+          tolerance: 10,
+          preventDefault: true,
+          onDown: () => {
+            if (animating) return;
+            if (currentIndex === workIdx && workSubIndex === 0) { slideWorkSet(1); return; }
+            goTo(currentIndex + 1);
+          },
+          onUp: () => {
+            if (animating) return;
+            if (currentIndex === workIdx && workSubIndex === 1) { slideWorkSet(0); return; }
+            goTo(currentIndex - 1);
+          },
+        });
+
+        horizontalGoTo = goTo;
+
+        return () => {
+          observer.kill();
+          gsap.set(panels, { clearProps: "x,xPercent" });
+          document.body.style.overflow = "";
+          horizontalGoTo = null;
+        };
+      });
+
+      function scrollToPanel(name) {
+        const idx = panelNames().indexOf(name);
+        if (idx === -1) return;
+
+        if (window.matchMedia("(min-width: 1024px)").matches && horizontalGoTo) {
+          horizontalGoTo(idx);
+        } else {
+          document.querySelector(`[data-panel="${name}"]`).scrollIntoView({ behavior: "smooth" });
+        }
+      }
+
+      document.querySelectorAll("[data-goto]").forEach(el => {
+        el.addEventListener("click", () => scrollToPanel(el.dataset.goto));
+      });
+
+      // Land directly on a specific section when arriving via a link like
+      // about.html's nav (index.html#work, #gallery, #personal, #about).
+      if (location.hash && panelNames().includes(location.hash.slice(1))) {
+        scrollToPanel(location.hash.slice(1));
+      }
+
+      // Highlight the top-navbar button matching whichever section is
+      // currently in view. Works for both the desktop horizontal-scroll
+      // (panels are translated via transform, which IntersectionObserver
+      // still tracks correctly) and the mobile vertical stack.
+      const navPills = document.querySelectorAll(".hidden.md\\:flex .nav-pill[data-goto], .hidden.md\\:flex .say-hi-btn[data-goto]");
+      function setActiveNav(name) {
+        navPills.forEach(el => el.classList.toggle("active", el.dataset.goto === name));
+      }
+      const navSectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            setActiveNav(entry.target.dataset.panel);
+          }
+        });
+      }, { threshold: 0.5 });
+      document.querySelectorAll(".hz-panel").forEach(p => navSectionObserver.observe(p));
+
+      // CTA quick-links accordion (mobile only, since hover can't reveal the
+      // pills on touch devices). Tapping a row's chevron expands it and
+      // collapses whichever other row was open; tapping it again just closes it.
+      const quickLinks = document.querySelectorAll(".quick-link");
+      quickLinks.forEach(link => {
+        const toggle = link.querySelector(".quick-link-toggle");
+        if (!toggle) return;
+        toggle.addEventListener("click", () => {
+          const wasExpanded = link.classList.contains("expanded");
+          quickLinks.forEach(l => {
+            l.classList.remove("expanded");
+            l.querySelector(".quick-link-toggle")?.setAttribute("aria-expanded", "false");
+          });
+          if (!wasExpanded) {
+            link.classList.add("expanded");
+            toggle.setAttribute("aria-expanded", "true");
+          }
+        });
+      });
+    </script>
 
   </body>
 </html>

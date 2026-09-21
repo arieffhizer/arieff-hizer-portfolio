@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Landing &amp; Portfolio — Arieff Hizer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png">
+    <style>
+      :root {
+        --green-main: #0F8A6B;
+        --green-dark: #0B5C4A;
+        --green-light: #E3F5EF;
+        --text-dark: #10231D;
+        --text-mid: #4A6960;
+        --text-muted: #85A69C;
+        --white: #FFFFFF;
+      }
+      * { box-sizing: border-box; }
+      body {
+        font-family: 'Inter', sans-serif;
+        background: #ffffff;
+        color: var(--text-dark);
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      /* ── Background system: flat teal circles with water-ripple contour
+         lines, same mechanic as the FitCoach template, tinted green/teal. ── */
+      .page-bg {
+        position: relative;
+        isolation: isolate;
+        overflow-x: hidden;
+        background: #ffffff;
+      }
+
+      .lp-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        overflow: hidden;
+      }
+
+      .lp-circle {
+        position: absolute;
+        border-radius: 9999px;
+        background: radial-gradient(
+          circle at center,
+          rgba(15,138,107,0.26) 0%,
+          rgba(120,196,175,0.24) 44%,
+          rgba(210,238,229,0.16) 68%,
+          rgba(255,255,255,0) 86%
+        );
+        overflow: hidden;
+      }
+
+      .lp-circle::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: repeating-radial-gradient(
+          circle at center,
+          rgba(255,255,255,0.8) 0 1px,
+          transparent 1px 34px
+        );
+        opacity: 0.7;
+        -webkit-mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9) 54%, rgba(0,0,0,0) 78%);
+        mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9) 54%, rgba(0,0,0,0) 78%);
+      }
+
+      .lp-circle-1 { width: 760px; height: 760px; top: 5%; right: -250px; transform: translateY(-50%); }
+      .lp-circle-2 { width: 520px; height: 520px; top: 30%; left: -100px; }
+      .lp-circle-3 { width: 620px; height: 620px; top: 62%; right: -140px; }
+      .lp-circle-4 { width: 480px; height: 480px; top: 90%; left: -180px; }
+
+      .page-bg > *:not(.lp-bg):not(.site-nav) {
+        position: relative;
+        z-index: 1;
+      }
+
+      @media (max-width: 768px) {
+        .lp-circle::after {
+          background: repeating-radial-gradient(
+            circle at center,
+            rgba(255,255,255,0.76) 0 1px,
+            transparent 1px 28px
+          );
+        }
+        .lp-circle-1 { width: 480px; height: 480px; top: 4%; right: -200px; transform: translateY(-50%); }
+        .lp-circle-2 { width: 340px; height: 340px; top: 28%; left: -130px; }
+        .lp-circle-3 { width: 420px; height: 420px; top: 62%; right: -160px; }
+        .lp-circle-4 { width: 340px; height: 340px; top: 90%; left: -150px; }
+      }
+
+      h1, h2, h3, h4 { font-family: 'Sora', sans-serif; }
+
+      /* ── Nav pills: same light pill treatment as the footer links ── */
+      .lp-nav-pill {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        height: 32px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: rgba(15,138,107,0.10);
+        color: var(--green-dark);
+        border: 1px solid rgba(15,138,107,0.22);
+        font-size: 0.8125rem;
+        font-weight: 600;
+        white-space: nowrap;
+        transition: background 0.2s ease;
+      }
+      .lp-nav-pill:hover { background: rgba(15,138,107,0.18); }
+      .lp-nav-pill-mobile {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 10px 16px;
+        border-radius: 999px;
+        background: rgba(15,138,107,0.10);
+        color: var(--green-dark);
+        border: 1px solid rgba(15,138,107,0.22);
+        font-size: 0.875rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+
+      .section-label {
+        font-family: 'Sora', sans-serif;
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 1rem;
+      }
+      @media (min-width: 768px) { .section-label { font-size: 2.25rem; } }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 16px;
+        border-radius: 999px;
+        font-size: 0.8125rem;
+        font-weight: 500;
+        background: rgba(15,138,107,0.10);
+        color: var(--green-dark);
+        border: 1px solid rgba(15,138,107,0.22);
+        white-space: nowrap;
+      }
+
+      .case-body {
+        color: var(--text-mid);
+        font-size: 1rem;
+        line-height: 1.75;
+      }
+      @media (min-width: 768px) { .case-body { font-size: 1.0625rem; } }
+
+      /* ── Artwork / banner frame (reused for landing + portfolio shots) ── */
+      .artwork-frame {
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(15,138,107,0.16), 0 4px 16px rgba(16,27,51,0.08);
+        background: #fff;
+      }
+      .artwork-caption {
+        text-align: center;
+        margin-top: 1rem;
+        font-family: 'Sora', sans-serif;
+        font-weight: 600;
+        color: var(--text-dark);
+      }
+
+      @media (max-width: 767px) {
+        section { text-align: center; }
+        section .fade-up,
+        section .section-label,
+        section .case-body,
+        section p { text-align: center; }
+        section .flex.flex-wrap { justify-content: center; }
+      }
+
+      .fade-up {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+      .fade-up.visible { opacity: 1; transform: translateY(0); }
+    </style>
+  </head>
+  <body class="page-bg">
+    <div class="lp-bg" aria-hidden="true">
+      <span class="lp-circle lp-circle-1"></span>
+      <span class="lp-circle lp-circle-2"></span>
+      <span class="lp-circle lp-circle-3"></span>
+      <span class="lp-circle lp-circle-4"></span>
+    </div>
+
+    <!-- ═══════════════════════════════════════ NAV ═══ -->
+    <div class="site-nav w-full sticky top-0 z-50 relative">
+      <div id="nav-blur" class="relative" style="-webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); background: rgba(255,255,255,0.1);">
+        <header class="flex justify-between items-center px-6 md:px-[72px] py-4">
+          <a href="index.html" class="flex items-center bg-gray-100 px-4 py-1 rounded-full shadow gap-2 hover:shadow-md transition">
+            <img src="images/logo arieff h 3.png" alt="Logo" class="w-6 h-6 rounded-full shadow" />
+            <span class="text-lg font-semibold text-gray-800">Arieff H.</span>
+          </a>
+          <div class="flex max-md:hidden items-center gap-3">
+            <a href="index.html#about" class="lp-nav-pill"><i class="bi bi-person-fill"></i> About Me</a>
+            <a href="index.html#work" class="lp-nav-pill"><i class="bi bi-folder-fill"></i> Work Projects</a>
+            <a href="index.html#gallery" class="lp-nav-pill"><i class="bi bi-image-fill"></i> Gallery</a>
+            <a href="index.html#personal" class="lp-nav-pill"><i class="bi bi-briefcase-fill"></i> Personal Projects</a>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position." target="_blank" rel="noopener" class="flex items-center gap-2 bg-[#0F8A6B] text-white px-4 py-2 rounded-full text-sm transition hover:shadow-md hover:-translate-y-1 m-0">
+              Say Hi <i class="bi bi-emoji-smile-fill"></i>
+            </a>
+          </div>
+          <button id="menu-btn" class="md:hidden text-2xl text-gray-800"><i class="bi bi-list"></i></button>
+        </header>
+        <div id="mobile-menu" class="hidden flex-col gap-2 p-4 md:hidden absolute top-full left-0 w-full" style="background: rgba(255,255,255,0.98); border-top:1px solid rgba(15,138,107,0.18);">
+          <a href="index.html#about" class="lp-nav-pill-mobile"><i class="bi bi-person-fill"></i> About Me</a>
+          <a href="index.html#work" class="lp-nav-pill-mobile"><i class="bi bi-folder-fill"></i> Work Projects</a>
+          <a href="index.html#gallery" class="lp-nav-pill-mobile"><i class="bi bi-image-fill"></i> Gallery</a>
+          <a href="index.html#personal" class="lp-nav-pill-mobile"><i class="bi bi-briefcase-fill"></i> Personal Projects</a>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position." target="_blank" rel="noopener" class="flex items-center justify-center gap-2 bg-[#0F8A6B] text-white px-4 py-2 rounded-full text-sm transition hover:shadow-md"><i class="bi bi-emoji-smile-fill"></i> Say Hi</a>
+        </div>
+      </div>
+    </div>
+    <script>
+      const menuBtn = document.getElementById("menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const navBlur = document.getElementById("nav-blur");
+      menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+        if (mobileMenu.classList.contains("hidden")) {
+          navBlur.style.background = "rgba(255,255,255,0.1)";
+          menuBtn.classList.remove("text-white"); menuBtn.classList.add("text-gray-800");
+        } else {
+          navBlur.style.background = "rgba(255,255,255,0.95)";
+          menuBtn.classList.remove("text-white"); menuBtn.classList.add("text-gray-800");
+        }
+      });
+    </script>
+
+    <!-- ═══════════════════════════════════════ HERO ═══ -->
+    <section class="w-full">
+      <div class="max-w-6xl w-full mx-auto px-6 pt-16 pb-10 text-center">
+        <div class="fade-up">
+          <h1 class="font-bold leading-tight m-0 mb-4" style="font-family:'Sora',sans-serif; font-size: clamp(2.5rem, 6vw, 4rem); color:var(--text-dark);">Landing &amp; Portfolio</h1>
+          <p class="text-lg md:text-xl font-medium leading-snug mb-6" style="color:var(--text-mid);">Landing pages and a case-study portfolio page designed for web clients.</p>
+          <div class="flex flex-wrap justify-center gap-2">
+            <span class="pill">Web Design</span>
+            <span class="pill">Landing Page</span>
+            <span class="pill">Figma</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ LANDING PAGES ═══ -->
+    <section class="py-12 md:py-16">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="fade-up mb-10 text-center">
+          <h2 class="section-label">Landing Pages</h2>
+          <p class="case-body max-w-2xl mx-auto">Landing pages designed to turn visitors into early sign-ups.</p>
+        </div>
+
+        <div class="flex flex-col gap-10 fade-up" style="transition-delay:0.1s">
+          <div>
+            <div class="artwork-frame">
+              <img src="images/YesChef Landing page.png" alt="YesChef landing page" class="w-full block" />
+            </div>
+            <p class="artwork-caption">YesChef</p>
+          </div>
+          <div>
+            <div class="artwork-frame">
+              <img src="images/ClearLodge Landing Page.png" alt="ClearLodge landing page" class="w-full block" />
+            </div>
+            <p class="artwork-caption">ClearLodge</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ PORTFOLIO ═══ -->
+    <section class="py-16 md:py-24">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="fade-up mb-10 text-center">
+          <h2 class="section-label">Portfolio</h2>
+          <p class="case-body max-w-2xl mx-auto">A case-study portfolio page built for Appetiser website, for the successful project, Payzen — designed responsively for every breakpoint.</p>
+        </div>
+
+        <div class="fade-up" style="transition-delay:0.1s">
+          <img src="images/Payzen Portfolio.png" alt="Payzen portfolio page" class="w-full block" />
+          <p class="artwork-caption">Payzen</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ CMS ═══ -->
+    <section class="py-16 md:py-24">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="fade-up mb-10 text-center">
+          <h2 class="section-label">CMS</h2>
+          <p class="case-body max-w-2xl mx-auto">Content management system interfaces designed for clients to manage their own website content.</p>
+        </div>
+
+        <div class="flex flex-col gap-10 fade-up" style="transition-delay:0.1s">
+          <div>
+            <div class="artwork-frame">
+              <img src="images/Verge CMS.png" alt="Verge CMS" class="w-full block" />
+            </div>
+            <p class="artwork-caption">Verge</p>
+          </div>
+          <div>
+            <div class="artwork-frame">
+              <img src="images/YesChef CMS.png" alt="YesChef CMS" class="w-full block" />
+            </div>
+            <p class="artwork-caption">YesChef</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ BACK TO TOP ═══ -->
+    <section class="pt-0 pb-16 md:pb-20">
+      <div class="max-w-6xl mx-auto px-6 flex justify-center">
+        <a href="#top" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition hover:shadow-md hover:-translate-y-1 m-0" style="font-family:'Sora',sans-serif; color:#ffffff; background:#0F8A6B; box-shadow: 0 10px 28px rgba(15,138,107,0.24);">
+          Back to top <i class="bi bi-arrow-up-circle-fill"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ FOOTER ═══ -->
+    <footer style="background:#ffffff; border-top:1px solid rgba(15,138,107,0.18);">
+      <div class="flex items-center justify-between px-6 md:px-[72px] py-4">
+        <p class="text-[10px] md:text-xs" style="color: var(--text-dark);">© 2025 Arieff Hizer // All Rights Reserved</p>
+        <div class="flex gap-2">
+          <a href="https://github.com/arieffhizer" target="_blank" class="flex items-center gap-1 px-3 py-1 rounded-full text-[10px] md:text-xs" style="color: var(--green-dark); background: rgba(15,138,107,0.10);">
+            <i class="bi bi-github"></i> GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/arieff-hizer-98b412225/" target="_blank" class="flex items-center gap-1 px-3 py-1 rounded-full text-[10px] md:text-xs" style="color: var(--green-dark); background: rgba(15,138,107,0.10);">
+            <i class="bi bi-linkedin"></i> LinkedIn
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ═══════════════════════════════════════ SCRIPTS ═══ -->
+    <script>
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            observer.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+      document.querySelectorAll('section:first-of-type .fade-up').forEach((el, i) => {
+        setTimeout(() => el.classList.add('visible'), i * 150);
+      });
+    </script>
+
+  </body>
+</html>

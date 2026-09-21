@@ -1,0 +1,2735 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="description" content="MORI is a modern men's hair studio and barbershop in PJ and SS15 offering affordable precision haircuts, queue updates and easy appointments."/>
+<meta name="keywords" content="MORI hair studio, MORI barbershop, cheap barbershop PJ, good barbershop PJ, cheap barbershop SS15, good barbershop SS15, men haircut Petaling Jaya, men haircut Subang Jaya, affordable men's haircut, precision haircut Malaysia"/>
+<meta name="robots" content="index, follow, max-image-preview:large"/>
+<meta name="author" content="MORI Hair Studio"/>
+<meta name="theme-color" content="#6A1E21"/>
+<meta name="geo.region" content="MY-10"/>
+<meta name="geo.placename" content="Petaling Jaya, Subang Jaya"/>
+<meta property="og:site_name" content="MORI Hair Studio"/>
+<meta property="og:title" content="MORI Hair Studio | Best Premium & Affordable Barbershop in PJ & SS15"/>
+<meta property="og:description" content="Modern men's hair studio and barbershop offering affordable precision haircuts, queue updates and easy appointments in PJ and SS15."/>
+<meta property="og:type" content="website"/>
+<meta property="og:image" content="Images/Mori-og-image.jpg"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="MORI Hair Studio | Best Premium & Affordable Barbershop in PJ & SS15"/>
+<meta name="twitter:description" content="Affordable precision haircuts, clear consultation, queue updates and appointments at MORI Hair Studio in PJ and SS15."/>
+<meta name="twitter:image" content="Images/Mori-og-image.jpg"/>
+
+<title>MORI Hair Studio | Best Premium & Affordable Barbershop in PJ & SS15</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "surface-variant": "#e5e2da",
+          "surface-dim": "#dcdad2",
+          "surface-container": "#f1eee6",
+          "inverse-on-surface": "#f3f1e9",
+          "on-background": "#1c1c17",
+          "surface-container-highest": "#e5e2da",
+          "on-surface": "#1c1c17",
+          "surface-bright": "#fcf9f1",
+          "tertiary": "#3f6752",
+          "inverse-primary": "#DFBDBE",
+          "tertiary-container": "#7aa48c",
+          "on-primary-fixed-variant": "#7D2327",
+          "inverse-surface": "#31312b",
+          "on-primary": "#ffffff",
+          "on-primary-container": "#7D2327",
+          "primary-container": "#DFBDBE",
+          "surface-container-high": "#ebe8e0",
+          "surface-container-low": "#f6f3eb",
+          "on-secondary": "#ffffff",
+          "surface": "#fcf9f1",
+          "secondary-fixed": "#DFBDBE",
+          "primary": "#7D2327",
+          "outline": "#7D2327",
+          "on-surface-variant": "#7D2327",
+          "error": "#ba1a1a",
+          "background": "#fcf9f1",
+          "outline-variant": "#DFBDBE",
+          "surface-container-lowest": "#ffffff",
+          "secondary": "#7D2327",
+          "secondary-container": "#DFBDBE"
+        },
+        borderRadius: {
+          "DEFAULT": "0.125rem",
+          "sm": "0.125rem",
+          "md": "0.375rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "2xl": "1rem",
+          "full": "9999px"
+        },
+        fontFamily: {
+          "sans": ["Plus Jakarta Sans", "sans-serif"],
+        },
+        maxWidth: {
+          "container": "1200px",
+        }
+      },
+    },
+  }
+</script>
+<style>
+  * { font-family: 'Plus Jakarta Sans', sans-serif; }
+  body { background-color: #fcf9f1; color: #1c1c17; }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+
+  /* Minimal navbar with hamburger overlay */
+  #navbar {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  #menu-toggle {
+    background: transparent;
+    border: 0;
+  }
+
+  #menu-open-icon,
+  #menu-close-icon {
+    line-height: 1;
+  }
+
+  #navbar {
+    transition: background 0.4s ease, backdrop-filter 0.4s ease, opacity 0.3s ease;
+  }
+
+  #menu-toggle {
+    background: transparent;
+    border: 0;
+  }
+
+  #nav-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: #0a0908;
+    transition: opacity 0.45s ease, visibility 0.45s ease;
+    visibility: hidden;
+  }
+ 
+  #nav-overlay::before,
+  #nav-overlay::after {
+    content: "";
+    position: absolute;
+    border: 1px solid rgba(255,255,255,0.08);
+    pointer-events: none;
+    opacity: 0.5;
+  }
+ 
+  #nav-overlay::before {
+    width: 18rem;
+    height: 18rem;
+    top: -2rem;
+    right: -3rem;
+    transform: rotate(18deg);
+    clip-path: polygon(25% 5%, 75% 5%, 95% 35%, 85% 85%, 35% 95%, 5% 65%, 15% 20%);
+  }
+ 
+  #nav-overlay::after {
+    width: 10rem;
+    height: 10rem;
+    bottom: 4rem;
+    left: 48%;
+    transform: rotate(-12deg);
+    clip-path: polygon(25% 5%, 75% 5%, 95% 35%, 85% 85%, 35% 95%, 5% 65%, 15% 20%);
+  }
+ 
+  #nav-overlay.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+ 
+  #nav-overlay .overlay-link,
+  #nav-overlay h2,
+  #nav-overlay p,
+  #nav-overlay #overlay-book-btn {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+  }
+ 
+  #nav-overlay.open .overlay-link,
+  #nav-overlay.open h2,
+  #nav-overlay.open p,
+  #nav-overlay.open #overlay-book-btn {
+    opacity: 1;
+    transform: translateY(0);
+  }
+ 
+  #nav-overlay.open .overlay-link:nth-child(1) { transition-delay: 0.08s; }
+  #nav-overlay.open .overlay-link:nth-child(2) { transition-delay: 0.14s; }
+  #nav-overlay.open .overlay-link:nth-child(3) { transition-delay: 0.20s; }
+  #nav-overlay.open .overlay-link:nth-child(4) { transition-delay: 0.26s; }
+  #nav-overlay.open h2 { transition-delay: 0.12s; }
+  #nav-overlay.open #overlay-book-btn { transition-delay: 0.20s; }
+ 
+  .overlay-link {
+    color: rgba(255,255,255,0.82);
+    transition: color 0.25s ease, transform 0.25s ease;
+  }
+ 
+  .overlay-link:hover {
+    color: #A86669;
+    transform: translateX(6px);
+  }
+ 
+  .nav-link {
+    color: inherit;
+    transition: color 0.25s ease;
+  }
+ 
+  .nav-link:hover {
+    color: #A86669;
+  }
+ 
+  .active-link {
+    color: #A86669 !important;
+  }
+ 
+  body.menu-open {
+    overflow: hidden;
+  }
+ 
+  body.menu-open #navbar {
+    background: transparent !important;
+    backdrop-filter: none !important;
+  }
+ 
+  body.menu-open #menu-open-icon {
+    opacity: 0;
+  }
+ 
+  body.menu-open #menu-close-icon {
+    opacity: 1;
+  }
+ 
+  @media (max-width: 768px) {
+    #nav-overlay .container-grid {
+      padding-top: 7rem;
+      padding-bottom: 3rem;
+    }
+  }
+
+  /* ── Overlay nav links — stagger improvements ── */
+  .overlay-link {
+    display: inline-block;
+    position: relative;
+  }
+ 
+  .overlay-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: #A86669;
+    transition: width 0.35s cubic-bezier(0.22,1,0.36,1);
+  }
+ 
+  .overlay-link:hover::after { width: 100%; }
+  .overlay-link:hover { transform: translateX(10px) !important; }
+
+  /* Force active overlay navigation link color */
+  #nav-overlay .overlay-link.active-link {
+    color: #A86669 !important;
+  }
+
+  /* Optional: make the active underline match */
+  #nav-overlay .overlay-link.active-link::after {
+    background: #A86669 !important;
+    width: 100%;
+  }
+
+  /* Consistent centered container */
+  .container-grid {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+  @media (max-width: 768px) {
+    .container-grid { padding-left: 1.5rem; padding-right: 1.5rem; }
+  }
+
+  /* Service row hover */
+  .service-row {
+    display: flex;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: background 0.25s ease, color 0.25s ease;
+    cursor: default;
+  }
+  .service-row:hover { background: #7D2327; color: #fff; }
+  .service-row:hover .svc-price { color: #DFBDBE; }
+  .service-row:hover .svc-tag { color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.1); }
+  .service-row:hover .svc-num { color: rgba(255,255,255,0.2); }
+  .service-row:hover .svc-desc { color: rgba(255,255,255,0.65); }
+
+  #navbar {
+  transition: background 0.4s ease, backdrop-filter 0.4s ease;
+  }
+
+  /* HERO STATE */
+  .nav-hero {
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: none;
+  }
+
+  /* AFTER HERO: frosted */
+  .nav-frosted {
+    background: rgba(125, 35, 39, 0.7);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  }
+
+  /* Text colors */
+  .nav-hero .nav-link {
+    color: #f6f3eb;
+  }
+
+  .nav-pink .nav-link {
+    color: #f6f3eb;
+  }
+
+  /* Hero right-side animated image columns */
+  .hero-picture-columns {
+    --hero-card-gap: 1.25rem;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    gap: var(--hero-card-gap);
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .picture-column {
+    width: calc((100% - var(--hero-card-gap)) / 2);
+    overflow: hidden;
+  }
+
+  .picture-track {
+    display: flex;
+    flex-direction: column;
+    will-change: transform;
+  }
+
+  .picture-loop-set {
+    display: flex;
+    flex-direction: column;
+    gap: var(--hero-card-gap);
+    padding-bottom: var(--hero-card-gap);
+  }
+
+  .picture-card {
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    overflow: hidden;
+    position: relative;
+    flex: 0 0 auto;
+    border-radius: 1.25rem;
+    background: #f1eee6;
+  }
+
+  .picture-card img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+
+  .picture-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .picture-column-down .picture-track {
+    animation: hero-carousel-down 18s linear infinite;
+  }
+
+  .picture-column-up .picture-track {
+    animation: hero-carousel-up 18s linear infinite;
+  }
+
+  @keyframes hero-carousel-up {
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(0, -50%, 0); }
+  }
+
+  @keyframes hero-carousel-down {
+    from { transform: translate3d(0, -50%, 0); }
+    to { transform: translate3d(0, 0, 0); }
+  }
+
+  @media (max-width: 1200px) {
+    .hero-picture-columns {
+      gap: 1.125rem;
+    }
+
+    .picture-column,
+    .picture-track {
+      gap: 1.125rem;
+    }
+
+    .picture-card {
+      border-radius: 1.25rem;
+    }
+  }
+
+  /* Gallery hover */
+  #gallery {
+    position: relative;
+    z-index: 1;
+  }
+
+  .gallery-curve {
+    position: relative;
+    width: 100%;
+    height: 30rem;
+    overflow: visible;
+    z-index: 1;
+  }
+
+  .gallery-item {
+    position: relative;
+  }
+
+  .gallery-overlay {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+  }
+
+  .gallery-item:hover .gallery-overlay {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .gallery-curve-stage {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    z-index: 1;
+  }
+
+  .curve-card {
+    position: absolute;
+    width: min(24vw, 24rem);
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    border-radius: 0.75rem;
+    left: 0;
+    top: 0;
+    will-change: transform;
+    opacity: 1;
+  }
+
+  @media (max-width: 768px) {
+    .gallery-curve {
+      height: 22rem;
+    }
+
+    .curve-card {
+      width: min(60vw, 18rem);
+    }
+  }
+
+  /* Ticker pulse */
+  @keyframes pulse-dot { 0%,100% { opacity:1; } 50% { opacity:.3; } }
+  .pulse-dot { animation: pulse-dot 2s ease-in-out infinite; }
+
+  /* Scroll reveal */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* Nav underline active */
+  .nav-link { position: relative; }
+  .nav-link::after {
+    content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px;
+    background: #7D2327; transition: width 0.3s ease;
+  }
+  .nav-link:hover::after { width: 100%; }
+
+  /* CTA gradient */
+  .cta-gradient { background: linear-gradient(135deg, #7D2327 0%, #DFBDBE 100%); }
+
+  /* Map container */
+  .map-frame { filter: saturate(0.6) contrast(1.1); transition: filter 0.5s ease; }
+  .map-frame:hover { filter: saturate(1) contrast(1.05); }
+
+  /* Hours badge */
+  .hours-open { color: #3f6752; background: rgba(63,103,82,0.1); }
+  .hours-closed { color: #7D2327; background: rgba(125,35,39,0.08); }
+
+  /* Review Google badge */
+  .google-badge svg { display: inline-block; }
+
+  /* ── Booking Panel ── */
+  .booking-card { transition: transform 0.3s ease; }
+  .booking-label {
+    display: block; font-size: 10px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.35); margin-bottom: 8px;
+  }
+  .booking-input {
+    width: 100%; background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08); border-radius: 0.5rem;
+    padding: 0.75rem 1rem; font-size: 0.875rem; color: white;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    transition: border-color 0.2s ease, background 0.2s ease; outline: none;
+  }
+  .booking-input::placeholder { color: rgba(255,255,255,0.22); }
+  .booking-input:focus { border-color: rgba(125,35,39,0.6); background: rgba(255,255,255,0.07); }
+  .booking-input option { background: #2a2421; color: white; }
+  .time-chip {
+    padding: 5px 13px; font-size: 11px; font-weight: 700;
+    font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: 0.06em;
+    border: 1px solid rgba(255,255,255,0.1); border-radius: 9999px;
+    color: rgba(255,255,255,0.55); background: transparent;
+    cursor: pointer; transition: all 0.18s ease; white-space: nowrap;
+  }
+  .time-chip:hover { border-color: rgba(125,35,39,0.5); color: white; background: rgba(125,35,39,0.15); }
+  .time-chip.selected { border-color: #DFBDBE; color: white; background: rgba(125,35,39,0.3); }
+  .time-chip.unavailable { opacity: 0.2; cursor: not-allowed; text-decoration: line-through; pointer-events: none; }
+  .avail-btn:hover { border-color: rgba(125,35,39,0.4) !important; background: rgba(125,35,39,0.08); }
+  .avail-btn.active-day { border-color: rgba(125,35,39,0.5) !important; background: rgba(125,35,39,0.12); }
+  .q-bar { width: 8px; height: 24px; border-radius: 9999px; background: rgba(255,255,255,0.1); transition: background 0.3s ease; }
+  .q-bar.filled { background: #7D2327; }
+  .q-bar.current { background: #DFBDBE; animation: bar-pulse 1.5s ease-in-out infinite; }
+  @keyframes bar-pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+  #booking-ticker {
+    position: fixed;   /* 🔥 REQUIRED */
+    bottom: 24px;      /* adjust if needed */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10001;    /* 🔥 higher than intro (9999) */
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  #booking-ticker.ticker-hidden { opacity: 0 !important; pointer-events: none; transform: translateX(-50%) translateY(16px) !important; }
+  #ticker-morphed.ticker-vis { opacity: 1 !important; transform: translateY(0) !important; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .animate-spin { animation: spin 0.8s linear infinite; }
+  input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(0.4); cursor: pointer; }
+  input[type="date"] { color-scheme: dark; }
+
+  /* ── INTRO SEQUENCE ── */
+  #intro-red-curve {
+    opacity: 1;
+    transition: opacity 0.9s ease;
+  }
+
+  #intro-overlay.red-fade #intro-red-curve {
+    opacity: 0;
+  }
+
+
+  #intro-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: #1a1714;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    pointer-events: all;
+  }
+
+  #intro-overlay.hidden {
+    display: none;
+  }
+
+  /* The curtain that slides down to exit */
+  #intro-overlay.exiting {
+    animation: intro-slide-down 0.9s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes intro-slide-down {
+    0%   { transform: translateY(0); }
+    100% { transform: translateY(100%); }
+  }
+
+  /* Tagline */
+  #intro-tagline {
+    position: absolute;
+    text-align: center;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(1.1rem, 3vw, 1.6rem);
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    color: rgba(246, 243, 235, 0.55);
+    opacity: 0;
+    white-space: nowrap;
+  }
+
+  #intro-tagline em {
+    font-style: italic;
+    font-weight: 700;
+    color: rgba(246, 243, 235, 0.85);
+  }
+
+  #intro-tagline.fade-in {
+    animation: tag-in 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  #intro-tagline.fade-out {
+    animation: tag-out 0.5s ease forwards;
+  }
+
+  @keyframes tag-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes tag-out {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+  }
+
+  /* Pink bar */
+  #intro-bar {
+    position: absolute;
+    height: 3px;
+    width: 0;
+    background: #6A1E21;
+    border-radius: 9999px;
+    opacity: 0;
+  }
+
+  #intro-bar.expand {
+    animation: bar-expand 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  #intro-bar.shrink {
+    animation: bar-shrink 0.4s ease forwards;
+  }
+
+  @keyframes bar-expand {
+    from { width: 0; opacity: 1; }
+    to   { width: min(220px, 40vw); opacity: 1; }
+  }
+
+  @keyframes bar-shrink {
+    from { width: min(220px, 40vw); opacity: 1; }
+    to   { width: min(220px, 40vw); opacity: 0; transform: scaleX(0); }
+  }
+
+  /* Logo */
+  #intro-logo {
+    position: absolute;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #intro-logo img {
+    height: clamp(80px, 12vw, 180px);
+    width: auto;
+    object-fit: contain;
+    filter: none !important;
+  }
+
+  #intro-logo.fade-in {
+    animation: logo-in 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  #intro-logo.fade-out {
+    animation: logo-out 0.5s ease forwards;
+  }
+
+  @keyframes logo-in {
+    from { opacity: 0; transform: scale(0.94); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes logo-out {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+  }
+
+  /* Curved bottom edge of overlay that merges into the hero */
+  #intro-curve {
+    position: absolute;
+    top: -34px;
+    left: 0;
+    right: 0;
+    height: 8rem; /* same as h-32 */
+    line-height: 0;
+    pointer-events: none;
+  }
+
+  /* Body locked during intro */
+  body.intro-active {
+    overflow: hidden;
+  }
+
+  #scroll-progress {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 4px;          /* thin vertical line */
+    height: 0%;          /* grows downward */
+    background: #A86669; /* or your brand color */
+    z-index: 10000;
+    pointer-events: none;
+    box-shadow: 0 0 8px rgba(125,35,39,0.3);
+    transition: height 0.1s linear;
+  }
+
+  /* Hide scrollbar for all browsers */
+  html, body {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+  }
+
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+  }
+
+
+  /* ── Replaced hero from mori-hero.html, adapted for Mori(12).html ── */
+  :root {
+    --mori-hero-rose: #7D2327;
+    --mori-hero-rose-mid: #DFBDBE;
+    --mori-hero-rose-deep: #7D2327;
+    --mori-hero-cream: #f6f3eb;
+    --mori-hero-dark: #1a1210;
+  }
+
+  .mori-pinned-hero {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+
+    /* Maintains diagonal gradient from Mori(12).html,
+      but uses colors from mori-hero.html */
+    background: #6A1E21;
+  }
+
+  #hero-wrapper {
+    position: relative;
+  }
+
+  #hero-pin {
+    position: relative;
+    height: 100vh;
+    min-height: 100svh;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: #6A1E21;
+    z-index: 0;
+  }
+
+  /* Hero art layer: abstract lines + large MORI logo */
+  #mori-hero-art {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    will-change: transform, opacity;
+    /* Starts bigger so scale: 0.92 becomes viewport-sized */
+    transform: scale(1.087);
+    transform-origin: center top;
+  }
+
+  /* Abstract lines PNG: full width and aligned to the top viewport */
+  #mori-abstract-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    object-position: top center;
+    z-index: 1;
+    opacity: 1;
+  }
+
+  /* Large MORI typography/logo */
+  #mori-wordmark {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -58%);
+    z-index: 2;
+
+    /* Same width as carousel */
+    width: min(calc(100vw - 5rem), 1120px);
+    max-width: 1120px;
+
+    pointer-events: none;
+  }
+
+  #mori-wordmark img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+  }
+
+  /* Carousel card: same width as .container-grid content below */
+    #carousel-card {
+    position: absolute;
+
+    /* Lower = more gap from the logo */
+    top: 86vh;
+
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    width: min(calc(100vw - 5rem), 1120px);
+    max-width: 1120px;
+    border-radius: 24px 24px 24px 24px;
+    overflow: hidden;
+    will-change: transform;
+
+  }
+
+  /* Maintains 3:2 ratio */
+  .carousel-ratio {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    border-radius: 20px 20px 0 0;
+    background: var(--mori-hero-dark);
+  }
+
+  .carousel-slides {
+    position: absolute;
+    inset: 0;
+  }
+
+  .carousel-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+  }
+
+  .carousel-slide.active {
+    opacity: 1;
+  }
+
+  .slide-placeholder,
+  .carousel-image-slide {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--mori-hero-dark);
+  }
+
+  .carousel-image-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Subtle image vignette */
+  .carousel-image-slide::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse at center,
+      transparent 42%,
+      rgba(0,0,0,0.28) 100%
+    );
+    pointer-events: none;
+  }
+
+  /* Barber pole spiral animation copied from mori-hero.html */
+    @keyframes barber-march {
+    from { background-position: 0 0; }
+    to   { background-position: 272px 0; }
+  }
+
+  .barber-pole {
+    position: absolute;
+    inset: 0;
+
+    background: repeating-linear-gradient(
+      45deg,
+
+      /* red */
+      #7D2327 0px,
+      #7D2327 48px,
+
+      /* white */
+      #ffffff 48px,
+      #ffffff 96px,
+
+      /* black */
+      #1c1c1c 96px,
+      #1c1c1c 144px,
+
+      /* white */
+      #ffffff 144px,
+      #ffffff 192px
+    );
+
+    /* 192px × √2 = about 272px, needed for clean 45deg tiling */
+    background-size: 272px 272px;
+
+    animation: barber-march 1.6s linear infinite;
+    will-change: background-position;
+  }
+
+  .barber-pole::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse at center,
+      transparent 40%,
+      rgba(0,0,0,0.28) 100%
+    );
+    pointer-events: none;
+  }
+
+  /* No dots indicator */
+  .carousel-dots,
+  .carousel-dot,
+  .stripe-overlay {
+    display: none !important;
+  }
+
+  @media (max-width: 768px) {
+    #mori-wordmark {
+      width: calc(100vw - 3rem);
+      max-width: none;
+      top: 54%;
+    }
+
+    #mori-abstract-lines {
+      top: 50%;
+      left: 50%;
+      width: 180vw;
+      height: auto;
+      transform: translate(-50%, -50%);
+      object-fit: contain;
+      object-position: center;
+    }
+
+    #carousel-card {
+      /* Matches .container-grid mobile padding */
+      width: calc(100vw - 3rem);
+      max-width: none;
+      top: 82vh;
+    }
+  }
+
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://www.example.com/#website",
+      "name": "MORI Hair Studio",
+      "description": "Modern men's hair studio and barbershop in Petaling Jaya and SS15.",
+      "inLanguage": "en-MY"
+    },
+    {
+      "@type": "HairSalon",
+      "@id": "https://www.example.com/#mori-pj",
+      "name": "MORI Hair Studio PJ",
+      "description": "Affordable modern men's barbershop and hair studio offering precision haircuts, grooming, queue updates and appointments in Petaling Jaya.",
+      "image": "Images/Mori-og-image.jpg",
+      "priceRange": "Affordable",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "19, Jalan Bukit 11/2, Seksyen 11",
+        "addressLocality": "Petaling Jaya",
+        "addressRegion": "Selangor",
+        "postalCode": "46200",
+        "addressCountry": "MY"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "opens": "10:00",
+          "closes": "22:00"
+        }
+      ],
+      "makesOffer": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Men's Haircut"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Wash and Cut"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Beard Trim"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Scalp Treatment"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HairSalon",
+      "@id": "https://www.example.com/#mori-ss15",
+      "name": "MORI Hair Studio SS15",
+      "description": "Affordable modern men's barbershop and hair studio offering precision haircuts, grooming, queue updates and appointments in SS15 Subang Jaya.",
+      "image": "Images/Mori-og-image.jpg",
+      "priceRange": "Affordable",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "38, Jalan SS 15/4b, SS 15",
+        "addressLocality": "Subang Jaya",
+        "addressRegion": "Selangor",
+        "postalCode": "47500",
+        "addressCountry": "MY"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "opens": "10:00",
+          "closes": "22:00"
+        }
+      ],
+      "makesOffer": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Men's Haircut"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Wash and Cut"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Beard Trim"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Scalp Treatment"
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body class="selection:bg-[#DFBDBE]/30 selection:text-[#7D2327] intro-active">
+  <div id="scroll-progress"></div>
+
+<!-- ═══════════════════════════════════════════════
+     INTRO SEQUENCE OVERLAY
+═══════════════════════════════════════════════ -->
+<div id="intro-overlay">
+  <div id="intro-red-bg"></div>
+  <!-- SVG curve bottom edge — matches hero gradient color to blend seamlessly -->
+  <div id="intro-curve">
+    <svg viewBox="0 0 1200 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;">
+      <defs>
+        <linearGradient id="introCurveGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#6A1E21"/>
+          <stop offset="100%" stop-color="#6A1E21"/>
+        </linearGradient>
+      </defs>
+      <path id="intro-red-curve" d="M0,64 C300,0 900,0 1200,64 L1200,0 L0,0 Z" fill="#6A1E21"/>
+    </svg>
+  </div>
+
+  <!-- Step 1: Tagline -->
+  <div id="intro-tagline">Redefining <em>Grooming</em> Experience</div>
+
+  <!-- Step 2: Pink bar -->
+  <div id="intro-bar"></div>
+
+  <!-- Step 3: Logo -->
+  <div id="intro-logo">
+    <img src="Images/Mori 2.png" alt="MORI" class="h-[120px] md:h-[160px] lg:h-[200px] object-contain" onerror="this.style.display='none'; this.insertAdjacentHTML('afterend','<span style=\'font-family:Plus Jakarta Sans,sans-serif;font-size:clamp(2rem,6vw,3.5rem);font-weight:900;letter-spacing:0.1em;color:#f6f3eb;\'>MORI</span>')"/>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════════════════ -->
+<nav id="navbar" class="fixed top-0 w-full z-[9998] transition-all duration-500">
+  <div class="w-full flex items-center justify-between px-8 md:px-12 lg:px-12 py-6">
+    <!-- Logo -->
+    <a href="#hero" class="flex items-center gap-3 group z-[10002] relative">
+      <img src="Images/Mori Nav Logo.png" alt="MORI Hair Studio logo" class="h-24 w-32 object-contain -ml-3" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"/>
+      <div style="display:none;" class="w-12 h-12 rounded-md bg-[#7D2327] items-center justify-center">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8">
+          <path d="M20 8C14 8 8 13 8 20c0 5 3 9 8 11l4-8-4-4 4-2 4 2-4 4 4 8c5-2 8-6 8-11 0-7-6-12-12-12z" fill="white"/>
+        </svg>
+      </div>
+    </a>
+ 
+    <!-- Hamburger -->
+    <button id="menu-toggle" aria-label="Open menu" aria-expanded="false" class="relative z-[10002] flex items-center justify-center w-14 h-14 md:w-16 md:h-16 text-[#f6f3eb] transition-opacity duration-300">
+      <span id="menu-open-icon" class="material-symbols-outlined text-[34px]">menu</span>
+      <span id="menu-close-icon"
+        class="material-symbols-outlined text-[34px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 pointer-events-none">
+        close
+      </span>
+    </button>
+  </div>
+</nav>
+ 
+<div id="nav-overlay" class="pointer-events-none opacity-0">
+  <div class="container-grid min-h-screen flex items-center py-24">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 w-full">
+      
+      <!-- Left nav links -->
+      <div class="lg:col-span-4">
+        <nav class="flex flex-col gap-5">
+          <a href="#about" class="overlay-link text-[clamp(2rem,4vw,3rem)] font-semibold tracking-[-0.03em] text-white">About</a>
+          <a href="#services" class="overlay-link text-[clamp(2rem,4vw,3rem)] font-semibold tracking-[-0.03em] text-white">Menu</a>
+          <a href="#reviews" class="overlay-link text-[clamp(2rem,4vw,3rem)] font-semibold tracking-[-0.03em] text-white">Reviews</a>
+          <a href="#locations" class="overlay-link text-[clamp(2rem,4vw,3rem)] font-semibold tracking-[-0.03em] text-white">Find Us</a>
+        </nav>
+      </div>
+ 
+      <!-- Right content -->
+      <div class="lg:col-span-8 lg:pl-12">
+        <div class="max-w-3xl">
+          <h2 class="text-[clamp(2.5rem,5vw,5rem)] leading-[1.02] font-extrabold tracking-[-0.04em] text-white mb-8">
+            Want something different?<br/>Just walk in.
+          </h2>
+ 
+          <a href="#booking" id="overlay-book-btn" class="inline-flex items-center gap-3 bg-[#7D2327] hover:bg-[#A86669] text-white px-8 py-4 font-bold text-sm uppercase tracking-[0.08em] transition-all duration-300" style="border-radius:9999px;">
+            Book Appointment
+            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+          </a>
+ 
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-16">
+            <div>
+              <p class="text-2xl font-bold text-white mb-4">Mori PJ</p>
+              <p class="text-base leading-[1.8] text-white/60">
+                19, Jalan Bukit 11/2, Seksyen 11,<br/>
+                46200 Petaling Jaya, Selangor
+              </p>
+            </div>
+ 
+            <div>
+              <p class="text-2xl font-bold text-white mb-4">Mori SS15</p>
+              <p class="text-base leading-[1.8] text-white/60">
+                38, Jalan SS 15/4b, SS 15,<br/>
+                47500 Subang Jaya, Selangor
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+ 
+    </div>
+  </div>
+</div>
+ 
+<main id="main-content">
+
+<!-- ═══════════════════════════════════════════════
+     HERO SECTION — replaced with mori-hero.html hero
+═══════════════════════════════════════════════ -->
+<section id="hero" class="mori-pinned-hero">
+  <div id="hero-wrapper">
+    <div id="hero-pin">
+      <div class="hero-bg"></div>
+
+      <h1 class="sr-only">MORI Hair Studio — Cheap and Good Men's Barbershop in Petaling Jaya and SS15</h1>
+      <p class="sr-only">MORI is a modern men's hair studio offering affordable precision haircuts, clear communication during every cut, live queue updates, and appointment booking for busy customers in PJ and SS15.</p>
+
+      <!-- Background abstract lines + large MORI logo -->
+      <div id="mori-hero-art" aria-hidden="true">
+        <!-- Abstract lines PNG: full width, aligned to top viewport -->
+        <img
+          id="mori-abstract-lines"
+          src="Images/abstract-lines 2.png"
+          alt=""
+        />
+
+        <!-- Large MORI logo image -->
+        <div id="mori-wordmark" aria-label="MORI" class="hidden">
+          <img src="Images/large typo 3.png" alt="MORI Hair Studio logo" />
+        </div>
+      </div>
+
+      <!-- 3:2 carousel card, now same width as the content below -->
+      <div id="carousel-card" aria-label="MORI hero image carousel">
+        <div class="carousel-ratio">
+          <div class="carousel-slides">
+
+            <!-- Slide 1: Barber pole animation -->
+            <div class="carousel-slide active">
+              <div class="slide-placeholder s1" aria-label="Animated barber pole pattern">
+                <div class="barber-pole"></div>
+              </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="carousel-slide">
+              <div class="carousel-image-slide">
+                <img src="Images/unnamed.png" alt="Affordable men’s haircut at MORI Hair Studio">
+              </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="carousel-slide">
+              <div class="carousel-image-slide">
+                <img src="Images/Mori Haircut.jpg" alt="Precision men’s haircut detail at MORI Hair Studio">
+              </div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="carousel-slide">
+              <div class="carousel-image-slide">
+                <img src="Images/c 1.jpg" alt="Men’s grooming style at MORI barbershop">
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     ABOUT & HOURS
+═══════════════════════════════════════════════ -->
+<section class="py-28 bg-[#1a1714]" id="about">
+  <div class="container-grid grid grid-cols-1 md:grid-cols-12 gap-28 items-start">
+    <!-- Left: About copy -->
+    <div class="md:col-span-5 reveal" style="transition-delay:0.1s;">
+      <div class="bg-[#ebe8e0] p-10" style="border-radius:0.75rem;">
+        <div class="flex items-center gap-3 mb-8">
+          <div class="w-8 h-8 bg-[#7D2327]/10 flex items-center justify-center" style="border-radius:0.375rem;">
+            <span class="material-symbols-outlined text-[#7D2327] text-[18px]">schedule</span>
+          </div>
+          <h3 class="text-lg font-bold text-[#1c1c17]">Opening Hours</h3>
+        </div>
+
+        <ul class="space-y-0">
+          <li class="flex justify-between items-center py-4" style="border-bottom: 1px solid rgba(223,189,190,0.4);">
+            <span class="text-sm font-medium text-[#1c1c17]">Monday — Friday</span>
+            <div class="flex items-center gap-3">
+              <span class="text-sm font-bold text-[#7D2327]">10:00 — 22:00</span>
+              <span class="hours-open text-[9px] font-bold uppercase tracking-wider px-2 py-0.5" style="border-radius:9999px;">Open</span>
+            </div>
+          </li>
+          <li class="flex justify-between items-center py-4" style="border-bottom: 1px solid rgba(223,189,190,0.4);">
+            <span class="text-sm font-medium text-[#1c1c17]">Saturday - Sunday</span>
+            <div class="flex items-center gap-3">
+              <span class="text-sm font-bold text-[#7D2327]">10:00 — 22:00</span>
+              <span class="hours-open text-[9px] font-bold uppercase tracking-wider px-2 py-0.5" style="border-radius:9999px;">Open</span>
+            </div>
+          </li>
+          <li class="flex justify-between items-center py-4">
+            <span class="text-sm font-medium text-[#1c1c17]">Friday Break</span>
+            <div class="flex items-center gap-3">
+              <span class="text-sm italic text-[#7D2327]">13:00 — 14:30</span>
+              <span class="hours-closed text-[9px] font-bold uppercase tracking-wider px-2 py-0.5" style="border-radius:9999px;">Close</span>
+            </div>
+          </li>
+        </ul>
+
+        <div class="mt-8 pt-6 bg-[#7D2327]/06 px-5 py-4" style="border-radius:0.5rem; background:rgba(125,35,39,0.06);">
+          <p class="text-xs text-[#7D2327] leading-relaxed">Early morning &amp; late evening sessions available for existing members upon request.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Opening Hours card -->
+     <div class="md:col-span-7 reveal">
+      <span class="text-[10px] font-bold tracking-[0.2em] uppercase text-[#f6f3eb] block mb-4">The Story</span>
+      <h2 class="text-[clamp(2rem,4vw,3.5rem)] font-bold tracking-[-0.03em] text-[#f6f3eb] mb-10 leading-[1.1]">
+        The Atelier<br/>Spirit
+      </h2>
+      <div class="space-y-5 text-[#f6f3eb] text-base leading-[1.75] max-w-xl font-light">
+        <p>MORI is a modern hair studio and men’s barbershop built for affordable precision haircuts. We encourage customers to communicate about their hair throughout the cutting process, so every detail is shaped with clarity and intention.</p>
+        <p>With live queue updates and appointment options, MORI makes grooming more convenient for both walk-ins and busy customers. Visit us in Petaling Jaya or SS15 for a clean, focused and reliable haircut experience.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="container-grid mt-20 reveal">
+    <div id="about-stats" class="grid grid-cols-2 gap-y-10 md:flex md:items-start md:justify-between pt-10 border-t border-[#f6f3eb]/20">
+      <div class="text-center md:shrink-0">
+        <p class="text-3xl md:text-4xl font-black text-[#f6f3eb] tracking-tight">
+          <span class="stat-number" data-target="17" data-suffix="+">0</span>
+        </p>
+        <p class="text-[10px] font-bold uppercase tracking-[0.12em] text-[#f6f3eb]/70 mt-1">Styles</p>
+      </div>
+
+      <div class="text-center md:shrink-0">
+        <p class="text-3xl md:text-4xl font-black text-[#f6f3eb] tracking-tight">
+          <span class="stat-number" data-target="1.5" data-suffix="k" data-decimals="1">0</span>
+        </p>
+        <p class="text-[10px] font-bold uppercase tracking-[0.12em] text-[#f6f3eb]/70 mt-1">Satisfied</p>
+      </div>
+
+      <div class="text-center md:shrink-0">
+        <p class="text-3xl md:text-4xl font-black text-[#f6f3eb] tracking-tight">
+          <span class="stat-number" data-target="4.7" data-decimals="1">0</span>
+        </p>
+        <p class="text-[10px] font-bold uppercase tracking-[0.12em] text-[#f6f3eb]/70 mt-1">Star Rating</p>
+      </div>
+
+      <div class="text-center md:shrink-0">
+        <p class="text-3xl md:text-4xl font-black text-[#f6f3eb] tracking-tight">
+          <span class="stat-number" data-target="3">0</span>
+        </p>
+        <p class="text-[10px] font-bold uppercase tracking-[0.12em] text-[#f6f3eb]/70 mt-1">Awards</p>
+      </div>
+
+      <div class="text-center md:shrink-0">
+        <p class="text-3xl md:text-4xl font-black text-[#f6f3eb] tracking-tight">
+          <span class="stat-number" data-target="2">0</span>
+        </p>
+        <p class="text-[10px] font-bold uppercase tracking-[0.12em] text-[#f6f3eb]/70 mt-1">Ateliers</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     SERVICES — Compact Horizontal Rows
+═══════════════════════════════════════════════ -->
+<section class="py-28 bg-[#fcf9f1]" id="services">
+  <div class="container-grid">
+    <!-- Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 reveal">
+      <div>
+        <span class="text-[10px] font-bold tracking-[0.2em] uppercase text-[#7D2327] block mb-3">The Menu</span>
+        <h2 class="text-[clamp(2.5rem,5vw,4.5rem)] font-extrabold tracking-[-0.04em] text-[#1c1c17] leading-[0.95]">
+          Essential<br/>Rituals.
+        </h2>
+      </div>
+      <p class="max-w-[260px] text-sm text-[#7D2327] font-light leading-[1.65] md:pb-2">
+        A curated selection executed with clinical precision and architectural care.
+      </p>
+    </div>
+
+    <!-- Service Rows -->
+    <div class="space-y-1 reveal" style="transition-delay:0.1s;">
+      <!-- Row 1 -->
+      <div class="service-row group">
+        <span class="svc-num text-sm font-black text-[#1c1c17]/10 w-8 shrink-0 tracking-tight">01</span>
+        <span class="svc-price flex-1 font-bold text-[#7D2327] text-base ml-4">Haircut</span>
+        <span class="svc-desc text-sm text-[#7D2327] hidden md:block flex-1">Consultation included. Architectural precision.</span>
+        <span class="svc-tag text-[10px] font-bold uppercase tracking-wider text-[#7D2327] bg-[#7D2327]/08 px-3 py-1 mr-6" style="border-radius:9999px; background:rgba(125,35,39,0.08);">45 min</span>
+        <span class="svc-price text-base font-black text-[#7D2327] w-14 text-right">$45</span>
+      </div>
+      <!-- Row 2 -->
+      <div class="service-row group">
+        <span class="svc-num text-sm font-black text-[#1c1c17]/10 w-8 shrink-0 tracking-tight">02</span>
+        <span class="svc-price flex-1 font-bold text-[#7D2327] text-base ml-4">Wash &amp; Cut</span>
+        <span class="svc-desc text-sm text-[#7D2327] hidden md:block flex-1">Detoxifying scalp ritual. Complete cleanse.</span>
+        <span class="svc-tag text-[10px] font-bold uppercase tracking-wider text-[#7D2327] bg-[#7D2327]/08 px-3 py-1 mr-6" style="border-radius:9999px; background:rgba(125,35,39,0.08);">60 min</span>
+        <span class="svc-price text-base font-black text-[#7D2327] w-14 text-right">$55</span>
+      </div>
+      <!-- Row 3 -->
+      <div class="service-row group">
+        <span class="svc-num text-sm font-black text-[#1c1c17]/10 w-8 shrink-0 tracking-tight">03</span>
+        <span class="svc-price flex-1 font-bold text-[#7D2327] text-base ml-4">Hot Towel Shave</span>
+        <span class="svc-desc text-sm text-[#7D2327] hidden md:block flex-1">Classic blade finish. Heated compress ritual.</span>
+        <span class="svc-tag text-[10px] font-bold uppercase tracking-wider text-[#7D2327] bg-[#7D2327]/08 px-3 py-1 mr-6" style="border-radius:9999px; background:rgba(125,35,39,0.08);">35 min</span>
+        <span class="svc-price text-base font-black text-[#7D2327] w-14 text-right">$40</span>
+      </div>
+      <!-- Row 4 -->
+      <div class="service-row group">
+        <span class="svc-num text-sm font-black text-[#1c1c17]/10 w-8 shrink-0 tracking-tight">04</span>
+        <span class="svc-price flex-1 font-bold text-[#7D2327] text-base ml-4">Beard Trim</span>
+        <span class="svc-desc text-sm text-[#7D2327] hidden md:block flex-1">Line definitions. Sculpted contour work.</span>
+        <span class="svc-tag text-[10px] font-bold uppercase tracking-wider text-[#7D2327] bg-[#7D2327]/08 px-3 py-1 mr-6" style="border-radius:9999px; background:rgba(125,35,39,0.08);">25 min</span>
+        <span class="svc-price text-base font-black text-[#7D2327] w-14 text-right">$30</span>
+      </div>
+      <!-- Row 5 -->
+      <div class="service-row group">
+        <span class="svc-num text-sm font-black text-[#1c1c17]/10 w-8 shrink-0 tracking-tight">05</span>
+        <span class="svc-price flex-1 font-bold text-[#7D2327] text-base ml-4">Full Grooming</span>
+        <span class="svc-desc text-sm text-[#7D2327] hidden md:block flex-1">The complete MORI experience. Head to toe.</span>
+        <span class="svc-tag text-[10px] font-bold uppercase tracking-wider text-[#7D2327] bg-[#7D2327]/08 px-3 py-1 mr-6" style="border-radius:9999px; background:rgba(125,35,39,0.08);">90 min</span>
+        <span class="svc-price text-base font-black text-[#7D2327] w-14 text-right">$85</span>
+      </div>
+      <!-- Row 6 -->
+      <div class="service-row group">
+        <span class="svc-num text-sm font-black text-[#1c1c17]/10 w-8 shrink-0 tracking-tight">06</span>
+        <span class="svc-price flex-1 font-bold text-[#7D2327] text-base ml-4">Scalp Treatment</span>
+        <span class="svc-desc text-sm text-[#7D2327] hidden md:block flex-1">Deep conditioning. Therapeutic scalp care.</span>
+        <span class="svc-tag text-[10px] font-bold uppercase tracking-wider text-[#7D2327] bg-[#7D2327]/08 px-3 py-1 mr-6" style="border-radius:9999px; background:rgba(125,35,39,0.08);">30 min</span>
+        <span class="svc-price text-base font-black text-[#7D2327] w-14 text-right">$35</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     GALLERY
+═══════════════════════════════════════════════ -->
+<section class="py-28 bg-[#1a1714] overflow-hidden" id="gallery">
+  <div class="container-grid">
+    <!-- Header -->
+    <div class="flex justify-between items-end mb-14 reveal">
+      <div>
+        <span class="text-[10px] font-bold tracking-[0.2em] uppercase text-[#7D2327] block mb-3">Visual Archive</span>
+        <h2 class="text-[clamp(2rem,4vw,3rem)] font-bold tracking-[-0.03em] text-[#f6f3eb]">The Gallery</h2>
+      </div>
+      <a href="#" class="text-[10px] font-bold uppercase tracking-[0.15em] text-[#7D2327] pb-1 transition-all hover:opacity-70" style="border-bottom: 1px solid #7D2327;">
+        View Archive
+      </a>
+    </div>
+
+    <!-- Grid -->
+    <div class="gallery-curve reveal" style="transition-delay:0.1s;">
+      <div class="gallery-curve-stage" id="galleryCurveStage">
+        <div class="curve-card gallery-item">
+          <img 
+            src="Images/TC.jpg"
+            loading="lazy"
+            decoding="async"
+            alt="Textured crop men’s haircut at MORI Hair Studio"
+            class="w-full h-full object-cover"
+          />
+          <div class="gallery-overlay absolute inset-0 flex flex-col justify-end p-6" style="background:linear-gradient(to top, rgba(28,28,23,0.75) 0%, transparent 50%);">
+            <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-white/60 mb-1">No. 01</p>
+            <p class="text-base font-bold text-white tracking-tight">Textured Crop</p>
+          </div>
+        </div>
+
+        <div class="curve-card gallery-item">
+          <img 
+            src="Images/WC.jpg"
+            loading="lazy"
+            decoding="async"
+            alt="Warrior cut men’s hairstyle at MORI Hair Studio"
+            class="w-full h-full object-cover"
+          />
+          <div class="gallery-overlay absolute inset-0 flex flex-col justify-end p-6" style="background:linear-gradient(to top, rgba(28,28,23,0.75) 0%, transparent 50%);">
+            <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-white/60 mb-1">No. 02</p>
+            <p class="text-base font-bold text-white tracking-tight">Warrior Cut</p>
+          </div>
+        </div>
+
+        <div class="curve-card gallery-item">
+          <img 
+            src="Images/TF.jpg"
+            loading="lazy"
+            decoding="async"
+            alt="Taper fade men’s haircut at MORI Hair Studio"
+            class="w-full h-full object-cover"
+          />
+          <div class="gallery-overlay absolute inset-0 flex flex-col justify-end p-6" style="background:linear-gradient(to top, rgba(28,28,23,0.75) 0%, transparent 50%);">
+            <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-white/60 mb-1">No. 03</p>
+            <p class="text-base font-bold text-white tracking-tight">Taper Fade</p>
+          </div>
+        </div>
+
+        <div class="curve-card gallery-item">
+          <img 
+            src="Images/CC.jpg"
+            loading="lazy"
+            decoding="async"
+            alt="Crew cut men’s haircut at MORI Hair Studio"
+            class="w-full h-full object-cover"
+          />
+          <div class="gallery-overlay absolute inset-0 flex flex-col justify-end p-6" style="background:linear-gradient(to top, rgba(28,28,23,0.75) 0%, transparent 50%);">
+            <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-white/60 mb-1">No. 04</p>
+            <p class="text-base font-bold text-white tracking-tight">Crew Cut</p>
+          </div>
+        </div>
+
+        <div class="curve-card gallery-item">
+          <img 
+            src="Images/VB.jpg"
+            loading="lazy"
+            decoding="async"
+            alt="Viking braids hairstyle at MORI Hair Studio"
+            class="w-full h-full object-cover"
+          />
+          <div class="gallery-overlay absolute inset-0 flex flex-col justify-end p-6" style="background:linear-gradient(to top, rgba(28,28,23,0.75) 0%, transparent 50%);">
+            <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-white/60 mb-1">No. 05</p>
+            <p class="text-base font-bold text-white tracking-tight">Viking Braids</p>
+          </div>
+        </div>
+
+        <div class="curve-card gallery-item">
+          <img 
+            src="Images/Mullet.jpg"
+            loading="lazy"
+            decoding="async"
+            alt="Mullet men’s haircut at MORI Hair Studio"
+            class="w-full h-full object-cover"
+          />
+          <div class="gallery-overlay absolute inset-0 flex flex-col justify-end p-6" style="background:linear-gradient(to top, rgba(28,28,23,0.75) 0%, transparent 50%);">
+            <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-white/60 mb-1">No. 06</p>
+            <p class="text-base font-bold text-white tracking-tight">Mullet</p>
+          </div>
+        </div>
+
+        <div class="curve-card gallery-item">
+          <img 
+            src="Images/MF.jpg"
+            loading="lazy"
+            decoding="async"
+            alt="Messy fringe men’s haircut at MORI Hair Studio"
+            class="w-full h-full object-cover"
+          />
+          <div class="gallery-overlay absolute inset-0 flex flex-col justify-end p-6" style="background:linear-gradient(to top, rgba(28,28,23,0.75) 0%, transparent 50%);">
+            <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-white/60 mb-1">No. 07</p>
+            <p class="text-base font-bold text-white tracking-tight">Messy Fringe</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     REVIEWS — Google Review Style
+═══════════════════════════════════════════════ -->
+<section class="testimonials py-28 hero-bg relative overflow-hidden" id="reviews">
+  
+  <div class="container-grid relative z-10">
+    <!-- Header -->
+    <div class="mb-16 reveal">
+      <span class="text-[10px] font-bold tracking-[0.2em] uppercase text-[#f6f3eb] block mb-3">Testimonials</span>
+      <div class="flex flex-col md:flex-row md:items-end gap-6 justify-between">
+        <h2 class="text-[clamp(2rem,4vw,3rem)] font-bold tracking-[-0.03em] text-[#f6f3eb]">The Client Voice</h2>
+        <!-- Overall rating badge -->
+        <div class="flex items-center gap-4 bg-[#f6f3eb] px-6 py-4" style="border-radius:0.5rem;">
+          <div>
+            <div class="flex items-center gap-1 mb-1">
+              <!-- Google-style star -->
+              <span style="color:#FBBC05; font-size:18px;">★★★★★</span>
+            </div>
+            <p class="text-[10px] font-bold uppercase tracking-wider text-[#7D2327]">4.9 · 127 Google Reviews</p>
+          </div>
+          <!-- Google G logo -->
+          <svg class="w-7 h-7 opacity-50" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Review Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal" style="transition-delay:0.1s;">
+      <!-- Review 1 -->
+      <div class="bg-[#f6f3eb] p-8" style="border-radius:0.75rem;">
+        <div class="flex items-start justify-between mb-5">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-[#7D2327]/20 flex items-center justify-center font-bold text-[#7D2327] text-sm">JD</div>
+            <div>
+              <p class="font-bold text-[#1c1c17] text-sm">James D'Angelo</p>
+              <p class="text-[10px] text-[#7D2327] uppercase tracking-wide mt-0.5">Creative Director</p>
+            </div>
+          </div>
+          <svg class="w-5 h-5 opacity-30 shrink-0" viewBox="0 0 24 24">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+          </svg>
+        </div>
+        <div class="flex gap-0.5 mb-4" style="color:#FBBC05;">★★★★★</div>
+        <p class="text-[#1c1c17] text-sm leading-[1.7] italic mb-4">"The attention to detail here is unprecedented. It's more like visiting an art gallery than a barbershop. Truly elite."</p>
+        <p class="text-[10px] text-[#7D2327] uppercase tracking-wider">2 weeks ago · Google Review</p>
+      </div>
+
+      <!-- Review 2 -->
+      <div class="bg-[#f6f3eb] p-8" style="border-radius:0.75rem;">
+        <div class="flex items-start justify-between mb-5">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-[#7D2327]/20 flex items-center justify-center font-bold text-[#7D2327] text-sm">MK</div>
+            <div>
+              <p class="font-bold text-[#1c1c17] text-sm">Marcus Knight</p>
+              <p class="text-[10px] text-[#7D2327] uppercase tracking-wide mt-0.5">Tech Lead</p>
+            </div>
+          </div>
+          <svg class="w-5 h-5 opacity-30 shrink-0" viewBox="0 0 24 24">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+          </svg>
+        </div>
+        <div class="flex gap-0.5 mb-4" style="color:#FBBC05;">★★★★★</div>
+        <p class="text-[#1c1c17] text-sm leading-[1.7] italic mb-4">"Finally, a space that understands the balance between style and substance. MORI is the new standard in grooming."</p>
+        <p class="text-[10px] text-[#7D2327] uppercase tracking-wider">1 month ago · Google Review</p>
+      </div>
+
+      <!-- Review 3 -->
+      <div class="bg-[#f6f3eb] p-8" style="border-radius:0.75rem;">
+        <div class="flex items-start justify-between mb-5">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-[#7D2327]/20 flex items-center justify-center font-bold text-[#7D2327] text-sm">SL</div>
+            <div>
+              <p class="font-bold text-[#1c1c17] text-sm">Soren Larsen</p>
+              <p class="text-[10px] text-[#7D2327] uppercase tracking-wide mt-0.5">Architect</p>
+            </div>
+          </div>
+          <svg class="w-5 h-5 opacity-30 shrink-0" viewBox="0 0 24 24">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+          </svg>
+        </div>
+        <div class="flex gap-0.5 mb-4" style="color:#FBBC05;">★★★★★</div>
+        <p class="text-[#1c1c17] text-sm leading-[1.7] italic mb-4">"I travel 40 minutes just for the scalp ritual. The silence and focus in the atelier is unmatched anywhere else."</p>
+        <p class="text-[10px] text-[#7D2327] uppercase tracking-wider">3 weeks ago · Google Review</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     FIND US / LOCATIONS
+═══════════════════════════════════════════════ -->
+<section class="py-28 bg-[#f6f3eb]" id="locations">
+  <div class="container-grid">
+    <!-- Header -->
+    <div class="mb-14 reveal">
+      <span class="text-[10px] font-bold tracking-[0.2em] uppercase text-[#7D2327] block mb-3">Ateliers</span>
+      <h2 class="text-[clamp(2rem,4vw,3rem)] font-bold tracking-[-0.03em] text-[#1c1c17]">Find Us</h2>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 reveal" style="transition-delay:0.1s;">
+      <!-- Location 1: Uptown -->
+      <div class="bg-[#ffffff] overflow-hidden group" style="border-radius:0.75rem; box-shadow: 0 2px 20px rgba(28,28,23,0.04);">
+        <!-- Location image + map -->
+        <div class="aspect-[16/8] w-full overflow-hidden relative">
+          <img 
+            src="Images/Main Branch KL.png"
+            loading="lazy"
+            decoding="async"
+            alt="MORI Hair Studio Petaling Jaya branch"
+            class="map-frame w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+          />
+          <div class="absolute inset-0 bg-gradient-to-b from-transparent to-[#1c1c17]/20"></div>
+          <div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1.5" style="border-radius:0.375rem;">
+            <p class="text-[10px] font-bold uppercase tracking-wider text-[#7D2327]">Main Branch (HQ)</p>
+          </div>
+        </div>
+
+        <div class="p-8">
+          <h3 class="text-xl font-bold text-[#1c1c17] mb-6 tracking-tight">Mori PJ</h3>
+          <div class="grid grid-cols-2 gap-6">
+            <div>
+              <p class="text-[10px] font-bold uppercase tracking-[0.15em] text-[#7D2327] mb-2">Address</p>
+              <p class="text-sm text-[#1c1c17] font-medium leading-relaxed">19, Jalan Bukit 11/2, Seksyen 11<br/>46200 Petaling Jaya, Selangor</p>
+            </div>
+            <div>
+              <p class="text-[10px] font-bold uppercase tracking-[0.15em] text-[#7D2327] mb-2">Contact</p>
+              <p class="text-sm text-[#1c1c17] font-medium leading-relaxed">+1 (212) 555-0198<br/>uptown@mori.atelier</p>
+            </div>
+            <div>
+              <p class="text-[10px] font-bold uppercase tracking-[0.15em] text-[#7D2327] mb-2">Hours</p>
+              <p class="text-sm text-[#7D2327] leading-relaxed">Mon–Fri: 9am–8pm<br/>Sat: 10am–6pm</p>
+            </div>
+            <div class="flex items-end">
+              <a href="https://maps.google.com/?q=19+Jalan+Bukit+11%2F2+Seksyen+11+Petaling+Jaya+Selangor" target="_blank" class="flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-[#7D2327] hover:opacity-70 transition-opacity">
+                <span class="material-symbols-outlined text-[16px]">location_on</span>
+                Open Maps
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Location 2: SoHo -->
+      <div class="bg-[#ffffff] overflow-hidden group" style="border-radius:0.75rem; box-shadow: 0 2px 20px rgba(28,28,23,0.04);">
+        <div class="aspect-[16/8] w-full overflow-hidden relative">
+          <img 
+            src="Images/Second Branch SS15.png"
+            loading="lazy"
+            decoding="async"
+            alt="MORI Hair Studio SS15 Subang Jaya branch"
+            class="map-frame w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+          />
+          <div class="absolute inset-0 bg-gradient-to-b from-transparent to-[#1c1c17]/20"></div>
+          <div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1.5" style="border-radius:0.375rem;">
+            <p class="text-[10px] font-bold uppercase tracking-wider text-[#7D2327]">2nd Branch</p>
+          </div>
+        </div>
+
+        <div class="p-8">
+          <h3 class="text-xl font-bold text-[#1c1c17] mb-6 tracking-tight">Mori SS15</h3>
+          <div class="grid grid-cols-2 gap-6">
+            <div>
+              <p class="text-[10px] font-bold uppercase tracking-[0.15em] text-[#7D2327] mb-2">Address</p>
+              <p class="text-sm text-[#1c1c17] font-medium leading-relaxed">38, Jalan SS 15/4b, Ss 15 <br/>47500 Subang Jaya, Selangor</p>
+            </div>
+            <div>
+              <p class="text-[10px] font-bold uppercase tracking-[0.15em] text-[#7D2327] mb-2">Contact</p>
+              <p class="text-sm text-[#1c1c17] font-medium leading-relaxed">+1 (212) 555-0145<br/>soho@mori.atelier</p>
+            </div>
+            <div>
+              <p class="text-[10px] font-bold uppercase tracking-[0.15em] text-[#7D2327] mb-2">Hours</p>
+              <p class="text-sm text-[#7D2327] leading-relaxed">Mon–Fri: 9am–8pm<br/>Sat: 10am–6pm</p>
+            </div>
+            <div class="flex items-end">
+              <a href="https://maps.google.com/?q=38+Jalan+SS+15%2F4b+SS15+Subang+Jaya+Selangor" target="_blank" class="flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-[#7D2327] hover:opacity-70 transition-opacity">
+                <span class="material-symbols-outlined text-[16px]">location_on</span>
+                Open Maps
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     RESERVE / BOOKING SECTION
+═══════════════════════════════════════════════ -->
+<section id="booking" class="overflow-hidden">
+
+  <!-- ── Part 1: Hero CTA (gradient, unchanged) ── -->
+  <div class="py-36 hero-bg text-white relative overflow-hidden">
+    <div class="container-grid text-center relative z-10 reveal">
+      <span class="text-[10px] font-bold tracking-[0.2em] uppercase text-white/60 block mb-6">Book Appointment</span>
+      <h2 class="text-[clamp(3rem,8vw,6rem)] font-black tracking-[-0.04em] leading-[0.9] mb-8">
+        Reserve your seat.
+      </h2>
+      <p class="text-base font-light opacity-75 mb-0 max-w-md mx-auto leading-[1.7]">
+        Appointments are released on a rolling 14-day basis. We recommend booking in advance to secure your preferred artisan.
+      </p>
+    </div>
+    <!-- Curved transition edge -->
+    <div class="absolute bottom-0 left-0 right-0 h-32 overflow-hidden pointer-events-none">
+      <svg viewBox="0 0 1200 64" preserveAspectRatio="none" class="w-full h-full" fill="#1a1714" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,64 C300,0 900,0 1200,64 L1200,64 L0,64 Z"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ── Part 2: Live Booking Panel (dark editorial) ── -->
+  <div id="booking-panel" class="bg-[#1a1714] text-white pb-24 pt-2">
+    <div class="container-grid">
+
+      <!-- Ticker morph anchor — visible when scrolled to this section -->
+      <div id="ticker-anchor" class="flex justify-center mb-14 pt-10">
+        <div id="ticker-morphed" class="flex items-center gap-3 opacity-0 translate-y-2 transition-all duration-500" style="transition-delay:0.1s;">
+          <div class="w-2 h-2 rounded-full bg-[#3f6752] pulse-dot"></div>
+          <span class="text-[11px] font-bold uppercase tracking-[0.12em] text-white/50">Live Booking</span>
+          <span class="w-px h-3 bg-white/20"></span>
+          <span class="text-[11px] font-bold uppercase tracking-[0.12em] text-white/50">Next Available: Today 4:15 PM</span>
+        </div>
+      </div>
+
+      <!-- 2-col booking grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-start">
+
+        <!-- ─── LEFT: Live Status ─── -->
+        <div class="lg:col-span-2 space-y-5">
+
+          <!-- Live Queue card -->
+          <div id="queue-card" class="bg-white/[0.04] p-7 booking-card" style="border-radius:0.75rem; border:1px solid rgba(255,255,255,0.06);">
+            <div class="flex items-start justify-between mb-6">
+              <div>
+                <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-white/40 mb-2">Live Queue</p>
+                <div class="flex items-baseline gap-2">
+                  <span id="queue-count" class="text-4xl font-black tracking-tight text-white">5</span>
+                  <span class="text-sm text-white/40 font-light">people waiting</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-1.5 bg-[#3f6752]/20 px-3 py-1.5" style="border-radius:9999px; border:1px solid rgba(63,103,82,0.3);">
+                <div class="w-1.5 h-1.5 rounded-full bg-[#3f6752] pulse-dot"></div>
+                <span class="text-[10px] font-bold uppercase tracking-wider text-[#7aa48c]">Live</span>
+              </div>
+            </div>
+            <!-- Queue visual -->
+            <div class="flex gap-1.5 mb-5">
+              <div id="queue-bars" class="flex gap-1.5 flex-wrap"></div>
+            </div>
+            <div class="pt-5" style="border-top:1px solid rgba(255,255,255,0.06);">
+              <p class="text-[10px] font-bold uppercase tracking-[0.15em] text-white/30 mb-1.5">Est. Wait Time</p>
+              <p class="text-lg font-bold text-white">~<span id="wait-time">35</span> min</p>
+            </div>
+          </div>
+
+          <!-- Availability Checker -->
+          <div class="bg-white/[0.04] p-7 booking-card" style="border-radius:0.75rem; border:1px solid rgba(255,255,255,0.06);">
+            <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-white/40 mb-5">Check Availability</p>
+            <div class="space-y-3 mb-5">
+              <button onclick="checkAvailability(this)" class="avail-btn w-full flex items-center justify-between px-4 py-3 text-left transition-all duration-200" style="border-radius:0.5rem; border:1px solid rgba(255,255,255,0.08);" data-date="Today">
+                <span class="text-sm font-medium text-white/70">Today</span>
+                <span class="text-[11px] font-bold text-[#7aa48c] uppercase tracking-wider avail-label">3 slots</span>
+              </button>
+              <button onclick="checkAvailability(this)" class="avail-btn w-full flex items-center justify-between px-4 py-3 text-left transition-all duration-200" style="border-radius:0.5rem; border:1px solid rgba(255,255,255,0.08);" data-date="Tomorrow">
+                <span class="text-sm font-medium text-white/70">Tomorrow</span>
+                <span class="text-[11px] font-bold text-[#7aa48c] uppercase tracking-wider avail-label">7 slots</span>
+              </button>
+              <button onclick="checkAvailability(this)" class="avail-btn w-full flex items-center justify-between px-4 py-3 text-left transition-all duration-200" style="border-radius:0.5rem; border:1px solid rgba(255,255,255,0.08);" data-date="Wed, Apr 23">
+                <span class="text-sm font-medium text-white/70">Wed, Apr 23</span>
+                <span class="text-[11px] font-bold text-[#7aa48c] uppercase tracking-wider avail-label">Full</span>
+              </button>
+              <button onclick="checkAvailability(this)" class="avail-btn w-full flex items-center justify-between px-4 py-3 text-left transition-all duration-200" style="border-radius:0.5rem; border:1px solid rgba(255,255,255,0.08);" data-date="Thu, Apr 24">
+                <span class="text-sm font-medium text-white/70">Thu, Apr 24</span>
+                <span class="text-[11px] font-bold text-[#7aa48c] uppercase tracking-wider avail-label">9 slots</span>
+              </button>
+            </div>
+            <!-- Availability feedback bar -->
+            <div id="avail-feedback" class="overflow-hidden transition-all duration-500" style="max-height:0; opacity:0;">
+              <div class="pt-4" style="border-top:1px solid rgba(255,255,255,0.06);">
+                <p class="text-[10px] font-bold uppercase tracking-[0.15em] text-white/30 mb-3">Available Slots</p>
+                <div id="avail-slots" class="flex flex-wrap gap-2"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Artisan note -->
+          <div class="px-1">
+            <p class="text-[11px] text-white/25 leading-relaxed">Each appointment is with a dedicated MORI artisan. Availability reflects your selected location's calendar in real time.</p>
+          </div>
+        </div>
+
+        <!-- ─── RIGHT: Booking Form ─── -->
+        <div class="lg:col-span-3">
+          <div class="bg-white/[0.04] p-8 booking-card" style="border-radius:0.75rem; border:1px solid rgba(255,255,255,0.06);">
+
+            <!-- Form header -->
+            <div class="mb-8 pb-6" style="border-bottom:1px solid rgba(255,255,255,0.06);">
+              <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-white/40 mb-1.5">New Appointment</p>
+              <h3 class="text-xl font-bold text-white tracking-tight">Book Your Session</h3>
+            </div>
+
+            <form id="booking-form" onsubmit="submitBooking(event)" novalidate>
+              <div class="space-y-6">
+
+                <!-- Name + Phone row -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div class="booking-field">
+                    <label class="booking-label">Full Name</label>
+                    <input type="text" placeholder="Your name" class="booking-input" required/>
+                  </div>
+                  <div class="booking-field">
+                    <label class="booking-label">Phone or Email</label>
+                    <input type="text" placeholder="For confirmation" class="booking-input" required/>
+                  </div>
+                </div>
+
+                <!-- Service -->
+                <div class="booking-field">
+                  <label class="booking-label">Service</label>
+                  <div class="relative">
+                    <select class="booking-input booking-select appearance-none pr-10" id="service-select" onchange="updateDuration(this)">
+                      <option value="">Select a service</option>
+                      <option value="haircut" data-dur="45 min">Haircut — $45</option>
+                      <option value="wash-cut" data-dur="60 min">Wash & Cut — $55</option>
+                      <option value="towel-shave" data-dur="35 min">Hot Towel Shave — $40</option>
+                      <option value="beard" data-dur="25 min">Beard Trim — $30</option>
+                      <option value="full" data-dur="90 min">Full Grooming — $85</option>
+                      <option value="scalp" data-dur="30 min">Scalp Treatment — $35</option>
+                    </select>
+                    <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-white/30 text-[18px] pointer-events-none">expand_more</span>
+                  </div>
+                  <div id="duration-badge" class="mt-2 overflow-hidden transition-all duration-300" style="max-height:0; opacity:0;">
+                    <span class="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-white/40">
+                      <span class="material-symbols-outlined text-[14px]">schedule</span>
+                      Duration: <span id="duration-text"></span>
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Barber (optional) + Location row -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div class="booking-field">
+                    <label class="booking-label">Artisan <span class="text-white/20 font-normal normal-case tracking-normal text-[10px]">optional</span></label>
+                    <div class="relative">
+                      <select class="booking-input booking-select appearance-none pr-10">
+                        <option value="">No preference</option>
+                        <option>Marco D. — Uptown</option>
+                        <option>Soren V. — SoHo</option>
+                        <option>Amir K. — Uptown</option>
+                        <option>Jules T. — SoHo</option>
+                      </select>
+                      <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-white/30 text-[18px] pointer-events-none">expand_more</span>
+                    </div>
+                  </div>
+                  <div class="booking-field">
+                    <label class="booking-label">Location</label>
+                    <div class="relative">
+                      <select class="booking-input booking-select appearance-none pr-10">
+                        <option>The Uptown Atelier</option>
+                        <option>The SoHo Loft</option>
+                      </select>
+                      <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-white/30 text-[18px] pointer-events-none">expand_more</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Date + Time -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div class="booking-field">
+                    <label class="booking-label">Date</label>
+                    <input type="date" class="booking-input" id="date-input" onchange="generateTimeSlots(this.value)" required/>
+                  </div>
+                  <div class="booking-field">
+                    <label class="booking-label">Time</label>
+                    <!-- Time slot chips -->
+                    <div id="time-slots" class="flex flex-wrap gap-2 pt-1">
+                      <p class="text-[12px] text-white/30 italic">Select a date first</p>
+                    </div>
+                    <input type="hidden" id="selected-time" required/>
+                  </div>
+                </div>
+
+                <!-- Divider -->
+                <div class="pt-2 pb-1" style="border-top:1px solid rgba(255,255,255,0.06);">
+                  <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-white/30 mb-5 mt-4">Secure Your Slot</p>
+
+                  <!-- Stripe-style card input mock -->
+                  <div class="space-y-3">
+                    <div class="booking-field">
+                      <label class="booking-label">Cardholder Name</label>
+                      <input type="text" placeholder="As it appears on your card" class="booking-input"/>
+                    </div>
+                    <div class="booking-field">
+                      <label class="booking-label">Card Number</label>
+                      <div class="relative">
+                        <input type="text" placeholder="1234  5678  9012  3456" maxlength="19" class="booking-input pr-24" oninput="formatCard(this)"/>
+                        <div class="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1.5 opacity-40">
+                          <!-- Visa -->
+                          <svg width="28" height="18" viewBox="0 0 28 18" fill="none"><rect width="28" height="18" rx="3" fill="white" fill-opacity="0.15"/><path d="M10.5 12.5H9L10 5.5H11.5L10.5 12.5ZM16 5.6C15.6 5.5 15 5.3 14.3 5.3C12.8 5.3 11.7 6.1 11.7 7.2C11.7 8 12.4 8.5 13 8.8C13.6 9.1 13.8 9.3 13.8 9.6C13.8 10 13.3 10.2 12.8 10.2C12.1 10.2 11.7 10.1 11.1 9.8L10.9 9.7L10.7 11.1C11.1 11.3 11.8 11.5 12.6 11.5C14.2 11.5 15.2 10.7 15.2 9.5C15.2 8.9 14.8 8.4 14.1 8C13.6 7.7 13.3 7.5 13.3 7.2C13.3 6.9 13.6 6.6 14.2 6.6C14.7 6.6 15.1 6.7 15.4 6.8L15.6 6.9L15.8 5.5L16 5.6ZM19.5 5.5H18.4C18.1 5.5 17.8 5.6 17.7 5.9L15.5 12.5H17.1L17.5 11.3H19.3L19.5 12.5H21L19.5 5.5ZM17.9 10C18 9.7 18.5 8.3 18.5 8.3C18.5 8.3 18.7 7.8 18.8 7.5L19 8.3C19 8.3 19.3 9.6 19.4 10H17.9ZM8.3 5.5L6.8 10.3L6.6 9.3C6.2 8.1 5.1 6.8 3.9 6.2L5.2 12.5H6.8L9.9 5.5H8.3Z" fill="white"/></svg>
+                          <!-- MC -->
+                          <svg width="24" height="16" viewBox="0 0 24 16" fill="none"><rect width="24" height="16" rx="2" fill="white" fill-opacity="0.1"/><circle cx="9" cy="8" r="5" fill="#EB001B" fill-opacity="0.7"/><circle cx="15" cy="8" r="5" fill="#F79E1B" fill-opacity="0.7"/><path d="M12 4.5a5 5 0 010 7 5 5 0 010-7z" fill="#FF5F00" fill-opacity="0.8"/></svg>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                      <div class="booking-field">
+                        <label class="booking-label">Expiry</label>
+                        <input type="text" placeholder="MM / YY" maxlength="7" class="booking-input" oninput="formatExpiry(this)"/>
+                      </div>
+                      <div class="booking-field">
+                        <label class="booking-label">CVC</label>
+                        <input type="text" placeholder="•••" maxlength="3" class="booking-input"/>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Deposit note -->
+                  <div class="mt-4 flex items-start gap-2.5 px-4 py-3" style="background:rgba(255,255,255,0.03); border-radius:0.5rem; border:1px solid rgba(255,255,255,0.05);">
+                    <span class="material-symbols-outlined text-[16px] text-white/30 mt-0.5 shrink-0">lock</span>
+                    <p class="text-[11px] text-white/30 leading-relaxed">A $10 refundable deposit secures your slot. Charged only if you cancel within 24 hours. Secured via 256-bit TLS.</p>
+                  </div>
+                </div>
+
+                <!-- Submit CTA -->
+                <button
+                  id="submit-btn"
+                  type="submit"
+                  class="w-full py-4 font-bold text-sm tracking-wide transition-all duration-300 relative overflow-hidden"
+                  style="background:#7D2327; border-radius:0.375rem; color:white;"
+                  onmouseenter="this.style.background='#A86669'"
+                  onmouseleave="this.style.background='#7D2327'"
+                >
+                  <span id="btn-text">Book Appointment</span>
+                  <span id="btn-loading" class="hidden absolute inset-0 flex items-center justify-center">
+                    <svg class="animate-spin w-5 h-5" viewBox="0 0 24 24" fill="none">
+                      <circle cx="12" cy="12" r="10" stroke="white" stroke-width="2" stroke-opacity="0.3"/>
+                      <path d="M12 2a10 10 0 0110 10" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  </span>
+                </button>
+
+              </div>
+            </form>
+
+            <!-- Success state (hidden) -->
+            <div id="booking-success" class="hidden text-center py-8">
+              <div class="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-6" style="background:rgba(63,103,82,0.15); border:1px solid rgba(63,103,82,0.3);">
+                <span class="material-symbols-outlined text-[#7aa48c] text-[26px]">check</span>
+              </div>
+              <h4 class="text-xl font-bold text-white mb-2">Appointment Confirmed</h4>
+              <p class="text-sm text-white/40 leading-relaxed mb-6">A confirmation has been sent to your contact. We look forward to receiving you at the atelier.</p>
+              <div id="confirmation-details" class="text-left bg-white/[0.04] p-5 mb-6" style="border-radius:0.5rem; border:1px solid rgba(255,255,255,0.06);">
+                <div class="flex justify-between items-center">
+                  <span class="text-[10px] uppercase tracking-wider text-white/30 font-bold">Ref</span>
+                  <span class="text-sm font-bold text-white" id="conf-ref">#MRI-0000</span>
+                </div>
+                <div class="mt-3 pt-3 flex justify-between items-center" style="border-top:1px solid rgba(255,255,255,0.06);">
+                  <span class="text-[10px] uppercase tracking-wider text-white/30 font-bold">Session</span>
+                  <span class="text-sm font-medium text-white/70" id="conf-service">—</span>
+                </div>
+                <div class="mt-3 pt-3 flex justify-between items-center" style="border-top:1px solid rgba(255,255,255,0.06);">
+                  <span class="text-[10px] uppercase tracking-wider text-white/30 font-bold">Time</span>
+                  <span class="text-sm font-medium text-white/70" id="conf-time">—</span>
+                </div>
+              </div>
+              <button onclick="resetBooking()" class="text-[11px] font-bold uppercase tracking-wider text-white/30 hover:text-white/60 transition-colors">
+                Book Another
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════════════════════════════════════════
+     BOOKING TICKER (smart — hides near booking section)
+═══════════════════════════════════════════════ -->
+<div id="booking-ticker" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2.5rem)] max-w-[480px] transition-all duration-500" style="background:rgba(252,249,241,0.88); backdrop-filter:blur(20px); border-radius:9999px; box-shadow:0 8px 32px rgba(28,28,23,0.12), 0 0 0 1px rgba(125,35,39,0.08);">
+  <div class="flex items-center justify-between px-5 py-3">
+    <div class="flex items-center gap-2.5">
+      <div class="w-2 h-2 rounded-full bg-[#3f6752] pulse-dot"></div>
+      <p class="text-[11px] font-bold uppercase tracking-[0.1em] text-[#1c1c17]">Next Available: Today 4:15 PM</p>
+    </div>
+    <a href="#booking" class="bg-[#7D2327] text-white px-5 py-2 text-[11px] font-bold uppercase tracking-wider hover:bg-[#A86669] transition-colors" style="border-radius:9999px;">
+      Book Now
+    </a>
+  </div>
+</div>
+
+<!-- ═════════════════════════════════════
+     BACK TO TOP
+═════════════════════════════════════ -->
+<div class="relative bg-[#f6f3eb]">
+  
+  <button onclick="window.scrollTo({top:0, behavior:'smooth'})"
+    class="absolute left-1/2 -top-6 -translate-x-1/2 
+    w-12 h-12 rounded-full bg-[#7D2327] hover:bg-[#A86669] text-white 
+    flex items-center justify-center 
+    shadow-lg hover:scale-105 transition-all duration-300">
+
+    ↑
+  </button>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════ -->
+<footer class="bg-[#f6f3eb] pt-12 pb-6">
+  <div class="w-full px-8 md:px-12 lg:px-16">
+    <!-- Top: Logo + tagline + links -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6 pb-6 items-start" style="border-bottom: 1px solid rgba(223,189,190,0.5);">
+      <!-- Brand -->
+      <div>
+        <a href="#" class="flex items-center gap-2 mb-4 group w-fit">
+          <img src="Images/Mori.png" alt="MORI" class="h-16 w-24 object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"/>
+          <div style="display:none;" class="w-8 h-8 rounded bg-[#7D2327] items-center justify-center">
+            <span class="text-white text-xs font-black">M</span>
+          </div>
+          
+        </a>
+        <p class="text-sm text-[#6A1E21] leading-[1.7] font-light max-w-[220px]">
+          The Editorial Hair Studio. Redefining grooming through the lens of high art and technical mastery.
+        </p>
+      </div>
+
+      <!-- Right side: Navigate + Connect grouped -->
+      <div class="md:col-span-2 flex justify-end">
+        <div class="grid grid-cols-2 gap-x-10 text-right">
+          
+          <!-- Navigate -->
+          <div class="flex flex-col gap-2">
+            <p class="text-[10px] font-bold uppercase tracking-[0.15em] text-[#6A1E21] mb-2">Navigate</p>
+            <a href="#about" class="text-sm text-[#6A1E21] hover:text-[#6A1E21] transition-colors">About</a>
+            <a href="#services" class="text-sm text-[#6A1E21] hover:text-[#6A1E21] transition-colors">Menu</a>
+            <a href="#reviews" class="text-sm text-[#6A1E21] hover:text-[#6A1E21] transition-colors">Reviews</a>
+            <a href="#locations" class="text-sm text-[#6A1E21] hover:text-[#6A1E21] transition-colors">Find Us</a>
+          </div>
+
+          <!-- Connect -->
+          <div class="flex flex-col gap-2">
+            <p class="text-[10px] font-bold uppercase tracking-[0.15em] text-[#6A1E21] mb-2">Legal</p>
+            <a href="#" class="text-sm text-[#6A1E21] hover:text-[#6A1E21] transition-colors">Privacy Policy</a>
+            <a href="#" class="text-sm text-[#6A1E21] hover:text-[#6A1E21] transition-colors">Terms of Service</a>
+            <a href="mailto:hello@mori.atelier" class="text-sm text-[#6A1E21] hover:text-[#6A1E21] transition-colors">hello@mori.atelier</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom: legal -->
+    <div class="flex flex-col md:flex-row items-center justify-between">
+      <p class="text-xs text-[#6A1E21]/60">© 2024 MORI Editorial Atelier. All rights reserved.</p>
+      <div class="flex justify-end gap-6">
+        
+        <!-- Instagram -->
+        <a href="#" class="flex items-center justify-center text-[#6A1E21] hover:text-[#7D2327]/60 transition-colors">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5.8a4.2 4.2 0 110 8.4 4.2 4.2 0 010-8.4zm5.3-.8a1 1 0 110 2 1 1 0 010-2zM12 9a3 3 0 100 6 3 3 0 000-6z"/>
+          </svg>
+        </a>
+
+        <!-- TikTok -->
+        <a href="#" class="flex items-center justify-center text-[#6A1E21] hover:text-[#7D2327]/60 transition-colors">
+          <svg class="w-6 h-6 translate-y-[1px]" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M21 8.5a6.5 6.5 0 01-3.7-1.1v6.4a5.3 5.3 0 11-5.3-5.3c.2 0 .4 0 .6.1v2.6a2.7 2.7 0 102.7 2.7V2h2.5c.2 2 1.5 3.6 3.2 4.3v2.2z"/>
+          </svg>
+        </a>
+
+        <!-- Facebook -->
+        <a href="#" class="flex items-start justify-center text-[#6A1E21] hover:text-[#7D2327]/60 transition-colors">
+          <svg class="w-6 h-6 -translate-y-[1.5px]" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M13.5 9H16V6h-2.5C11.6 6 10 7.6 10 9.5V12H8v3h2v7h3v-7h2.3l.7-3H13v-2c0-.6.4-1 1-1z"/>
+          </svg>
+        </a>
+
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  // ── Scroll reveal ──
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        revealObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+  // ── Scroll Navbar ──
+  const navbar = document.getElementById("navbar");
+  const hero = document.getElementById("hero");
+
+  function updateNavbar() {
+    const trigger = hero.offsetHeight - 80;
+
+    if (window.scrollY < trigger) {
+      navbar.classList.add("nav-hero");
+      navbar.classList.remove("nav-frosted");
+    } else {
+      navbar.classList.add("nav-frosted");
+      navbar.classList.remove("nav-hero");
+    }
+  }
+
+  window.addEventListener("scroll", updateNavbar);
+  updateNavbar();
+
+
+  // ── Hero scroll-controlled carousel + pinned scroll animation ──
+  (() => {
+    const heroPin = document.getElementById('hero-pin');
+    const card = document.getElementById('carousel-card');
+    const heroArt = document.getElementById('mori-hero-art');
+    const slides = Array.from(document.querySelectorAll('#carousel-card .carousel-slide'));
+
+    if (!heroPin || !card || !heroArt || slides.length === 0) return;
+
+    let currentHeroSlide = 0;
+
+    function showHeroSlide(index) {
+      const nextIndex = Math.max(0, Math.min(index, slides.length - 1));
+
+      if (nextIndex === currentHeroSlide) return;
+
+      slides[currentHeroSlide].classList.remove('active');
+      slides[nextIndex].classList.add('active');
+
+      currentHeroSlide = nextIndex;
+    }
+
+    // Make sure the default first view is always barber pole
+    slides.forEach((slide, index) => {
+      slide.classList.toggle('active', index === 0);
+    });
+
+    currentHeroSlide = 0;
+
+    if (window.gsap && window.ScrollTrigger) {
+      gsap.registerPlugin(ScrollTrigger);
+
+      const cardTravelDistance = () => {
+        const startTop = window.innerHeight * 0.86; // same as top: 86vh
+        const cardHeight = card.offsetHeight;
+
+        // Target: carousel vertically centered in viewport
+        const centeredTop = (window.innerHeight - cardHeight) / 2;
+
+        return centeredTop - startTop;
+      };
+
+      const heroTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: heroPin,
+          start: 'top top',
+          end: '+=75%',
+          pin: true,
+          scrub: 1.2,
+          pinSpacing: true,
+
+          onUpdate: (self) => {
+            /*
+              self.progress goes from 0 to 1.
+
+              0   = barber pole
+              0.25 = image 1
+              0.50 = image 2
+              0.75 = image 3
+              1   = final image
+
+              When scrolling back up, this reverses naturally.
+            */
+
+            const progress = self.progress;
+
+            const slideIndex = Math.min(
+              slides.length - 1,
+              Math.floor(progress * slides.length)
+            );
+
+            showHeroSlide(slideIndex);
+          }
+        }
+      });
+
+      heroTimeline.to(card, {
+        y: cardTravelDistance,
+        ease: 'none',
+        duration: 1
+      }, 0);
+
+      heroTimeline.to(heroArt, {
+        opacity: 0,
+        scale: 1,
+        ease: 'none',
+        duration: 0.6
+      }, 0.35);
+
+      ScrollTrigger.addEventListener('refreshInit', () => {
+        gsap.set(card, { clearProps: 'y' });
+        gsap.set(heroArt, { clearProps: 'opacity,scale' });
+      });
+
+      window.addEventListener('resize', () => {
+        heroTimeline.invalidate();
+        ScrollTrigger.refresh();
+      });
+    }
+  })();
+
+  // ── Active nav + Overlay menu ──
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a.nav-link');
+  const overlayLinks = document.querySelectorAll('#nav-overlay .overlay-link');
+  const menuToggle = document.getElementById('menu-toggle');
+  const navOverlay = document.getElementById('nav-overlay');
+  const overlayBookBtn = document.getElementById('overlay-book-btn');
+
+  function closeMenu() {
+    document.body.classList.remove('menu-open');
+    navOverlay.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+  }
+
+  function openMenu() {
+    document.body.classList.add('menu-open');
+    navOverlay.classList.add('open');
+    menuToggle.setAttribute('aria-expanded', 'true');
+  }
+
+  if (menuToggle && navOverlay) {
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navOverlay.classList.contains('open');
+      if (isOpen) closeMenu();
+      else openMenu();
+    });
+
+    navOverlay.addEventListener('click', (e) => {
+      if (e.target === navOverlay) closeMenu();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+  }
+
+  [...overlayLinks, overlayBookBtn].forEach(link => {
+    if (!link) return;
+    link.addEventListener('click', () => {
+      closeMenu();
+    });
+  });
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) {
+        current = s.getAttribute('id');
+      }
+    });
+
+    navLinks.forEach(a => {
+      if (a.getAttribute('href') === '#' + current) {
+        a.classList.add('active-link');
+      } else {
+        a.classList.remove('active-link');
+      }
+    });
+
+    overlayLinks.forEach(a => {
+    const active = a.getAttribute('href') === '#' + current;
+
+    if (active) {
+      a.classList.add('active-link');
+    } else {
+      a.classList.remove('active-link');
+    }
+
+    // Remove inline color so CSS can control it
+    a.style.color = '';
+  });
+  }, { passive: true });
+
+
+  // ── Queue bars ──
+  (function initQueue() {
+    const container = document.getElementById('queue-bars');
+    if (!container) return;
+
+    const total = 12, filled = 5;
+
+    for (let i = 0; i < total; i++) {
+      const b = document.createElement('div');
+      b.className = 'q-bar' + (i < filled - 1 ? ' filled' : i === filled - 1 ? ' current' : '');
+      container.appendChild(b);
+    }
+
+    let count = filled;
+
+    setInterval(() => {
+      const delta = (Math.random() < 0.4 ? 1 : -1);
+      count = Math.max(0, Math.min(total, count + delta));
+
+      const el = document.getElementById('queue-count');
+      const wt = document.getElementById('wait-time');
+
+      if (el) el.textContent = count;
+      if (wt) wt.textContent = Math.max(5, count * 7);
+
+      document.querySelectorAll('.q-bar').forEach((b, i) => {
+        b.className = 'q-bar' + (i < count - 1 ? ' filled' : i === count - 1 ? ' current' : '');
+      });
+    }, 4000);
+  })();
+
+
+  // ── Sticky bar morph ──
+  const ticker = document.getElementById('booking-ticker');
+  const tickerMorphed = document.getElementById('ticker-morphed');
+  const bookingPanel = document.getElementById('booking-panel');
+
+  const tickerObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        ticker && ticker.classList.add('ticker-hidden');
+        setTimeout(() => {
+          tickerMorphed && tickerMorphed.classList.add('ticker-vis');
+        }, 250);
+      } else {
+        ticker && ticker.classList.remove('ticker-hidden');
+        tickerMorphed && tickerMorphed.classList.remove('ticker-vis');
+      }
+    });
+  }, { threshold: 0.05 });
+
+  if (bookingPanel) tickerObs.observe(bookingPanel);
+
+
+  // ── CAROUSEL (YOUR NEW FEATURE) ──
+  const slides = document.querySelectorAll(".carousel-item");
+  const dots = document.querySelectorAll(".dot");
+
+  const badgeTitle = document.getElementById("badge-title");
+  const badgeSub = document.getElementById("badge-sub");
+
+  const data = [
+    { title: "Modern Interior", sub: "Sense of Calm" },
+    { title: "The Mori Cut", sub: "Signature Curation" },
+    { title: "Premium Product", sub: "Precision Tools" }
+  ];
+
+  let current = 0;
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.style.opacity = i === index ? "1" : "0";
+    });
+
+    dots.forEach((dot, i) => {
+      dot.style.background = i === index
+        ? "rgba(255,255,255,0.9)"
+        : "rgba(255,255,255,0.4)";
+    });
+
+    if (badgeTitle && badgeSub) {
+      badgeTitle.textContent = data[index].title;
+      badgeSub.textContent = data[index].sub;
+    }
+
+    current = index;
+  }
+
+  dots.forEach(dot => {
+    dot.addEventListener("click", () => {
+      showSlide(Number(dot.dataset.index));
+    });
+  });
+
+  if (slides.length > 0) {
+    setInterval(() => {
+      let next = (current + 1) % slides.length;
+      showSlide(next);
+    }, 4000);
+  }
+
+  // ── Gallery Straight Infinite Carousel (viewport-aware) ──
+    const stage = document.getElementById("galleryCurveStage");
+    const cards = stage ? [...stage.querySelectorAll(".curve-card")] : [];
+
+    let paused = false;
+    let lastTime = 0;
+
+    const speed = 70;
+    const gap = 28;
+    const extraOffscreen = 140; // how far outside viewport before recycle
+
+    function getCardWidth() {
+      return cards[0]?.offsetWidth || 0;
+    }
+
+    function setupCards() {
+      if (!stage || cards.length === 0) return;
+
+      const cardWidth = getCardWidth();
+      const totalSpacing = cardWidth + gap;
+
+      // start the whole strip from outside the left edge of the viewport
+      const stageRect = stage.getBoundingClientRect();
+      const startOffset = -stageRect.left - cardWidth - extraOffscreen;
+
+      cards.forEach((card, i) => {
+        card.dataset.x = startOffset + i * totalSpacing;
+      });
+
+      renderCards();
+    }
+
+    function renderCards() {
+      if (!stage || cards.length === 0) return;
+
+      const stageRect = stage.getBoundingClientRect();
+      const cardWidth = getCardWidth();
+
+      // viewport-aware recycle points
+      const leftRecycleX = -stageRect.left - cardWidth - extraOffscreen;
+      const rightSpawnX = window.innerWidth - stageRect.left + extraOffscreen;
+
+      cards.forEach((card) => {
+        let x = parseFloat(card.dataset.x);
+
+        // only recycle AFTER the card is completely out of the viewport on the left
+        if (x <= leftRecycleX) {
+          const maxX = Math.max(...cards.map(c => parseFloat(c.dataset.x)));
+          x = maxX + cardWidth + gap;
+          card.dataset.x = x;
+        }
+
+        card.style.transform = `translate3d(${x}px, 0, 0)`;
+        card.style.opacity = "1";
+        card.style.zIndex = "1";
+      });
+    }
+
+    function animate(timestamp) {
+      if (!stage || cards.length === 0) return;
+
+      if (!lastTime) lastTime = timestamp;
+      const delta = (timestamp - lastTime) / 1000;
+      lastTime = timestamp;
+
+      if (!paused) {
+        cards.forEach((card) => {
+          let x = parseFloat(card.dataset.x);
+          x -= speed * delta;
+          card.dataset.x = x;
+        });
+
+        renderCards();
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    if (stage && cards.length > 0) {
+      const galleryWrap = stage.parentElement;
+
+      galleryWrap.addEventListener("mouseenter", () => paused = true);
+      galleryWrap.addEventListener("mouseleave", () => paused = false);
+
+      window.addEventListener("resize", () => {
+        lastTime = 0;
+        setupCards();
+      });
+
+      setupCards();
+      requestAnimationFrame(animate);
+    }
+
+
+
+  // ── INTRO SEQUENCE ──
+  (function runIntro() {
+    const overlay  = document.getElementById('intro-overlay');
+    const tagline  = document.getElementById('intro-tagline');
+    const bar      = document.getElementById('intro-bar');
+    const logo     = document.getElementById('intro-logo');
+
+    if (!overlay) return;
+
+    // Timeline (ms)
+    const T = {
+      tagFadeIn:    300,
+      tagHold:      1800,
+      tagFadeOut:   2100,
+      barStart:     2500,
+      barFadeOut:   3500,
+      logoIn:       3800,
+      logoFadeOut:  5100,
+      curtainDrop:  5500,
+      done:         6500,
+    };
+
+    function at(ms, fn) { setTimeout(fn, ms); }
+
+    // Step 1 – Tagline
+    at(T.tagFadeIn,  () => tagline.classList.add('fade-in'));
+    at(T.tagFadeOut, () => { tagline.classList.remove('fade-in'); tagline.classList.add('fade-out'); });
+
+    // Step 2 – Bar
+    at(T.barStart,   () => bar.classList.add('expand'));
+    at(T.barFadeOut, () => { bar.classList.remove('expand'); bar.classList.add('shrink'); });
+
+    // Step 3 – Logo
+    at(T.logoIn,     () => logo.classList.add('fade-in'));
+    at(T.logoFadeOut,() => { logo.classList.remove('fade-in'); logo.classList.add('fade-out'); });
+
+    // Step 4 – Curtain slides down
+    at(T.curtainDrop, () => {
+      // Curtain starts sliding down first
+      overlay.classList.add('exiting');
+
+      // Red solid starts fading directly after the curtain begins sliding
+      requestAnimationFrame(() => {
+        overlay.classList.add('red-fade');
+      });
+
+      setTimeout(() => {
+        overlay.remove();
+        document.body.classList.remove('intro-active');
+      }, 1200);
+    });
+  })();
+
+  // ── Scroll Progress Bar ──
+  const progressBar = document.getElementById("scroll-progress");
+
+  function updateScrollProgress() {
+    if (!progressBar) return;
+
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
+    progressBar.style.height = progress + "%";
+  }
+
+  window.addEventListener("scroll", updateScrollProgress, { passive: true });
+  window.addEventListener("resize", updateScrollProgress);
+  updateScrollProgress();
+
+  // ── Booking form (your existing) ──
+  window.submitBooking = function(e) {
+    e.preventDefault();
+
+    const btn = document.getElementById('submit-btn');
+    const btnText = document.getElementById('btn-text');
+    const btnLoading = document.getElementById('btn-loading');
+
+    btn.disabled = true;
+    btnText.classList.add('invisible');
+    btnLoading.classList.remove('hidden');
+    btnLoading.style.display = 'flex';
+
+    setTimeout(() => {
+      document.getElementById('booking-form').classList.add('hidden');
+      document.getElementById('booking-success').classList.remove('hidden');
+    }, 1800);
+  };
+
+});
+
+const aboutStats = document.querySelector("#about-stats");
+  const statNumbers = document.querySelectorAll(".stat-number");
+
+  let statsAnimated = false;
+
+  function animateStatNumber(stat) {
+    const target = parseFloat(stat.dataset.target);
+    const suffix = stat.dataset.suffix || "";
+    const decimals = parseInt(stat.dataset.decimals || "0", 10);
+    const duration = 1400;
+    const startTime = performance.now();
+
+    function updateNumber(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const easedProgress = 1 - Math.pow(1 - progress, 3);
+      const currentValue = target * easedProgress;
+
+      stat.textContent = currentValue.toFixed(decimals) + suffix;
+
+      if (progress < 1) {
+        requestAnimationFrame(updateNumber);
+      } else {
+        stat.textContent = target.toFixed(decimals) + suffix;
+      }
+    }
+
+    requestAnimationFrame(updateNumber);
+  }
+
+  if (aboutStats) {
+    const statsObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !statsAnimated) {
+            statsAnimated = true;
+
+            statNumbers.forEach((stat) => {
+              animateStatNumber(stat);
+            });
+
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.35
+      }
+    );
+
+    statsObserver.observe(aboutStats);
+  }
+</script>
+</body>
+</html>
