@@ -1,3 +1,11 @@
+/* Reserve scrollbar-gutter space always, even when this page has no vertical
+   scroll (it's a horizontal single-page app). This keeps the fixed navbar's
+   right-edge padding identical to the other, normally-scrolling pages, which
+   always show a scrollbar and would otherwise sit ~15px further left. */
+html {
+  scrollbar-gutter: stable;
+}
+
 /* ===== Fonts ===== */
 @font-face {
   font-family: 'Open Sauce Two';
@@ -70,6 +78,11 @@ body {
     width: 100%;
     height: auto;
     min-height: 100vh;
+    /* 100dvh tracks the browser's actual visible viewport, so the panel
+       fills the true screen edge-to-edge instead of leaving a gap sized
+       for a toolbar that may be hidden, collapsed, or auto-shown. Kept
+       the 100vh line above as a fallback for browsers without dvh support. */
+    min-height: 100dvh;
   }
   .wp-row {
     flex-direction: column;
@@ -445,6 +458,7 @@ body {
 @media (max-width: 1023px) {
   [data-panel="gallery"] {
     min-height: calc(100vh - var(--nav-h));
+    min-height: calc(100dvh - var(--nav-h));
   }
   .gallery-canvas {
     left: 0 !important;

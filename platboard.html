@@ -13,11 +13,11 @@
 
       <div class="w-full sticky top-0 z-50 relative">
   <div id="nav-blur" class="relative" style="-webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); background: rgba(255,255,255,0.1);">
-    <header class="flex justify-between items-center p-4 max-w-6xl mx-auto">
+    <header class="flex justify-between items-center px-6 md:px-[72px] h-[72px]">
       
       <!-- Logo + Name as Home Button -->
-      <a href="index.html" class="flex items-center bg-gray-100 px-4 py-1 rounded-full shadow gap-2 hover:shadow-md transition">
-        <img src="images/logo arieff h 3.png" alt="Logo" class="w-6 h-6 rounded-full shadow" />
+      <a href="index.html" class="flex items-center bg-gray-100 pl-2 pr-4 py-2 rounded-full shadow gap-2 hover:shadow-md transition">
+        <img src="images/logo arieff h 3.png" alt="Logo" class="w-8 h-8 rounded-full shadow" />
         <span class="text-lg font-semibold text-gray-800">Arieff H.</span>
       </a>
 
@@ -50,37 +50,41 @@
       </div>
 
       <!-- Mobile Hamburger -->
-      <button id="menu-btn" class="md:hidden text-2xl text-white">
+      <button id="menu-btn" class="md:hidden text-3xl text-white relative z-[70]">
         <i class="bi bi-list"></i>
       </button>
     </header>
+  </div>
 
-    <!-- Mobile Dropdown -->
-    <div id="mobile-menu" class="hidden flex-col gap-2 p-4 md:hidden absolute top-full left-0 w-full"
-         style="background: rgba(255,255,255,0.95);">
-      <a
-        href="index.html#about"
-        class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-black hover:shadow transition text-sm mb-2"
-      >
-        <i class="bi bi-person-fill"></i> About Me
+  <!-- Mobile Dropdown -->
+  <div id="mobile-menu" class="md:hidden" style="position:fixed; top:72px; left:0; right:0; bottom:0; background:#0a0a0a; z-index:60; overflow-y:auto;">
+    <style>
+      #mobile-menu { opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.4s ease, visibility 0.4s ease; }
+      #mobile-menu.open { opacity: 1; visibility: visible; pointer-events: auto; }
+      #mobile-menu nav a { opacity: 0; transform: translateY(18px); transition: opacity 0.4s ease, transform 0.4s ease; }
+      #mobile-menu.open nav a { opacity: 1; transform: translateY(0); }
+      #mobile-menu.open nav a:nth-child(1) { transition-delay: 0.1s; }
+      #mobile-menu.open nav a:nth-child(2) { transition-delay: 0.16s; }
+      #mobile-menu.open nav a:nth-child(3) { transition-delay: 0.22s; }
+    </style>
+    <nav class="flex flex-col px-8 py-6">
+      <a href="index.html#about" class="flex items-center gap-5 text-white text-left py-5">
+        <i class="bi bi-person-fill text-3xl"></i> <span class="text-3xl font-bold">About Me</span>
       </a>
 
-      <a
-        href="index.html#projects"
-        class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-black hover:shadow transition text-sm mb-2"
-      >
-        <i class="bi bi-folder-fill"></i> Projects
+      <a href="index.html#projects" class="flex items-center gap-5 text-white text-left py-5">
+        <i class="bi bi-folder-fill text-3xl"></i> <span class="text-3xl font-bold">Projects</span>
       </a>
 
       <a
         href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
         target="_blank"
         rel="noopener"
-        class="flex items-center gap-2 bg-[#897AFF] hover:bg-[#A79AFF] text-white px-4 py-2 rounded-lg text-sm"
+        class="flex items-center gap-5 text-white text-left py-5"
       >
-        <i class="bi bi-emoji-smile-fill"></i> Say Hi
+        <i class="bi bi-emoji-smile-fill text-3xl"></i> <span class="text-3xl font-bold">Say Hi</span>
       </a>
-    </div>
+    </nav>
   </div>
 </div>
 
@@ -89,23 +93,33 @@
   const menuBtn = document.getElementById("menu-btn");
   const mobileMenu = document.getElementById("mobile-menu");
   const navBlur = document.getElementById("nav-blur");
+  const menuIcon = menuBtn.querySelector("i");
+  let menuOpen = false;
 
+  function closeMobileMenu() {
+    menuOpen = false;
+    mobileMenu.classList.remove("open");
+    menuIcon.classList.remove("bi-x-lg"); menuIcon.classList.add("bi-list");
+    navBlur.style.background = "rgba(255,255,255,0.1)";
+    menuBtn.classList.remove("text-gray-800");
+    menuBtn.classList.add("text-white");
+    document.body.style.overflow = "";
+  }
+  function openMobileMenu() {
+    menuOpen = true;
+    mobileMenu.classList.add("open");
+    menuIcon.classList.remove("bi-list"); menuIcon.classList.add("bi-x-lg");
+    navBlur.style.background = "rgba(255,255,255,0.95)";
+    menuBtn.classList.remove("text-white");
+    menuBtn.classList.add("text-gray-800");
+    document.body.style.overflow = "hidden";
+  }
   menuBtn.addEventListener("click", () => {
-    mobileMenu.classList.toggle("hidden");
-
-    if (mobileMenu.classList.contains("hidden")) {
-      navBlur.style.background = "rgba(255,255,255,0.1)";
-      menuBtn.classList.remove("text-gray-800");
-      menuBtn.classList.add("text-white");
-    } else {
-      navBlur.style.background = "rgba(255,255,255,0.95)";
-      menuBtn.classList.remove("text-white");
-      menuBtn.classList.add("text-gray-800");
-    }
+    menuOpen ? closeMobileMenu() : openMobileMenu();
   });
 </script>
 
-<section class="min-h-screen -mt-12 w-full bg-gradient-to-r from-[#E2D8FF] to-[#897AFF] flex items-center justify-center">
+<section class="min-h-screen -mt-12 w-full bg-gradient-to-r from-[#E2D8FF] to-[#897AFF] flex items-center justify-center" style="min-height: 100dvh;">
   <div class="max-w-6xl w-full px-4 grid grid-cols-1 md:grid-cols-2 items-center gap-12">
     
     <!-- Left: Text + Logo -->

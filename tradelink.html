@@ -23,6 +23,7 @@
         --white: #FFFFFF;
       }
       * { box-sizing: border-box; }
+      html { scrollbar-gutter: stable; }
       body {
         font-family: 'Inter', sans-serif;
         background: #ffffff;
@@ -158,7 +159,7 @@
         background: rgba(43,111,255,0.06);
         color: #2B6FFF;
         border: 1px solid rgba(43,111,255,0.16);
-        font-size: 0.8125rem;
+        font-size: 12px;
         font-weight: 600;
         white-space: nowrap;
         transition: background 0.2s ease;
@@ -530,9 +531,9 @@
     <!-- ═══════════════════════════════════════ NAV (unchanged) ═══ -->
     <div class="w-full sticky top-0 z-50 relative">
       <div id="nav-blur" class="relative" style="-webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); background: rgba(255,255,255,0.1);">
-        <header class="flex justify-between items-center px-6 md:px-[72px] py-4">
-          <a href="index.html" class="flex items-center bg-gray-100 px-4 py-1 rounded-full shadow gap-2 hover:shadow-md transition">
-            <img src="images/logo arieff h 3.png" alt="Logo" class="w-6 h-6 rounded-full shadow" />
+        <header class="flex justify-between items-center px-6 md:px-[72px] h-[72px]">
+          <a href="index.html" class="flex items-center bg-gray-100 pl-2 pr-4 py-2 rounded-full shadow gap-2 hover:shadow-md transition">
+            <img src="images/logo arieff h 3.png" alt="Logo" class="w-8 h-8 rounded-full shadow" />
             <span class="text-lg font-semibold text-gray-800">Arieff H.</span>
           </a>
           <div class="flex max-md:hidden items-center gap-3">
@@ -544,35 +545,56 @@
               Say Hi <i class="bi bi-emoji-smile-fill"></i>
             </a>
           </div>
-          <button id="menu-btn" class="md:hidden text-2xl text-gray-800"><i class="bi bi-list"></i></button>
+          <button id="menu-btn" class="md:hidden text-3xl text-gray-800 relative z-[70]"><i class="bi bi-list"></i></button>
         </header>
-        <div id="mobile-menu" class="hidden flex-col gap-2 p-4 md:hidden absolute top-full left-0 w-full" style="background: rgba(255,255,255,0.98); border-top:1px solid rgba(43,111,255,0.14);">
-          <a href="index.html#about" class="tl-nav-pill-mobile"><i class="bi bi-person-fill"></i> About Me</a>
-          <a href="index.html#work" class="tl-nav-pill-mobile"><i class="bi bi-folder-fill"></i> Work Projects</a>
-          <a href="index.html#gallery" class="tl-nav-pill-mobile"><i class="bi bi-image-fill"></i> Gallery</a>
-          <a href="index.html#personal" class="tl-nav-pill-mobile"><i class="bi bi-briefcase-fill"></i> Personal Projects</a>
-          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position." target="_blank" rel="noopener" class="flex items-center justify-center gap-2 bg-[#2B6FFF] text-white px-4 py-2 rounded-full text-sm transition hover:shadow-md"><i class="bi bi-emoji-smile-fill"></i> Say Hi</a>
-        </div>
+      </div>
+      <div id="mobile-menu" class="md:hidden" style="position:fixed; top:72px; left:0; right:0; bottom:0; background:#0a0a0a; z-index:60; overflow-y:auto;">
+        <style>
+          #mobile-menu { opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.4s ease, visibility 0.4s ease; }
+          #mobile-menu.open { opacity: 1; visibility: visible; pointer-events: auto; }
+          #mobile-menu nav a { opacity: 0; transform: translateY(18px); transition: opacity 0.4s ease, transform 0.4s ease; }
+          #mobile-menu.open nav a { opacity: 1; transform: translateY(0); }
+          #mobile-menu.open nav a:nth-child(1) { transition-delay: 0.1s; }
+          #mobile-menu.open nav a:nth-child(2) { transition-delay: 0.16s; }
+          #mobile-menu.open nav a:nth-child(3) { transition-delay: 0.22s; }
+          #mobile-menu.open nav a:nth-child(4) { transition-delay: 0.28s; }
+          #mobile-menu.open nav a:nth-child(5) { transition-delay: 0.34s; }
+        </style>
+        <nav class="flex flex-col px-8 py-6">
+          <a href="index.html#about" class="flex items-center gap-5 text-white text-left py-5"><i class="bi bi-person-fill text-3xl"></i> <span class="text-3xl font-bold">About Me</span></a>
+          <a href="index.html#work" class="flex items-center gap-5 text-white text-left py-5"><i class="bi bi-folder-fill text-3xl"></i> <span class="text-3xl font-bold">Work Projects</span></a>
+          <a href="index.html#gallery" class="flex items-center gap-5 text-white text-left py-5"><i class="bi bi-image-fill text-3xl"></i> <span class="text-3xl font-bold">Gallery</span></a>
+          <a href="index.html#personal" class="flex items-center gap-5 text-white text-left py-5"><i class="bi bi-briefcase-fill text-3xl"></i> <span class="text-3xl font-bold">Personal Projects</span></a>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position." target="_blank" rel="noopener" class="flex items-center gap-5 text-white text-left py-5"><i class="bi bi-emoji-smile-fill text-3xl"></i> <span class="text-3xl font-bold">Say Hi</span></a>
+        </nav>
       </div>
     </div>
     <script>
       const menuBtn = document.getElementById("menu-btn");
       const mobileMenu = document.getElementById("mobile-menu");
       const navBlur = document.getElementById("nav-blur");
+      const menuIcon = menuBtn.querySelector("i");
+      let menuOpen = false;
+      function closeMobileMenu() {
+        menuOpen = false;
+        mobileMenu.classList.remove("open");
+        menuIcon.classList.remove("bi-x-lg"); menuIcon.classList.add("bi-list");
+        navBlur.style.background = "rgba(255,255,255,0.1)";
+        document.body.style.overflow = "";
+      }
+      function openMobileMenu() {
+        menuOpen = true;
+        mobileMenu.classList.add("open");
+        menuIcon.classList.remove("bi-list"); menuIcon.classList.add("bi-x-lg");
+        navBlur.style.background = "rgba(255,255,255,0.98)";
+        document.body.style.overflow = "hidden";
+      }
       menuBtn.addEventListener("click", () => {
-        mobileMenu.classList.toggle("hidden");
-        if (mobileMenu.classList.contains("hidden")) {
-          navBlur.style.background = "rgba(255,255,255,0.1)";
-          menuBtn.classList.remove("text-white"); menuBtn.classList.add("text-gray-800");
-        } else {
-          navBlur.style.background = "rgba(255,255,255,0.95)";
-          menuBtn.classList.remove("text-white"); menuBtn.classList.add("text-gray-800");
-        }
+        menuOpen ? closeMobileMenu() : openMobileMenu();
       });
     </script>
-
     <!-- ═══════════════════════════════════════ HERO ═══ -->
-    <section style="height: calc(100vh - 64px); min-height: 560px;" class="w-full flex items-center">
+    <section style="height: calc(100vh - 64px); height: calc(100dvh - 64px); min-height: 560px;" class="w-full flex items-center">
       <div class="max-w-6xl w-full mx-auto px-6 grid grid-cols-1 md:grid-cols-2 items-center gap-10 py-12">
         <div class="fade-up text-center md:text-left">
           <div class="flex md:block items-center justify-center md:justify-start gap-4 mb-4 md:mb-0">
