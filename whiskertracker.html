@@ -26,7 +26,8 @@
         --white: #FFFFFF;
       }
       * { box-sizing: border-box; }
-      html { scrollbar-gutter: stable; }
+      html, body { scrollbar-width: none; -ms-overflow-style: none; }
+      html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
       body {
         font-family: 'Inter', sans-serif;
         background: #ffffff;
@@ -400,8 +401,8 @@
       }
           @media (prefers-reduced-motion: no-preference) {
         @supports (animation-timeline: scroll()) {
-          html::before { content: ''; position: fixed; top: 0; left: 0; right: 0; height: 3px; background: #ED8946; transform-origin: 0 50%; transform: scaleX(0); z-index: 90; pointer-events: none; animation: read-progress linear both; animation-timeline: scroll(root); }
-          @keyframes read-progress { to { transform: scaleX(1); } }
+          html::before { content: ''; position: fixed; top: 0; right: 0; bottom: 0; width: 4px; background: #ED8946; box-shadow: 0 0 8px color-mix(in srgb, #ED8946 40%, transparent); transform-origin: 50% 0; transform: scaleY(0); z-index: 90; pointer-events: none; animation: read-progress linear both; animation-timeline: scroll(root); }
+          @keyframes read-progress { to { transform: scaleY(1); } }
         }
       }
     </style>
