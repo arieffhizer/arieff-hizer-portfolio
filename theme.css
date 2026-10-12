@@ -613,3 +613,56 @@ body {
 /* ===== Utility ===== */
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { scrollbar-width: none; }
+
+/* ===== Browser surfaces ===== */
+::selection {
+  background: #7b5cfa;
+  color: #ffffff;
+}
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #a99bff;
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+  }
+}
+
+/* ===== Motion layer ===== */
+:root {
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+}
+.nav-pill,
+.say-hi-btn,
+.quick-link-pill {
+  transition-property: transform, background-color, color;
+  transition-duration: 160ms;
+  transition-timing-function: var(--ease-out);
+}
+.nav-pill:active,
+.say-hi-btn:active,
+.quick-link-pill:active {
+  transform: scale(0.97);
+}
+.quick-link-pill:hover {
+  transform: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .quick-link-pill:hover { transform: translateY(-2px); }
+  .quick-link-pill:active { transform: scale(0.97); }
+  .wp-card-media img { transition: translate 0.5s var(--ease-out); }
+  .wp-card:hover .wp-card-media img { translate: 0 -8px; }
+}
+.gallery-tile img {
+  transition: filter 0.4s ease, transform 0.4s var(--ease-out);
+}
+@media (hover: none) {
+  .gallery-tile:hover img { filter: grayscale(100%); transform: none; }
+}

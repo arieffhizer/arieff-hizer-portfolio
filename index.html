@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Arieff Hizer Portfolio</title>
+    <meta name="description" content="Portfolio of Arieff Hizer, a UI/UX designer based in Malaysia." />
+    <meta name="theme-color" content="#7b5cfa" />
+    <meta property="og:title" content="Arieff Hizer Portfolio" />
+    <meta property="og:description" content="Portfolio of Arieff Hizer, a UI/UX designer based in Malaysia." />
+    <meta property="og:type" content="website" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,10 +47,10 @@
 
       <div id="mobile-menu" class="md:hidden" style="position:fixed; top:72px; left:0; right:0; bottom:0; background:#000000; z-index:60; overflow-y:auto;">
         <style>
-          #mobile-menu { opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.4s ease, visibility 0.4s ease; }
-          #mobile-menu.open { opacity: 1; visibility: visible; pointer-events: auto; }
-          #mobile-menu nav button { opacity: 0; transform: translateY(18px); transition: opacity 0.4s ease, transform 0.4s ease; }
-          #mobile-menu.open nav button { opacity: 1; transform: translateY(0); }
+          #mobile-menu { opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.18s ease-out, visibility 0.18s; }
+          #mobile-menu.open { opacity: 1; visibility: visible; pointer-events: auto; transition: opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1), visibility 0.3s; }
+          #mobile-menu nav button { opacity: 0; transform: translateY(18px); transition: opacity 0.18s ease-out, transform 0.18s ease-out; }
+          #mobile-menu.open nav button { opacity: 1; transform: translateY(0); transition: opacity 0.45s cubic-bezier(0.23, 1, 0.32, 1), transform 0.45s cubic-bezier(0.23, 1, 0.32, 1); }
           #mobile-menu.open nav button:nth-child(1) { transition-delay: 0.1s; }
           #mobile-menu.open nav button:nth-child(2) { transition-delay: 0.16s; }
           #mobile-menu.open nav button:nth-child(3) { transition-delay: 0.22s; }
@@ -121,8 +126,8 @@
           <div class="hero-footer relative z-10 flex items-center justify-between px-6 md:px-[72px] py-5">
             <p class="text-xs md:text-sm text-white/90">© 2023 Arieff Hizer // All Rights Reserved</p>
             <div class="flex gap-2">
-              <a href="https://github.com/arieffhizer" target="_blank" class="nav-pill"><i class="bi bi-github"></i> GitHub</a>
-              <a href="https://www.linkedin.com/in/arieff-hizer-98b412225/" target="_blank" class="nav-pill"><i class="bi bi-linkedin"></i> LinkedIn</a>
+              <a href="https://github.com/arieffhizer" target="_blank" rel="noopener" class="nav-pill"><i class="bi bi-github"></i> GitHub</a>
+              <a href="https://www.linkedin.com/in/arieff-hizer-98b412225/" target="_blank" rel="noopener" class="nav-pill"><i class="bi bi-linkedin"></i> LinkedIn</a>
             </div>
           </div>
         </section>
@@ -158,7 +163,7 @@
             </div>
 
             <div class="flex flex-col sm:flex-row gap-3 mt-4 w-full max-w-md">
-              <a href="https://drive.google.com/file/d/1Dxcnodf57wr4Pam4C0Foj0-92Z0jPfUq/view?usp=sharing" target="_blank"
+              <a href="https://drive.google.com/file/d/1Dxcnodf57wr4Pam4C0Foj0-92Z0jPfUq/view?usp=sharing" target="_blank" rel="noopener"
                  class="flex-1 inline-flex items-center justify-center gap-2 bg-black hover:bg-neutral-900 text-white px-6 py-3.5 rounded-full text-sm font-semibold transition">
                 <i class="bi bi-file-earmark-text-fill"></i> My resume
               </a>
@@ -178,7 +183,7 @@
             <div class="hidden md:flex items-center gap-3 max-w-xs">
               <p class="text-sm text-neutral-500">I'm always looking for new opportunities and ready to face design challenges. Drop your messages!</p>
               <a href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
-                 target="_blank" class="shrink-0 w-6 h-6 rounded-full bg-[#897aff] text-white flex items-center justify-center text-xs">
+                 target="_blank" rel="noopener" class="shrink-0 w-6 h-6 rounded-full bg-[#897aff] text-white flex items-center justify-center text-xs">
                 <i class="bi bi-arrow-up-right"></i>
               </a>
             </div>
@@ -355,7 +360,7 @@
             <div class="hidden md:flex items-center gap-3 max-w-xs">
               <p class="text-sm text-neutral-500">I'm always looking for new opportunities and ready to face design challenges. Drop your messages!</p>
               <a href="https://mail.google.com/mail/?view=cm&fs=1&to=arieffhizer@gmail.com&su=Project%20Inquiry/Job%20Opportunity&body=Hi%20Arieff,%0D%0AI'd%20love%20to%20offer%20you%20a%20project/position."
-                 target="_blank" class="shrink-0 w-6 h-6 rounded-full bg-[#897aff] text-white flex items-center justify-center text-xs">
+                 target="_blank" rel="noopener" class="shrink-0 w-6 h-6 rounded-full bg-[#897aff] text-white flex items-center justify-center text-xs">
                 <i class="bi bi-arrow-up-right"></i>
               </a>
             </div>
@@ -586,10 +591,10 @@
             </div>
 
             <div class="bg-white flex items-center justify-between px-6 md:px-[72px] py-4 border-t border-black/10">
-              <p class="text-[10px] md:text-xs text-black">© 2023 Arieff Hizer // All Rights Reserved</p>
+              <p class="text-[11px] md:text-xs text-black">© 2023 Arieff Hizer // All Rights Reserved</p>
               <div class="flex gap-2">
-                <a href="https://github.com/arieffhizer" target="_blank" class="flex items-center gap-1 px-3 py-1 rounded-full bg-[#1f1f1f] text-white text-[10px] md:text-xs"><i class="bi bi-github"></i> GitHub</a>
-                <a href="https://www.linkedin.com/in/arieff-hizer-98b412225/" target="_blank" class="flex items-center gap-1 px-3 py-1 rounded-full bg-[#1f1f1f] text-white text-[10px] md:text-xs"><i class="bi bi-linkedin"></i> LinkedIn</a>
+                <a href="https://github.com/arieffhizer" target="_blank" rel="noopener" class="flex items-center gap-1 px-3 py-1 rounded-full bg-[#1f1f1f] text-white text-[11px] md:text-xs"><i class="bi bi-github"></i> GitHub</a>
+                <a href="https://www.linkedin.com/in/arieff-hizer-98b412225/" target="_blank" rel="noopener" class="flex items-center gap-1 px-3 py-1 rounded-full bg-[#1f1f1f] text-white text-[11px] md:text-xs"><i class="bi bi-linkedin"></i> LinkedIn</a>
               </div>
             </div>
           </div>
@@ -611,8 +616,8 @@
       gsap.set('[data-panel="hero"] .hero-line[data-dir="right"]', { opacity: 0, x: 80 });
       gsap.set('#hero-nav, [data-panel="hero"] .hero-footer, [data-panel="hero"] .hero-chain', { opacity: 0 });
 
-      gsap.timeline({ defaults: { ease: "power2.out" } })
-        .to('[data-panel="hero"] .hero-line', { opacity: 1, x: 0, duration: 0.7, stagger: 0.25 })
+      gsap.timeline({ defaults: { ease: "expo.out" } })
+        .to('[data-panel="hero"] .hero-line', { opacity: 1, x: 0, duration: 0.9, stagger: 0.12 })
         .to('#hero-nav, [data-panel="hero"] .hero-footer, [data-panel="hero"] .hero-chain', { opacity: 1, duration: 0.6 }, "+=0.1");
 
       const panelNames = () => gsap.utils.toArray(".hz-panel").map(p => p.dataset.panel);
@@ -766,6 +771,134 @@
           }
         });
       });
+    </script>
+
+    <script>
+      // Scene entrances: every section plays one short, staggered entrance the
+      // first time it comes into view, then stays still. Elements start hidden
+      // here (not in CSS) so a visitor without JS still sees everything.
+      (function () {
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+        const q = (sel, root) => Array.from((root || document).querySelectorAll(sel));
+        const P = name => document.querySelector('[data-panel="' + name + '"]');
+        const mobile = window.matchMedia("(max-width: 1023px)");
+        const EASE = "expo.out";
+
+        // [targets, from-state, delay, stagger]
+        const scenes = {
+          about: p => [
+            [q(".about-heading", p), { y: 28 }, 0, 0],
+            [q(".z-10 > p", p), { y: 22 }, 0.08, 0],
+            [q(".chip", p), { y: 14, scale: 0.94 }, 0.16, 0.03],
+            [q(".z-10 > div:last-child a", p), { y: 18 }, 0.42, 0.07],
+          ],
+          work: p => [
+            [q(".section-title", p), { y: 22 }, 0, 0],
+            [q(".wp-row-old .wp-card", p), { y: 44 }, 0.1, 0.09],
+          ],
+          gallery: p => [
+            [q(".gallery-tile img", p), { scale: 0.9 }, 0, { each: 0.06, from: "center" }],
+            [q("h2", p), { y: 22 }, 0.25, 0],
+          ],
+          personal: p => [
+            [q(".section-title", p), { y: 22 }, 0, 0],
+            [q(".carousel-card", p), { y: 40 }, 0.1, 0.08],
+          ],
+          cta: p => [
+            [q(".relative.z-10 > *", p), { y: 18 }, 0, 0.07],
+            [q(".quick-link", p), { y: 22 }, 0.15, 0.06],
+          ],
+        };
+
+        // On phones the Work and Personal panels are long stacks; reveal their
+        // cards one by one as they scroll in instead of all at once.
+        const perCard = { work: ".wp-row-old .wp-card", personal: ".carousel-card" };
+
+        const everything = [];
+        const setTransition = (els, v) => els.forEach(el => { el.style.transition = v; });
+        const play = (targets, from, delay, stagger) => {
+          const to = {
+            opacity: 1, duration: 0.8, ease: EASE, delay, stagger, clearProps: "opacity,transform",
+            onStart: () => setTransition(targets, "none"),
+            onComplete: () => setTransition(targets, ""),
+          };
+          Object.keys(from).forEach(k => { to[k] = k === "scale" ? 1 : 0; });
+          gsap.to(targets, to);
+        };
+
+        Object.keys(scenes).forEach(name => {
+          const panel = P(name);
+          if (!panel) return;
+          const steps = scenes[name](panel).filter(s => s[0].length);
+          const cardSel = perCard[name];
+          const cards = cardSel ? q(cardSel, panel) : [];
+
+          steps.forEach(([targets, from]) => {
+            setTransition(targets, "none");
+            gsap.set(targets, Object.assign({ opacity: 0 }, from));
+            everything.push(...targets);
+          });
+
+          let played = false;
+          const runPanel = () => {
+            if (played) return;
+            played = true;
+            steps.forEach(([targets, from, delay, stagger]) => {
+              if (mobile.matches && cards.length && targets.some(t => cards.includes(t))) {
+                targets.forEach(card => {
+                  new IntersectionObserver((entries, obs) => {
+                    if (!entries[0].isIntersecting) return;
+                    obs.disconnect();
+                    play([card], from, 0, 0);
+                  }, { threshold: 0.15 }).observe(card);
+                });
+                return;
+              }
+              play(targets, from, delay, stagger);
+            });
+          };
+
+          new IntersectionObserver((entries, obs) => {
+            if (!entries[0].isIntersecting) return;
+            obs.disconnect();
+            runPanel();
+          }, { threshold: mobile.matches ? 0.12 : 0.25 }).observe(panel);
+        });
+
+        // Crossing the desktop/mobile breakpoint mid-session: show everything
+        // rather than leave any not-yet-played element hidden.
+        mobile.addEventListener("change", () => {
+          gsap.killTweensOf(everything);
+          gsap.set(everything, { clearProps: "opacity,transform" });
+          setTransition(everything, "");
+        });
+      })();
+    </script>
+
+    <script>
+      // Gallery depth: tiles drift a few pixels against the cursor, each at its
+      // own depth. Decorative, so it only runs for a fine pointer with motion on.
+      (function () {
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+        const panel = document.querySelector('[data-panel="gallery"]');
+        if (!panel) return;
+        const depths = [0.018, -0.012, 0.025, -0.02, 0.014, -0.016, 0.022, -0.01];
+        const movers = Array.from(panel.querySelectorAll(".gallery-tile")).map((tile, i) => ({
+          x: gsap.quickTo(tile, "x", { duration: 0.9, ease: "power3.out" }),
+          y: gsap.quickTo(tile, "y", { duration: 0.9, ease: "power3.out" }),
+          depth: depths[i % depths.length],
+        }));
+        let active = false;
+        new IntersectionObserver(entries => { active = entries[0].isIntersecting; }, { threshold: 0.4 }).observe(panel);
+        window.addEventListener("pointermove", e => {
+          if (!active) return;
+          const dx = e.clientX - window.innerWidth / 2;
+          const dy = e.clientY - window.innerHeight / 2;
+          movers.forEach(m => { m.x(-dx * m.depth); m.y(-dy * m.depth); });
+        }, { passive: true });
+      })();
     </script>
 
   </body>
