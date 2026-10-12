@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page not found — Arieff Hizer Portfolio</title>
+    <meta name="description" content="This page does not exist. Head back to the Arieff Hizer portfolio." />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#7b5cfa" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+      :root { --ease-out: cubic-bezier(0.23, 1, 0.32, 1); }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; min-height: 100%; background: #000; color: #fff; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+      ::selection { background: #7b5cfa; color: #fff; }
+      a:focus-visible { outline: 2px solid #a99bff; outline-offset: 3px; }
+      main { position: relative; min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 96px 24px 48px; overflow: hidden; }
+      header { position: absolute; top: 0; left: 0; right: 0; height: 72px; display: flex; align-items: center; padding: 0 24px; z-index: 3; }
+      header a { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px 8px 8px; border-radius: 999px; background: rgba(255,255,255,0.08); color: #fff; text-decoration: none; font-weight: 700; font-size: 18px; }
+      header img { width: 32px; height: 32px; border-radius: 50%; }
+      .chain { position: absolute; left: 50%; top: 50%; width: min(86vw, 620px); transform: translate(-50%, -50%); opacity: 0.22; pointer-events: none; user-select: none; }
+      .code { position: relative; z-index: 2; margin: 0; font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: clamp(5rem, 22vw, 12rem); line-height: 1; letter-spacing: -0.02em; color: #7b5cfa; }
+      h1 { position: relative; z-index: 2; margin: 12px 0 8px; font-family: 'Unbounded', sans-serif; font-weight: 500; font-size: clamp(1.5rem, 4vw, 2.25rem); }
+      p { position: relative; z-index: 2; margin: 0 0 32px; color: #c3c6cc; font-size: 1.0625rem; max-width: 28rem; line-height: 1.6; }
+      .actions { position: relative; z-index: 2; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+      .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 26px; border-radius: 999px; font-weight: 700; font-size: 15px; text-decoration: none; transition: transform 160ms var(--ease-out), background-color 160ms var(--ease-out); }
+      .btn:active { transform: scale(0.97); }
+      .btn-primary { background: #7b5cfa; color: #fff; }
+      .btn-ghost { background: rgba(255,255,255,0.08); color: #fff; }
+      @media (hover: hover) and (pointer: fine) { .btn-primary:hover { background: #6a4ce8; } .btn-ghost:hover { background: rgba(255,255,255,0.16); } }
+      @media (prefers-reduced-motion: reduce) { * { transition-duration: 0.01ms !important; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header><a href="/"><img src="/images/logo%20arieff%20h%203.png" alt="" />Arieff H.</a></header>
+      <img class="chain" src="/images/deco-chain-hero.png" alt="" />
+      <p class="code" aria-hidden="true" style="margin:0; color:#7b5cfa; font-size:clamp(5rem, 22vw, 12rem);">404</p>
+      <h1>This page doesn't exist</h1>
+      <p>The link may be broken, or the page may have moved. Head back and keep exploring the work.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="/">Back to home</a>
+        <a class="btn btn-ghost" href="/#work">View my work</a>
+      </div>
+    </main>
+  </body>
+</html>

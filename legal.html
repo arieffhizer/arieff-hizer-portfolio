@@ -9,12 +9,24 @@
     <meta property="og:title" content="Legal — Arieff Hizer Portfolio" />
     <meta property="og:description" content="Confidentiality and Copyright Notice for Arieff Hizer's portfolio." />
     <meta property="og:type" content="website" />
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="canonical" href="https://arieffhizer.com/legal.html" />
+    <meta property="og:url" content="https://arieffhizer.com/legal.html" />
+    <meta property="og:site_name" content="Arieff Hizer Portfolio" />
+    <meta property="og:image" content="https://arieffhizer.com/images/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Arieff Hizer, UI/UX designer" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://arieffhizer.com/images/og-image.jpg" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" type="image/png" href="images/favicon.png">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
     <style>
       :root {
         --gray-main: #1C1C1C;
@@ -294,6 +306,7 @@
         }
       }
     </style>
+    <link rel="stylesheet" href="/tailwind.css">
   </head>
   <body class="page-bg">
 
@@ -481,7 +494,7 @@
     <!-- ═══════════════════════════════════════ FOOTER ═══ -->
     <footer style="background:#ffffff; border-top:1px solid rgba(28,28,28,0.1);">
       <div class="flex items-center justify-between px-6 md:px-[72px] py-4">
-        <p class="text-[11px] md:text-xs" style="color: #1C1C1C;">© 2023 Arieff Hizer // All Rights Reserved</p>
+        <p class="text-[11px] md:text-xs" style="color: #1C1C1C;">© 2023 Arieff Hizer // All Rights Reserved <span style="opacity:0.5;">&middot;</span> <a href="privacy.html" style="text-decoration:underline;">Privacy</a> <span style="opacity:0.5;">&middot;</span> <a href="legal.html" style="text-decoration:underline;">Legal</a></p>
         <div class="flex gap-2">
           <a href="https://github.com/arieffhizer" target="_blank" rel="noopener" class="flex items-center gap-1 px-3 py-1 rounded-full text-[11px] md:text-xs" style="color: #1C1C1C; background: rgba(28,28,28,0.06);">
             <i class="bi bi-github"></i> GitHub
@@ -524,6 +537,22 @@
           if (els.length < 2) return;
           els.forEach(function (el, i) { el.style.transitionDelay = Math.min(i * 70, 280) + 'ms'; });
         });
+      })();
+    </script>
+      <style>
+      #sticky-cta.sticky-cta { position: fixed; left: 50%; bottom: max(16px, env(safe-area-inset-bottom)); z-index: 40; display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 999px; background: #1C1C1C; color: #ffffff; font: 600 14px/1 'Inter', 'Plus Jakarta Sans', system-ui, sans-serif; box-shadow: 0 10px 28px -8px rgba(0,0,0,0.45); opacity: 0; transform: translate(-50%, 14px); pointer-events: none; transition: opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1), transform 0.3s cubic-bezier(0.23, 1, 0.32, 1); }
+      #sticky-cta.sticky-cta.is-on { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
+      #sticky-cta.sticky-cta:active { transform: translate(-50%, 0) scale(0.97); }
+      @media (min-width: 768px) { #sticky-cta.sticky-cta { display: none; } }
+  @media (max-width: 767px) { body { padding-bottom: 72px; } }
+    </style>
+    <a href="index.html#cta" id="sticky-cta" class="sticky-cta">Say Hi <i class="bi bi-emoji-smile-fill"></i></a>
+    <script>
+      (function () {
+        var el = document.getElementById('sticky-cta');
+        function upd() { el.classList.toggle('is-on', window.scrollY > 280); }
+        window.addEventListener('scroll', upd, { passive: true });
+        upd();
       })();
     </script>
   </body>

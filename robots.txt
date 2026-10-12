@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /viberist-site/
+Disallow: /mori-site/
+
+Sitemap: https://arieffhizer.com/sitemap.xml

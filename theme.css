@@ -683,3 +683,19 @@ button:focus-visible {
 @media (hover: none) {
   .gallery-tile:hover img { filter: grayscale(100%); transform: none; }
 }
+
+/* ===== Hero call to action ===== */
+.hero-cta {
+  transition-property: transform, background-color;
+  transition-duration: 160ms;
+  transition-timing-function: var(--ease-out, cubic-bezier(0.23, 1, 0.32, 1));
+}
+.hero-cta:active { transform: scale(0.97); }
+@media (hover: hover) and (pointer: fine) {
+  .hero-cta:hover { transform: translateY(-2px); }
+  .hero-cta:active { transform: scale(0.97); }
+}
+.hero-cta i { transition: transform 200ms var(--ease-out, cubic-bezier(0.23, 1, 0.32, 1)); }
+@media (hover: hover) and (pointer: fine) {
+  .hero-cta:hover i { transform: translateX(3px); }
+}
