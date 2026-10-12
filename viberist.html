@@ -389,7 +389,7 @@
             <img src="images/logo arieff h 3.png" alt="Logo" class="w-8 h-8 rounded-full shadow" />
             <span class="text-lg font-semibold text-gray-800">Arieff H.</span>
           </a>
-          <div class="flex max-md:hidden items-center gap-3">
+          <div class="flex max-lg:hidden items-center gap-3">
             <a href="index.html#about" class="vb-nav-pill"><i class="bi bi-person-fill"></i> About Me</a>
             <a href="index.html#work" class="vb-nav-pill"><i class="bi bi-folder-fill"></i> Work Projects</a>
             <a href="index.html#gallery" class="vb-nav-pill"><i class="bi bi-image-fill"></i> Gallery</a>
@@ -398,10 +398,10 @@
               Say Hi <i class="bi bi-emoji-smile-fill"></i>
             </a>
           </div>
-          <button id="menu-btn" class="md:hidden text-3xl text-gray-800 relative z-[70]"><i class="bi bi-list"></i></button>
+          <button id="menu-btn" class="lg:hidden text-3xl text-gray-800 relative z-[70]"><i class="bi bi-list"></i></button>
         </header>
       </div>
-      <div id="mobile-menu" class="md:hidden" style="position:fixed; top:72px; left:0; right:0; bottom:0; background:#0a0a0a; z-index:60; overflow-y:auto;">
+      <div id="mobile-menu" class="lg:hidden" style="position:fixed; top:72px; left:0; right:0; bottom:0; background:#0a0a0a; z-index:60; overflow-y:auto;">
         <style>
           #mobile-menu { opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.18s ease-out, visibility 0.18s; }
           #mobile-menu.open { opacity: 1; visibility: visible; pointer-events: auto; transition: opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1), visibility 0.3s; }
@@ -413,7 +413,7 @@
           #mobile-menu.open nav a:nth-child(4) { transition-delay: 0.28s; }
           #mobile-menu.open nav a:nth-child(5) { transition-delay: 0.34s; }
         </style>
-        <nav class="flex flex-col px-8 py-6">
+        <nav class="flex flex-col px-6 md:px-[72px] py-6">
           <a href="index.html#about" class="flex items-center gap-5 text-white text-left py-5"><i class="bi bi-person-fill text-3xl"></i> <span class="text-3xl font-bold">About Me</span></a>
           <a href="index.html#work" class="flex items-center gap-5 text-white text-left py-5"><i class="bi bi-folder-fill text-3xl"></i> <span class="text-3xl font-bold">Work Projects</span></a>
           <a href="index.html#gallery" class="flex items-center gap-5 text-white text-left py-5"><i class="bi bi-image-fill text-3xl"></i> <span class="text-3xl font-bold">Gallery</span></a>
@@ -754,8 +754,8 @@
       #sticky-cta.sticky-cta { position: fixed; left: 50%; bottom: max(16px, env(safe-area-inset-bottom)); z-index: 40; display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 999px; background: #3F62F2; color: #ffffff; font: 600 14px/1 'Inter', 'Plus Jakarta Sans', system-ui, sans-serif; box-shadow: 0 10px 28px -8px rgba(0,0,0,0.45); opacity: 0; transform: translate(-50%, 14px); pointer-events: none; transition: opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1), transform 0.3s cubic-bezier(0.23, 1, 0.32, 1); }
       #sticky-cta.sticky-cta.is-on { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
       #sticky-cta.sticky-cta:active { transform: translate(-50%, 0) scale(0.97); }
-      @media (min-width: 768px) { #sticky-cta.sticky-cta { display: none; } }
-  @media (max-width: 767px) { body { padding-bottom: 72px; } }
+      @media (min-width: 1024px) { #sticky-cta.sticky-cta { display: none; } }
+  @media (max-width: 1023px) { body { padding-bottom: 72px; } }
     </style>
     <a href="index.html#cta" id="sticky-cta" class="sticky-cta">Say Hi <i class="bi bi-emoji-smile-fill"></i></a>
     <script>
