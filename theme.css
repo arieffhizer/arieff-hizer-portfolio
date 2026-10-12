@@ -95,10 +95,6 @@ body {
   .hero-line {
     font-size: clamp(2.2rem, 15vw, 4.5rem) !important;
   }
-  .hero-lines {
-    justify-content: center !important;
-    gap: 6px;
-  }
   .about-skills-break {
     display: block;
   }
@@ -698,4 +694,14 @@ button:focus-visible {
 .hero-cta i { transition: transform 200ms var(--ease-out, cubic-bezier(0.23, 1, 0.32, 1)); }
 @media (hover: hover) and (pointer: fine) {
   .hero-cta:hover i { transform: translateX(3px); }
+}
+
+/* ===== Hero layout: words + chain are one block; CTA sits centred in the space below it ===== */
+.hero-spacer { flex: 0.25 1 0; }
+.hero-words { gap: 1.5vh; }
+.hero-cta-zone { flex: 1 1 0; min-height: 72px; }
+.hero-lines.hero-lines { padding-bottom: 0; }
+@media (max-width: 1023px) {
+  .hero-spacer { flex: 1 1 0; }
+  .hero-words { gap: 6px; }
 }
