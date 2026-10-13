@@ -3,14 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>if (/\.html$/.test(location.pathname)) history.replaceState(null, "", location.pathname.replace(/(^|\/)index\.html$/, "$1").replace(/\.html$/, "") + location.search + location.hash);</script>
     <title>More About Me — Arieff Hizer Portfolio</title>
     <meta name="description" content="More about Arieff Hizer: a detail-oriented UI/UX designer with a background in architecture." />
     <meta name="theme-color" content="#7b5cfa" />
     <meta property="og:title" content="More About Me — Arieff Hizer Portfolio" />
     <meta property="og:description" content="More about Arieff Hizer: a detail-oriented UI/UX designer with a background in architecture." />
     <meta property="og:type" content="website" />
-    <link rel="canonical" href="https://arieffhizer.com/about.html" />
-    <meta property="og:url" content="https://arieffhizer.com/about.html" />
+    <link rel="canonical" href="https://arieffhizer.com/about" />
+    <meta property="og:url" content="https://arieffhizer.com/about" />
     <meta property="og:site_name" content="Arieff Hizer Portfolio" />
     <meta property="og:image" content="https://arieffhizer.com/images/og-image.jpg" />
     <meta property="og:image:width" content="1200" />
@@ -35,16 +36,16 @@
     <!-- ===================== NAV ===================== -->
     <div id="hero-nav" class="fixed top-0 left-0 z-50 w-full">
       <header class="flex justify-between items-center px-6 md:px-[72px] h-[72px] bg-black">
-        <a href="index.html" class="flex items-center bg-black/80 pl-2 pr-4 py-2 rounded-full gap-2">
+        <a href="/" class="flex items-center bg-black/80 pl-2 pr-4 py-2 rounded-full gap-2">
           <img src="images/logo arieff h 3.png" alt="Logo" class="w-8 h-8 rounded-full shrink-0" />
           <span class="text-lg font-bold text-white whitespace-nowrap">Arieff H.</span>
         </a>
 
         <div class="hidden lg:flex items-center gap-3">
-          <a href="index.html#about" class="nav-pill"><i class="bi bi-person-fill"></i> About Me</a>
-          <a href="index.html#work" class="nav-pill"><i class="bi bi-folder-fill"></i> Work Projects</a>
-          <a href="index.html#gallery" class="nav-pill"><i class="bi bi-image-fill"></i> Gallery</a>
-          <a href="index.html#personal" class="nav-pill"><i class="bi bi-briefcase-fill"></i> Personal Projects</a>
+          <a href="/#about" class="nav-pill"><i class="bi bi-person-fill"></i> About Me</a>
+          <a href="/#work" class="nav-pill"><i class="bi bi-folder-fill"></i> Work Projects</a>
+          <a href="/#gallery" class="nav-pill"><i class="bi bi-image-fill"></i> Gallery</a>
+          <a href="/#personal" class="nav-pill"><i class="bi bi-briefcase-fill"></i> Personal Projects</a>
           <button type="button" data-goto="cta" class="say-hi-btn flex items-center gap-2 bg-[#7b5cfa] hover:bg-[#6a4ce8] text-white px-4 py-2 rounded-full text-sm font-semibold transition">
             Say Hi <i class="bi bi-emoji-smile-fill"></i>
           </button>
@@ -68,16 +69,16 @@
           #mobile-menu.open nav :nth-child(5) { transition-delay: 0.34s; }
         </style>
         <nav class="flex flex-col px-6 md:px-[72px] py-6">
-          <a href="index.html#about" class="flex items-center gap-5 text-white text-left py-5">
+          <a href="/#about" class="flex items-center gap-5 text-white text-left py-5">
             <i class="bi bi-person-fill text-3xl"></i> <span class="text-3xl font-bold">About Me</span>
           </a>
-          <a href="index.html#work" class="flex items-center gap-5 text-white text-left py-5">
+          <a href="/#work" class="flex items-center gap-5 text-white text-left py-5">
             <i class="bi bi-folder-fill text-3xl"></i> <span class="text-3xl font-bold">Work Projects</span>
           </a>
-          <a href="index.html#gallery" class="flex items-center gap-5 text-white text-left py-5">
+          <a href="/#gallery" class="flex items-center gap-5 text-white text-left py-5">
             <i class="bi bi-image-fill text-3xl"></i> <span class="text-3xl font-bold">Gallery</span>
           </a>
-          <a href="index.html#personal" class="flex items-center gap-5 text-white text-left py-5">
+          <a href="/#personal" class="flex items-center gap-5 text-white text-left py-5">
             <i class="bi bi-briefcase-fill text-3xl"></i> <span class="text-3xl font-bold">Personal Projects</span>
           </a>
           <button type="button" data-goto="cta" class="say-hi-btn flex items-center gap-5 text-left py-5" style="color:#a99bff;">
@@ -331,13 +332,13 @@
             <div class="quick-link flex-1">
               <span class="quick-link-stack">
                 <span class="quick-link-face bg-white">
-                  <a href="index.html#about" class="flex items-center w-full h-full text-left">
+                  <a href="/#about" class="flex items-center w-full h-full text-left">
                     <span class="font-display text-2xl md:text-4xl text-black">About me</span>
                   </a>
                 </span>
                 <span class="quick-link-face bg-[#7b5cfa]">
                   <span class="flex flex-wrap items-center gap-2">
-                    <a href="index.html#about" class="quick-link-pill">A little about me</a>
+                    <a href="/#about" class="quick-link-pill">A little about me</a>
                     <button type="button" data-goto="hero" class="quick-link-pill">More about me</button>
                   </span>
                 </span>
@@ -349,18 +350,18 @@
             <div class="quick-link flex-1 border-t border-black/10">
               <span class="quick-link-stack">
                 <span class="quick-link-face bg-white">
-                  <a href="index.html" class="flex items-center w-full h-full text-left">
+                  <a href="/" class="flex items-center w-full h-full text-left">
                     <span class="font-display text-2xl md:text-4xl text-black">Work Project</span>
                   </a>
                 </span>
                 <span class="quick-link-face bg-[#ef7747]">
                   <span class="flex flex-wrap items-center gap-2">
-                    <a href="shetrades.html" class="quick-link-pill">SheTrades</a>
-                    <a href="fitcoach.html" class="quick-link-pill">Fitcoach</a>
-                    <a href="tradelink.html" class="quick-link-pill">Tradelink</a>
-                    <a href="whiskertracker.html" class="quick-link-pill">WhiskerTracker</a>
-                    <a href="landingportfolio.html" class="quick-link-pill">Landing/Portfolio/CMS</a>
-                    <a href="artworkbanner.html" class="quick-link-pill">Artworks/Banner</a>
+                    <a href="/shetrades" class="quick-link-pill">SheTrades</a>
+                    <a href="/fitcoach" class="quick-link-pill">Fitcoach</a>
+                    <a href="/tradelink" class="quick-link-pill">Tradelink</a>
+                    <a href="/whiskertracker" class="quick-link-pill">WhiskerTracker</a>
+                    <a href="/landingportfolio" class="quick-link-pill">Landing/Portfolio/CMS</a>
+                    <a href="/artworkbanner" class="quick-link-pill">Artworks/Banner</a>
                   </span>
                 </span>
               </span>
@@ -371,13 +372,13 @@
             <div class="quick-link flex-1 border-t border-black/10">
               <span class="quick-link-stack">
                 <span class="quick-link-face bg-white">
-                  <a href="index.html" class="flex items-center w-full h-full text-left">
+                  <a href="/" class="flex items-center w-full h-full text-left">
                     <span class="font-display text-2xl md:text-4xl text-black">Gallery</span>
                   </a>
                 </span>
                 <span class="quick-link-face bg-[#fcbf04]">
                   <span class="flex flex-wrap items-center gap-2">
-                    <a href="index.html" class="quick-link-pill">Gallery</a>
+                    <a href="/" class="quick-link-pill">Gallery</a>
                   </span>
                 </span>
               </span>
@@ -388,17 +389,17 @@
             <div class="quick-link flex-1 border-t border-black/10">
               <span class="quick-link-stack">
                 <span class="quick-link-face bg-white">
-                  <a href="index.html" class="flex items-center w-full h-full text-left">
+                  <a href="/" class="flex items-center w-full h-full text-left">
                     <span class="font-display text-2xl md:text-4xl text-black">Personal Project</span>
                   </a>
                 </span>
                 <span class="quick-link-face bg-[#f03d3d]">
                   <span class="flex flex-wrap items-center gap-2">
-                    <a href="viberist.html" class="quick-link-pill">Viberist</a>
-                    <a href="selangorfc.html" class="quick-link-pill">Selangor FC</a>
-                    <a href="plura.html" class="quick-link-pill">Plura Atelier</a>
-                    <a href="myasuh.html" class="quick-link-pill">MyAsuh</a>
-                    <a href="mori.html" class="quick-link-pill">Mori Barbershop</a>
+                    <a href="/viberist" class="quick-link-pill">Viberist</a>
+                    <a href="/selangorfc" class="quick-link-pill">Selangor FC</a>
+                    <a href="/plura" class="quick-link-pill">Plura Atelier</a>
+                    <a href="/myasuh" class="quick-link-pill">MyAsuh</a>
+                    <a href="/mori" class="quick-link-pill">Mori Barbershop</a>
                   </span>
                 </span>
               </span>
@@ -434,14 +435,14 @@
             <div class="quick-link flex-1 border-t border-black/10">
               <span class="quick-link-stack">
                 <span class="quick-link-face bg-white">
-                  <a href="legal.html" class="flex items-center w-full h-full text-left">
+                  <a href="/legal" class="flex items-center w-full h-full text-left">
                     <span class="font-display text-2xl md:text-4xl text-black">Legal</span>
                   </a>
                 </span>
                 <span class="quick-link-face bg-[#484b40]">
                   <span class="flex flex-wrap items-center gap-2">
-                    <a href="legal.html" class="quick-link-pill">Confidentiality &amp; Copyright Notice</a>
-                    <a href="privacy.html" class="quick-link-pill">Privacy Policy</a>
+                    <a href="/legal" class="quick-link-pill">Confidentiality &amp; Copyright Notice</a>
+                    <a href="/privacy" class="quick-link-pill">Privacy Policy</a>
                   </span>
                 </span>
               </span>

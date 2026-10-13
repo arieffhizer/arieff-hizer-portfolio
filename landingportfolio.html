@@ -3,14 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>if (/\.html$/.test(location.pathname)) history.replaceState(null, "", location.pathname.replace(/(^|\/)index\.html$/, "$1").replace(/\.html$/, "") + location.search + location.hash);</script>
     <title>Landing &amp; Portfolio — Arieff Hizer Portfolio</title>
     <meta name="description" content="Landing page, portfolio and CMS design work by Arieff Hizer." />
     <meta name="theme-color" content="#0F8A6B" />
     <meta property="og:title" content="Landing &amp; Portfolio — Arieff Hizer Portfolio" />
     <meta property="og:description" content="Landing page, portfolio and CMS design work by Arieff Hizer." />
     <meta property="og:type" content="website" />
-    <link rel="canonical" href="https://arieffhizer.com/landingportfolio.html" />
-    <meta property="og:url" content="https://arieffhizer.com/landingportfolio.html" />
+    <link rel="canonical" href="https://arieffhizer.com/landingportfolio" />
+    <meta property="og:url" content="https://arieffhizer.com/landingportfolio" />
     <meta property="og:site_name" content="Arieff Hizer Portfolio" />
     <meta property="og:image" content="https://arieffhizer.com/images/og-image.jpg" />
     <meta property="og:image:width" content="1200" />
@@ -259,16 +260,16 @@
     <div class="site-nav w-full sticky top-0 z-50 relative">
       <div id="nav-blur" class="relative" style="-webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); background: rgba(255,255,255,0.1);">
         <header class="flex justify-between items-center px-6 md:px-[72px] h-[72px]">
-          <a href="index.html" class="flex items-center bg-gray-100 pl-2 pr-4 py-2 rounded-full shadow gap-2 hover:shadow-md transition">
+          <a href="/" class="flex items-center bg-gray-100 pl-2 pr-4 py-2 rounded-full shadow gap-2 hover:shadow-md transition">
             <img src="images/logo arieff h 3.png" alt="Logo" class="w-8 h-8 rounded-full shadow" />
             <span class="text-lg font-semibold text-gray-800">Arieff H.</span>
           </a>
           <div class="flex max-lg:hidden items-center gap-3">
-            <a href="index.html#about" class="lp-nav-pill"><i class="bi bi-person-fill"></i> About Me</a>
-            <a href="index.html#work" class="lp-nav-pill"><i class="bi bi-folder-fill"></i> Work Projects</a>
-            <a href="index.html#gallery" class="lp-nav-pill"><i class="bi bi-image-fill"></i> Gallery</a>
-            <a href="index.html#personal" class="lp-nav-pill"><i class="bi bi-briefcase-fill"></i> Personal Projects</a>
-            <a href="index.html#cta" class="flex items-center gap-2 bg-[#0F8A6B] text-white px-4 py-2 rounded-full text-sm transition hover:shadow-md hover:-translate-y-1 m-0">
+            <a href="/#about" class="lp-nav-pill"><i class="bi bi-person-fill"></i> About Me</a>
+            <a href="/#work" class="lp-nav-pill"><i class="bi bi-folder-fill"></i> Work Projects</a>
+            <a href="/#gallery" class="lp-nav-pill"><i class="bi bi-image-fill"></i> Gallery</a>
+            <a href="/#personal" class="lp-nav-pill"><i class="bi bi-briefcase-fill"></i> Personal Projects</a>
+            <a href="/#cta" class="flex items-center gap-2 bg-[#0F8A6B] text-white px-4 py-2 rounded-full text-sm transition hover:shadow-md hover:-translate-y-1 m-0">
               Say Hi <i class="bi bi-emoji-smile-fill"></i>
             </a>
           </div>
@@ -288,11 +289,11 @@
           #mobile-menu.open nav a:nth-child(5) { transition-delay: 0.34s; }
         </style>
         <nav class="flex flex-col px-6 md:px-[72px] py-6">
-          <a href="index.html#about" class="flex items-center gap-5 text-white text-left py-5"><i class="bi bi-person-fill text-3xl"></i> <span class="text-3xl font-bold">About Me</span></a>
-          <a href="index.html#work" class="flex items-center gap-5 text-white text-left py-5"><i class="bi bi-folder-fill text-3xl"></i> <span class="text-3xl font-bold">Work Projects</span></a>
-          <a href="index.html#gallery" class="flex items-center gap-5 text-white text-left py-5"><i class="bi bi-image-fill text-3xl"></i> <span class="text-3xl font-bold">Gallery</span></a>
-          <a href="index.html#personal" class="flex items-center gap-5 text-white text-left py-5"><i class="bi bi-briefcase-fill text-3xl"></i> <span class="text-3xl font-bold">Personal Projects</span></a>
-          <a href="index.html#cta" class="flex items-center gap-5 text-white text-left py-5"><i class="bi bi-emoji-smile-fill text-3xl"></i> <span class="text-3xl font-bold">Say Hi</span></a>
+          <a href="/#about" class="flex items-center gap-5 text-white text-left py-5"><i class="bi bi-person-fill text-3xl"></i> <span class="text-3xl font-bold">About Me</span></a>
+          <a href="/#work" class="flex items-center gap-5 text-white text-left py-5"><i class="bi bi-folder-fill text-3xl"></i> <span class="text-3xl font-bold">Work Projects</span></a>
+          <a href="/#gallery" class="flex items-center gap-5 text-white text-left py-5"><i class="bi bi-image-fill text-3xl"></i> <span class="text-3xl font-bold">Gallery</span></a>
+          <a href="/#personal" class="flex items-center gap-5 text-white text-left py-5"><i class="bi bi-briefcase-fill text-3xl"></i> <span class="text-3xl font-bold">Personal Projects</span></a>
+          <a href="/#cta" class="flex items-center gap-5 text-white text-left py-5"><i class="bi bi-emoji-smile-fill text-3xl"></i> <span class="text-3xl font-bold">Say Hi</span></a>
         </nav>
       </div>
     </div>
@@ -412,7 +413,7 @@
     <!-- ═══════════════════════════════════════ FOOTER ═══ -->
     <footer style="background:#ffffff; border-top:1px solid rgba(15,138,107,0.18);">
       <div class="flex items-center justify-between px-6 md:px-[72px] py-4">
-        <p class="text-[11px] md:text-xs" style="color: var(--text-dark);">© 2025 Arieff Hizer // All Rights Reserved <span style="opacity:0.5;">&middot;</span> <a href="privacy.html" style="text-decoration:underline;">Privacy</a> <span style="opacity:0.5;">&middot;</span> <a href="legal.html" style="text-decoration:underline;">Legal</a></p>
+        <p class="text-[11px] md:text-xs" style="color: var(--text-dark);">© 2025 Arieff Hizer // All Rights Reserved <span style="opacity:0.5;">&middot;</span> <a href="/privacy" style="text-decoration:underline;">Privacy</a> <span style="opacity:0.5;">&middot;</span> <a href="/legal" style="text-decoration:underline;">Legal</a></p>
         <div class="flex gap-2">
           <a href="https://github.com/arieffhizer" target="_blank" rel="noopener" class="flex items-center gap-1 px-3 py-1 rounded-full text-[11px] md:text-xs" style="color: var(--green-dark); background: rgba(15,138,107,0.10);">
             <i class="bi bi-github"></i> GitHub
@@ -464,7 +465,7 @@
       @media (min-width: 1024px) { #sticky-cta.sticky-cta { display: none; } }
   @media (max-width: 1023px) { body { padding-bottom: 72px; } }
     </style>
-    <a href="index.html#cta" id="sticky-cta" class="sticky-cta">Say Hi <i class="bi bi-emoji-smile-fill"></i></a>
+    <a href="/#cta" id="sticky-cta" class="sticky-cta">Say Hi <i class="bi bi-emoji-smile-fill"></i></a>
     <script>
       (function () {
         var el = document.getElementById('sticky-cta');
