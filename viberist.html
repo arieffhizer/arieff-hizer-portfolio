@@ -280,6 +280,7 @@
         aspect-ratio: 1920 / 1080;
         border: none;
         background: #3F62F2;
+        pointer-events: none; /* hero-only preview: wheel and touch scroll the page, not the frame */
       }
 
       @media (max-width: 767px) {
@@ -481,9 +482,9 @@
             </button>
           </div>
           <div class="frame-loader" aria-hidden="true"><i></i><i></i><i></i><span>Loading live site</span></div>
-          <iframe id="viberist-iframe" src="viberist-site/index.html" title="Viberist — live website" loading="lazy"></iframe>
+          <iframe id="viberist-iframe" src="viberist-site/index.html" title="Viberist — live hero" loading="lazy" scrolling="no" tabindex="-1"></iframe>
         </div>
-        <p class="text-center text-xs mt-4" style="color:#888480;">The real site, running inside this page, fully interactive. Hit "Refresh" to restart it.</p>
+        <p class="text-center text-xs mt-4" style="color:#888480;">The live hero of the real site, running inside this page. Hit "Refresh" to restart the intro. The rest of the site is shown below.</p>
       </div>
     </section>
     <script>
@@ -536,6 +537,12 @@
         .vb-goal i { font-size: 1.6rem; }
         .vb-stack { display: flex; align-items: center; gap: 10px; padding: 12px 18px; border-radius: 14px; background: #fff; border: 1.5px solid rgba(63,98,242,0.18); font-weight: 700; font-size: 14px; color: #1C1C1C; }
         .vb-stack img { width: 22px; height: 22px; }
+        .vb-why { height: auto; }
+        .vb-why-h { display: flex; align-items: center; gap: 10px; margin-bottom: 0.6rem; }
+        .vb-why-h img { width: 24px; height: 24px; }
+        .vb-why-h b { font-family: 'Sora', sans-serif; font-size: 1rem; color: #1C1C1C; }
+        .vb-why p { margin: 0; font-size: 0.9rem; line-height: 1.6; color: #545352; text-align: left; }
+        @media (max-width: 767px) { .vb-why-h { justify-content: center; } .vb-why p { text-align: center; } }
       </style>
 
       <div class="max-w-6xl mx-auto px-6">
@@ -574,11 +581,11 @@
         <!-- The site -->
         <div class="vb-group">
           <h3 class="vb-h">The site</h3>
-          <p class="vb-sub">One page that moves from the hero through services, process and work to an enquiry.</p>
+          <p class="vb-sub">One page that runs from the hero through services, process and work to pricing and an enquiry form.</p>
           <div class="grid grid-cols-1 md:grid-cols-12 gap-5">
             <figure class="vb-shot fade-up md:col-span-12 m-0">
               <div class="vb-shot-bar"><span style="background:#ED6A5E;"></span><span style="background:#F4BF4F;"></span><span style="background:#61C454;"></span></div>
-              <img src="images/viberist/hero.jpg" alt="Viberist homepage hero" loading="lazy" />
+              <img src="images/viberist/hero.jpg" alt="Viberist homepage hero with the oversized wordmark and layered browser mockups" loading="lazy" />
               <figcaption class="vb-cap">Hero</figcaption>
             </figure>
             <figure class="vb-shot fade-up md:col-span-6 m-0">
@@ -588,23 +595,33 @@
             </figure>
             <figure class="vb-shot fade-up md:col-span-6 m-0">
               <div class="vb-shot-bar"><span style="background:#ED6A5E;"></span><span style="background:#F4BF4F;"></span><span style="background:#61C454;"></span></div>
-              <img src="images/viberist/why.jpg" alt="Why Us section" loading="lazy" />
+              <img src="images/viberist/why.jpg" alt="Why Us section: the problem and the fix" loading="lazy" />
               <figcaption class="vb-cap">Problem and fix</figcaption>
             </figure>
             <figure class="vb-shot fade-up md:col-span-4 m-0">
               <div class="vb-shot-bar"><span style="background:#ED6A5E;"></span><span style="background:#F4BF4F;"></span><span style="background:#61C454;"></span></div>
-              <img src="images/viberist/services.jpg" alt="Services section" loading="lazy" />
+              <img src="images/viberist/services.jpg" alt="Services section with three packages" loading="lazy" />
               <figcaption class="vb-cap">Services</figcaption>
             </figure>
             <figure class="vb-shot fade-up md:col-span-4 m-0">
               <div class="vb-shot-bar"><span style="background:#ED6A5E;"></span><span style="background:#F4BF4F;"></span><span style="background:#61C454;"></span></div>
-              <img src="images/viberist/process.jpg" alt="Process section" loading="lazy" />
+              <img src="images/viberist/process.jpg" alt="Four-step process with a shape rolling across the columns" loading="lazy" />
               <figcaption class="vb-cap">Process</figcaption>
             </figure>
             <figure class="vb-shot fade-up md:col-span-4 m-0">
               <div class="vb-shot-bar"><span style="background:#ED6A5E;"></span><span style="background:#F4BF4F;"></span><span style="background:#61C454;"></span></div>
-              <img src="images/viberist/work.jpg" alt="Selected work section" loading="lazy" />
+              <img src="images/viberist/work.jpg" alt="Selected work section with the Mori case study" loading="lazy" />
               <figcaption class="vb-cap">Selected work</figcaption>
+            </figure>
+            <figure class="vb-shot fade-up md:col-span-6 m-0">
+              <div class="vb-shot-bar"><span style="background:#ED6A5E;"></span><span style="background:#F4BF4F;"></span><span style="background:#61C454;"></span></div>
+              <img src="images/viberist/faq.jpg" alt="FAQ section" loading="lazy" />
+              <figcaption class="vb-cap">FAQ</figcaption>
+            </figure>
+            <figure class="vb-shot fade-up md:col-span-6 m-0">
+              <div class="vb-shot-bar"><span style="background:#ED6A5E;"></span><span style="background:#F4BF4F;"></span><span style="background:#61C454;"></span></div>
+              <img src="images/viberist/pricing.jpg" alt="Pricing shown as three tickets inside a browser window" loading="lazy" />
+              <figcaption class="vb-cap">Pricing tickets</figcaption>
             </figure>
           </div>
         </div>
@@ -616,7 +633,7 @@
           <div class="grid grid-cols-3 gap-3 md:gap-8 max-w-3xl mx-auto">
             <div class="vb-phone fade-up"><img src="images/viberist/m-hero.jpg" alt="Hero on mobile" loading="lazy" /></div>
             <div class="vb-phone fade-up"><img src="images/viberist/m-services.jpg" alt="Services on mobile" loading="lazy" /></div>
-            <div class="vb-phone fade-up"><img src="images/viberist/m-work.jpg" alt="Work on mobile" loading="lazy" /></div>
+            <div class="vb-phone fade-up"><img src="images/viberist/m-pricing.jpg" alt="Pricing on mobile" loading="lazy" /></div>
           </div>
         </div>
 
@@ -630,7 +647,8 @@
                 <div class="vb-swatch"><i style="background:#3F62F2;"></i>#3F62F2</div>
                 <div class="vb-swatch"><i style="background:#2C4AD4;"></i>#2C4AD4</div>
                 <div class="vb-swatch"><i style="background:#8FA4F8;"></i>#8FA4F8</div>
-                <div class="vb-swatch"><i style="background:#161E2E;"></i>#161E2E</div>
+                <div class="vb-swatch"><i style="background:#111827;"></i>#111827</div>
+                <div class="vb-swatch"><i style="background:#0B1120;"></i>#0B1120</div>
                 <div class="vb-swatch"><i style="background:#FFFFFF;"></i>#FFFFFF</div>
               </div>
             </div>
@@ -673,22 +691,40 @@
           <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div class="vb-goal fade-up"><i class="bi bi-pencil-square"></i>Custom, not template</div>
             <div class="vb-goal fade-up"><i class="bi bi-tag"></i>Clear pricing</div>
-            <div class="vb-goal fade-up"><i class="bi bi-diagram-3"></i>Simple process</div>
-            <div class="vb-goal fade-up"><i class="bi bi-chat-dots"></i>More enquiries</div>
+            <div class="vb-goal fade-up"><i class="bi bi-phone"></i>Built for every screen</div>
+            <div class="vb-goal fade-up"><i class="bi bi-rocket-takeoff"></i>Launch handled</div>
           </div>
         </div>
 
         <!-- Built with -->
         <div class="vb-group">
           <h3 class="vb-h">Built with</h3>
-          <p class="vb-sub">Static pages with almost no JavaScript, plus Three.js for the 3D monogram.</p>
-          <div class="flex flex-wrap justify-center gap-3 fade-up">
-            <span class="vb-stack"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/html5.svg" alt="" />HTML</span>
-            <span class="vb-stack"><i class="bi bi-braces" style="font-size:20px; color:#3F62F2;"></i>CSS</span>
-            <span class="vb-stack"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/typescript.svg" alt="" />TypeScript</span>
-            <span class="vb-stack"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/astro.svg" alt="" />Astro</span>
-            <span class="vb-stack"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/tailwindcss.svg" alt="" />Tailwind CSS</span>
-            <span class="vb-stack"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/threedotjs.svg" alt="" />Three.js</span>
+          <p class="vb-sub">The tools I picked, and why each one fits a fast studio site.</p>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="vb-card vb-why fade-up">
+              <div class="vb-why-h"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/astro.svg" alt="" /><b>Astro</b></div>
+              <p>A studio site mostly shows content, so Astro builds it into fast static HTML and only ships JavaScript where a section needs it. It also lets me split the page into reusable section components.</p>
+            </div>
+            <div class="vb-card vb-why fade-up">
+              <div class="vb-why-h"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/tailwindcss.svg" alt="" /><b>Tailwind CSS</b></div>
+              <p>The brand colours, type scale and easing curve live in one theme, so every section pulls from the same tokens and the design stays consistent as the page grows.</p>
+            </div>
+            <div class="vb-card vb-why fade-up">
+              <div class="vb-why-h"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/typescript.svg" alt="" /><b>TypeScript</b></div>
+              <p>Prices, services, FAQs and work are typed data, and the scroll scripts are typed too. A wrong edit shows up before it reaches the live site.</p>
+            </div>
+            <div class="vb-card vb-why fade-up">
+              <div class="vb-why-h"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/threedotjs.svg" alt="" /><b>Three.js</b></div>
+              <p>The 3D monogram needs real 3D rendering. It loads only in the pinned promise section, so the rest of the page stays light.</p>
+            </div>
+            <div class="vb-card vb-why fade-up">
+              <div class="vb-why-h"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/html5.svg" alt="" /><b>HTML</b></div>
+              <p>Semantic markup with a skip link and labelled sections, so the page reads properly for search engines and screen readers.</p>
+            </div>
+            <div class="vb-card vb-why fade-up">
+              <div class="vb-why-h"><i class="bi bi-braces" style="font-size:22px; color:#3F62F2;"></i><b>CSS</b></div>
+              <p>Layout, theme and the reveal transitions are plain CSS, which keeps motion smooth and the code easy to maintain.</p>
+            </div>
           </div>
         </div>
       </div>

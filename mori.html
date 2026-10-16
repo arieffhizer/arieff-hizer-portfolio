@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,800;1,400&family=JetBrains+Mono:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
     <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
@@ -280,6 +280,7 @@
         aspect-ratio: 1920 / 1080;
         border: none;
         background: #7D2327;
+        pointer-events: none; /* hero-only preview: wheel and touch scroll the page, not the frame */
       }
 
       @media (max-width: 767px) {
@@ -481,9 +482,9 @@
             </button>
           </div>
           <div class="frame-loader" aria-hidden="true"><i></i><i></i><i></i><span>Loading live site</span></div>
-          <iframe id="mori-iframe" src="mori-site/Mori.html" title="Mori Barbershop — live website" loading="lazy"></iframe>
+          <iframe id="mori-iframe" src="mori-site/Mori.html" title="Mori Barbershop — live hero" loading="lazy" scrolling="no" tabindex="-1"></iframe>
         </div>
-        <p class="text-center text-xs mt-4" style="color:#888480;">The real site, running inside this page, fully interactive. Hit "Refresh" to replay the splash animation.</p>
+        <p class="text-center text-xs mt-4" style="color:#888480;">The live hero of the real site, running inside this page. Hit "Refresh" to replay the intro animation. The rest of the site is shown below.</p>
       </div>
     </section>
     <script>
@@ -520,8 +521,155 @@
           <div class="content-row">
             <div>Designer &amp; Developer</div>
             <div>Web</div>
-            <div>Figma, HTML/CSS, Tailwind</div>
+            <div>Figma, HTML, Tailwind CSS, JavaScript, GSAP</div>
             <div>Personal Project</div>
+          </div>
+        </div>
+
+        <style>
+          .mo-h { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 1.25rem; color: #1C1C1C; margin: 0 0 0.4rem; text-align: center; }
+          .mo-sub { max-width: 34rem; margin: 0 auto 1.5rem; text-align: center; color: #545352; font-size: 0.95rem; line-height: 1.6; }
+          .mo-group { margin-top: 4rem; }
+          .mo-shot { position: relative; border-radius: 14px; overflow: hidden; background: #fff; box-shadow: 0 22px 44px -22px rgba(60,20,22,0.45), 0 2px 8px rgba(60,20,22,0.08); }
+          .mo-shot-bar { display: flex; gap: 6px; padding: 9px 12px; background: #efede6; }
+          .mo-shot-bar span { width: 9px; height: 9px; border-radius: 50%; }
+          .mo-shot img { display: block; width: 100%; height: auto; }
+          .mo-cap { position: absolute; left: 12px; bottom: 12px; background: rgba(26,23,20,0.86); color: #fff; font-size: 11px; font-weight: 600; padding: 5px 11px; border-radius: 999px; }
+          .mo-phone { position: relative; border-radius: 32px; border: 7px solid #1a1714; overflow: hidden; background: #1a1714; box-shadow: 0 22px 44px -22px rgba(60,20,22,0.5); }
+          .mo-phone img { display: block; width: 100%; height: auto; }
+          .mo-card { border: 1.5px solid rgba(125,35,39,0.18); border-radius: 18px; padding: 1.5rem; background: rgba(255,255,255,0.7); height: 100%; }
+          .mo-swatches { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+          .mo-swatch { display: flex; flex-direction: column; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: #545352; }
+          .mo-swatch i { width: 46px; height: 46px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.12); }
+          .mo-type { display: flex; align-items: baseline; gap: 22px; justify-content: center; font-family: 'Plus Jakarta Sans', 'Sora', sans-serif; }
+          .mo-type b { font-size: 4.25rem; line-height: 1; color: #1C1C1C; }
+          .mo-type small { display: block; font-size: 11px; color: #545352; margin-top: 8px; }
+          .mo-track { position: relative; height: 16px; border-radius: 999px; background: rgba(125,35,39,0.1); margin-bottom: 8px; }
+          .mo-dot { position: absolute; top: 0; left: 0; width: 16px; height: 16px; border-radius: 50%; background: #7D2327; animation: mo-run 2.8s infinite; }
+          .mo-dot.is-ease { animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1); background: #9aa3b2; }
+          .mo-dot.is-strong { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); }
+          @keyframes mo-run { 0% { left: 0; } 55%, 100% { left: calc(100% - 16px); } }
+          .mo-lab { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: #545352; margin: 0 0 14px; text-align: center; }
+          .mo-why-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
+          .mo-why-grid > .mo-why { flex: 0 0 100%; }
+          @media (min-width: 768px) { .mo-why-grid > .mo-why { flex: 0 0 calc((100% - 2rem) / 3); } }
+          .mo-why { height: auto; }
+          .mo-why-h { display: flex; align-items: center; gap: 10px; margin-bottom: 0.6rem; }
+          .mo-why-h img { width: 24px; height: 24px; }
+          .mo-why-h b { font-family: 'Sora', sans-serif; font-size: 1rem; color: #1C1C1C; }
+          .mo-why p { margin: 0; font-size: 0.9rem; line-height: 1.6; color: #545352; text-align: left; }
+          @media (max-width: 767px) { .mo-why-h { justify-content: center; } .mo-why p { text-align: center; } }
+        </style>
+
+        <!-- The site -->
+        <div class="mo-group">
+          <h3 class="mo-h">The site</h3>
+          <p class="mo-sub">One long page that moves from the hero through the story, menu and gallery to a live booking form.</p>
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-5">
+            <figure class="mo-shot fade-up md:col-span-12 m-0">
+              <div class="mo-shot-bar"><span style="background:#ED6A5E;"></span><span style="background:#F4BF4F;"></span><span style="background:#61C454;"></span></div>
+              <img src="images/mori/hero.jpg" alt="Mori hero with the wordmark and barber pole carousel" loading="lazy" />
+              <figcaption class="mo-cap">Hero</figcaption>
+            </figure>
+            <figure class="mo-shot fade-up md:col-span-6 m-0">
+              <div class="mo-shot-bar"><span style="background:#ED6A5E;"></span><span style="background:#F4BF4F;"></span><span style="background:#61C454;"></span></div>
+              <img src="images/mori/about.jpg" alt="The Atelier Spirit story section with opening hours" loading="lazy" />
+              <figcaption class="mo-cap">Story and hours</figcaption>
+            </figure>
+            <figure class="mo-shot fade-up md:col-span-6 m-0">
+              <div class="mo-shot-bar"><span style="background:#ED6A5E;"></span><span style="background:#F4BF4F;"></span><span style="background:#61C454;"></span></div>
+              <img src="images/mori/services.jpg" alt="Service menu with durations and prices" loading="lazy" />
+              <figcaption class="mo-cap">Service menu</figcaption>
+            </figure>
+            <figure class="mo-shot fade-up md:col-span-6 m-0">
+              <div class="mo-shot-bar"><span style="background:#ED6A5E;"></span><span style="background:#F4BF4F;"></span><span style="background:#61C454;"></span></div>
+              <img src="images/mori/gallery.jpg" alt="Scrolling haircut gallery" loading="lazy" />
+              <figcaption class="mo-cap">Gallery</figcaption>
+            </figure>
+            <figure class="mo-shot fade-up md:col-span-6 m-0">
+              <div class="mo-shot-bar"><span style="background:#ED6A5E;"></span><span style="background:#F4BF4F;"></span><span style="background:#61C454;"></span></div>
+              <img src="images/mori/reviews.jpg" alt="Client reviews section" loading="lazy" />
+              <figcaption class="mo-cap">Reviews</figcaption>
+            </figure>
+            <figure class="mo-shot fade-up md:col-span-6 m-0">
+              <div class="mo-shot-bar"><span style="background:#ED6A5E;"></span><span style="background:#F4BF4F;"></span><span style="background:#61C454;"></span></div>
+              <img src="images/mori/locations.jpg" alt="Location cards for the two branches" loading="lazy" />
+              <figcaption class="mo-cap">Locations</figcaption>
+            </figure>
+            <figure class="mo-shot fade-up md:col-span-6 m-0">
+              <div class="mo-shot-bar"><span style="background:#ED6A5E;"></span><span style="background:#F4BF4F;"></span><span style="background:#61C454;"></span></div>
+              <img src="images/mori/booking.jpg" alt="Live queue and appointment booking form" loading="lazy" />
+              <figcaption class="mo-cap">Live booking</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <!-- Mobile -->
+        <div class="mo-group">
+          <h3 class="mo-h">Mobile</h3>
+          <p class="mo-sub">The same flow, rebuilt for a phone.</p>
+          <div class="grid grid-cols-3 gap-3 md:gap-8 max-w-3xl mx-auto">
+            <div class="mo-phone fade-up"><img src="images/mori/m-hero.jpg" alt="Hero on mobile" loading="lazy" /></div>
+            <div class="mo-phone fade-up"><img src="images/mori/m-services.jpg" alt="Service menu on mobile" loading="lazy" /></div>
+            <div class="mo-phone fade-up"><img src="images/mori/m-booking.jpg" alt="Booking on mobile" loading="lazy" /></div>
+          </div>
+        </div>
+
+        <!-- Design system -->
+        <div class="mo-group">
+          <h3 class="mo-h">Design system</h3>
+          <p class="mo-sub">A deep rose on cream and near-black, one friendly sans and one expressive ease-out.</p>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="mo-card fade-up">
+              <div class="mo-swatches">
+                <div class="mo-swatch"><i style="background:#7D2327;"></i>#7D2327</div>
+                <div class="mo-swatch"><i style="background:#6A1E21;"></i>#6A1E21</div>
+                <div class="mo-swatch"><i style="background:#DFBDBE;"></i>#DFBDBE</div>
+                <div class="mo-swatch"><i style="background:#F6F3EB;"></i>#F6F3EB</div>
+                <div class="mo-swatch"><i style="background:#1A1714;"></i>#1A1714</div>
+                <div class="mo-swatch"><i style="background:#3F6752;"></i>#3F6752</div>
+              </div>
+            </div>
+            <div class="mo-card fade-up">
+              <div class="mo-type">
+                <div><b style="font-weight:800;">Aa</b><small>Plus Jakarta Sans</small></div>
+                <div><b style="font-weight:400; font-style:italic;">Aa</b><small>Light to Extra Bold</small></div>
+              </div>
+            </div>
+            <div class="mo-card fade-up">
+              <div class="mo-track"><i class="mo-dot is-ease"></i></div>
+              <p class="mo-lab">ease</p>
+              <div class="mo-track"><i class="mo-dot is-strong"></i></div>
+              <p class="mo-lab" style="margin-bottom:0;">expressive ease-out, used for the intro and reveals</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Built with -->
+        <div class="mo-group">
+          <h3 class="mo-h">Built with</h3>
+          <p class="mo-sub">The tools I picked, and why each one fits a single-page brand site.</p>
+          <div class="mo-why-grid">
+            <div class="mo-card mo-why fade-up">
+              <div class="mo-why-h"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/html5.svg" alt="" /><b>HTML & CSS</b></div>
+              <p>Mori is one long brand page with a booking form, so plain HTML and CSS were enough. No framework to load, and it is simple to host and edit.</p>
+            </div>
+            <div class="mo-card mo-why fade-up">
+              <div class="mo-why-h"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/tailwindcss.svg" alt="" /><b>Tailwind CSS</b></div>
+              <p>The editorial layout and its breakpoints came together quickly straight from the Figma design, with spacing and type kept consistent.</p>
+            </div>
+            <div class="mo-card mo-why fade-up">
+              <div class="mo-why-h"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/javascript.svg" alt="" /><b>JavaScript</b></div>
+              <p>Powers the live queue, availability check and booking form. It is a front-end prototype in plain JavaScript, with no backend and nothing to install.</p>
+            </div>
+            <div class="mo-card mo-why fade-up">
+              <div class="mo-why-h"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/greensock.svg" alt="" /><b>GSAP + ScrollTrigger</b></div>
+              <p>The pinned hero, where the carousel card grows as you scroll, needs motion tied exactly to scroll position. CSS alone cannot do that cleanly.</p>
+            </div>
+            <div class="mo-card mo-why fade-up">
+              <div class="mo-why-h"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/figma.svg" alt="" /><b>Figma</b></div>
+              <p>The wordmark, colours and layout were designed here first, so the build follows a decided system instead of being improvised in code.</p>
+            </div>
           </div>
         </div>
       </div>

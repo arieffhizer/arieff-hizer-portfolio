@@ -944,12 +944,25 @@
     display: none !important;
   }
 
-  @media (max-width: 768px) {
+  #mori-wordmark { display: none; }
+
+  @media (max-width: 767px) {
     #mori-wordmark {
-      width: calc(100vw - 3rem);
+      display: block;
+      width: auto;
       max-width: none;
-      top: 54%;
+      height: min(52vh, 460px);
+      top: calc((82vh + 72px) / 2);
+      transform: translate(-50%, -50%);
     }
+
+    #mori-wordmark img {
+      width: auto;
+      height: 100%;
+    }
+  }
+
+  @media (max-width: 768px) {
 
     #mori-abstract-lines {
       top: 50%;
@@ -966,6 +979,16 @@
       width: calc(100vw - 3rem);
       max-width: none;
       top: 82vh;
+    }
+  }
+
+  /* Mobile: lines turned 90° so they flow from the top edge to the bottom edge */
+  @media (max-width: 767px) {
+    #mori-abstract-lines {
+      /* Rotated, width becomes height: cover tall screens and short/wide ones alike */
+      width: max(100vh, 200vw);
+      max-width: none;
+      transform: translate(calc(-50% + 44px), -50%) rotate(90deg);
     }
   }
 
@@ -1108,7 +1131,7 @@
   ]
 }
 </script>
-</head>
+<!--embed-lock--><script>(function(){if(window.top===window)return;var s=document.createElement('style');s.textContent='html,body{overflow:hidden!important;overscroll-behavior:none}';document.head.appendChild(s);function stop(e){e.preventDefault()}addEventListener('wheel',stop,{passive:false});addEventListener('touchmove',stop,{passive:false});addEventListener('keydown',function(e){var t=(document.activeElement||{}).tagName;if(/INPUT|TEXTAREA|SELECT/.test(t))return;if([' ','PageDown','PageUp','End','Home','ArrowDown','ArrowUp'].indexOf(e.key)>-1)e.preventDefault()});addEventListener('scroll',function(){if(window.scrollY||window.scrollX)window.scrollTo(0,0)},{passive:true});document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href]');if(a){var h=a.getAttribute('href')||'';if(h.charAt(0)==='#')e.preventDefault()}},true)})();</script><!--/embed-lock--></head>
 <body class="selection:bg-[#DFBDBE]/30 selection:text-[#7D2327] intro-active">
   <div id="scroll-progress"></div>
 
@@ -1234,15 +1257,19 @@
       <!-- Background abstract lines + large MORI logo -->
       <div id="mori-hero-art" aria-hidden="true">
         <!-- Abstract lines PNG: full width, aligned to top viewport -->
-        <img
-          id="mori-abstract-lines"
-          src="Images/abstract-lines 2.png"
-          alt=""
-        />
+        <!-- Mobile uses the plain lines; the stacked wordmark below replaces the baked-in one -->
+        <picture>
+          <source media="(max-width: 767px)" srcset="Images/abstract-lines.png" />
+          <img
+            id="mori-abstract-lines"
+            src="Images/abstract-lines 2.png"
+            alt=""
+          />
+        </picture>
 
-        <!-- Large MORI logo image -->
-        <div id="mori-wordmark" aria-label="MORI" class="hidden">
-          <img src="Images/large typo 3.png" alt="MORI Hair Studio logo" />
+        <!-- Mobile only: MORI stacked vertically -->
+        <div id="mori-wordmark" aria-label="MORI">
+          <img src="Images/Mori%20Wordmark%20Vertical.svg" alt="MORI Hair Studio logo" />
         </div>
       </div>
 
@@ -2114,7 +2141,7 @@
       <!-- Brand -->
       <div>
         <a href="#" class="flex items-center gap-2 mb-4 group w-fit">
-          <img src="Images/Mori.png" alt="MORI" class="h-16 w-24 object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"/>
+          <picture class="contents"><source media="(max-width: 767px)" srcset="Images/Mori%20Vertical%20Maroon.svg"><img src="Images/Mori.png" alt="MORI" class="h-28 w-auto md:h-16 md:w-24 object-contain" onerror="this.style.display='none'; this.parentElement.nextElementSibling.style.display='flex'"/></picture>
           <div style="display:none;" class="w-8 h-8 rounded bg-[#7D2327] items-center justify-center">
             <span class="text-white text-xs font-black">M</span>
           </div>
