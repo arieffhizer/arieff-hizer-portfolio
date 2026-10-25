@@ -11,7 +11,8 @@
   --gutter: clamp(16px, 3vw, 40px);
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { background: var(--space); color: var(--ink); font-family: var(--text); -webkit-font-smoothing: antialiased; }
+/* white: iOS Safari colours its bars with the page background, and the scene covers it everywhere else */
+html, body { background: #fff; color: var(--ink); font-family: var(--text); -webkit-font-smoothing: antialiased; }
 a { color: inherit; text-decoration: none; }
 
 #scene { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
@@ -90,6 +91,7 @@ a { color: inherit; text-decoration: none; }
   .beat, .project { width: 100%; }
   .project h2 { white-space: normal; }
   .orbit-copy.br .project h2 { flex-wrap: wrap; }
+  .orbit-copy.br .project p { font-size: 14.5px; } /* About: a long card, a step smaller on a phone */
 }
 /* View project, under the name: shown where there is no planet cursor to click (phones, touch screens) */
 .project .view { display: none; margin: 4px 0 14px; background: none; border: 0; border-bottom: 1px solid var(--ink); padding: 0 0 5px; color: var(--ink); }

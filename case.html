@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Case study — Arieff Hizer</title>
 <meta name="description" content="A case study by Arieff Hizer, product designer in Malaysia.">
-<meta name="theme-color" content="#F4EEE4">
+<meta name="theme-color" content="#ffffff">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="media/apple-touch-icon.png">
 <!-- link previews (Slack, LinkedIn, iMessage, X): crawlers want absolute URLs -->
@@ -21,14 +21,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=4a4f1d91">
+<link rel="stylesheet" href="style.css?v=6afdb611">
 <script>
 // light (watercolour on paper) unless dark (space) was chosen, as on the home page
 (() => { let t = "light"; try { t = localStorage.getItem("v2-theme") || "light"; } catch {}
   const q = new URLSearchParams(location.search); if (q.has("paint")) t = "light"; if (q.has("space")) t = "dark";
-  if (t === "light") document.documentElement.classList.add("paint");
-  // the browser's own bars take the page's colour: paper, or space
-  document.querySelector('meta[name="theme-color"]').content = t === "light" ? "#F4EEE4" : "#050507"; })();
+  if (t === "light") document.documentElement.classList.add("paint"); })();
 </script>
 <script type="importmap">
 { "imports": {
@@ -74,7 +72,7 @@
 </main>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script type="module">
-  import { PROJECTS_COPY, CASE_SECTIONS } from "./content.js?v=4a4f1d91";
+  import { PROJECTS_COPY, CASE_SECTIONS } from "./content.js?v=6afdb611";
   const slug = new URLSearchParams(location.search).get("p") || "reta";
   const names = Object.keys(PROJECTS_COPY);
   const i = Math.max(0, names.findIndex((n) => PROJECTS_COPY[n].slug === slug));
@@ -93,7 +91,7 @@
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   // the planet-horizon layout, on trial with the projects that have sections written
   if (CASE_SECTIONS[c.slug]) {
-    const { startPlanetCase } = await import("./case-planet.js?v=4a4f1d91");
+    const { startPlanetCase } = await import("./case-planet.js?v=6afdb611");
     startPlanetCase({ name, copy: c, sections: CASE_SECTIONS[c.slug], index: i, total: names.length });
   } else {
   document.body.classList.add("legacy-case");

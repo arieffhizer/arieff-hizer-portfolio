@@ -4,19 +4,19 @@ import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
-import { PROJECTS_COPY, ABOUT_COPY, EXIT_COPY, CAREER_COPY, CONTACT_COPY } from "./content.js?v=4a4f1d91";
-import { makeGalaxy, makeWormhole, makeUnclaimedPlanet } from "./galaxies.js?v=4a4f1d91";
-import { makeBlackHole } from "./blackhole.js?v=4a4f1d91";
-import { PROJECTS } from "./planets.js?v=4a4f1d91";
-import { noOrphans } from "./typeset.js?v=4a4f1d91";
+import { PROJECTS_COPY, ABOUT_COPY, EXIT_COPY, CAREER_COPY, CONTACT_COPY } from "./content.js?v=6afdb611";
+import { makeGalaxy, makeWormhole, makeUnclaimedPlanet } from "./galaxies.js?v=6afdb611";
+import { makeBlackHole } from "./blackhole.js?v=6afdb611";
+import { PROJECTS } from "./planets.js?v=6afdb611";
+import { noOrphans } from "./typeset.js?v=6afdb611";
 noOrphans();
-import { playIntro } from "./intro.js?v=4a4f1d91";
-import { WatercolorShader } from "./watercolor.js?v=4a4f1d91";
-import { themeButton } from "./warp-reveal.js?v=4a4f1d91";
+import { playIntro } from "./intro.js?v=6afdb611";
+import { WatercolorShader } from "./watercolor.js?v=6afdb611";
+import { themeButton } from "./warp-reveal.js?v=6afdb611";
 // two looks for the same ride: light, painted in watercolour on paper (the default), and dark, realistic space. The
 // head of index.html picks one before anything draws; the Dark / Light button in the header switches and remembers
 let PAINT = document.documentElement.classList.contains("paint");
-import { planetMaterial, atmosphereMaterial, starMaterial, ringMaterial, makeLiquid, FilmShader } from "./shaders.js?v=4a4f1d91";
+import { planetMaterial, atmosphereMaterial, starMaterial, ringMaterial, makeLiquid, FilmShader } from "./shaders.js?v=6afdb611";
 
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const rand = (a, b) => a + Math.random() * (b - a);
@@ -377,7 +377,6 @@ composer.addPass(wash);
 function setTheme(paint) {
   PAINT = paint;
   document.documentElement.classList.toggle("paint", paint);
-  document.querySelector('meta[name="theme-color"]').content = paint ? "#F4EEE4" : "#050507";
   film.enabled = !paint; wash.enabled = paint;
   // painted planets are lit all round, as an illustration is
   scene.traverse((o) => [].concat(o.material || []).forEach((m) => { if (m.uniforms && m.uniforms.uEven) m.uniforms.uEven.value = paint ? 1 : 0; }));
@@ -600,6 +599,7 @@ const blackHole = (() => {
 // keeps an even pace and never seems to float in place on the short inner hops.
 const HERO_END = 0.012; // the ride starts almost at once, so the name leaves as the board moves
 const TRAVEL = 0.45;
+const NAME_GONE = TRAVEL * 0.03; // how far into the first ride the name has fully faded
 {
   const L = curve.getLength();
   const rideLen = stops.map((s, i) => Math.max(0, (s.u0 - (i ? stops[i - 1].u1 : 0)) * L));
@@ -639,7 +639,8 @@ const fitBeatGaps = () => fitBeats.forEach((el) => {
   if (h && p) {
     h.style.fontSize = "";
     const fs = parseFloat(getComputedStyle(h).fontSize), wide = Math.max(...[...h.children].map((c) => c.getBoundingClientRect().width));
-    if (wide) h.style.fontSize = (fs * p.getBoundingClientRect().width / wide).toFixed(2) + "px";
+    // (phones: 60% of it, or the name fills the screen and runs into the header)
+    if (wide) h.style.fontSize = (fs * p.getBoundingClientRect().width * (innerWidth < 760 ? 0.6 : 1) / wide).toFixed(2) + "px";
   }
 });
 const orbitsEl = document.querySelector(".orbits");
@@ -839,7 +840,7 @@ function choreograph(el, inA, inB, outA, outB, dir = -1) {
   el.style.transform = `translate(${(dir * o * 90).toFixed(1)}px, ${((1 - a) * 16 + dir * o * 40).toFixed(1)}px) scale(${(1 + o * 0.35).toFixed(3)}, ${(1 - o * 0.1).toFixed(3)})`;
 }
 function updateText() {
-  const o = remap(state.ps, HERO_END, atStop(0, TRAVEL * 0.3)); // fades out over the first stretch of the ride
+  const o = remap(state.ps, HERO_END, atStop(0, NAME_GONE)); // fades out at the start of the ride (quick, so the rests after it have room)
   if (state.speed < 0.2 && back < 0 && state.heroIn) { // never while the name is still fading in
     hero.style.opacity = (1 - o).toFixed(3);
     hero.style.filter = `blur(${(o * 12).toFixed(2)}px)`;
@@ -849,12 +850,7 @@ function updateText() {
   stops.forEach((s, i) => {
     const dir = s.textLeft ? -1 : 1;
     // Planets: the two lines play on the approach; the title shows exactly while the head glances at the planet.
-    const T = s.kind === "project" ? textTimes(s)
-      // career: the copy plays as the galaxy fills the view, and leaves before you cross its core
-      : s.kind === "galaxy" || s.kind === "wormhole" ? { b1: [2, 2, 2, 2], b2: [2, 2, 2, 2], pr: [0.42, 0.52, 0.9, 0.98], click: [2, 2] }
-      // contact: two lines, then the planet's copy stays, since it is the end of the ride
-      : s.kind === "contact" ? { b1: [0.3, 0.38, 0.55, 0.6], b2: [0.34, 0.42, 0.57, 0.62], pr: [0.62, 0.72, null, null], click: [0.66, 9] }
-      : { b1: [0.4, 0.48, 0.62, 0.68], b2: [0.45, 0.53, 0.64, 0.7], pr: [0.7, 0.77, 0.96, 1.02], click: [0.74, 0.96] };
+    const T = timesOf(s);
     const at = (v) => (v == null ? null : atStop(i, v)); // null means the copy stays (the end of the ride)
     choreograph(s.el.b1, ...T.b1.map(at), dir);
     choreograph(s.el.b2, ...T.b2.map(at), dir);
@@ -930,6 +926,15 @@ function glideFraction(s, q) {
   const { fS, fE } = glanceSpan(s), F = [0, fS, fE, 1];
   let j = 0; while (j < 2 && q > GLIDE_Q[j + 1]) j++;
   return THREE.MathUtils.lerp(F[j], F[j + 1], (q - GLIDE_Q[j]) / (GLIDE_Q[j + 1] - GLIDE_Q[j]));
+}
+// when each stop's copy plays: [in from, fully in, out from, fully out] for the two lines (b1, b2) and the title (pr)
+function timesOf(s) {
+  return s.kind === "project" ? textTimes(s)
+    // career: the copy plays as the galaxy fills the view, and leaves before you cross its core
+    : s.kind === "galaxy" || s.kind === "wormhole" ? { b1: [2, 2, 2, 2], b2: [2, 2, 2, 2], pr: [0.42, 0.52, 0.9, 0.98], click: [2, 2] }
+    // contact: two lines, then the planet's copy stays, since it is the end of the ride
+    : s.kind === "contact" ? { b1: [0.3, 0.38, 0.55, 0.6], b2: [0.34, 0.42, 0.57, 0.62], pr: [0.62, 0.72, null, null], click: [0.66, 9] }
+    : { b1: [0.4, 0.48, 0.62, 0.68], b2: [0.45, 0.53, 0.64, 0.7], pr: [0.7, 0.77, 0.96, 1.02], click: [0.74, 0.96] };
 }
 function textTimes(s) {
   if (s.textT) return s.textT;
@@ -1173,16 +1178,30 @@ function returnHome(viaBlackHole) {
 }
 const CONTACT_I = stops.findIndex((s) => s.kind === "contact");
 
-// ---------- Reading rests, hero to About: a wheel flick, a swipe or an arrow key glides to the next place where
-// there is something to read (the name; each planet's two lines, then its title; About's two lines, then its card)
-// and rests there with the copy fully up. A free scroll could fly past the lines on one flick, or stop with them half
-// gone. Past About's card the ride is free again (the journey out has its own pace).
+// ---------- Reading rests, the whole ride: a wheel flick, a swipe or an arrow key glides to the next rest and stops
+// there. A rest is where there is something to read, fully up: the name; each stop's two lines, then its title or card
+// (planets, About, leaving, each galaxy, contact). A free scroll could fly past the lines on one flick, or stop with
+// them half gone. The long rides between planets also get rests along the way, so one flick never covers too much
+// space: the user's counts, from the previous title (or the name) to the planet's lines, are the flicks it takes
+// (hero to RETA 6, then one fewer each planet in, down to none from Tradelink to Selangor FC)
+const ALONG = { reta: 6, viberist: 5, shetrades: 4, mori: 3, fitcoach: 2, tradelink: 1 };
 const RESTS = [0];
-stops.slice(0, ABOUT_I + 1).forEach((s, i) => {
-  if (s.kind === "project") {
-    const T = textTimes(s);
-    RESTS.push(atStop(i, (T.b2[1] + T.b1[2]) / 2), atStop(i, (T.pr[1] + T.pr[2]) / 2)); // both lines up; the title up
-  } else if (s.kind === "about") RESTS.push(atStop(i, 0.575), atStop(i, 0.865));
+// the in-between rests sit in the clear stretch only: after the last copy has fully gone (the name, or the previous
+// title), before the next lines start to come in, so no rest ever stops on half-faded copy
+let clearFrom = atStop(0, NAME_GONE); // where the name has fully gone
+stops.forEach((s, i) => {
+  const T = timesOf(s), full = (w) => w && w[0] < 2 && w[1] != null; // a part this stop really plays
+  const lines = full(T.b1) && full(T.b2) && s.el.b1.textContent.trim() ? atStop(i, (Math.max(T.b1[1], T.b2[1]) + Math.min(T.b1[2] ?? 1, T.b2[2] ?? 1)) / 2) : null;
+  const along = s.kind === "project" ? ALONG[s.copy.slug] || 0 : 0;
+  if (lines !== null && along) {
+    const clearTo = atStop(i, Math.min(T.b1[0], T.b2[0]));
+    for (let k = 1; k <= along; k++) RESTS.push(clearFrom + (clearTo - clearFrom) * (k - 0.5) / along);
+  }
+  if (lines !== null) { RESTS.push(lines); clearFrom = atStop(i, Math.max(T.b1[3], T.b2[3])); }
+  if (s.el.project && full(T.pr)) {
+    RESTS.push(Math.min(0.999, atStop(i, T.pr[2] == null ? T.pr[1] + 0.08 : (T.pr[1] + T.pr[2]) / 2)));
+    if (T.pr[3] != null) clearFrom = atStop(i, T.pr[3]);
+  }
 });
 const LAST_REST = RESTS[RESTS.length - 1];
 const restBusy = () => warping || transit || skipTl || document.body.classList.contains("transiting");

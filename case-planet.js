@@ -1,15 +1,15 @@
 import * as THREE from "three";
-import { planetMaterial, atmosphereMaterial, starMaterial } from "./shaders.js?v=4a4f1d91";
-import { PROJECTS } from "./planets.js?v=4a4f1d91";
-import { makeMonoliths } from "./case-monoliths.js?v=4a4f1d91";
-import { makeSatellites } from "./case-satellites.js?v=4a4f1d91";
-import { noOrphans } from "./typeset.js?v=4a4f1d91";
+import { planetMaterial, atmosphereMaterial, starMaterial } from "./shaders.js?v=6afdb611";
+import { PROJECTS } from "./planets.js?v=6afdb611";
+import { makeMonoliths } from "./case-monoliths.js?v=6afdb611";
+import { makeSatellites } from "./case-satellites.js?v=6afdb611";
+import { noOrphans } from "./typeset.js?v=6afdb611";
 import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
-import { WatercolorShader } from "./watercolor.js?v=4a4f1d91";
-import { themeButton } from "./warp-reveal.js?v=4a4f1d91";
+import { WatercolorShader } from "./watercolor.js?v=6afdb611";
+import { themeButton } from "./warp-reveal.js?v=6afdb611";
 
 // projects whose screens stand on the planet as chrome monoliths (on trial); the rest show flat images
 const MONOLITHS = new Set([]); // none for now: satellites won
@@ -750,7 +750,6 @@ export function startPlanetCase({ name, copy, sections, index, total }) {
     apply: (next) => {
       paint = next;
       document.documentElement.classList.toggle("paint", next);
-      document.querySelector('meta[name="theme-color"]').content = next ? "#F4EEE4" : "#050507";
       scene.traverse((o) => [].concat(o.material || []).forEach((m) => { if (m.uniforms && m.uniforms.uEven) m.uniforms.uEven.value = next ? 1 : 0; }));
     },
   });
