@@ -4,19 +4,19 @@ import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
-import { PROJECTS_COPY, ABOUT_COPY, EXIT_COPY, CAREER_COPY, CONTACT_COPY } from "./content.js?v=35f0cfa2";
-import { makeGalaxy, makeWormhole, makeUnclaimedPlanet } from "./galaxies.js?v=35f0cfa2";
-import { makeBlackHole } from "./blackhole.js?v=35f0cfa2";
-import { PROJECTS } from "./planets.js?v=35f0cfa2";
-import { noOrphans } from "./typeset.js?v=35f0cfa2";
+import { PROJECTS_COPY, ABOUT_COPY, EXIT_COPY, CAREER_COPY, CONTACT_COPY } from "./content.js?v=4a8a0c13";
+import { makeGalaxy, makeWormhole, makeUnclaimedPlanet } from "./galaxies.js?v=4a8a0c13";
+import { makeBlackHole } from "./blackhole.js?v=4a8a0c13";
+import { PROJECTS } from "./planets.js?v=4a8a0c13";
+import { noOrphans } from "./typeset.js?v=4a8a0c13";
 noOrphans();
-import { playIntro } from "./intro.js?v=35f0cfa2";
-import { WatercolorShader } from "./watercolor.js?v=35f0cfa2";
-import { themeButton } from "./warp-reveal.js?v=35f0cfa2";
+import { playIntro } from "./intro.js?v=4a8a0c13";
+import { WatercolorShader } from "./watercolor.js?v=4a8a0c13";
+import { themeButton } from "./warp-reveal.js?v=4a8a0c13";
 // two looks for the same ride: light, painted in watercolour on paper (the default), and dark, realistic space. The
 // head of index.html picks one before anything draws; the Dark / Light button in the header switches and remembers
 let PAINT = document.documentElement.classList.contains("paint");
-import { planetMaterial, atmosphereMaterial, starMaterial, ringMaterial, makeLiquid, FilmShader } from "./shaders.js?v=35f0cfa2";
+import { planetMaterial, atmosphereMaterial, starMaterial, ringMaterial, makeLiquid, FilmShader } from "./shaders.js?v=4a8a0c13";
 
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const rand = (a, b) => a + Math.random() * (b - a);
@@ -27,7 +27,7 @@ const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 // ---------- Renderer, scene, camera
 const canvas = document.getElementById("scene");
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: "high-performance" });
-renderer.setPixelRatio(Math.min(devicePixelRatio, 1.75));
+renderer.setPixelRatio(Math.min(devicePixelRatio, matchMedia("(hover: none), (max-width: 759px)").matches ? 1.5 : 1.75)); // phones: fewer pixels
 renderer.setSize(innerWidth, innerHeight);
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 
@@ -713,7 +713,7 @@ if (back >= 0) {
   flood.style.clipPath = "none";
   gsap.set(flood, { autoAlpha: 1 });
   gsap.timeline({ delay: 0.25 })
-    .to(flood, { autoAlpha: 0, duration: reduce ? 0.01 : 0.7, ease: "power1.inOut" })
+    .to(flood, { autoAlpha: 0, duration: reduce ? 0.01 : 0.7, ease: "power1.inOut", onComplete: () => (flood.style.background = "") })
     .to(state, { push: 0, duration: reduce ? 0.01 : 2.0, ease: "power2.inOut" }, "-=0.15")
     .add(() => showCopy(), "-=0.6")
     .add(() => { back = -1; state.heroIn = true; }); // landed: scrolling up to the start shows the name, and scrolling on fades it
@@ -816,8 +816,14 @@ function updatePlanetCursor() {
   }
   ring.style.transform = `translate(${pointer.x}px, ${pointer.y}px)`;
 }
-addEventListener("click", (e) => {
-  if (e.target.closest("a, button, li, input")) return;
+// a tap, read from the pointer itself: iOS only sends a click to the page when the tapped element looks clickable,
+// and the planets live in the canvas
+let tapDown = null;
+addEventListener("pointerdown", (e) => { tapDown = e.isPrimary ? { x: e.clientX, y: e.clientY, t: performance.now() } : null; });
+addEventListener("pointerup", (e) => {
+  const tap = tapDown && Math.hypot(e.clientX - tapDown.x, e.clientY - tapDown.y) < 12 && performance.now() - tapDown.t < 600;
+  tapDown = null;
+  if (!tap || e.target.closest("a, button, li, input")) return;
   const i = planetAt(e.clientX, e.clientY);
   if (i >= 0) warpTo(i);
 });

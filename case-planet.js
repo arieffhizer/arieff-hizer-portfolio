@@ -1,15 +1,15 @@
 import * as THREE from "three";
-import { planetMaterial, atmosphereMaterial, starMaterial } from "./shaders.js?v=35f0cfa2";
-import { PROJECTS } from "./planets.js?v=35f0cfa2";
-import { makeMonoliths } from "./case-monoliths.js?v=35f0cfa2";
-import { makeSatellites } from "./case-satellites.js?v=35f0cfa2";
-import { noOrphans } from "./typeset.js?v=35f0cfa2";
+import { planetMaterial, atmosphereMaterial, starMaterial } from "./shaders.js?v=4a8a0c13";
+import { PROJECTS } from "./planets.js?v=4a8a0c13";
+import { makeMonoliths } from "./case-monoliths.js?v=4a8a0c13";
+import { makeSatellites } from "./case-satellites.js?v=4a8a0c13";
+import { noOrphans } from "./typeset.js?v=4a8a0c13";
 import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
-import { WatercolorShader } from "./watercolor.js?v=35f0cfa2";
-import { themeButton } from "./warp-reveal.js?v=35f0cfa2";
+import { WatercolorShader } from "./watercolor.js?v=4a8a0c13";
+import { themeButton } from "./warp-reveal.js?v=4a8a0c13";
 
 // projects whose screens stand on the planet as chrome monoliths (on trial); the rest show flat images
 const MONOLITHS = new Set([]); // none for now: satellites won
@@ -76,7 +76,7 @@ export function startPlanetCase({ name, copy, sections, index, total }) {
   canvas.setAttribute("aria-hidden", "true");
   document.body.prepend(canvas);
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  renderer.setPixelRatio(Math.min(devicePixelRatio, matchMedia("(hover: none), (max-width: 759px)").matches ? 1.5 : 2)); // phones: fewer pixels to paint
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 3000);
   // light mode (the head of case.html decides): painted in watercolour, the brand skies in their own colour and the
@@ -485,12 +485,14 @@ export function startPlanetCase({ name, copy, sections, index, total }) {
     box.querySelectorAll("img").forEach((el) => el.remove()); boxImg = null;
     showShot(img.open && models && models.isOpen?.(k) ? first + 1 : Math.max(0, first));
     box.classList.add("on");
+    openedAt = performance.now();
     document.documentElement.style.overflow = "hidden";
     tag.classList.remove("on");
   }
+  let openedAt = 0;
   function closeShot() { box.classList.remove("on"); document.documentElement.style.overflow = ""; }
-  // the backdrop closes it; the picture and the controls do not
-  box.addEventListener("click", (e) => { if (e.target === box) closeShot(); });
+  // the backdrop closes it; the picture and the controls do not (nor the click that finishes the tap that opened it)
+  box.addEventListener("click", (e) => { if (e.target === box && performance.now() - openedAt > 450) closeShot(); });
   box.querySelector(".lb-close").addEventListener("click", closeShot);
   box.querySelector(".prev").addEventListener("click", () => showShot(at - 1, -1));
   box.querySelector(".next").addEventListener("click", () => showShot(at + 1, 1));
@@ -517,8 +519,12 @@ export function startPlanetCase({ name, copy, sections, index, total }) {
       tag.classList.toggle("on", !!over);
     });
     document.addEventListener("pointerleave", () => tag.classList.remove("on"));
-    addEventListener("click", (e) => {
-      if (box.classList.contains("on") || e.target.closest("a, button, li")) return; // (the section list is <li>s)
+    let down = null;
+    addEventListener("pointerdown", (e) => { down = e.isPrimary ? { x: e.clientX, y: e.clientY, t: performance.now() } : null; });
+    addEventListener("pointerup", (e) => {
+      const tap = down && Math.hypot(e.clientX - down.x, e.clientY - down.y) < 12 && performance.now() - down.t < 600;
+      down = null;
+      if (!tap || box.classList.contains("on") || e.target.closest("a, button, li")) return; // (the section list is <li>s)
       const hit = monolithAt(e.clientX, e.clientY);
       if (hit) openShot(hit.sh.img, shots.indexOf(hit.sh));
     });
@@ -576,7 +582,7 @@ export function startPlanetCase({ name, copy, sections, index, total }) {
     el.style.opacity = a.toFixed(3);
     el.style.visibility = a < 0.002 ? "hidden" : "visible";
     el.style.pointerEvents = a > 0.6 ? "auto" : "none";
-    el.style.filter = `blur(${(Math.abs(d) * 18).toFixed(2)}px)`;
+    el.style.filter = Math.abs(d) < 0.01 ? "none" : `blur(${(Math.abs(d) * 18).toFixed(2)}px)`;
     el.style.transform = `translate(-50%, ${(-d * 70).toFixed(1)}px) scale(${(1 + Math.max(0, d) * 0.25).toFixed(3)})`;
   }
 
@@ -604,20 +610,23 @@ export function startPlanetCase({ name, copy, sections, index, total }) {
     renderer.autoClear = true;
   }
 
-  let last = performance.now(), flipT = 0;
+  let last = performance.now(), flipT = 0, skyCss = "";
   const swapT = {}, SWAP = 0.16; // phones: how far round the orbit a mockup slides as the pair swaps (just off screen)
   // an eased follower per key, so steps between rests glide rather than jump
   let dtNow = 0;
   const ease = (key, want) => (swapT[key] = swapT[key] === undefined || reduce ? want : swapT[key] + (want - swapT[key]) * (1 - Math.exp(-dtNow * 6)));
   const pillEls = {};
   function tick(now) {
-    const dt = Math.min(0.05, (now - last) / 1000);
+    const dt = Math.min(0.1, (now - last) / 1000); // (a slow phone's long frames still count, so the glide keeps its pace)
     last = now;
     state.x += (target() - state.x) * (1 - Math.exp(-dt * (reduce ? 60 : 5)));
+    if (Math.abs(target() - state.x) < 0.002) state.x = target(); // landed: no long, faintly blurred tail
     const x = state.x, i = Math.floor(x), k = x - i;
     // day on even sections, night on odd ones
     const night = i % 2 === 0 ? k : 1 - k;
     scene.background.copy(DAY).lerp(paint ? PAPER : NIGHT, night); // painted, the night sections are bright paper
+    const sky = "#" + scene.background.getHexString(); // (and the canvas wears it, for Safari's bars)
+    if (sky !== skyCss) renderer.domElement.style.backgroundColor = skyCss = sky;
     stars.material.opacity = night;
     stars.material.color.setHex(paint ? 0x55535f : 0xe9eaee); // painted, the night is paper: its stars are flecks of ink
     document.body.style.color = `rgb(${ink(night)})`;
@@ -715,7 +724,7 @@ export function startPlanetCase({ name, copy, sections, index, total }) {
       sh.el.style.top = `${py.toFixed(1)}px`;
       sh.el.style.opacity = a.toFixed(3);
       sh.el.style.pointerEvents = a > 0.6 ? "auto" : "none";
-      sh.el.style.filter = `blur(${(Math.abs(d) * 14).toFixed(2)}px)`;
+      sh.el.style.filter = Math.abs(d) < 0.01 ? "none" : `blur(${(Math.abs(d) * 14).toFixed(2)}px)`;
       sh.el.style.transform = `translate(-50%, -100%) rotate(${lean.toFixed(2)}deg)`;
     });
     const s = sections[Math.round(x)];
@@ -756,13 +765,14 @@ export function startPlanetCase({ name, copy, sections, index, total }) {
   history.scrollRestoration = "manual"; // a case study always opens on its title
   scrollTo(0, 0);
   if (!reduce) {
-    gsap.to(veil, { autoAlpha: 0, duration: 0.8, ease: "power1.out", delay: 0.15 }); // (hidden outright once clear: Safari's bars)
+    gsap.to(veil, { autoAlpha: 0, duration: 0.8, ease: "power1.out", delay: 0.15, onComplete: () => (veil.style.background = "") }); // (hidden and colourless once clear: Safari's bars)
     gsap.to(state, { rise: 0, duration: 2.0, ease: "power3.out", delay: 0.1 });
   } else gsap.set(veil, { autoAlpha: 0 });
 
   // ---------- Leaving: back to the brand colour, which the homepage dives back out of
   document.querySelectorAll(`a[href="index.html#${copy.slug}"]`).forEach((a) => a.addEventListener("click", (e) => {
     e.preventDefault();
+    veil.style.background = p.color;
     gsap.to(veil, { autoAlpha: 1, duration: reduce ? 0.01 : 0.45, ease: "power1.in", onComplete: () => (location.href = a.href) });
   }));
 }
