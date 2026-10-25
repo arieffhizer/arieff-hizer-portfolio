@@ -114,7 +114,7 @@ a { color: inherit; text-decoration: none; }
 .jumps button:hover, .jumps button:focus-visible { color: var(--ink); }
 /* While a shortcut is flying you somewhere, the copy steps aside */
 body.transiting .orbits, body.transiting .hero { opacity: 0 !important; transition: opacity .35s; }
-.veil { position: fixed; inset: 0; z-index: 15; --fill: #050507; opacity: 0; pointer-events: none; }
+.veil { position: fixed; inset: 0; z-index: 15; opacity: 0; pointer-events: none; }
 
 /* "Back to where it all started" sits under the contact links */
 .project button.enter.home { display: inline-block; margin-top: 26px; background: none; border: 0; border-bottom: 1px solid var(--ink-3); color: var(--ink); padding: 0 0 5px; }
@@ -255,7 +255,7 @@ html.paint {
   --hair: rgba(38, 36, 44, .16);
 }
 html.paint .cue { border-color: rgba(38, 36, 44, .35); background: rgba(38, 36, 44, .04); }
-html.paint .veil { --fill: #F4EEE4; }
+
 /* painted: no dark veil behind the Journey copy (on paper it reads as a smudge, and ink needs no help) */
 html.paint .orbit-copy.over-stars .project::before { display: none; }
 /* painted: the intro on the same watercolour paper (warm cotton, fine grain, slow cloudy washes), its whiteout in
@@ -301,9 +301,8 @@ html:not(.paint) .jumps .theme .sun { display: block; }
 @keyframes spark-twinkle { 0%, 100% { transform: rotate(0) scale(1); } 50% { transform: rotate(45deg) scale(.82); } }
 @media (prefers-reduced-motion: reduce) { .spark-tag .spark { animation: none !important; } }
 
-/* Browser bars: iOS Safari 26 tints its bars from the colour of full-screen fixed layers (a background colour or an
-   image alike), and follows them live. Each such layer paints its colour (--fill) on a ::before inside it, which Safari
-   ignores, and carries none itself, so the bars take the white page. (The ::before sits behind the layer's content.) */
-.flood::before, .case-veil::before, .veil::before, .theme-fade::before, .case-lightbox::before {
-  content: ""; position: absolute; inset: 0; z-index: -1; background: var(--fill, transparent); pointer-events: none;
-}
+/* Browser bars: iOS Safari 26 tints its bars with whatever colour a full-screen fixed layer paints (a background, an
+   image, a ::before, a child), live, except a canvas's. So the colour layers are one-pixel canvases stretched over the
+   screen, and the viewer's backdrop is out of the page while it is closed */
+canvas.flood, canvas.case-veil, canvas.veil, canvas.theme-fade { display: block; width: 100%; height: 100%; }
+.case-lightbox::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--fill); pointer-events: none; }

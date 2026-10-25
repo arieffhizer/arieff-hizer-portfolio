@@ -61,7 +61,9 @@ export function warpReveal({ x, y, duration = 1300 }) {
 // button, slowly (2.4 s). Neither snapshot is blurred or zoomed (both pulled the screen's edges in and let a rim show):
 // the marbled mask alone does the reveal. A short fade, where the browser has no view transitions.
 export function themeButton(button, { isPaint, apply, reduce }) {
-  const fade = document.createElement("div");
+  const fade = document.createElement("canvas"); // (a canvas: iOS Safari's bar tint ignores its colour)
+  fade.width = fade.height = 1;
+  const fillLayer = (el, c) => { const g = el.getContext("2d"); g.clearRect(0, 0, 1, 1); if (c) { g.fillStyle = c; g.fillRect(0, 0, 1, 1); } };
   fade.className = "theme-fade";
   document.body.append(fade);
   const label = () => button.setAttribute("aria-label", isPaint() ? "Switch to dark mode" : "Switch to light mode");
@@ -76,14 +78,14 @@ export function themeButton(button, { isPaint, apply, reduce }) {
     if (phone && !reduce) {
       const r = button.getBoundingClientRect(), x = r.left + r.width / 2, y = r.top + r.height / 2;
       const far = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y)) + 4;
-      fade.style.setProperty("--fill", next ? "#F4EEE4" : "#050507"); // (on its ::before: Safari's bars)
+      fillLayer(fade, next ? "#F4EEE4" : "#050507");
       fade.style.clipPath = `circle(0px at ${x}px ${y}px)`; // (closed before it shows: no flash of the whole screen)
       fade.style.opacity = 1;
       fade.animate([{ clipPath: `circle(0px at ${x}px ${y}px)` }, { clipPath: `circle(${far}px at ${x}px ${y}px)` }],
         { duration: 650, easing: "cubic-bezier(.65, 0, .35, 1)", fill: "forwards" }).finished.then(() => {
         go();
         requestAnimationFrame(() => fade.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 500, delay: 80, easing: "ease-out", fill: "forwards" })
-          .finished.then(() => { fade.getAnimations().forEach((a) => a.cancel()); fade.style.opacity = ""; fade.style.removeProperty("--fill"); fade.style.clipPath = ""; }));
+          .finished.then(() => { fade.getAnimations().forEach((a) => a.cancel()); fade.style.opacity = ""; fillLayer(fade, null); fade.style.clipPath = ""; }));
       });
       return;
     }
@@ -95,11 +97,11 @@ export function themeButton(button, { isPaint, apply, reduce }) {
       });
       return;
     }
-    fade.style.setProperty("--fill", next ? "#F4EEE4" : "#050507"); // (on its ::before: Safari's bars)
+    fillLayer(fade, next ? "#F4EEE4" : "#050507");
     fade.animate([{ opacity: 0 }, { opacity: 1 }], { duration: reduce ? 1 : 220, fill: "forwards" }).finished.then(() => {
       go();
       fade.animate([{ opacity: 1 }, { opacity: 0 }], { duration: reduce ? 1 : 450, delay: 50, fill: "forwards" })
-        .finished.then(() => { fade.getAnimations().forEach((a) => a.cancel()); fade.style.removeProperty("--fill"); }); // colourless once clear
+        .finished.then(() => { fade.getAnimations().forEach((a) => a.cancel()); fillLayer(fade, null); }); // colourless once clear
     });
   });
 }

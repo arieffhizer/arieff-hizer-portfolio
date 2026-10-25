@@ -4,19 +4,19 @@ import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
-import { PROJECTS_COPY, ABOUT_COPY, EXIT_COPY, CAREER_COPY, CONTACT_COPY } from "./content.js?v=9e80a490";
-import { makeGalaxy, makeWormhole, makeUnclaimedPlanet } from "./galaxies.js?v=9e80a490";
-import { makeBlackHole } from "./blackhole.js?v=9e80a490";
-import { PROJECTS } from "./planets.js?v=9e80a490";
-import { noOrphans } from "./typeset.js?v=9e80a490";
+import { PROJECTS_COPY, ABOUT_COPY, EXIT_COPY, CAREER_COPY, CONTACT_COPY } from "./content.js?v=6bea3ec2";
+import { makeGalaxy, makeWormhole, makeUnclaimedPlanet } from "./galaxies.js?v=6bea3ec2";
+import { makeBlackHole } from "./blackhole.js?v=6bea3ec2";
+import { PROJECTS } from "./planets.js?v=6bea3ec2";
+import { noOrphans } from "./typeset.js?v=6bea3ec2";
 noOrphans();
-import { playIntro } from "./intro.js?v=9e80a490";
-import { WatercolorShader } from "./watercolor.js?v=9e80a490";
-import { themeButton } from "./warp-reveal.js?v=9e80a490";
+import { playIntro } from "./intro.js?v=6bea3ec2";
+import { WatercolorShader } from "./watercolor.js?v=6bea3ec2";
+import { themeButton } from "./warp-reveal.js?v=6bea3ec2";
 // two looks for the same ride: light, painted in watercolour on paper (the default), and dark, realistic space. The
 // head of index.html picks one before anything draws; the Dark / Light button in the header switches and remembers
 let PAINT = document.documentElement.classList.contains("paint");
-import { planetMaterial, atmosphereMaterial, starMaterial, ringMaterial, makeLiquid, FilmShader } from "./shaders.js?v=9e80a490";
+import { planetMaterial, atmosphereMaterial, starMaterial, ringMaterial, makeLiquid, FilmShader } from "./shaders.js?v=6bea3ec2";
 
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const rand = (a, b) => a + Math.random() * (b - a);
@@ -374,9 +374,14 @@ composer.addPass(film);
 const wash = new ShaderPass(WatercolorShader); // light: watercolour on paper, in the film grain's place
 wash.uniforms.uRes.value = new THREE.Vector2(innerWidth, innerHeight);
 composer.addPass(wash);
+// a colour layer is a one-pixel canvas stretched over the screen: iOS Safari 26 tints its bars with whatever colour a
+// full-screen fixed layer paints, except a canvas's (so the bars stay white)
+const fillLayer = (el, c) => { const g = el.getContext("2d"); g.clearRect(0, 0, 1, 1); if (c) { g.fillStyle = c; g.fillRect(0, 0, 1, 1); } };
+fillLayer(document.querySelector(".veil"), "#050507");
 function setTheme(paint) {
   PAINT = paint;
   document.documentElement.classList.toggle("paint", paint);
+  fillLayer(document.querySelector(".veil"), paint ? "#F4EEE4" : "#050507"); // the veil between scenes: paper, or space
   film.enabled = !paint; wash.enabled = paint;
   // painted planets are lit all round, as an illustration is
   scene.traverse((o) => [].concat(o.material || []).forEach((m) => { if (m.uniforms && m.uniforms.uEven) m.uniforms.uEven.value = paint ? 1 : 0; }));
@@ -710,12 +715,12 @@ if (back >= 0) {
   state.warpPlanet = stops[back].p;
   state.push = 1;
   document.body.classList.add("transiting");
-  // (the colour goes on the layer's ::before, which iOS Safari's bar tint ignores)
-  flood.style.setProperty("--fill", stops[back].color);
+  // (fillLayer: a canvas, which iOS Safari's bar tint ignores)
+  fillLayer(flood, stops[back].color);
   flood.style.clipPath = "none";
   gsap.set(flood, { autoAlpha: 1 });
   gsap.timeline({ delay: 0.25 })
-    .to(flood, { autoAlpha: 0, duration: reduce ? 0.01 : 0.7, ease: "power1.inOut", onComplete: () => (flood.style.removeProperty("--fill")) })
+    .to(flood, { autoAlpha: 0, duration: reduce ? 0.01 : 0.7, ease: "power1.inOut", onComplete: () => (fillLayer(flood, null)) })
     .to(state, { push: 0, duration: reduce ? 0.01 : 2.0, ease: "power2.inOut" }, "-=0.15")
     .add(() => showCopy(), "-=0.6")
     .add(() => { back = -1; state.heroIn = true; }); // landed: scrolling up to the start shows the name, and scrolling on fades it
@@ -763,7 +768,7 @@ function warpTo(i) {
   if (reduce) return go();
   endSkips();
   document.body.classList.add("transiting");
-  flood.style.setProperty("--fill", s.color);
+  fillLayer(flood, s.color);
   flood.style.clipPath = "none";
   gsap.set(flood, { autoAlpha: 0 }); // (autoAlpha: hidden outright when clear, so Safari never tints its bars with it)
   // far from the planet (out in the Journey, say): superspeed, and its colour floods in at full streak
