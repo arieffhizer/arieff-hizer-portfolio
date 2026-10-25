@@ -1,15 +1,15 @@
 import * as THREE from "three";
-import { planetMaterial, atmosphereMaterial, starMaterial } from "./shaders.js?v=4a8a0c13";
-import { PROJECTS } from "./planets.js?v=4a8a0c13";
-import { makeMonoliths } from "./case-monoliths.js?v=4a8a0c13";
-import { makeSatellites } from "./case-satellites.js?v=4a8a0c13";
-import { noOrphans } from "./typeset.js?v=4a8a0c13";
+import { planetMaterial, atmosphereMaterial, starMaterial } from "./shaders.js?v=4a4f1d91";
+import { PROJECTS } from "./planets.js?v=4a4f1d91";
+import { makeMonoliths } from "./case-monoliths.js?v=4a4f1d91";
+import { makeSatellites } from "./case-satellites.js?v=4a4f1d91";
+import { noOrphans } from "./typeset.js?v=4a4f1d91";
 import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
-import { WatercolorShader } from "./watercolor.js?v=4a8a0c13";
-import { themeButton } from "./warp-reveal.js?v=4a8a0c13";
+import { WatercolorShader } from "./watercolor.js?v=4a4f1d91";
+import { themeButton } from "./warp-reveal.js?v=4a4f1d91";
 
 // projects whose screens stand on the planet as chrome monoliths (on trial); the rest show flat images
 const MONOLITHS = new Set([]); // none for now: satellites won
@@ -76,7 +76,7 @@ export function startPlanetCase({ name, copy, sections, index, total }) {
   canvas.setAttribute("aria-hidden", "true");
   document.body.prepend(canvas);
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
-  renderer.setPixelRatio(Math.min(devicePixelRatio, matchMedia("(hover: none), (max-width: 759px)").matches ? 1.5 : 2)); // phones: fewer pixels to paint
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 3000);
   // light mode (the head of case.html decides): painted in watercolour, the brand skies in their own colour and the
@@ -610,7 +610,7 @@ export function startPlanetCase({ name, copy, sections, index, total }) {
     renderer.autoClear = true;
   }
 
-  let last = performance.now(), flipT = 0, skyCss = "";
+  let last = performance.now(), flipT = 0;
   const swapT = {}, SWAP = 0.16; // phones: how far round the orbit a mockup slides as the pair swaps (just off screen)
   // an eased follower per key, so steps between rests glide rather than jump
   let dtNow = 0;
@@ -625,8 +625,6 @@ export function startPlanetCase({ name, copy, sections, index, total }) {
     // day on even sections, night on odd ones
     const night = i % 2 === 0 ? k : 1 - k;
     scene.background.copy(DAY).lerp(paint ? PAPER : NIGHT, night); // painted, the night sections are bright paper
-    const sky = "#" + scene.background.getHexString(); // (and the canvas wears it, for Safari's bars)
-    if (sky !== skyCss) renderer.domElement.style.backgroundColor = skyCss = sky;
     stars.material.opacity = night;
     stars.material.color.setHex(paint ? 0x55535f : 0xe9eaee); // painted, the night is paper: its stars are flecks of ink
     document.body.style.color = `rgb(${ink(night)})`;

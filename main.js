@@ -4,19 +4,19 @@ import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
-import { PROJECTS_COPY, ABOUT_COPY, EXIT_COPY, CAREER_COPY, CONTACT_COPY } from "./content.js?v=4a8a0c13";
-import { makeGalaxy, makeWormhole, makeUnclaimedPlanet } from "./galaxies.js?v=4a8a0c13";
-import { makeBlackHole } from "./blackhole.js?v=4a8a0c13";
-import { PROJECTS } from "./planets.js?v=4a8a0c13";
-import { noOrphans } from "./typeset.js?v=4a8a0c13";
+import { PROJECTS_COPY, ABOUT_COPY, EXIT_COPY, CAREER_COPY, CONTACT_COPY } from "./content.js?v=4a4f1d91";
+import { makeGalaxy, makeWormhole, makeUnclaimedPlanet } from "./galaxies.js?v=4a4f1d91";
+import { makeBlackHole } from "./blackhole.js?v=4a4f1d91";
+import { PROJECTS } from "./planets.js?v=4a4f1d91";
+import { noOrphans } from "./typeset.js?v=4a4f1d91";
 noOrphans();
-import { playIntro } from "./intro.js?v=4a8a0c13";
-import { WatercolorShader } from "./watercolor.js?v=4a8a0c13";
-import { themeButton } from "./warp-reveal.js?v=4a8a0c13";
+import { playIntro } from "./intro.js?v=4a4f1d91";
+import { WatercolorShader } from "./watercolor.js?v=4a4f1d91";
+import { themeButton } from "./warp-reveal.js?v=4a4f1d91";
 // two looks for the same ride: light, painted in watercolour on paper (the default), and dark, realistic space. The
 // head of index.html picks one before anything draws; the Dark / Light button in the header switches and remembers
 let PAINT = document.documentElement.classList.contains("paint");
-import { planetMaterial, atmosphereMaterial, starMaterial, ringMaterial, makeLiquid, FilmShader } from "./shaders.js?v=4a8a0c13";
+import { planetMaterial, atmosphereMaterial, starMaterial, ringMaterial, makeLiquid, FilmShader } from "./shaders.js?v=4a4f1d91";
 
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const rand = (a, b) => a + Math.random() * (b - a);
@@ -27,7 +27,7 @@ const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 // ---------- Renderer, scene, camera
 const canvas = document.getElementById("scene");
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: "high-performance" });
-renderer.setPixelRatio(Math.min(devicePixelRatio, matchMedia("(hover: none), (max-width: 759px)").matches ? 1.5 : 1.75)); // phones: fewer pixels
+renderer.setPixelRatio(Math.min(devicePixelRatio, 1.75));
 renderer.setSize(innerWidth, innerHeight);
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 
@@ -1043,12 +1043,14 @@ function rideSpeed(ps) {
 // ---------- Shortcuts: About (a direct flight to the start of About) and Journey (superspeed to the galaxies)
 const ABOUT_I = stops.findIndex((s) => s.kind === "about");
 let transit = null, skipTl = null;
+let restTween = null, restTo = null; // a glide between reading rests (below), and where it is going
 const veil = document.querySelector(".veil");
 const setScroll = (ps) => { scrollTo(0, ps * maxScroll()); state.p = state.ps = ps; };
 // show the copy again, but only after it has been set for where you are now: otherwise the name, still fully
 // visible from the hero underneath, flashes for a frame as you land
 function showCopy() { updateText(); document.body.classList.remove("transiting"); }
 function endSkips() {
+  restTween?.kill(); restTween = null; restTo = null;
   // a return home cut short on its way down: the name is still in its scrolled-out pose, so the scroll takes it back
   if (skipTl && skipTl.data === "home") state.heroIn = true;
   if (transit) { transit.tween.kill(); transit = null; }
@@ -1170,6 +1172,62 @@ function returnHome(viaBlackHole) {
   skipTl = tl;
 }
 const CONTACT_I = stops.findIndex((s) => s.kind === "contact");
+
+// ---------- Reading rests, hero to About: a wheel flick, a swipe or an arrow key glides to the next place where
+// there is something to read (the name; each planet's two lines, then its title; About's two lines, then its card)
+// and rests there with the copy fully up. A free scroll could fly past the lines on one flick, or stop with them half
+// gone. Past About's card the ride is free again (the journey out has its own pace).
+const RESTS = [0];
+stops.slice(0, ABOUT_I + 1).forEach((s, i) => {
+  if (s.kind === "project") {
+    const T = textTimes(s);
+    RESTS.push(atStop(i, (T.b2[1] + T.b1[2]) / 2), atStop(i, (T.pr[1] + T.pr[2]) / 2)); // both lines up; the title up
+  } else if (s.kind === "about") RESTS.push(atStop(i, 0.575), atStop(i, 0.865));
+});
+const LAST_REST = RESTS[RESTS.length - 1];
+const restBusy = () => warping || transit || skipTl || document.body.classList.contains("transiting");
+// is this gesture one for the rests? (below the last one; or going back up from right at it)
+const inRests = (dir) => !restBusy() && (state.p < LAST_REST - 0.002 || (dir < 0 && state.p < LAST_REST + 0.002));
+function stepRest(dir) {
+  const from = restTo ?? state.p; // a second flick while gliding goes one further on
+  const next = dir > 0 ? RESTS.find((v) => v > from + 0.0015) : [...RESTS].reverse().find((v) => v < from - 0.0015);
+  if (next === undefined) return;
+  restTo = next;
+  restTween?.kill();
+  const proxy = { v: state.p };
+  // slower over longer stretches, but never a crawl: about 1.4 s between the lines and the title, up to 3 s
+  const dur = reduce ? 0.01 : THREE.MathUtils.clamp(1.1 + Math.abs(next - proxy.v) * 45, 1.4, 3.0);
+  restTween = gsap.to(proxy, { v: next, duration: dur, ease: "power2.inOut",
+    onUpdate: () => scrollTo(0, proxy.v * maxScroll()), onComplete: () => { restTween = null; restTo = null; } });
+}
+{
+  let used = false, acc = 0, quiet, lastStep = 0;
+  const go = (dir) => { const now = performance.now(); if (now - lastStep < 500) return false; lastStep = now; stepRest(dir); return true; };
+  addEventListener("wheel", (e) => {
+    const dir = Math.sign(e.deltaY);
+    if (!dir || !inRests(dir) || e.ctrlKey) return;
+    e.preventDefault();
+    clearTimeout(quiet);
+    quiet = setTimeout(() => { used = false; acc = 0; }, 180); // the gesture (and its momentum) has ended
+    if (used) return;
+    acc += e.deltaY * (e.deltaMode === 1 ? 16 : 1);
+    if (Math.abs(acc) >= 30 && go(Math.sign(acc))) used = true;
+  }, { passive: false });
+  addEventListener("keydown", (e) => {
+    if (e.altKey || e.ctrlKey || e.metaKey || e.target.closest?.("input, textarea")) return;
+    const dir = { ArrowDown: 1, PageDown: 1, " ": e.shiftKey ? -1 : 1, ArrowUp: -1, PageUp: -1 }[e.key];
+    if (dir && inRests(dir)) { e.preventDefault(); go(dir); }
+  });
+  // touch: the page does not scroll under the finger inside the rests; the swipe decides the step
+  let y0 = null;
+  addEventListener("touchstart", (e) => { y0 = e.touches.length === 1 ? e.touches[0].clientY : null; }, { passive: true });
+  addEventListener("touchmove", (e) => { if (y0 !== null && inRests(Math.sign(y0 - e.touches[0].clientY) || 1)) e.preventDefault(); }, { passive: false });
+  addEventListener("touchend", (e) => {
+    if (y0 === null) return;
+    const dy = y0 - e.changedTouches[0].clientY; y0 = null;
+    if (Math.abs(dy) > 30 && inRests(Math.sign(dy))) go(Math.sign(dy));
+  });
+}
 document.querySelector(".mark").addEventListener("click", (e) => {
   e.preventDefault();
   if (state.ps > HERO_END * 1.5) returnHome(state.ps >= stops[CONTACT_I].ps0); // your name always takes you home
