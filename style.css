@@ -76,7 +76,9 @@ a { color: inherit; text-decoration: none; }
 
 @media (max-width: 720px) {
   /* the project list stacks above the chapter name, rather than beside it, and the hero rises to leave it room */
-  .corner.bottom { flex-direction: column; align-items: flex-start; gap: 16px; }
+  /* (as wide as its content, not the screen: iOS Safari tints its bars from full-width fixed layers, and this one holds
+     the current planet's coloured dot) */
+  .corner.bottom { flex-direction: column; align-items: flex-start; gap: 16px; right: auto; }
   .index { gap: 4px; font-size: 10.5px; }
   .hero { top: 40%; }
   /* the top bar on one line with room between: the shortcuts a size down and closer together, the name a touch smaller */

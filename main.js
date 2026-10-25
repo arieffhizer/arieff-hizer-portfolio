@@ -4,19 +4,19 @@ import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
-import { PROJECTS_COPY, ABOUT_COPY, EXIT_COPY, CAREER_COPY, CONTACT_COPY } from "./content.js?v=6bea3ec2";
-import { makeGalaxy, makeWormhole, makeUnclaimedPlanet } from "./galaxies.js?v=6bea3ec2";
-import { makeBlackHole } from "./blackhole.js?v=6bea3ec2";
-import { PROJECTS } from "./planets.js?v=6bea3ec2";
-import { noOrphans } from "./typeset.js?v=6bea3ec2";
+import { PROJECTS_COPY, ABOUT_COPY, EXIT_COPY, CAREER_COPY, CONTACT_COPY } from "./content.js?v=acc5dcce";
+import { makeGalaxy, makeWormhole, makeUnclaimedPlanet } from "./galaxies.js?v=acc5dcce";
+import { makeBlackHole } from "./blackhole.js?v=acc5dcce";
+import { PROJECTS } from "./planets.js?v=acc5dcce";
+import { noOrphans } from "./typeset.js?v=acc5dcce";
 noOrphans();
-import { playIntro } from "./intro.js?v=6bea3ec2";
-import { WatercolorShader } from "./watercolor.js?v=6bea3ec2";
-import { themeButton } from "./warp-reveal.js?v=6bea3ec2";
+import { playIntro } from "./intro.js?v=acc5dcce";
+import { WatercolorShader } from "./watercolor.js?v=acc5dcce";
+import { themeButton } from "./warp-reveal.js?v=acc5dcce";
 // two looks for the same ride: light, painted in watercolour on paper (the default), and dark, realistic space. The
 // head of index.html picks one before anything draws; the Dark / Light button in the header switches and remembers
 let PAINT = document.documentElement.classList.contains("paint");
-import { planetMaterial, atmosphereMaterial, starMaterial, ringMaterial, makeLiquid, FilmShader } from "./shaders.js?v=6bea3ec2";
+import { planetMaterial, atmosphereMaterial, starMaterial, ringMaterial, makeLiquid, FilmShader } from "./shaders.js?v=acc5dcce";
 
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const rand = (a, b) => a + Math.random() * (b - a);

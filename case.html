@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=6bea3ec2">
+<link rel="stylesheet" href="style.css?v=acc5dcce">
 <script>
 // light (watercolour on paper) unless dark (space) was chosen, as on the home page
 (() => { let t = "light"; try { t = localStorage.getItem("v2-theme") || "light"; } catch {}
@@ -72,7 +72,7 @@
 </main>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script type="module">
-  import { PROJECTS_COPY, CASE_SECTIONS } from "./content.js?v=6bea3ec2";
+  import { PROJECTS_COPY, CASE_SECTIONS } from "./content.js?v=acc5dcce";
   const slug = new URLSearchParams(location.search).get("p") || "reta";
   const names = Object.keys(PROJECTS_COPY);
   const i = Math.max(0, names.findIndex((n) => PROJECTS_COPY[n].slug === slug));
@@ -91,7 +91,7 @@
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   // the planet-horizon layout, on trial with the projects that have sections written
   if (CASE_SECTIONS[c.slug]) {
-    const { startPlanetCase } = await import("./case-planet.js?v=6bea3ec2");
+    const { startPlanetCase } = await import("./case-planet.js?v=acc5dcce");
     startPlanetCase({ name, copy: c, sections: CASE_SECTIONS[c.slug], index: i, total: names.length });
   } else {
   document.body.classList.add("legacy-case");
