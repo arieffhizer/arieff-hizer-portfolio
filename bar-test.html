@@ -42,7 +42,7 @@ const next = order[order.indexOf(V) + 1];
 const card = document.createElement("div");
 card.className = "card";
 card.innerHTML = `${say[V]}<br><span style="font-weight:400">What colour are the top and bottom bars? (For E and F, wait 3 seconds.)</span><br>` +
-  (next ? `<a href="bar-test.html?v=${next}">Next: ${next} →</a>` : `<span style="font-weight:400">That's all six.</span>`);
+  `<div>${order.map((o) => `<a href="https://arieffhizer.com/bar-test.html?v=${o}" style="margin-right:14px">${o}</a>`).join("")}</div>`;
 document.body.append(card);
 </script>
 </body>
