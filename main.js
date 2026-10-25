@@ -4,19 +4,19 @@ import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
-import { PROJECTS_COPY, ABOUT_COPY, EXIT_COPY, CAREER_COPY, CONTACT_COPY } from "./content.js";
-import { makeGalaxy, makeWormhole, makeUnclaimedPlanet } from "./galaxies.js";
-import { makeBlackHole } from "./blackhole.js";
-import { PROJECTS } from "./planets.js";
-import { noOrphans } from "./typeset.js";
+import { PROJECTS_COPY, ABOUT_COPY, EXIT_COPY, CAREER_COPY, CONTACT_COPY } from "./content.js?v=35f0cfa2";
+import { makeGalaxy, makeWormhole, makeUnclaimedPlanet } from "./galaxies.js?v=35f0cfa2";
+import { makeBlackHole } from "./blackhole.js?v=35f0cfa2";
+import { PROJECTS } from "./planets.js?v=35f0cfa2";
+import { noOrphans } from "./typeset.js?v=35f0cfa2";
 noOrphans();
-import { playIntro } from "./intro.js";
-import { WatercolorShader } from "./watercolor.js";
-import { themeButton } from "./warp-reveal.js";
+import { playIntro } from "./intro.js?v=35f0cfa2";
+import { WatercolorShader } from "./watercolor.js?v=35f0cfa2";
+import { themeButton } from "./warp-reveal.js?v=35f0cfa2";
 // two looks for the same ride: light, painted in watercolour on paper (the default), and dark, realistic space. The
 // head of index.html picks one before anything draws; the Dark / Light button in the header switches and remembers
 let PAINT = document.documentElement.classList.contains("paint");
-import { planetMaterial, atmosphereMaterial, starMaterial, ringMaterial, makeLiquid, FilmShader } from "./shaders.js";
+import { planetMaterial, atmosphereMaterial, starMaterial, ringMaterial, makeLiquid, FilmShader } from "./shaders.js?v=35f0cfa2";
 
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const rand = (a, b) => a + Math.random() * (b - a);
