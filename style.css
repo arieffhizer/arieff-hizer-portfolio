@@ -300,3 +300,12 @@ html:not(.paint) .jumps .theme .sun { display: block; }
 .spark-tag.pin:not(.on) { opacity: 0 !important; }
 @keyframes spark-twinkle { 0%, 100% { transform: rotate(0) scale(1); } 50% { transform: rotate(45deg) scale(.82); } }
 @media (prefers-reduced-motion: reduce) { .spark-tag .spark { animation: none !important; } }
+
+/* White browser bars: iOS Safari colours its bars from what the page shows at its very top and bottom edges (the
+   cream sky, a project's purple). A thin white strip along each edge, above everything, makes that always white:
+   the status bar's height where the page runs behind it, else a hairline */
+@media (hover: none) { /* (touch screens only: a desktop window has no such bars, and would show the hairline) */
+  html::before, html::after { content: ""; position: fixed; left: 0; right: 0; z-index: 2147483647; background: #fff; pointer-events: none; }
+  html::before { top: 0; height: max(1px, env(safe-area-inset-top, 0px)); }
+  html::after { bottom: 0; height: max(1px, env(safe-area-inset-bottom, 0px)); }
+}

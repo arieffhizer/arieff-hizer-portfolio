@@ -4,19 +4,19 @@ import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
-import { PROJECTS_COPY, ABOUT_COPY, EXIT_COPY, CAREER_COPY, CONTACT_COPY } from "./content.js?v=6afdb611";
-import { makeGalaxy, makeWormhole, makeUnclaimedPlanet } from "./galaxies.js?v=6afdb611";
-import { makeBlackHole } from "./blackhole.js?v=6afdb611";
-import { PROJECTS } from "./planets.js?v=6afdb611";
-import { noOrphans } from "./typeset.js?v=6afdb611";
+import { PROJECTS_COPY, ABOUT_COPY, EXIT_COPY, CAREER_COPY, CONTACT_COPY } from "./content.js?v=ca10f8e2";
+import { makeGalaxy, makeWormhole, makeUnclaimedPlanet } from "./galaxies.js?v=ca10f8e2";
+import { makeBlackHole } from "./blackhole.js?v=ca10f8e2";
+import { PROJECTS } from "./planets.js?v=ca10f8e2";
+import { noOrphans } from "./typeset.js?v=ca10f8e2";
 noOrphans();
-import { playIntro } from "./intro.js?v=6afdb611";
-import { WatercolorShader } from "./watercolor.js?v=6afdb611";
-import { themeButton } from "./warp-reveal.js?v=6afdb611";
+import { playIntro } from "./intro.js?v=ca10f8e2";
+import { WatercolorShader } from "./watercolor.js?v=ca10f8e2";
+import { themeButton } from "./warp-reveal.js?v=ca10f8e2";
 // two looks for the same ride: light, painted in watercolour on paper (the default), and dark, realistic space. The
 // head of index.html picks one before anything draws; the Dark / Light button in the header switches and remembers
 let PAINT = document.documentElement.classList.contains("paint");
-import { planetMaterial, atmosphereMaterial, starMaterial, ringMaterial, makeLiquid, FilmShader } from "./shaders.js?v=6afdb611";
+import { planetMaterial, atmosphereMaterial, starMaterial, ringMaterial, makeLiquid, FilmShader } from "./shaders.js?v=ca10f8e2";
 
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const rand = (a, b) => a + Math.random() * (b - a);
@@ -1055,7 +1055,7 @@ const setScroll = (ps) => { scrollTo(0, ps * maxScroll()); state.p = state.ps = 
 // visible from the hero underneath, flashes for a frame as you land
 function showCopy() { updateText(); document.body.classList.remove("transiting"); }
 function endSkips() {
-  restTween?.kill(); restTween = null; restTo = null;
+  restTween?.kill(); restTween = null; restTo = null; chained = false;
   // a return home cut short on its way down: the name is still in its scrolled-out pose, so the scroll takes it back
   if (skipTl && skipTl.data === "home") state.heroIn = true;
   if (transit) { transit.tween.kill(); transit = null; }
@@ -1184,7 +1184,10 @@ const CONTACT_I = stops.findIndex((s) => s.kind === "contact");
 // them half gone. The long rides between planets also get rests along the way, so one flick never covers too much
 // space: the user's counts, from the previous title (or the name) to the planet's lines, are the flicks it takes
 // (hero to RETA 6, then one fewer each planet in, down to none from Tradelink to Selangor FC)
-const ALONG = { reta: 6, viberist: 5, shetrades: 4, mori: 3, fitcoach: 2, tradelink: 1 };
+// (the counts are the flicks from the previous title to this one, its lines and title included; galaxies, the
+// wormhole and contact get theirs on the way out too, so the journey never covers a galaxy in one flick)
+const FLICKS = { reta: 6, viberist: 6, shetrades: 5, mori: 4, fitcoach: 3, tradelink: 3, selangorfc: 3 };
+const ALONG_OUT = 3; // in-between rests before each galaxy, the wormhole and contact
 const RESTS = [0];
 // the in-between rests sit in the clear stretch only: after the last copy has fully gone (the name, or the previous
 // title), before the next lines start to come in, so no rest ever stops on half-faded copy
@@ -1192,9 +1195,11 @@ let clearFrom = atStop(0, NAME_GONE); // where the name has fully gone
 stops.forEach((s, i) => {
   const T = timesOf(s), full = (w) => w && w[0] < 2 && w[1] != null; // a part this stop really plays
   const lines = full(T.b1) && full(T.b2) && s.el.b1.textContent.trim() ? atStop(i, (Math.max(T.b1[1], T.b2[1]) + Math.min(T.b1[2] ?? 1, T.b2[2] ?? 1)) / 2) : null;
-  const along = s.kind === "project" ? ALONG[s.copy.slug] || 0 : 0;
-  if (lines !== null && along) {
-    const clearTo = atStop(i, Math.min(T.b1[0], T.b2[0]));
+  const along = s.kind === "project" ? Math.max(0, (FLICKS[s.copy.slug] || 2) - 2)
+    : s.kind === "galaxy" || s.kind === "wormhole" || s.kind === "contact" ? ALONG_OUT : 0;
+  const firstIn = lines !== null ? Math.min(T.b1[0], T.b2[0]) : full(T.pr) ? T.pr[0] : null; // where its copy starts
+  if (firstIn !== null && along) {
+    const clearTo = atStop(i, firstIn);
     for (let k = 1; k <= along; k++) RESTS.push(clearFrom + (clearTo - clearFrom) * (k - 0.5) / along);
   }
   if (lines !== null) { RESTS.push(lines); clearFrom = atStop(i, Math.max(T.b1[3], T.b2[3])); }
@@ -1207,8 +1212,11 @@ const LAST_REST = RESTS[RESTS.length - 1];
 const restBusy = () => warping || transit || skipTl || document.body.classList.contains("transiting");
 // is this gesture one for the rests? (below the last one; or going back up from right at it)
 const inRests = (dir) => !restBusy() && (state.p < LAST_REST - 0.002 || (dir < 0 && state.p < LAST_REST + 0.002));
+let chained = false; // a glide already carries one extra flick
 function stepRest(dir) {
-  const from = restTo ?? state.p; // a second flick while gliding goes one further on
+  // a second flick while gliding goes one further on, but no more: flicking hard never races through the ride
+  if (restTween) { if (chained) return; chained = true; }
+  const from = restTo ?? state.p;
   const next = dir > 0 ? RESTS.find((v) => v > from + 0.0015) : [...RESTS].reverse().find((v) => v < from - 0.0015);
   if (next === undefined) return;
   restTo = next;
@@ -1216,8 +1224,9 @@ function stepRest(dir) {
   const proxy = { v: state.p };
   // slower over longer stretches, but never a crawl: about 1.4 s between the lines and the title, up to 3 s
   const dur = reduce ? 0.01 : THREE.MathUtils.clamp(1.1 + Math.abs(next - proxy.v) * 45, 1.4, 3.0);
-  restTween = gsap.to(proxy, { v: next, duration: dur, ease: "power2.inOut",
-    onUpdate: () => scrollTo(0, proxy.v * maxScroll()), onComplete: () => { restTween = null; restTo = null; } });
+  // it sets off at once (a flick should visibly answer), then eases into the rest
+  restTween = gsap.to(proxy, { v: next, duration: dur, ease: "power2.out",
+    onUpdate: () => scrollTo(0, proxy.v * maxScroll()), onComplete: () => { restTween = null; restTo = null; chained = false; } });
 }
 {
   let used = false, acc = 0, quiet, lastStep = 0;
