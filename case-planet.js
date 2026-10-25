@@ -1,15 +1,15 @@
 import * as THREE from "three";
-import { planetMaterial, atmosphereMaterial, starMaterial } from "./shaders.js?v=cdd60219";
-import { PROJECTS } from "./planets.js?v=cdd60219";
-import { makeMonoliths } from "./case-monoliths.js?v=cdd60219";
-import { makeSatellites } from "./case-satellites.js?v=cdd60219";
-import { noOrphans } from "./typeset.js?v=cdd60219";
+import { planetMaterial, atmosphereMaterial, starMaterial } from "./shaders.js?v=9e80a490";
+import { PROJECTS } from "./planets.js?v=9e80a490";
+import { makeMonoliths } from "./case-monoliths.js?v=9e80a490";
+import { makeSatellites } from "./case-satellites.js?v=9e80a490";
+import { noOrphans } from "./typeset.js?v=9e80a490";
 import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
-import { WatercolorShader } from "./watercolor.js?v=cdd60219";
-import { themeButton } from "./warp-reveal.js?v=cdd60219";
+import { WatercolorShader } from "./watercolor.js?v=9e80a490";
+import { themeButton } from "./warp-reveal.js?v=9e80a490";
 
 // projects whose screens stand on the planet as chrome monoliths (on trial); the rest show flat images
 const MONOLITHS = new Set([]); // none for now: satellites won
@@ -757,20 +757,20 @@ export function startPlanetCase({ name, copy, sections, index, total }) {
   // ---------- Arrival: the brand colour from the dive clears, and the planet rises up under the copy
   const veil = document.createElement("div");
   veil.className = "case-veil";
-  // (a colour image, not a background colour: iOS Safari tints its bars with a full-screen layer's background colour)
-  veil.style.backgroundImage = `linear-gradient(${p.color}, ${p.color})`;
+  // (the colour goes on the layer's ::before, which iOS Safari's bar tint ignores)
+  veil.style.setProperty("--fill", p.color);
   document.body.append(veil);
   history.scrollRestoration = "manual"; // a case study always opens on its title
   scrollTo(0, 0);
   if (!reduce) {
-    gsap.to(veil, { autoAlpha: 0, duration: 0.8, ease: "power1.out", delay: 0.15, onComplete: () => (veil.style.backgroundImage = "") }); // (hidden and colourless once clear)
+    gsap.to(veil, { autoAlpha: 0, duration: 0.8, ease: "power1.out", delay: 0.15, onComplete: () => (veil.style.removeProperty("--fill")) }); // (hidden and colourless once clear)
     gsap.to(state, { rise: 0, duration: 2.0, ease: "power3.out", delay: 0.1 });
   } else gsap.set(veil, { autoAlpha: 0 });
 
   // ---------- Leaving: back to the brand colour, which the homepage dives back out of
   document.querySelectorAll(`a[href="index.html#${copy.slug}"]`).forEach((a) => a.addEventListener("click", (e) => {
     e.preventDefault();
-    veil.style.backgroundImage = `linear-gradient(${p.color}, ${p.color})`;
+    veil.style.setProperty("--fill", p.color);
     gsap.to(veil, { autoAlpha: 1, duration: reduce ? 0.01 : 0.45, ease: "power1.in", onComplete: () => (location.href = a.href) });
   }));
 }

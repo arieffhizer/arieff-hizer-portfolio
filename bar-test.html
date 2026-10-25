@@ -13,6 +13,7 @@
   .layer { position: fixed; inset: 0; }
   .card { position: fixed; left: 16px; right: 16px; top: 40%; z-index: 9; background: #fff; border-radius: 14px; padding: 16px; box-shadow: 0 6px 30px rgba(0,0,0,.25); }
   .card a { display: inline-block; margin-top: 10px; color: #0a58ff; }
+  .pseudo::before { content: ""; position: absolute; inset: 0; background: #3F62F2; }
   .strip { position: fixed; left: 0; right: 0; height: 3px; background-color: #fff; z-index: 8; }
 </style>
 </head>
@@ -20,7 +21,7 @@
 <script>
 const V = new URLSearchParams(location.search).get("v") || "A";
 const blue = "#3F62F2";
-const order = ["A", "B", "C", "D", "E", "F"];
+const order = ["A", "B", "C", "D", "E", "F", "G", "H"];
 const say = {
   A: "A: a full-screen fixed layer, blue as its background colour",
   B: "B: the same layer, blue painted as a gradient image",
@@ -28,11 +29,15 @@ const say = {
   D: "D: a full-screen canvas drawn blue (like the 3D scene)",
   E: "E: white at load, the blue layer (as B) appears after 2 seconds",
   F: "F: the blue layer (as B) at load, removed after 2 seconds",
+  G: "G: the full-screen layer has no colour; the blue is on its ::before",
+  H: "H: the full-screen layer has no colour; the blue is on an absolute child",
 };
 const layer = document.createElement(V === "D" ? "canvas" : "div");
 layer.className = "layer";
 if (V === "A") layer.style.backgroundColor = blue;
 else if (V === "D") { layer.width = innerWidth; layer.height = innerHeight; const g = layer.getContext("2d"); g.fillStyle = blue; g.fillRect(0, 0, layer.width, layer.height); }
+else if (V === "G") layer.classList.add("pseudo");
+else if (V === "H") { const c = document.createElement("div"); c.style.cssText = `position:absolute;inset:0;background:${blue}`; layer.append(c); }
 else layer.style.backgroundImage = `linear-gradient(${blue}, ${blue})`;
 if (V === "E") { layer.style.display = "none"; setTimeout(() => (layer.style.display = ""), 2000); }
 if (V === "F") setTimeout(() => layer.remove(), 2000);
