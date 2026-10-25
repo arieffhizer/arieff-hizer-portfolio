@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=e9b05065">
+<link rel="stylesheet" href="style.css?v=126ae840">
 <script>
 // light (watercolour on paper) unless dark (space) was chosen, as on the home page
 (() => { let t = "light"; try { t = localStorage.getItem("v2-theme") || "light"; } catch {}
@@ -55,9 +55,9 @@
 </style>
 </head>
 <body>
-<header class="top"><a class="mark" href="index.html">Arieff <i>Hizer</i></a></header>
+<header class="top"><a class="mark" href="./">Arieff <i>Hizer</i></a></header>
 <nav class="case-top jumps" aria-label="Page">
-  <a class="back" href="index.html">Back to orbit</a>
+  <a class="back" href="./">Back to orbit</a>
   <button type="button" class="theme" aria-label="Switch to dark mode">
     <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
     <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
@@ -72,8 +72,9 @@
 </main>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script type="module">
-  import { PROJECTS_COPY, CASE_SECTIONS } from "./content.js?v=e9b05065";
-  const slug = new URLSearchParams(location.search).get("p") || "reta";
+  import { PROJECTS_COPY, CASE_SECTIONS, homeHref } from "./content.js?v=126ae840";
+  // the project: /mori (served from mori.html), or case.html?p=mori locally
+  const slug = new URLSearchParams(location.search).get("p") || location.pathname.split("/").pop().replace(/\.html$/, "") || "reta";
   const names = Object.keys(PROJECTS_COPY);
   const i = Math.max(0, names.findIndex((n) => PROJECTS_COPY[n].slug === slug));
   const name = names[i], c = PROJECTS_COPY[name];
@@ -87,11 +88,12 @@
   document.querySelector("h1").textContent = name;
   document.querySelector(".lede").textContent = c.line;
   document.querySelector(".meta").innerHTML = Object.entries(c.meta).map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("");
-  document.querySelector(".back").href = `index.html#${c.slug}`;
+  document.querySelector(".back").href = homeHref(c.slug);
+  document.querySelector(".mark").href = homeHref();
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   // the planet-horizon layout, on trial with the projects that have sections written
   if (CASE_SECTIONS[c.slug]) {
-    const { startPlanetCase } = await import("./case-planet.js?v=e9b05065");
+    const { startPlanetCase } = await import("./case-planet.js?v=126ae840");
     startPlanetCase({ name, copy: c, sections: CASE_SECTIONS[c.slug], index: i, total: names.length });
   } else {
   document.body.classList.add("legacy-case");

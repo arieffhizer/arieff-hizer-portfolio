@@ -4,19 +4,19 @@ import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
-import { PROJECTS_COPY, ABOUT_COPY, EXIT_COPY, CAREER_COPY, CONTACT_COPY } from "./content.js?v=e9b05065";
-import { makeGalaxy, makeWormhole, makeUnclaimedPlanet } from "./galaxies.js?v=e9b05065";
-import { makeBlackHole } from "./blackhole.js?v=e9b05065";
-import { PROJECTS } from "./planets.js?v=e9b05065";
-import { noOrphans } from "./typeset.js?v=e9b05065";
+import { PROJECTS_COPY, ABOUT_COPY, EXIT_COPY, CAREER_COPY, CONTACT_COPY, caseHref } from "./content.js?v=126ae840";
+import { makeGalaxy, makeWormhole, makeUnclaimedPlanet } from "./galaxies.js?v=126ae840";
+import { makeBlackHole } from "./blackhole.js?v=126ae840";
+import { PROJECTS } from "./planets.js?v=126ae840";
+import { noOrphans } from "./typeset.js?v=126ae840";
 noOrphans();
-import { playIntro } from "./intro.js?v=e9b05065";
-import { WatercolorShader } from "./watercolor.js?v=e9b05065";
-import { themeButton } from "./warp-reveal.js?v=e9b05065";
+import { playIntro } from "./intro.js?v=126ae840";
+import { WatercolorShader } from "./watercolor.js?v=126ae840";
+import { themeButton } from "./warp-reveal.js?v=126ae840";
 // two looks for the same ride: light, painted in watercolour on paper (the default), and dark, realistic space. The
 // head of index.html picks one before anything draws; the Dark / Light button in the header switches and remembers
 let PAINT = document.documentElement.classList.contains("paint");
-import { planetMaterial, atmosphereMaterial, starMaterial, ringMaterial, makeLiquid, FilmShader } from "./shaders.js?v=e9b05065";
+import { planetMaterial, atmosphereMaterial, starMaterial, ringMaterial, makeLiquid, FilmShader } from "./shaders.js?v=126ae840";
 
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const rand = (a, b) => a + Math.random() * (b - a);
@@ -713,6 +713,7 @@ const hero = document.querySelector(".hero");
 const flood = document.querySelector(".flood");
 // (cleared once that return has landed: from then on the scroll drives the name like on any other visit)
 let back = stops.findIndex((s) => s.kind === "project" && `#${s.copy.slug}` === location.hash);
+if (location.hash) history.replaceState(null, "", location.pathname + location.search); // (a clean address once read)
 if (back >= 0) {
   // Returning from a case study: the dive in reverse. The colour fades to the planet's surface filling the screen,
   // then you pull back out of it into that orbit
@@ -776,7 +777,7 @@ function warpTo(i) {
   if (warping) return;
   warping = true;
   const s = stops[i];
-  const go = () => (location.href = `case.html?p=${s.copy.slug}`);
+  const go = () => (location.href = caseHref(s.copy.slug));
   if (reduce) return go();
   endSkips();
   document.body.classList.add("transiting");

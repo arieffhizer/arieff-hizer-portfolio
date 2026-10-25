@@ -2,11 +2,104 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Arieff Hizer</title>
-<meta name="robots" content="noindex">
-<link rel="canonical" href="https://arieffhizer.com/case.html?p=mori">
-<meta http-equiv="refresh" content="0; url=/case.html?p=mori">
-<script>location.replace("/case.html?p=mori");</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Case study — Arieff Hizer</title>
+<meta name="description" content="A case study by Arieff Hizer, product designer in Malaysia.">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="media/apple-touch-icon.png">
+<!-- link previews (Slack, LinkedIn, iMessage, X): crawlers want absolute URLs -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Arieff Hizer">
+<meta property="og:title" content="Case study — Arieff Hizer">
+<meta property="og:description" content="A case study by Arieff Hizer, product designer in Malaysia.">
+<meta property="og:image" content="https://arieffhizer.com/media/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Arieff Hizer, product designer: a hand-painted solar system of projects">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=126ae840">
+<script>
+// light (watercolour on paper) unless dark (space) was chosen, as on the home page
+(() => { let t = "light"; try { t = localStorage.getItem("v2-theme") || "light"; } catch {}
+  const q = new URLSearchParams(location.search); if (q.has("paint")) t = "light"; if (q.has("space")) t = "dark";
+  if (t === "light") document.documentElement.classList.add("paint"); })();
+</script>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+} }
+</script>
+<style>
+  body { min-height: 100vh; }
+  /* The flood from the warp arrives full-screen, then settles into the hero band */
+  .band { position: fixed; inset: 0 0 auto 0; height: 100vh; background: var(--c); z-index: 0; display: none; }
+  .legacy-case .band { display: block; }
+  .band::after { content: ""; position: absolute; inset: auto 0 0 0; height: 40%; background: linear-gradient(to bottom, transparent, var(--space)); opacity: 0; transition: opacity 1.2s ease; }
+  .settled .band::after { opacity: 1; }
+  .case { position: relative; z-index: 1; padding: 22vh var(--gutter) 12vh; max-width: 1100px; }
+  .case .pos { font: 400 11px/1.4 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: rgba(255, 255, 255, .7); }
+  .case h1 { font-family: var(--display); font-weight: 400; font-size: clamp(72px, 13vw, 200px); line-height: .9; letter-spacing: -.03em; margin: 14px 0 22px; font-variation-settings: "opsz" 96; }
+  .case .lede { font-size: clamp(19px, 2vw, 26px); line-height: 1.3; letter-spacing: -.02em; max-width: 30ch; }
+  .meta { display: flex; flex-wrap: wrap; gap: 12px 48px; margin-top: 48px; }
+  .meta dt { font: 400 11px/1.4 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: rgba(255, 255, 255, .6); }
+  .meta dd { font-size: 15px; margin-top: 4px; }
+  .case-top { position: fixed; z-index: 5; top: calc(var(--gutter) + env(safe-area-inset-top, 0px)); right: var(--gutter); font: 400 12px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+  .case-top .theme { color: inherit; }
+  .top .mark { position: fixed; top: calc(var(--gutter) + env(safe-area-inset-top, 0px)); left: var(--gutter); z-index: 5; }
+  .case > * { opacity: 0; transform: translateY(18px); }
+</style>
 </head>
-<body><a href="/case.html?p=mori">Arieff Hizer</a></body>
+<body>
+<header class="top"><a class="mark" href="./">Arieff <i>Hizer</i></a></header>
+<nav class="case-top jumps" aria-label="Page">
+  <a class="back" href="./">Back to orbit</a>
+  <button type="button" class="theme" aria-label="Switch to dark mode">
+    <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+    <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+  </button>
+</nav>
+<div class="band" aria-hidden="true"></div>
+<main class="case">
+  <span class="pos"></span>
+  <h1></h1>
+  <p class="lede"></p>
+  <dl class="meta"></dl>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script type="module">
+  import { PROJECTS_COPY, CASE_SECTIONS, homeHref } from "./content.js?v=126ae840";
+  // the project: /mori (served from mori.html), or case.html?p=mori locally
+  const slug = new URLSearchParams(location.search).get("p") || location.pathname.split("/").pop().replace(/\.html$/, "") || "reta";
+  const names = Object.keys(PROJECTS_COPY);
+  const i = Math.max(0, names.findIndex((n) => PROJECTS_COPY[n].slug === slug));
+  const name = names[i], c = PROJECTS_COPY[name];
+  const COLORS = { RETA: "#7A00D9", Viberist: "#3F62F2", SheTrades: "#F18671", Mori: "#7D2327", FitCoach: "#2A2B2F", Tradelink: "#2B6FFF", "Selangor FC": "#B5141E" };
+  document.title = `${name} — Arieff Hizer`;
+  // the description follows the project (people who share a case study from a browser get the right one)
+  for (const sel of ['meta[name="description"]', 'meta[property="og:description"]']) document.querySelector(sel).content = `${name}: ${c.line} A case study by Arieff Hizer, product designer.`;
+  document.querySelector('meta[property="og:title"]').content = document.title;
+  document.documentElement.style.setProperty("--c", COLORS[name]);
+  document.querySelector(".pos").textContent = `${String(i + 1).padStart(2, "0")} / 0${names.length} · Case study`;
+  document.querySelector("h1").textContent = name;
+  document.querySelector(".lede").textContent = c.line;
+  document.querySelector(".meta").innerHTML = Object.entries(c.meta).map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("");
+  document.querySelector(".back").href = homeHref(c.slug);
+  document.querySelector(".mark").href = homeHref();
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // the planet-horizon layout, on trial with the projects that have sections written
+  if (CASE_SECTIONS[c.slug]) {
+    const { startPlanetCase } = await import("./case-planet.js?v=126ae840");
+    startPlanetCase({ name, copy: c, sections: CASE_SECTIONS[c.slug], index: i, total: names.length });
+  } else {
+  document.body.classList.add("legacy-case");
+  gsap.to(".band", { height: "68vh", duration: reduce ? 0 : 1.3, ease: "expo.inOut", delay: 0.2, onStart: () => document.body.classList.add("settled") });
+  gsap.to(".case > *", { opacity: 1, y: 0, duration: reduce ? 0 : 0.9, ease: "power3.out", stagger: 0.08, delay: 0.55 });
+  }
+</script>
+</body>
 </html>

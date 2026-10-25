@@ -1,15 +1,16 @@
 import * as THREE from "three";
-import { planetMaterial, atmosphereMaterial, starMaterial } from "./shaders.js?v=e9b05065";
-import { PROJECTS } from "./planets.js?v=e9b05065";
-import { makeMonoliths } from "./case-monoliths.js?v=e9b05065";
-import { makeSatellites } from "./case-satellites.js?v=e9b05065";
-import { noOrphans } from "./typeset.js?v=e9b05065";
+import { planetMaterial, atmosphereMaterial, starMaterial } from "./shaders.js?v=126ae840";
+import { PROJECTS } from "./planets.js?v=126ae840";
+import { makeMonoliths } from "./case-monoliths.js?v=126ae840";
+import { makeSatellites } from "./case-satellites.js?v=126ae840";
+import { noOrphans } from "./typeset.js?v=126ae840";
 import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
-import { WatercolorShader } from "./watercolor.js?v=e9b05065";
-import { themeButton } from "./warp-reveal.js?v=e9b05065";
+import { WatercolorShader } from "./watercolor.js?v=126ae840";
+import { themeButton } from "./warp-reveal.js?v=126ae840";
+import { homeHref } from "./content.js?v=126ae840";
 
 // projects whose screens stand on the planet as chrome monoliths (on trial); the rest show flat images
 const MONOLITHS = new Set([]); // none for now: satellites won
@@ -29,7 +30,7 @@ export function startPlanetCase({ name, copy, sections, index, total }) {
   // orbit line (user, 21 Oct)
   sections = sections.filter((s) => s.kind !== "end");
   const endBlock = `<div class="case-end"><span class="pos">End of ${name}</span>
-    <a class="enter back-orbit" href="index.html#${copy.slug}">Back to orbit</a></div>`;
+    <a class="enter back-orbit" href="${homeHref(copy.slug)}">Back to orbit</a></div>`;
 
   // ---------- Copy: one block per section, all fixed in the sky and driven by scroll
   const wrap = document.createElement("div");
@@ -783,7 +784,7 @@ export function startPlanetCase({ name, copy, sections, index, total }) {
   } else gsap.set(veil, { autoAlpha: 0 });
 
   // ---------- Leaving: back to the brand colour, which the homepage dives back out of
-  document.querySelectorAll(`a[href="index.html#${copy.slug}"]`).forEach((a) => a.addEventListener("click", (e) => {
+  document.querySelectorAll(`a[href="${homeHref(copy.slug)}"]`).forEach((a) => a.addEventListener("click", (e) => {
     e.preventDefault();
     fillLayer(veil, p.color);
     gsap.to(veil, { autoAlpha: 1, duration: reduce ? 0.01 : 0.45, ease: "power1.in", onComplete: () => (location.href = a.href) });
