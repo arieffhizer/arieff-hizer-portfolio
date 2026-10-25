@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#ffffff">
+<title>Bar test</title>
+<!-- A diagnostic for iOS Safari 26's bar colour: each variant puts blue on screen a different way, on a white page.
+     Open each one fresh and note the colour of the top and bottom bars. -->
+<style>
+  html, body { margin: 0; background: #fff; font: 600 18px/1.4 -apple-system, system-ui, sans-serif; color: #111; }
+  .layer { position: fixed; inset: 0; }
+  .card { position: fixed; left: 16px; right: 16px; top: 40%; z-index: 9; background: #fff; border-radius: 14px; padding: 16px; box-shadow: 0 6px 30px rgba(0,0,0,.25); }
+  .card a { display: inline-block; margin-top: 10px; color: #0a58ff; }
+  .strip { position: fixed; left: 0; right: 0; height: 3px; background-color: #fff; z-index: 8; }
+</style>
+</head>
+<body>
+<script>
+const V = new URLSearchParams(location.search).get("v") || "A";
+const blue = "#3F62F2";
+const order = ["A", "B", "C", "D", "E", "F"];
+const say = {
+  A: "A: a full-screen fixed layer, blue as its background colour",
+  B: "B: the same layer, blue painted as a gradient image",
+  C: "C: B plus two 3px white strips at the top and bottom edges",
+  D: "D: a full-screen canvas drawn blue (like the 3D scene)",
+  E: "E: white at load, the blue layer (as B) appears after 2 seconds",
+  F: "F: the blue layer (as B) at load, removed after 2 seconds",
+};
+const layer = document.createElement(V === "D" ? "canvas" : "div");
+layer.className = "layer";
+if (V === "A") layer.style.backgroundColor = blue;
+else if (V === "D") { layer.width = innerWidth; layer.height = innerHeight; const g = layer.getContext("2d"); g.fillStyle = blue; g.fillRect(0, 0, layer.width, layer.height); }
+else layer.style.backgroundImage = `linear-gradient(${blue}, ${blue})`;
+if (V === "E") { layer.style.display = "none"; setTimeout(() => (layer.style.display = ""), 2000); }
+if (V === "F") setTimeout(() => layer.remove(), 2000);
+document.body.append(layer);
+if (V === "C") for (const edge of ["top", "bottom"]) { const s = document.createElement("div"); s.className = "strip"; s.style[edge] = 0; document.body.append(s); }
+const next = order[order.indexOf(V) + 1];
+const card = document.createElement("div");
+card.className = "card";
+card.innerHTML = `${say[V]}<br><span style="font-weight:400">What colour are the top and bottom bars? (For E and F, wait 3 seconds.)</span><br>` +
+  (next ? `<a href="bar-test.html?v=${next}">Next: ${next} →</a>` : `<span style="font-weight:400">That's all six.</span>`);
+document.body.append(card);
+</script>
+</body>
+</html>

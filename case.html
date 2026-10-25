@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=c988dda8">
+<link rel="stylesheet" href="style.css?v=cdd60219">
 <script>
 // light (watercolour on paper) unless dark (space) was chosen, as on the home page
 (() => { let t = "light"; try { t = localStorage.getItem("v2-theme") || "light"; } catch {}
@@ -55,8 +55,6 @@
 </style>
 </head>
 <body>
-<!-- iOS Safari takes its bar colour from these (white); first in the page, so they are there from the first paint -->
-<div class="bar-tint top" aria-hidden="true"></div><div class="bar-tint bottom" aria-hidden="true"></div>
 <header class="top"><a class="mark" href="index.html">Arieff <i>Hizer</i></a></header>
 <nav class="case-top jumps" aria-label="Page">
   <a class="back" href="index.html">Back to orbit</a>
@@ -74,7 +72,7 @@
 </main>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script type="module">
-  import { PROJECTS_COPY, CASE_SECTIONS } from "./content.js?v=c988dda8";
+  import { PROJECTS_COPY, CASE_SECTIONS } from "./content.js?v=cdd60219";
   const slug = new URLSearchParams(location.search).get("p") || "reta";
   const names = Object.keys(PROJECTS_COPY);
   const i = Math.max(0, names.findIndex((n) => PROJECTS_COPY[n].slug === slug));
@@ -93,7 +91,7 @@
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   // the planet-horizon layout, on trial with the projects that have sections written
   if (CASE_SECTIONS[c.slug]) {
-    const { startPlanetCase } = await import("./case-planet.js?v=c988dda8");
+    const { startPlanetCase } = await import("./case-planet.js?v=cdd60219");
     startPlanetCase({ name, copy: c, sections: CASE_SECTIONS[c.slug], index: i, total: names.length });
   } else {
   document.body.classList.add("legacy-case");

@@ -1,15 +1,15 @@
 import * as THREE from "three";
-import { planetMaterial, atmosphereMaterial, starMaterial } from "./shaders.js?v=c988dda8";
-import { PROJECTS } from "./planets.js?v=c988dda8";
-import { makeMonoliths } from "./case-monoliths.js?v=c988dda8";
-import { makeSatellites } from "./case-satellites.js?v=c988dda8";
-import { noOrphans } from "./typeset.js?v=c988dda8";
+import { planetMaterial, atmosphereMaterial, starMaterial } from "./shaders.js?v=cdd60219";
+import { PROJECTS } from "./planets.js?v=cdd60219";
+import { makeMonoliths } from "./case-monoliths.js?v=cdd60219";
+import { makeSatellites } from "./case-satellites.js?v=cdd60219";
+import { noOrphans } from "./typeset.js?v=cdd60219";
 import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
-import { WatercolorShader } from "./watercolor.js?v=c988dda8";
-import { themeButton } from "./warp-reveal.js?v=c988dda8";
+import { WatercolorShader } from "./watercolor.js?v=cdd60219";
+import { themeButton } from "./warp-reveal.js?v=cdd60219";
 
 // projects whose screens stand on the planet as chrome monoliths (on trial); the rest show flat images
 const MONOLITHS = new Set([]); // none for now: satellites won
