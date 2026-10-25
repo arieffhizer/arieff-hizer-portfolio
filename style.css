@@ -114,7 +114,7 @@ a { color: inherit; text-decoration: none; }
 .jumps button:hover, .jumps button:focus-visible { color: var(--ink); }
 /* While a shortcut is flying you somewhere, the copy steps aside */
 body.transiting .orbits, body.transiting .hero { opacity: 0 !important; transition: opacity .35s; }
-.veil { position: fixed; inset: 0; z-index: 15; background: #050507; opacity: 0; pointer-events: none; }
+.veil { position: fixed; inset: 0; z-index: 15; background-image: linear-gradient(#050507, #050507); opacity: 0; pointer-events: none; }
 
 /* "Back to where it all started" sits under the contact links */
 .project button.enter.home { display: inline-block; margin-top: 26px; background: none; border: 0; border-bottom: 1px solid var(--ink-3); color: var(--ink); padding: 0 0 5px; }
@@ -180,7 +180,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
 .case-shot.center { cursor: default; } /* a 3D mark: to look at, not to open */
 @media (max-width: 759px) { .case-shot img, .case-shot.side img, .case-shot.center img { max-height: 34vh; max-width: 78vw; } }
 .case-shot:focus-visible { outline: 1px solid currentColor; outline-offset: 6px; border-radius: 14px; }
-.case-lightbox { position: fixed; inset: 0; z-index: 20; display: grid; place-items: center; padding: 0; background: rgba(5, 5, 7, .94); opacity: 0; visibility: hidden; transition: opacity .35s ease, visibility 0s .35s; cursor: zoom-out; }
+.case-lightbox { position: fixed; inset: 0; z-index: 20; display: grid; place-items: center; padding: 0; background-image: linear-gradient(rgba(5, 5, 7, .94), rgba(5, 5, 7, .94)); opacity: 0; visibility: hidden; transition: opacity .35s ease, visibility 0s .35s; cursor: zoom-out; }
 .case-lightbox.on { opacity: 1; visibility: visible; transition: opacity .35s ease; }
 .case-lightbox img { grid-area: 1 / 1; max-width: none; max-height: none; border-radius: 10px; cursor: default; box-shadow: 0 30px 80px rgba(0, 0, 0, .5); transform: scale(.96); transition: transform .5s cubic-bezier(.2, .8, .2, 1); }
 .case-lightbox.on img { transform: none; }
@@ -213,7 +213,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
 .intro-scene { position: absolute; inset: 0; width: 100%; height: 100%; display: block; filter: grayscale(1) contrast(1.18); }
 .intro-vignette { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse at 50% 55%, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, .38) 100%); }
 .intro-glare { position: absolute; inset: 0; background: #ffffff; opacity: 1; pointer-events: none; }
-.intro-paper { position: absolute; inset: 0; background-color: #f1efe9; }
+.intro-paper { position: absolute; inset: 0; background-image: linear-gradient(#f1efe9, #f1efe9); }
 /* the notice: a game or film warning card, set in the site's own type */
 .intro-notice { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(560px, calc(100% - 2 * var(--gutter))); text-align: center; }
 .intro-label { font: 500 11px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; margin-bottom: 26px; }
@@ -231,7 +231,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
 .intro-row { display: block; white-space: nowrap; }
 @media (max-width: 640px) { .intro-row { white-space: normal; } }
 /* The opening, refined: white arrives by opacity (no repaint), and "Skip intro" answers a press */
-.intro-white { position: absolute; inset: 0; background: #ffffff; opacity: 0; pointer-events: none; }
+.intro-white { position: absolute; inset: 0; background-image: linear-gradient(#ffffff, #ffffff); opacity: 0; pointer-events: none; }
 
 /* Case study tags: the costs of a problem, the steps of a method, the decisions an insight led to */
 .case-points { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 22px auto 0; padding: 0; max-width: 560px; } /* long lists wrap, so the satellites keep room beside them */
@@ -255,7 +255,7 @@ html.paint {
   --hair: rgba(38, 36, 44, .16);
 }
 html.paint .cue { border-color: rgba(38, 36, 44, .35); background: rgba(38, 36, 44, .04); }
-html.paint .veil { background: #F4EEE4; }
+html.paint .veil { background-image: linear-gradient(#F4EEE4, #F4EEE4); }
 /* painted: no dark veil behind the Journey copy (on paper it reads as a smudge, and ink needs no help) */
 html.paint .orbit-copy.over-stars .project::before { display: none; }
 /* painted: the intro on the same watercolour paper (warm cotton, fine grain, slow cloudy washes), its whiteout in
@@ -301,11 +301,5 @@ html:not(.paint) .jumps .theme .sun { display: block; }
 @keyframes spark-twinkle { 0%, 100% { transform: rotate(0) scale(1); } 50% { transform: rotate(45deg) scale(.82); } }
 @media (prefers-reduced-motion: reduce) { .spark-tag .spark { animation: none !important; } }
 
-/* White browser bars: iOS Safari colours its bars from what the page shows at its very top and bottom edges (the
-   cream sky, a project's purple). A thin white strip along each edge, above everything, makes that always white:
-   the status bar's height where the page runs behind it, else a hairline */
-@media (hover: none) { /* (touch screens only: a desktop window has no such bars, and would show the hairline) */
-  html::before, html::after { content: ""; position: fixed; left: 0; right: 0; z-index: 2147483647; background: #fff; pointer-events: none; }
-  html::before { top: 0; height: max(1px, env(safe-area-inset-top, 0px)); }
-  html::after { bottom: 0; height: max(1px, env(safe-area-inset-bottom, 0px)); }
-}
+/* Browser bars: every full-screen layer paints its colour as an image (never background-color), which iOS Safari's
+   bar tint does not read, so the bars take the white page background */
