@@ -1,0 +1,300 @@
+:root {
+  --space: #050507;
+  --ink: #E9EAEE;
+  --ink-2: #8C8F99;
+  --ink-3: #4A4D55;
+  --hair: rgba(233, 234, 238, .14);
+  --reta: #7A00D9;
+  --display: "Bodoni Moda", serif;
+  --text: "Geist", sans-serif;
+  --mono: "Geist Mono", monospace;
+  --gutter: clamp(16px, 3vw, 40px);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--space); color: var(--ink); font-family: var(--text); -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+
+#scene { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+.scroll-track { height: 600vh; }
+
+.corner { position: fixed; left: var(--gutter); right: var(--gutter); z-index: 5; display: flex; justify-content: space-between; pointer-events: none; }
+.corner a, .corner li { pointer-events: auto; }
+.top { top: var(--gutter); align-items: baseline; font: 400 12px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+.top .mark { font-family: var(--display); font-size: 20px; letter-spacing: 0; text-transform: none; }
+
+.bottom { bottom: var(--gutter); align-items: end; gap: 24px; }
+.index { list-style: none; display: grid; gap: 5px; font: 400 11px/1.4 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); }
+.index li { display: flex; align-items: center; gap: 10px; transition: color .3s; cursor: pointer; pointer-events: auto; }
+.index li:hover, .index li:focus-visible { color: var(--ink); outline: none; }
+.index li:hover::after, .index li:focus-visible::after { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--c); box-shadow: 0 0 10px var(--c); }
+.index li.on { color: var(--ink); }
+.index li.on::after { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--c); box-shadow: 0 0 10px var(--c); }
+.chapter { display: flex; align-items: center; gap: 14px; font: 400 11px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); }
+.bar { width: 120px; height: 1px; background: var(--hair); position: relative; overflow: hidden; }
+.fill { position: absolute; inset: 0; background: var(--ink); transform-origin: left; transform: scaleX(0); }
+
+/* Hero */
+.hero { position: fixed; z-index: 4; left: var(--gutter); top: 50%; transform: translateY(-58%); pointer-events: none; will-change: transform, opacity, filter; }
+.eyebrow { font: 400 11px/1.4 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 18px; }
+.name { font-family: var(--display); font-weight: 400; font-size: clamp(64px, 11.5vw, 180px); line-height: .88; letter-spacing: -.03em; font-variation-settings: "opsz" 96; }
+.name i { font-style: italic; }
+.line { margin-top: 26px; max-width: 32ch; font-size: clamp(16px, 1.4vw, 19px); line-height: 1.45; letter-spacing: -.01em; color: var(--ink-2); }
+.line em { font-style: normal; color: var(--ink); }
+.cue { margin-top: 40px; display: inline-flex; align-items: center; gap: 10px; padding: 9px 16px 9px 12px; border: 1px solid rgba(233, 234, 238, .35); border-radius: 999px; background: rgba(233, 234, 238, .06); font: 400 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink); }
+.cue .mouse { width: 12px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.4; flex: none; }
+.cue .mouse .wheel { stroke-linecap: round; animation: cue-wheel 1.8s cubic-bezier(.5, 0, .2, 1) infinite; }
+@keyframes cue-wheel { 0% { transform: translateY(0); opacity: 1; } 70% { transform: translateY(5px); opacity: 0; } 100% { transform: translateY(0); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .cue .mouse .wheel { animation: none; } }
+
+/* Orbit copy */
+.orbit-copy { position: fixed; z-index: 4; width: 34ch; height: 0; pointer-events: none; }
+/* Text alternates corners from stop to stop: top-left, then bottom-right */
+.orbit-copy.tl { top: 18vh; left: var(--gutter); }
+.orbit-copy.br { bottom: 24vh; right: var(--gutter); text-align: right; }
+.orbit-copy.br .beat, .orbit-copy.br .project { left: auto; right: 0; top: auto; }
+.orbit-copy.br .beat.b1 { bottom: calc(var(--b2h, 2.24em) + .32em); } /* just above the second line, however many lines it runs to */
+.orbit-copy.br .beat.b2 { bottom: 0; }
+.orbit-copy.br .project { bottom: 0; }
+/* Names never break (no lone last word): long ones overflow toward the centre of the screen, never off its edge */
+.project h2 { white-space: nowrap; }
+.orbit-copy.br .project h2 { display: flex; justify-content: flex-end; gap: .24em; } /* flex drops the space between first and last name */
+/* a name stacked like the hero's, first name over last; main.js sizes it to the description's width */
+.project h2.stack, .orbit-copy.br .project h2.stack { display: block; line-height: .9; margin-bottom: .14em; }
+.project h2.stack > * { display: block; width: max-content; }
+.orbit-copy.br .project h2.stack > * { margin-left: auto; }
+.beat { position: absolute; top: 0; left: 0; width: 27ch; font-family: var(--text); font-weight: 500; font-size: clamp(24px, 2.4vw, 34px); line-height: 1.12; letter-spacing: -.035em; opacity: 0; will-change: transform, opacity, filter; }
+.beat.b2 { top: calc(var(--b1h, 2.24em) + .32em); } /* the second line follows close, in the same ink: one thought */
+.project { position: absolute; top: 0; left: 0; width: 34ch; opacity: 0; will-change: transform, opacity, filter; }
+.project .pos { font: 400 11px/1.4 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); }
+.project h2 { font-family: var(--display); font-weight: 400; font-size: clamp(56px, 7vw, 104px); line-height: 1; letter-spacing: -.02em; margin: 10px 0 10px; }
+.project p { color: var(--ink-2); font-size: 16px; line-height: 1.5; }
+.enter { display: inline-block; margin-top: 20px; font: 400 11px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; border-bottom: 1px solid var(--ink); padding-bottom: 5px; pointer-events: auto; cursor: pointer; }
+
+/* Entering a case study: once the planet fills the screen, its surface fades into the project's colour */
+.flood { position: fixed; inset: 0; z-index: 20; pointer-events: none; opacity: 0; }
+
+@media (max-width: 720px) {
+  /* the project list stacks above the chapter name, rather than beside it, and the hero rises to leave it room */
+  .corner.bottom { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .index { gap: 4px; font-size: 10.5px; }
+  .hero { top: 40%; }
+  /* the top bar on one line with room between: the shortcuts a size down and closer together, the name a touch smaller */
+  .top .mark { font-size: 18px; }
+  .top .jumps { gap: 14px; font-size: 10.5px; }
+  .orbit-copy.tl { top: 14vh; }
+  .orbit-copy.br { bottom: 29vh; } /* clear of the project list in the bottom corner */
+  /* the copy fills the column between the side margins and wraps, rather than running off the screen at its desktop
+     measure; names may wrap too */
+  :root { --gutter: 20px; } /* a proper margin all round on a phone (16px was tight) */
+  .orbit-copy { width: calc(100vw - 2 * var(--gutter)); }
+  .beat, .project { width: 100%; }
+  .project h2 { white-space: normal; }
+  .orbit-copy.br .project h2 { flex-wrap: wrap; }
+}
+/* View project, under the name: shown where there is no planet cursor to click (phones, touch screens) */
+.project .view { display: none; margin: 4px 0 14px; background: none; border: 0; border-bottom: 1px solid var(--ink); padding: 0 0 5px; color: var(--ink); }
+@media (hover: none), (max-width: 720px) { .project .view { display: inline-block; } }
+/* the smallest phones (320px): one more step down, so the name and the shortcuts keep clear air between them */
+@media (max-width: 359px) { .top .mark { font-size: 16px; } .top .jumps { gap: 10px; font-size: 10px; } }
+
+/* Career galaxies: company names are set in Geist (Bodoni is kept for the name and project names) */
+.project h2.org { font-family: var(--text); font-weight: 500; font-size: clamp(40px, 5vw, 76px); letter-spacing: -.045em; line-height: 1; }
+.project .role { color: var(--ink); margin-bottom: 6px; }
+.project .links { display: flex; flex-wrap: wrap; gap: 6px 22px; margin-top: 10px; }
+.project .links .enter { margin-top: 10px; }
+/* Career copy sits over dense star fields: a soft dark veil keeps it readable without boxing it in */
+.orbit-copy.over-stars .project::before { content: ""; position: absolute; inset: -60px -90px -60px -60px; z-index: -1; pointer-events: none;
+  background: radial-gradient(closest-side, rgba(5, 5, 7, .78), rgba(5, 5, 7, .45) 55%, rgba(5, 5, 7, 0)); }
+
+/* Shortcuts in the top bar */
+.jumps { display: flex; gap: 22px; align-items: baseline; pointer-events: auto; }
+.jumps button { background: none; border: 0; padding: 0; font: inherit; letter-spacing: inherit; text-transform: inherit; color: var(--ink-2); cursor: pointer; transition: color .3s; }
+.jumps button:hover, .jumps button:focus-visible { color: var(--ink); }
+/* While a shortcut is flying you somewhere, the copy steps aside */
+body.transiting .orbits, body.transiting .hero { opacity: 0 !important; transition: opacity .35s; }
+.veil { position: fixed; inset: 0; z-index: 15; background: #050507; opacity: 0; pointer-events: none; }
+
+/* "Back to where it all started" sits under the contact links */
+.project button.enter.home { display: inline-block; margin-top: 26px; background: none; border: 0; border-bottom: 1px solid var(--ink-3); color: var(--ink); padding: 0 0 5px; }
+.project button.enter.home:hover { border-bottom-color: var(--ink); }
+
+/* Hovering a planet while its title is up: the cursor becomes a dot inside a slowly spinning "Enter case study" ring */
+body.over-planet, body.over-planet * { cursor: pointer !important; }
+
+/* Until the page script runs, the name stays hidden: it fades in on arrival, and never flashes on the way back from a case study */
+.booting .hero { opacity: 0; }
+
+/* ---------- Case study on the planet's horizon (on trial with Viberist) */
+.planet-case .band, .planet-case .case { display: none; }
+.case-scene { position: fixed; inset: 0; width: 100%; height: 100%; display: block; z-index: 0; }
+.case-track { position: relative; z-index: -1; }
+.case-secs { position: fixed; inset: 0; z-index: 2; pointer-events: none; }
+.case-sec { position: absolute; left: 50%; top: 15vh; width: min(760px, calc(100% - 2 * var(--gutter))); text-align: center; transform: translate(-50%, 0); visibility: hidden; }
+@media (max-width: 759px) { .case-sec { top: 9vh; } } /* phones: copy starts higher, the same in every section, to leave the mockups their room */
+.case-sec .pos { font: 400 11px/1.4 var(--mono); letter-spacing: .06em; text-transform: uppercase; opacity: .72; }
+.case-sec h1 { font-family: var(--display); font-weight: 400; font-size: clamp(64px, 11vw, 168px); line-height: .9; letter-spacing: -.03em; margin: 14px 0 20px; font-variation-settings: "opsz" 96; }
+.case-sec .lede { font-size: clamp(18px, 1.9vw, 24px); line-height: 1.32; letter-spacing: -.015em; max-width: 30ch; margin: 0 auto; }
+.case-sec .meta { justify-content: center; margin-top: 36px; }
+@media (max-width: 759px) { .case-sec .meta { flex-direction: column; align-items: center; gap: 14px; margin-top: 28px; } } /* phones: role, platform and duration in one column */
+.case-sec h2 { font-weight: 500; font-size: clamp(30px, 4vw, 54px); line-height: 1.05; letter-spacing: -.03em; margin: 16px auto 18px; max-width: 18ch; }
+.case-sec p { font-size: 17px; line-height: 1.55; opacity: .85; max-width: 46ch; margin: 0 auto; }
+.case-sec .cue { margin-top: 7vh; color: inherit; border-color: currentColor; background: none; }
+.case-sec .cue span { opacity: .95; }
+/* the end of the case study, on its last section, below the orbit line (top set in case-planet.js) */
+.case-end { position: absolute; left: 0; right: 0; display: flex; flex-direction: column; align-items: center; }
+.case-end .back-orbit { margin-top: 18px; font-size: 13px; border-bottom-color: currentColor; }
+.planet-case .meta dt { color: inherit; opacity: .65; }
+/* the section index: every section listed, the current one at full ink with a dot, the rest dimmed */
+.case-index { position: fixed; left: var(--gutter); bottom: var(--gutter); z-index: 3; list-style: none; margin: 0; padding: 0; display: grid; gap: 5px; font: 400 11px/1.4 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+.case-index li { display: flex; align-items: center; gap: 10px; opacity: .5; cursor: pointer; transition: opacity .3s ease; }
+.case-index .n { margin-right: -2px; }
+.case-index li.lead .n { display: none; } /* desktop: the project's name heads the list, unnumbered */
+.case-index li.on { opacity: 1; }
+.case-index li.on::after { content: ""; width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+.case-index li:focus-visible { opacity: 1; outline: none; text-decoration: underline; }
+@media (hover: hover) and (pointer: fine) { .case-index li:hover { opacity: .85; } }
+/* phones: one centred row of section numbers, evenly spaced along the bottom; the current section's name sits
+   centred above the row */
+@media (max-width: 759px) {
+  .case-index { left: var(--gutter); right: var(--gutter); bottom: 18px; display: flex; justify-content: space-between; align-items: center; gap: 0; padding-top: 22px; }
+  .case-index li { display: block; position: static; padding: 6px 2px; }
+  .case-index li.lead .n { display: inline; }
+  .case-index li .t { display: none; }
+  .case-index li.on::after { display: none; }
+  .case-index li.on .t { display: block; position: absolute; top: 0; left: 0; right: 0; text-align: center; white-space: nowrap; }
+}
+.case-veil { position: fixed; inset: 0; z-index: 10; pointer-events: none; }
+
+/* No browser scrollbar: the page is driven by scroll, but the journey and the section label show where you are */
+html { scrollbar-width: none; }
+html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
+
+/* Mockups standing on the planet: anchored at their base, leaning outward from the surface */
+.case-shots { position: fixed; inset: 0; z-index: 2; pointer-events: none; }
+.case-shot { position: absolute; padding: 0; border: 0; background: none; cursor: zoom-in; transform-origin: 50% 100%; visibility: hidden; will-change: transform, opacity; }
+.case-shot img { display: block; width: auto; height: auto; border-radius: 12px; filter: drop-shadow(0 18px 40px rgba(0, 0, 0, .28)); }
+.case-shot.side img { max-height: 46vh; max-width: 26vw; }
+.case-shot.center img { max-height: 38vh; max-width: 44vw; }
+.case-shot.center { cursor: default; } /* a 3D mark: to look at, not to open */
+@media (max-width: 759px) { .case-shot img, .case-shot.side img, .case-shot.center img { max-height: 34vh; max-width: 78vw; } }
+.case-shot:focus-visible { outline: 1px solid currentColor; outline-offset: 6px; border-radius: 14px; }
+.case-lightbox { position: fixed; inset: 0; z-index: 20; display: grid; place-items: center; padding: 0; background: rgba(5, 5, 7, .94); opacity: 0; visibility: hidden; transition: opacity .35s ease, visibility 0s .35s; cursor: zoom-out; }
+.case-lightbox.on { opacity: 1; visibility: visible; transition: opacity .35s ease; }
+.case-lightbox img { grid-area: 1 / 1; max-width: none; max-height: none; border-radius: 10px; cursor: default; box-shadow: 0 30px 80px rgba(0, 0, 0, .5); transform: scale(.96); transition: transform .5s cubic-bezier(.2, .8, .2, 1); }
+.case-lightbox.on img { transform: none; }
+/* the controls: close top right, a chevron each side, the count under the picture; white on the dark backdrop */
+.case-lightbox button { position: fixed; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 1px solid rgba(255, 255, 255, .22); border-radius: 50%; background: rgba(255, 255, 255, .06); color: #fff; cursor: pointer; transition: background .2s ease, border-color .2s ease, transform .16s ease-out; }
+.case-lightbox button:hover { background: rgba(255, 255, 255, .14); border-color: rgba(255, 255, 255, .45); }
+.case-lightbox button:active { transform: scale(.94); }
+.case-lightbox button:focus-visible { outline: 1px solid #fff; outline-offset: 3px; }
+.case-lightbox svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.case-lightbox .lb-close { top: var(--gutter); right: var(--gutter); }
+.case-lightbox .lb-nav { top: 50%; margin-top: -22px; }
+.case-lightbox .prev { left: max(var(--gutter), 3vw); }
+.case-lightbox .next { right: max(var(--gutter), 3vw); }
+.case-lightbox .lb-count { position: fixed; left: 0; right: 0; bottom: 4vh; text-align: center; font: 400 12px/1 var(--mono); letter-spacing: .12em; color: rgba(255, 255, 255, .75); pointer-events: none; }
+.case-lightbox.single .lb-nav, .case-lightbox.single .lb-count { display: none; }
+/* phones: the chevrons sit beside the count, under the picture, rather than over it */
+@media (max-width: 759px) {
+  .case-lightbox .lb-nav { top: auto; bottom: calc(4vh - 16px); margin-top: 0; }
+  .case-lightbox .prev { left: calc(50% - 96px); }
+  .case-lightbox .next { right: calc(50% - 96px); }
+}
+.case-shot.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); visibility: visible !important; opacity: 1 !important; }
+/* Satellites: flat screens threaded on the orbit, with a soft light instead of a cast shadow */
+.case-shots.satellites .case-shot { transform-origin: 50% 50%; }
+.case-shots.satellites .case-shot img { border-radius: 10px; filter: drop-shadow(0 0 22px rgba(255, 255, 255, .22)); }
+
+/* ---------- Opening (first visit): notice on white paper, a sunlit comet, a silhouette, the board breaking away */
+.intro { position: fixed; inset: 0; z-index: 60; overflow: hidden; color: #0c0d12; }
+/* the comet scene: a real 3D render, in high-contrast monochrome */
+.intro-scene { position: absolute; inset: 0; width: 100%; height: 100%; display: block; filter: grayscale(1) contrast(1.18); }
+.intro-vignette { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse at 50% 55%, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, .38) 100%); }
+.intro-glare { position: absolute; inset: 0; background: #ffffff; opacity: 1; pointer-events: none; }
+.intro-paper { position: absolute; inset: 0; background-color: #f1efe9; }
+/* the notice: a game or film warning card, set in the site's own type */
+.intro-notice { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(560px, calc(100% - 2 * var(--gutter))); text-align: center; }
+.intro-label { font: 500 11px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; margin-bottom: 26px; }
+.intro-text { font: 400 16px/1.6 var(--text); color: #2a2c33; margin: 0 auto 14px; max-width: 46ch; }
+.intro-flash { position: absolute; inset: 0; background: #ffffff; opacity: 0; pointer-events: none; }
+
+/* The opening line: large, tight, in the site's text face; each word rises out of its own mask */
+.intro-line { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(1100px, calc(100% - 2 * var(--gutter))); margin: 0;
+  text-align: center; font: 500 clamp(40px, 6.4vw, 104px)/1.02 var(--text); letter-spacing: -0.035em; color: #0c0d12; pointer-events: none; }
+/* "Brand Triumph" in the hero name's type (Bodoni Moda, display cut), italic, each word capitalised */
+.intro-word.display { vertical-align: baseline; font-family: var(--display); font-weight: 400; font-style: italic; font-size: 1.12em; letter-spacing: -0.03em; font-variation-settings: "opsz" 96; }
+.intro-word { display: inline-block; vertical-align: top; } /* no mask: a clip would cut the blur into a hard box */
+.intro-word > span { display: inline-block; will-change: transform, filter, opacity; }
+.intro-char { display: inline-block; } /* each letter scatters on its own as the line breaks up */
+.intro-row { display: block; white-space: nowrap; }
+@media (max-width: 640px) { .intro-row { white-space: normal; } }
+/* The opening, refined: white arrives by opacity (no repaint), and "Skip intro" answers a press */
+.intro-white { position: absolute; inset: 0; background: #ffffff; opacity: 0; pointer-events: none; }
+
+/* Case study tags: the costs of a problem, the steps of a method, the decisions an insight led to */
+.case-points { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 22px auto 0; padding: 0; max-width: 560px; } /* long lists wrap, so the satellites keep room beside them */
+.case-points li { font: 400 11px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; padding: 8px 12px; border: 1px solid currentColor; border-radius: 999px; opacity: .85; white-space: nowrap; }
+@media (max-width: 759px) { .case-points { gap: 6px; margin-top: 16px; } .case-points li { font-size: 10px; padding: 6px 9px; } }
+.case-points.numbered li span { opacity: .55; margin-right: 8px; }
+
+/* No orphans: headings break into even lines, body copy never leaves one word alone on its last line
+   (typeset.js covers browsers without text-wrap: pretty) */
+h1, h2, h3, .lede, blockquote { text-wrap: balance; }
+p, li, dd { text-wrap: pretty; }
+/* a project's name is one or two words: it never breaks, and may run wider than the copy column, centred on the screen */
+.case-sec h1 { white-space: nowrap; margin-inline: calc(50% - 50vw); }
+
+/* Painted (trial: index.html?paint): ink on warm paper instead of light in space */
+html.paint {
+  --space: #F4EEE4;
+  --ink: #26242C;
+  --ink-2: #6A6570;
+  --ink-3: #A39D97;
+  --hair: rgba(38, 36, 44, .16);
+}
+html.paint .cue { border-color: rgba(38, 36, 44, .35); background: rgba(38, 36, 44, .04); }
+html.paint .veil { background: #F4EEE4; }
+/* painted: no dark veil behind the Journey copy (on paper it reads as a smudge, and ink needs no help) */
+html.paint .orbit-copy.over-stars .project::before { display: none; }
+/* painted: the intro on the same watercolour paper (warm cotton, fine grain, slow cloudy washes), its whiteout in
+   paper too, so it flows straight into the painted ride */
+html.paint {
+  --paper-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .33 0 0 0 0 .28 0 0 0 0 .22 0 0 0 .1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --paper-cloud: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='600'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.004 .006' numOctaves='3' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 .62 0 0 0 0 .52 0 0 0 0 .40 0 0 0 .16 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23c)'/%3E%3C/svg%3E");
+}
+html.paint .intro-paper, html.paint .intro-white, html.paint .intro-flash { background: var(--paper-grain), var(--paper-cloud) center / cover, #F4EEE4; }
+html.paint .intro-line { color: #26242C; }
+html.paint .intro-text { color: #4A4650; }
+/* Light / dark: the button sits with the shortcuts; a short fade in the coming look's ground covers the swap */
+.jumps .theme { transition: color .3s, transform .16s ease-out; }
+.jumps .theme:active { transform: scale(0.96); }
+.theme-fade { position: fixed; inset: 0; z-index: 40; opacity: 0; pointer-events: none; }
+/* the mode button: a moon in light (to go dark), a sun in dark (to go light) */
+.jumps .theme { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; margin: -6px -4px; align-self: center; }
+.jumps .theme svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.jumps .theme .sun { display: none; }
+html:not(.paint) .jumps .theme .moon { display: none; }
+html:not(.paint) .jumps .theme .sun { display: block; }
+/* the view transition is driven from main.js: no default crossfade under it */
+::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+::view-transition-new(root) { z-index: 2; }
+/* the coming look shows through the marbled mask warp-reveal.js draws each frame */
+::view-transition-new(root) { -webkit-mask-image: var(--warp-mask); mask-image: var(--warp-mask); -webkit-mask-size: 100% 100%; mask-size: 100% 100%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; }
+
+/* Something to open: a four-point spark and a word, white with an ink outline so it reads on any screen. It twinkles
+   (a slow turn and a pulse); with a mouse it trails the pointer over a mockup, on touch it sits on each one's corner */
+.spark-tag { position: fixed; left: 0; top: 0; z-index: 6; pointer-events: none; opacity: 0; transition: opacity .2s ease; }
+.spark-tag .spark { width: 30px; height: 30px; overflow: visible; fill: #fff; stroke: #16151a; stroke-width: 1.6; stroke-linejoin: round; paint-order: stroke; filter: drop-shadow(0 2px 6px rgba(0, 0, 0, .25)); animation: spark-twinkle 2.4s ease-in-out infinite; }
+.spark-tag b { font: 800 13px/1 var(--text); letter-spacing: .02em; text-transform: uppercase; color: #fff; -webkit-text-stroke: 3px #16151a; paint-order: stroke fill; text-shadow: 0 2px 6px rgba(0, 0, 0, .25); }
+.spark-tag.cursor { z-index: 30; margin: 6px 0 0 6px; }
+.spark-tag > i { display: flex; align-items: center; gap: 2px; font-style: normal; transform-origin: 15px 50%; }
+.spark-tag.cursor > i { transform: scale(.6); transition: transform .35s cubic-bezier(.23, 1, .32, 1); }
+.spark-tag.cursor.on { opacity: 1; }
+.spark-tag.cursor.on > i { transform: none; }
+/* the pin: its spark centred on the corner, the word just inside it */
+.spark-tag.pin { margin: -15px 0 0 -15px; }
+.spark-tag.pin .spark { width: 26px; height: 26px; }
+.spark-tag.pin b { font-size: 11px; -webkit-text-stroke-width: 2.6px; }
+.spark-tag.pin:not(.on) { opacity: 0 !important; }
+@keyframes spark-twinkle { 0%, 100% { transform: rotate(0) scale(1); } 50% { transform: rotate(45deg) scale(.82); } }
+@media (prefers-reduced-motion: reduce) { .spark-tag .spark { animation: none !important; } }

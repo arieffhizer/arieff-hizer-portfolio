@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- a ringed planet in ink on paper, the site's own two colours: the back of the ring passes behind the planet, the
+       front crosses in front of it -->
+  <rect width="64" height="64" rx="14" fill="#F4EEE4"/>
+  <g transform="rotate(-22 32 32)" fill="none" stroke="#26242C" stroke-width="3.2" stroke-linecap="round">
+    <path d="M6 32a26 8.5 0 0 1 52 0" opacity=".4"/>
+    <circle cx="32" cy="32" r="14" fill="#26242C" stroke="none"/>
+    <path d="M6 32a26 8.5 0 0 0 52 0" stroke="#F4EEE4" stroke-width="7"/>
+    <path d="M6 32a26 8.5 0 0 0 52 0"/>
+  </g>
+</svg>
