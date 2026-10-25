@@ -1,15 +1,15 @@
 import * as THREE from "three";
-import { planetMaterial, atmosphereMaterial, starMaterial } from "./shaders.js?v=acc5dcce";
-import { PROJECTS } from "./planets.js?v=acc5dcce";
-import { makeMonoliths } from "./case-monoliths.js?v=acc5dcce";
-import { makeSatellites } from "./case-satellites.js?v=acc5dcce";
-import { noOrphans } from "./typeset.js?v=acc5dcce";
+import { planetMaterial, atmosphereMaterial, starMaterial } from "./shaders.js?v=e9b05065";
+import { PROJECTS } from "./planets.js?v=e9b05065";
+import { makeMonoliths } from "./case-monoliths.js?v=e9b05065";
+import { makeSatellites } from "./case-satellites.js?v=e9b05065";
+import { noOrphans } from "./typeset.js?v=e9b05065";
 import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
-import { WatercolorShader } from "./watercolor.js?v=acc5dcce";
-import { themeButton } from "./warp-reveal.js?v=acc5dcce";
+import { WatercolorShader } from "./watercolor.js?v=e9b05065";
+import { themeButton } from "./warp-reveal.js?v=e9b05065";
 
 // projects whose screens stand on the planet as chrome monoliths (on trial); the rest show flat images
 const MONOLITHS = new Set([]); // none for now: satellites won
@@ -76,6 +76,14 @@ export function startPlanetCase({ name, copy, sections, index, total }) {
   canvas.setAttribute("aria-hidden", "true");
   document.body.prepend(canvas);
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+  // iOS may take the 3D context away when memory runs short (the page goes white): reload once to get it back
+  renderer.domElement.addEventListener("webglcontextlost", (e) => {
+    e.preventDefault();
+    let last = 0; try { last = +sessionStorage.getItem("v2-gl-reload") || 0; } catch {}
+    if (Date.now() - last < 15000) return; // (once: never a reload loop)
+    try { sessionStorage.setItem("v2-gl-reload", String(Date.now())); } catch {}
+    location.reload();
+  });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 3000);

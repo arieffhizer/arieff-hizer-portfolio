@@ -4,19 +4,19 @@ import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
-import { PROJECTS_COPY, ABOUT_COPY, EXIT_COPY, CAREER_COPY, CONTACT_COPY } from "./content.js?v=acc5dcce";
-import { makeGalaxy, makeWormhole, makeUnclaimedPlanet } from "./galaxies.js?v=acc5dcce";
-import { makeBlackHole } from "./blackhole.js?v=acc5dcce";
-import { PROJECTS } from "./planets.js?v=acc5dcce";
-import { noOrphans } from "./typeset.js?v=acc5dcce";
+import { PROJECTS_COPY, ABOUT_COPY, EXIT_COPY, CAREER_COPY, CONTACT_COPY } from "./content.js?v=e9b05065";
+import { makeGalaxy, makeWormhole, makeUnclaimedPlanet } from "./galaxies.js?v=e9b05065";
+import { makeBlackHole } from "./blackhole.js?v=e9b05065";
+import { PROJECTS } from "./planets.js?v=e9b05065";
+import { noOrphans } from "./typeset.js?v=e9b05065";
 noOrphans();
-import { playIntro } from "./intro.js?v=acc5dcce";
-import { WatercolorShader } from "./watercolor.js?v=acc5dcce";
-import { themeButton } from "./warp-reveal.js?v=acc5dcce";
+import { playIntro } from "./intro.js?v=e9b05065";
+import { WatercolorShader } from "./watercolor.js?v=e9b05065";
+import { themeButton } from "./warp-reveal.js?v=e9b05065";
 // two looks for the same ride: light, painted in watercolour on paper (the default), and dark, realistic space. The
 // head of index.html picks one before anything draws; the Dark / Light button in the header switches and remembers
 let PAINT = document.documentElement.classList.contains("paint");
-import { planetMaterial, atmosphereMaterial, starMaterial, ringMaterial, makeLiquid, FilmShader } from "./shaders.js?v=acc5dcce";
+import { planetMaterial, atmosphereMaterial, starMaterial, ringMaterial, makeLiquid, FilmShader } from "./shaders.js?v=e9b05065";
 
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const rand = (a, b) => a + Math.random() * (b - a);
@@ -27,6 +27,14 @@ const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 // ---------- Renderer, scene, camera
 const canvas = document.getElementById("scene");
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: "high-performance" });
+// iOS may take the 3D context away when memory runs short (the page goes white): reload once to get it back
+renderer.domElement.addEventListener("webglcontextlost", (e) => {
+  e.preventDefault();
+  let last = 0; try { last = +sessionStorage.getItem("v2-gl-reload") || 0; } catch {}
+  if (Date.now() - last < 15000) return; // (once: never a reload loop)
+  try { sessionStorage.setItem("v2-gl-reload", String(Date.now())); } catch {}
+  location.reload();
+});
 renderer.setPixelRatio(Math.min(devicePixelRatio, 1.75));
 renderer.setSize(innerWidth, innerHeight);
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -711,7 +719,11 @@ if (back >= 0) {
   state.speed = 0;
   hero.style.opacity = 0;
   const target = atStop(back, 0.86);
-  addEventListener("load", () => { scrollTo(0, target * maxScroll()); state.p = state.ps = target; });
+  // back to the planet's place: now, on load, and again until it holds (iOS can restore or reset the scroll after load)
+  const land = () => { scrollTo(0, target * maxScroll()); state.p = state.ps = target; };
+  land();
+  addEventListener("load", land);
+  for (const t of [120, 400, 900, 1600]) setTimeout(() => { if (Math.abs(scrollY - target * maxScroll()) > 4) land(); }, t);
   state.warpPlanet = stops[back].p;
   state.push = 1;
   document.body.classList.add("transiting");
