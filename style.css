@@ -301,5 +301,13 @@ html:not(.paint) .jumps .theme .sun { display: block; }
 @keyframes spark-twinkle { 0%, 100% { transform: rotate(0) scale(1); } 50% { transform: rotate(45deg) scale(.82); } }
 @media (prefers-reduced-motion: reduce) { .spark-tag .spark { animation: none !important; } }
 
-/* Browser bars: every full-screen layer paints its colour as an image (never background-color), which iOS Safari's
-   bar tint does not read, so the bars take the white page background */
+/* Browser bars: iOS Safari 26 tints its top and bottom bars from full-width fixed elements at the viewport's edges
+   (real elements: it ignores pseudo-elements). Two 3px white strips at the very top and bottom, on iOS only, make both
+   bars white, and blend into them. The full-screen colour layers also paint their colour as an image, never as a
+   background-color, which Safari would read instead */
+.bar-tint { display: none; }
+@supports (-webkit-touch-callout: none) {
+  .bar-tint { display: block; position: fixed; left: 0; right: 0; height: 3px; background-color: #fff; z-index: 2147483647; pointer-events: none; }
+  .bar-tint.top { top: 0; }
+  .bar-tint.bottom { bottom: 0; }
+}
