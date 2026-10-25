@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Arieff Hizer — Product Designer</title>
 <meta name="description" content="Arieff Hizer, product designer in Malaysia. A ride through a solar system of work: returns, trades, fitness, logistics and football apps, designed for people to trust.">
 <meta name="theme-color" content="#F4EEE4">
@@ -28,7 +28,9 @@ document.documentElement.classList.add("booting");
 // light (watercolour on paper) unless dark (space) was chosen; ?paint or ?space overrides, for testing
 (() => { let t = "light"; try { t = localStorage.getItem("v2-theme") || "light"; } catch {}
   const q = new URLSearchParams(location.search); if (q.has("paint")) t = "light"; if (q.has("space")) t = "dark";
-  if (t === "light") document.documentElement.classList.add("paint"); })();
+  if (t === "light") document.documentElement.classList.add("paint");
+  // the browser's own bars take the page's colour: paper, or space
+  document.querySelector('meta[name="theme-color"]').content = t === "light" ? "#F4EEE4" : "#050507"; })();
 </script>
 <script type="importmap">
 { "imports": {

@@ -377,6 +377,7 @@ composer.addPass(wash);
 function setTheme(paint) {
   PAINT = paint;
   document.documentElement.classList.toggle("paint", paint);
+  document.querySelector('meta[name="theme-color"]').content = paint ? "#F4EEE4" : "#050507";
   film.enabled = !paint; wash.enabled = paint;
   // painted planets are lit all round, as an illustration is
   scene.traverse((o) => [].concat(o.material || []).forEach((m) => { if (m.uniforms && m.uniforms.uEven) m.uniforms.uEven.value = paint ? 1 : 0; }));
@@ -696,7 +697,8 @@ const maxScroll = () => document.documentElement.scrollHeight - innerHeight;
 
 const hero = document.querySelector(".hero");
 const flood = document.querySelector(".flood");
-const back = stops.findIndex((s) => s.kind === "project" && `#${s.copy.slug}` === location.hash);
+// (cleared once that return has landed: from then on the scroll drives the name like on any other visit)
+let back = stops.findIndex((s) => s.kind === "project" && `#${s.copy.slug}` === location.hash);
 if (back >= 0) {
   // Returning from a case study: the dive in reverse. The colour fades to the planet's surface filling the screen,
   // then you pull back out of it into that orbit
@@ -709,11 +711,12 @@ if (back >= 0) {
   document.body.classList.add("transiting");
   flood.style.background = stops[back].color;
   flood.style.clipPath = "none";
-  flood.style.opacity = 1;
+  gsap.set(flood, { autoAlpha: 1 });
   gsap.timeline({ delay: 0.25 })
-    .to(flood, { opacity: 0, duration: reduce ? 0.01 : 0.7, ease: "power1.inOut" })
+    .to(flood, { autoAlpha: 0, duration: reduce ? 0.01 : 0.7, ease: "power1.inOut" })
     .to(state, { push: 0, duration: reduce ? 0.01 : 2.0, ease: "power2.inOut" }, "-=0.15")
-    .add(() => showCopy(), "-=0.6");
+    .add(() => showCopy(), "-=0.6")
+    .add(() => { back = -1; state.heroIn = true; }); // landed: scrolling up to the start shows the name, and scrolling on fades it
 } else {
   scrollTo(0, 0);
   addEventListener("load", () => scrollTo(0, 0));
@@ -760,18 +763,18 @@ function warpTo(i) {
   document.body.classList.add("transiting");
   flood.style.background = s.color;
   flood.style.clipPath = "none";
-  flood.style.opacity = 0;
+  gsap.set(flood, { autoAlpha: 0 }); // (autoAlpha: hidden outright when clear, so Safari never tints its bars with it)
   // far from the planet (out in the Journey, say): superspeed, and its colour floods in at full streak
   if (s.p.group.getWorldPosition(new THREE.Vector3()).distanceTo(camera.position) > 45) {
     gsap.timeline({ onComplete: go })
       .to(state, { skip: 1, duration: 0.9, ease: "power2.in" })
-      .to(flood, { opacity: 1, duration: 0.45, ease: "power1.in" }, "-=0.3");
+      .to(flood, { autoAlpha: 1, duration: 0.45, ease: "power1.in" }, "-=0.3");
     return;
   }
   state.warpPlanet = s.p;
   gsap.timeline({ onComplete: go })
     .to(state, { push: 1, duration: 1.7, ease: "power3.inOut" })
-    .to(flood, { opacity: 1, duration: 0.55, ease: "power1.in" }, "-=0.35");
+    .to(flood, { autoAlpha: 1, duration: 0.55, ease: "power1.in" }, "-=0.35");
 }
 // where the dive is: just above the planet's surface on your side of it, looking at its centre
 const divePos = new THREE.Vector3(), diveCentre = new THREE.Vector3();
@@ -1124,6 +1127,7 @@ function returnHome(viaBlackHole) {
   // the name back to the scroll mid-fade
   gsap.killTweensOf(hero);
   state.heroIn = false;
+  back = -1; // (a return from a case study still landing is over too)
   document.body.classList.add("transiting");
   const tl = gsap.timeline({ data: "home", onComplete: () => { skipTl = null; } });
   const fall = reduce ? 0.01 : viaBlackHole ? 2.8 : 0.9;

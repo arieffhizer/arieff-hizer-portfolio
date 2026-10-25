@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Case study — Arieff Hizer</title>
 <meta name="description" content="A case study by Arieff Hizer, product designer in Malaysia.">
 <meta name="theme-color" content="#F4EEE4">
@@ -26,7 +26,9 @@
 // light (watercolour on paper) unless dark (space) was chosen, as on the home page
 (() => { let t = "light"; try { t = localStorage.getItem("v2-theme") || "light"; } catch {}
   const q = new URLSearchParams(location.search); if (q.has("paint")) t = "light"; if (q.has("space")) t = "dark";
-  if (t === "light") document.documentElement.classList.add("paint"); })();
+  if (t === "light") document.documentElement.classList.add("paint");
+  // the browser's own bars take the page's colour: paper, or space
+  document.querySelector('meta[name="theme-color"]').content = t === "light" ? "#F4EEE4" : "#050507"; })();
 </script>
 <script type="importmap">
 { "imports": {
@@ -47,9 +49,9 @@
   .meta { display: flex; flex-wrap: wrap; gap: 12px 48px; margin-top: 48px; }
   .meta dt { font: 400 11px/1.4 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: rgba(255, 255, 255, .6); }
   .meta dd { font-size: 15px; margin-top: 4px; }
-  .case-top { position: fixed; z-index: 5; top: var(--gutter); right: var(--gutter); font: 400 12px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+  .case-top { position: fixed; z-index: 5; top: calc(var(--gutter) + env(safe-area-inset-top, 0px)); right: var(--gutter); font: 400 12px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
   .case-top .theme { color: inherit; }
-  .top .mark { position: fixed; top: var(--gutter); left: var(--gutter); z-index: 5; }
+  .top .mark { position: fixed; top: calc(var(--gutter) + env(safe-area-inset-top, 0px)); left: var(--gutter); z-index: 5; }
   .case > * { opacity: 0; transform: translateY(18px); }
 </style>
 </head>

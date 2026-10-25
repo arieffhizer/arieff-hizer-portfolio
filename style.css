@@ -19,10 +19,10 @@ a { color: inherit; text-decoration: none; }
 
 .corner { position: fixed; left: var(--gutter); right: var(--gutter); z-index: 5; display: flex; justify-content: space-between; pointer-events: none; }
 .corner a, .corner li { pointer-events: auto; }
-.top { top: var(--gutter); align-items: baseline; font: 400 12px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+.top { top: calc(var(--gutter) + env(safe-area-inset-top, 0px)); align-items: baseline; font: 400 12px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
 .top .mark { font-family: var(--display); font-size: 20px; letter-spacing: 0; text-transform: none; }
 
-.bottom { bottom: var(--gutter); align-items: end; gap: 24px; }
+.bottom { bottom: calc(var(--gutter) + env(safe-area-inset-bottom, 0px)); align-items: end; gap: 24px; }
 .index { list-style: none; display: grid; gap: 5px; font: 400 11px/1.4 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); }
 .index li { display: flex; align-items: center; gap: 10px; transition: color .3s; cursor: pointer; pointer-events: auto; }
 .index li:hover, .index li:focus-visible { color: var(--ink); outline: none; }
@@ -71,7 +71,7 @@ a { color: inherit; text-decoration: none; }
 .enter { display: inline-block; margin-top: 20px; font: 400 11px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; border-bottom: 1px solid var(--ink); padding-bottom: 5px; pointer-events: auto; cursor: pointer; }
 
 /* Entering a case study: once the planet fills the screen, its surface fades into the project's colour */
-.flood { position: fixed; inset: 0; z-index: 20; pointer-events: none; opacity: 0; }
+.flood { position: fixed; inset: 0; z-index: 20; pointer-events: none; opacity: 0; visibility: hidden; }
 
 @media (max-width: 720px) {
   /* the project list stacks above the chapter name, rather than beside it, and the hero rises to leave it room */
@@ -130,7 +130,7 @@ body.over-planet, body.over-planet * { cursor: pointer !important; }
 .case-track { position: relative; z-index: -1; }
 .case-secs { position: fixed; inset: 0; z-index: 2; pointer-events: none; }
 .case-sec { position: absolute; left: 50%; top: 15vh; width: min(760px, calc(100% - 2 * var(--gutter))); text-align: center; transform: translate(-50%, 0); visibility: hidden; }
-@media (max-width: 759px) { .case-sec { top: 9vh; } } /* phones: copy starts higher, the same in every section, to leave the mockups their room */
+@media (max-width: 759px) { .case-sec { top: calc(9vh + env(safe-area-inset-top, 0px)); } } /* phones: copy starts higher, the same in every section, to leave the mockups their room */
 .case-sec .pos { font: 400 11px/1.4 var(--mono); letter-spacing: .06em; text-transform: uppercase; opacity: .72; }
 .case-sec h1 { font-family: var(--display); font-weight: 400; font-size: clamp(64px, 11vw, 168px); line-height: .9; letter-spacing: -.03em; margin: 14px 0 20px; font-variation-settings: "opsz" 96; }
 .case-sec .lede { font-size: clamp(18px, 1.9vw, 24px); line-height: 1.32; letter-spacing: -.015em; max-width: 30ch; margin: 0 auto; }
@@ -145,7 +145,7 @@ body.over-planet, body.over-planet * { cursor: pointer !important; }
 .case-end .back-orbit { margin-top: 18px; font-size: 13px; border-bottom-color: currentColor; }
 .planet-case .meta dt { color: inherit; opacity: .65; }
 /* the section index: every section listed, the current one at full ink with a dot, the rest dimmed */
-.case-index { position: fixed; left: var(--gutter); bottom: var(--gutter); z-index: 3; list-style: none; margin: 0; padding: 0; display: grid; gap: 5px; font: 400 11px/1.4 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+.case-index { position: fixed; left: var(--gutter); bottom: calc(var(--gutter) + env(safe-area-inset-bottom, 0px)); z-index: 3; list-style: none; margin: 0; padding: 0; display: grid; gap: 5px; font: 400 11px/1.4 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
 .case-index li { display: flex; align-items: center; gap: 10px; opacity: .5; cursor: pointer; transition: opacity .3s ease; }
 .case-index .n { margin-right: -2px; }
 .case-index li.lead .n { display: none; } /* desktop: the project's name heads the list, unnumbered */
@@ -188,15 +188,15 @@ html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
 .case-lightbox button:active { transform: scale(.94); }
 .case-lightbox button:focus-visible { outline: 1px solid #fff; outline-offset: 3px; }
 .case-lightbox svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
-.case-lightbox .lb-close { top: var(--gutter); right: var(--gutter); }
+.case-lightbox .lb-close { top: calc(var(--gutter) + env(safe-area-inset-top, 0px)); right: var(--gutter); }
 .case-lightbox .lb-nav { top: 50%; margin-top: -22px; }
 .case-lightbox .prev { left: max(var(--gutter), 3vw); }
 .case-lightbox .next { right: max(var(--gutter), 3vw); }
-.case-lightbox .lb-count { position: fixed; left: 0; right: 0; bottom: 4vh; text-align: center; font: 400 12px/1 var(--mono); letter-spacing: .12em; color: rgba(255, 255, 255, .75); pointer-events: none; }
+.case-lightbox .lb-count { position: fixed; left: 0; right: 0; bottom: calc(4vh + env(safe-area-inset-bottom, 0px)); text-align: center; font: 400 12px/1 var(--mono); letter-spacing: .12em; color: rgba(255, 255, 255, .75); pointer-events: none; }
 .case-lightbox.single .lb-nav, .case-lightbox.single .lb-count { display: none; }
 /* phones: the chevrons sit beside the count, under the picture, rather than over it */
 @media (max-width: 759px) {
-  .case-lightbox .lb-nav { top: auto; bottom: calc(4vh - 16px); margin-top: 0; }
+  .case-lightbox .lb-nav { top: auto; bottom: calc(4vh - 16px + env(safe-area-inset-bottom, 0px)); margin-top: 0; }
   .case-lightbox .prev { left: calc(50% - 96px); }
   .case-lightbox .next { right: calc(50% - 96px); }
 }

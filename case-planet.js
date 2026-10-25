@@ -743,6 +743,7 @@ export function startPlanetCase({ name, copy, sections, index, total }) {
     apply: (next) => {
       paint = next;
       document.documentElement.classList.toggle("paint", next);
+      document.querySelector('meta[name="theme-color"]').content = next ? "#F4EEE4" : "#050507";
       scene.traverse((o) => [].concat(o.material || []).forEach((m) => { if (m.uniforms && m.uniforms.uEven) m.uniforms.uEven.value = next ? 1 : 0; }));
     },
   });
@@ -755,13 +756,13 @@ export function startPlanetCase({ name, copy, sections, index, total }) {
   history.scrollRestoration = "manual"; // a case study always opens on its title
   scrollTo(0, 0);
   if (!reduce) {
-    gsap.to(veil, { opacity: 0, duration: 0.8, ease: "power1.out", delay: 0.15 });
+    gsap.to(veil, { autoAlpha: 0, duration: 0.8, ease: "power1.out", delay: 0.15 }); // (hidden outright once clear: Safari's bars)
     gsap.to(state, { rise: 0, duration: 2.0, ease: "power3.out", delay: 0.1 });
-  } else veil.style.opacity = 0;
+  } else gsap.set(veil, { autoAlpha: 0 });
 
   // ---------- Leaving: back to the brand colour, which the homepage dives back out of
   document.querySelectorAll(`a[href="index.html#${copy.slug}"]`).forEach((a) => a.addEventListener("click", (e) => {
     e.preventDefault();
-    gsap.to(veil, { opacity: 1, duration: reduce ? 0.01 : 0.45, ease: "power1.in", onComplete: () => (location.href = a.href) });
+    gsap.to(veil, { autoAlpha: 1, duration: reduce ? 0.01 : 0.45, ease: "power1.in", onComplete: () => (location.href = a.href) });
   }));
 }
