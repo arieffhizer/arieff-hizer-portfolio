@@ -4,19 +4,19 @@ import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
-import { PROJECTS_COPY, ABOUT_COPY, EXIT_COPY, CAREER_COPY, CONTACT_COPY, caseHref } from "./content.js?v=126ae840";
-import { makeGalaxy, makeWormhole, makeUnclaimedPlanet } from "./galaxies.js?v=126ae840";
-import { makeBlackHole } from "./blackhole.js?v=126ae840";
-import { PROJECTS } from "./planets.js?v=126ae840";
-import { noOrphans } from "./typeset.js?v=126ae840";
+import { PROJECTS_COPY, ABOUT_COPY, EXIT_COPY, CAREER_COPY, CONTACT_COPY, caseHref } from "./content.js?v=cb30314d";
+import { makeGalaxy, makeWormhole, makeUnclaimedPlanet } from "./galaxies.js?v=cb30314d";
+import { makeBlackHole } from "./blackhole.js?v=cb30314d";
+import { PROJECTS } from "./planets.js?v=cb30314d";
+import { noOrphans } from "./typeset.js?v=cb30314d";
 noOrphans();
-import { playIntro } from "./intro.js?v=126ae840";
-import { WatercolorShader } from "./watercolor.js?v=126ae840";
-import { themeButton } from "./warp-reveal.js?v=126ae840";
+import { playIntro } from "./intro.js?v=cb30314d";
+import { WatercolorShader } from "./watercolor.js?v=cb30314d";
+import { themeButton } from "./warp-reveal.js?v=cb30314d";
 // two looks for the same ride: light, painted in watercolour on paper (the default), and dark, realistic space. The
 // head of index.html picks one before anything draws; the Dark / Light button in the header switches and remembers
 let PAINT = document.documentElement.classList.contains("paint");
-import { planetMaterial, atmosphereMaterial, starMaterial, ringMaterial, makeLiquid, FilmShader } from "./shaders.js?v=126ae840";
+import { planetMaterial, atmosphereMaterial, starMaterial, ringMaterial, makeLiquid, FilmShader } from "./shaders.js?v=cb30314d";
 
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const rand = (a, b) => a + Math.random() * (b - a);
@@ -1215,7 +1215,8 @@ stops.forEach((s, i) => {
   const T = timesOf(s), full = (w) => w && w[0] < 2 && w[1] != null; // a part this stop really plays
   const lines = full(T.b1) && full(T.b2) && s.el.b1.textContent.trim() ? atStop(i, (Math.max(T.b1[1], T.b2[1]) + Math.min(T.b1[2] ?? 1, T.b2[2] ?? 1)) / 2) : null;
   const along = s.kind === "project" ? Math.max(0, (FLICKS[s.copy.slug] || 2) - 2)
-    : s.kind === "galaxy" || s.kind === "wormhole" || s.kind === "contact" ? ALONG_OUT : 0;
+    : s.kind === "galaxy" || s.kind === "wormhole" || s.kind === "contact" ? ALONG_OUT
+    : s.kind === "about" ? 3 : s.kind === "exit" ? 2 : 0; // Selangor FC to the sun, and out of the system
   const firstIn = lines !== null ? Math.min(T.b1[0], T.b2[0]) : full(T.pr) ? T.pr[0] : null; // where its copy starts
   if (firstIn !== null && along) {
     const clearTo = atStop(i, firstIn);
