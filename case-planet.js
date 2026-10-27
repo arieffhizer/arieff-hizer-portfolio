@@ -1,16 +1,16 @@
 import * as THREE from "three";
-import { planetMaterial, atmosphereMaterial, starMaterial } from "./shaders.js?v=cb30314d";
-import { PROJECTS } from "./planets.js?v=cb30314d";
-import { makeMonoliths } from "./case-monoliths.js?v=cb30314d";
-import { makeSatellites } from "./case-satellites.js?v=cb30314d";
-import { noOrphans } from "./typeset.js?v=cb30314d";
+import { planetMaterial, atmosphereMaterial, starMaterial } from "./shaders.js?v=720e3c4c";
+import { PROJECTS } from "./planets.js?v=720e3c4c";
+import { makeMonoliths } from "./case-monoliths.js?v=720e3c4c";
+import { makeSatellites } from "./case-satellites.js?v=720e3c4c";
+import { noOrphans } from "./typeset.js?v=720e3c4c";
 import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
-import { WatercolorShader } from "./watercolor.js?v=cb30314d";
-import { themeButton } from "./warp-reveal.js?v=cb30314d";
-import { homeHref } from "./content.js?v=cb30314d";
+import { WatercolorShader } from "./watercolor.js?v=720e3c4c";
+import { themeButton } from "./warp-reveal.js?v=720e3c4c";
+import { homeHref } from "./content.js?v=720e3c4c";
 
 // projects whose screens stand on the planet as chrome monoliths (on trial); the rest show flat images
 const MONOLITHS = new Set([]); // none for now: satellites won
@@ -99,13 +99,17 @@ export function startPlanetCase({ name, copy, sections, index, total }) {
   wash.uniforms.uTrue.value = 1; // the brand colour stays the brand colour, as a wash
   composer.addPass(wash);
 
-  const DAY = new THREE.Color(p.color), NIGHT = new THREE.Color("#050507"), PAPER = new THREE.Color("#ffffff"); // white: the wash leaves bare paper
+  // light mode can soften a brand colour that is too loud as a watercolour sky (RETA's neon purple)
+  const SOFT_DAY = { reta: "#8D76BD" };
+  const DAY_DARK = new THREE.Color(p.color), DAY_PAINT = new THREE.Color(SOFT_DAY[copy.slug] || p.color);
+  const DAY = new THREE.Color(), NIGHT = new THREE.Color("#050507"), PAPER = new THREE.Color("#ffffff"); // white: the wash leaves bare paper
   // ink: white on dark brand colours, near-black on light ones (FitCoach silver, SheTrades coral), always white at night
   const lum = (h) => { const [r, g, b] = [1, 3, 5].map((k) => { const v = parseInt(h.slice(k, k + 2), 16) / 255; return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.04045) / 1.055, 2.4); }); return 0.2126 * r + 0.7152 * g + 0.0722 * b; };
-  const INK_DAY = lum(p.color) > 0.3 ? [12, 13, 18] : [255, 255, 255];
+  // (a softened sky is light once the wash is on it: it takes the dark ink of the paper sections)
+  const inkDay = () => (paint && SOFT_DAY[copy.slug] ? [38, 36, 44] : lum(p.color) > 0.3 ? [12, 13, 18] : [255, 255, 255]);
   // at night the ink turns white against the dark sky; painted, night is bright paper, so it turns to dark ink
-  const ink = (night) => { const to = paint ? [38, 36, 44] : [255, 255, 255]; return INK_DAY.map((v, i) => Math.round(v + (to[i] - v) * night)).join(","); };
-  scene.background = DAY.clone();
+  const ink = (night) => { const to = paint ? [38, 36, 44] : [255, 255, 255]; return inkDay().map((v, i) => Math.round(v + (to[i] - v) * night)).join(","); };
+  scene.background = (paint ? DAY_PAINT : DAY_DARK).clone();
   // day: the sun high in front lights the whole horizon; night: it sits behind the planet and only rims its edge
   const SUN_DAY = new THREE.Vector3(18, 70, 40), SUN_NIGHT = new THREE.Vector3(0, 30, -140), sun = SUN_DAY.clone();
 
@@ -567,14 +571,18 @@ export function startPlanetCase({ name, copy, sections, index, total }) {
   const nearestStop = () => { if (stops.narrow !== narrow) { buildStops(); stops.narrow = narrow; } const f = scrollY / (innerHeight * SCREEN); let best = 0; stops.forEach((st, i) => { if (Math.abs(st - f) < Math.abs(stops[best] - f)) best = i; }); return best; };
   const step = (dir) => { const i = Math.max(0, Math.min(stops.length - 1, nearestStop() + dir)); scrollTo(0, stops[i] * innerHeight * SCREEN); };
   {
-    let used = false, acc = 0, lastStep = 0, quiet;
+    let used = false, acc = 0, lastStep = 0, quiet, lastAbs = 0;
     const blocked = () => box.classList.contains("on");
     const go = (dir) => { const now = performance.now(); if (now - lastStep < 650) return false; lastStep = now; step(dir); return true; };
     addEventListener("wheel", (e) => {
       if (blocked()) return;
       e.preventDefault();
       clearTimeout(quiet);
-      quiet = setTimeout(() => { used = false; acc = 0; }, 180); // the gesture (and its momentum) has ended
+      quiet = setTimeout(() => { used = false; acc = 0; lastAbs = 0; }, 180); // the gesture (and its momentum) has ended
+      const abs = Math.abs(e.deltaY);
+      // a new flick inside the last one's momentum tail: the wheel jumps back up (a tail only ever slows down)
+      if (used && abs > Math.max(12, lastAbs * 1.8) && performance.now() - lastStep > 450) { used = false; acc = 0; }
+      lastAbs = abs;
       if (used) return;
       acc += e.deltaY * (e.deltaMode === 1 ? 16 : 1);
       if (Math.abs(acc) >= 30 && go(Math.sign(acc))) used = true;
@@ -638,6 +646,7 @@ export function startPlanetCase({ name, copy, sections, index, total }) {
     const x = state.x, i = Math.floor(x), k = x - i;
     // day on even sections, night on odd ones
     const night = i % 2 === 0 ? k : 1 - k;
+    DAY.copy(paint ? DAY_PAINT : DAY_DARK);
     scene.background.copy(DAY).lerp(paint ? PAPER : NIGHT, night); // painted, the night sections are bright paper
     stars.material.opacity = night;
     stars.material.color.setHex(paint ? 0x55535f : 0xe9eaee); // painted, the night is paper: its stars are flecks of ink

@@ -4,19 +4,19 @@ import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
-import { PROJECTS_COPY, ABOUT_COPY, EXIT_COPY, CAREER_COPY, CONTACT_COPY, caseHref } from "./content.js?v=cb30314d";
-import { makeGalaxy, makeWormhole, makeUnclaimedPlanet } from "./galaxies.js?v=cb30314d";
-import { makeBlackHole } from "./blackhole.js?v=cb30314d";
-import { PROJECTS } from "./planets.js?v=cb30314d";
-import { noOrphans } from "./typeset.js?v=cb30314d";
+import { PROJECTS_COPY, ABOUT_COPY, EXIT_COPY, CAREER_COPY, CONTACT_COPY, caseHref } from "./content.js?v=720e3c4c";
+import { makeGalaxy, makeWormhole, makeUnclaimedPlanet } from "./galaxies.js?v=720e3c4c";
+import { makeBlackHole } from "./blackhole.js?v=720e3c4c";
+import { PROJECTS } from "./planets.js?v=720e3c4c";
+import { noOrphans } from "./typeset.js?v=720e3c4c";
 noOrphans();
-import { playIntro } from "./intro.js?v=cb30314d";
-import { WatercolorShader } from "./watercolor.js?v=cb30314d";
-import { themeButton } from "./warp-reveal.js?v=cb30314d";
+import { playIntro } from "./intro.js?v=720e3c4c";
+import { WatercolorShader } from "./watercolor.js?v=720e3c4c";
+import { themeButton } from "./warp-reveal.js?v=720e3c4c";
 // two looks for the same ride: light, painted in watercolour on paper (the default), and dark, realistic space. The
 // head of index.html picks one before anything draws; the Dark / Light button in the header switches and remembers
 let PAINT = document.documentElement.classList.contains("paint");
-import { planetMaterial, atmosphereMaterial, starMaterial, ringMaterial, makeLiquid, FilmShader } from "./shaders.js?v=cb30314d";
+import { planetMaterial, atmosphereMaterial, starMaterial, ringMaterial, makeLiquid, FilmShader } from "./shaders.js?v=720e3c4c";
 
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const rand = (a, b) => a + Math.random() * (b - a);
@@ -1235,7 +1235,8 @@ const inRests = (dir) => !restBusy() && (state.p < LAST_REST - 0.002 || (dir < 0
 let chained = false; // a glide already carries one extra flick
 function stepRest(dir) {
   // a second flick while gliding goes one further on, but no more: flicking hard never races through the ride
-  if (restTween) { if (chained) return; chained = true; }
+  if (restTween && restTween.progress() < 0.65) { if (chained) return; chained = true; }
+  else chained = false; // (in a glide's slow tail it already looks stopped: a flick there is a fresh one)
   const from = restTo ?? state.p;
   const next = dir > 0 ? RESTS.find((v) => v > from + 0.0015) : [...RESTS].reverse().find((v) => v < from - 0.0015);
   if (next === undefined) return;
@@ -1249,14 +1250,18 @@ function stepRest(dir) {
     onUpdate: () => scrollTo(0, proxy.v * maxScroll()), onComplete: () => { restTween = null; restTo = null; chained = false; } });
 }
 {
-  let used = false, acc = 0, quiet, lastStep = 0;
-  const go = (dir) => { const now = performance.now(); if (now - lastStep < 500) return false; lastStep = now; stepRest(dir); return true; };
+  let used = false, acc = 0, quiet, lastStep = 0, lastAbs = 0;
+  const go = (dir) => { const now = performance.now(); if (now - lastStep < 350) return false; lastStep = now; stepRest(dir); return true; };
   addEventListener("wheel", (e) => {
     const dir = Math.sign(e.deltaY);
     if (!dir || !inRests(dir) || e.ctrlKey) return;
     e.preventDefault();
     clearTimeout(quiet);
-    quiet = setTimeout(() => { used = false; acc = 0; }, 180); // the gesture (and its momentum) has ended
+    quiet = setTimeout(() => { used = false; acc = 0; lastAbs = 0; }, 180); // the gesture (and its momentum) has ended
+    const abs = Math.abs(e.deltaY);
+    // a new flick inside the last one's momentum tail: the wheel jumps back up (a tail only ever slows down)
+    if (used && abs > Math.max(12, lastAbs * 1.8) && performance.now() - lastStep > 350) { used = false; acc = 0; }
+    lastAbs = abs;
     if (used) return;
     acc += e.deltaY * (e.deltaMode === 1 ? 16 : 1);
     if (Math.abs(acc) >= 30 && go(Math.sign(acc))) used = true;
