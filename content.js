@@ -3,7 +3,7 @@ export const ABOUT_COPY = {
   beats: ["I'm a bit of a cliché, in the best way.", "I like what most people like, so I design for them easily."],
   label: "The rider",
   line: "Product designer at Appetiser Apps, Malaysia, with an architecture degree behind me. I tend to sense what people feel before they say it, and that is how I read the room, spot patterns and design for real users. Off the clock: badminton and football, Valorant, old JDMs, new gadgets, and a crème brûlée recipe I will happily share.",
-  link: { text: "View résumé", href: "https://drive.google.com/file/d/1Dxcnodf57wr4Pam4C0Foj0-92Z0jPfUq/view?usp=sharing" },
+  link: { text: "View résumé", href: "https://drive.google.com/file/d/1s2207ZQi6hWmemUwZFvGcD2zN-MfDzOb/view?usp=sharing" },
 };
 
 // The slingshot out of the system, into the career galaxies (next to build)
@@ -33,7 +33,7 @@ export const CONTACT_COPY = {
     { text: "arieffhizer@gmail.com", href: "mailto:arieffhizer@gmail.com" },
     { text: "LinkedIn", href: "https://www.linkedin.com/in/arieff-hizer-98b412225/" },
     { text: "GitHub", href: "https://github.com/arieffhizer" },
-    { text: "Résumé", href: "https://drive.google.com/file/d/1Dxcnodf57wr4Pam4C0Foj0-92Z0jPfUq/view?usp=sharing" },
+    { text: "Résumé", href: "https://drive.google.com/file/d/1s2207ZQi6hWmemUwZFvGcD2zN-MfDzOb/view?usp=sharing" },
   ],
 };
 

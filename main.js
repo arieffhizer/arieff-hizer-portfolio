@@ -4,19 +4,19 @@ import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
-import { PROJECTS_COPY, ABOUT_COPY, EXIT_COPY, CAREER_COPY, CONTACT_COPY, caseHref } from "./content.js?v=720e3c4c";
-import { makeGalaxy, makeWormhole, makeUnclaimedPlanet } from "./galaxies.js?v=720e3c4c";
-import { makeBlackHole } from "./blackhole.js?v=720e3c4c";
-import { PROJECTS } from "./planets.js?v=720e3c4c";
-import { noOrphans } from "./typeset.js?v=720e3c4c";
+import { PROJECTS_COPY, ABOUT_COPY, EXIT_COPY, CAREER_COPY, CONTACT_COPY, caseHref } from "./content.js?v=87c64539";
+import { makeGalaxy, makeWormhole, makeUnclaimedPlanet } from "./galaxies.js?v=87c64539";
+import { makeBlackHole } from "./blackhole.js?v=87c64539";
+import { PROJECTS } from "./planets.js?v=87c64539";
+import { noOrphans } from "./typeset.js?v=87c64539";
 noOrphans();
-import { playIntro } from "./intro.js?v=720e3c4c";
-import { WatercolorShader } from "./watercolor.js?v=720e3c4c";
-import { themeButton } from "./warp-reveal.js?v=720e3c4c";
+import { playIntro } from "./intro.js?v=87c64539";
+import { WatercolorShader } from "./watercolor.js?v=87c64539";
+import { themeButton } from "./warp-reveal.js?v=87c64539";
 // two looks for the same ride: light, painted in watercolour on paper (the default), and dark, realistic space. The
 // head of index.html picks one before anything draws; the Dark / Light button in the header switches and remembers
 let PAINT = document.documentElement.classList.contains("paint");
-import { planetMaterial, atmosphereMaterial, starMaterial, ringMaterial, makeLiquid, FilmShader } from "./shaders.js?v=720e3c4c";
+import { planetMaterial, atmosphereMaterial, starMaterial, ringMaterial, makeLiquid, FilmShader } from "./shaders.js?v=87c64539";
 
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const rand = (a, b) => a + Math.random() * (b - a);
